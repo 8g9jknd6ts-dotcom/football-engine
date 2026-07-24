@@ -1,223 +1,93 @@
 [
   {
-    "match_id": "2026-07-25_周五202",
-    "competition": "瑞典超",
-    "home_team": "韦斯特罗斯",
-    "away_team": "厄格里特",
-    "home_win_prob": 0.4268,
-    "draw_prob": 0.2545,
-    "away_win_prob": 0.3187,
-    "home_xg": 1.611,
-    "away_xg": 1.36,
-    "home_odds": 2.04,
-    "draw_odds": 3.42,
-    "away_odds": 2.73,
-    "odds_synthetic": true,
-    "handicap": null,
-    "confidence": 0.117,
-    "wilson_trust": 0.2742,
-    "model_raw": {
-      "home": 0.4268,
-      "draw": 0.2545,
-      "away": 0.3187
-    },
-    "market_fair": null,
-    "top_scores": [
-      [
-        1,
-        1,
-        0.1204
-      ],
-      [
-        1,
-        0,
-        0.0953
-      ],
-      [
-        2,
-        1,
-        0.0868
-      ],
-      [
-        0,
-        1,
-        0.0848
-      ],
-      [
-        1,
-        2,
-        0.0783
-      ],
-      [
-        2,
-        0,
-        0.0684
-      ],
-      [
-        0,
-        0,
-        0.0665
-      ],
-      [
-        0,
-        2,
-        0.0559
-      ]
-    ],
-    "total_goals": [
-      [
-        2,
-        0.2448
-      ],
-      [
-        3,
-        0.2206
-      ],
-      [
-        1,
-        0.1802
-      ],
-      [
-        4,
-        0.1489
-      ],
-      [
-        5,
-        0.082
-      ],
-      [
-        0,
-        0.0665
-      ]
-    ],
-    "htft": {
-      "HH": 0.1836,
-      "HD": 0.0962,
-      "HA": 0.0518,
-      "DH": 0.1912,
-      "DD": 0.0833,
-      "DA": 0.1292,
-      "AH": 0.0589,
-      "AD": 0.0884,
-      "AA": 0.1174
-    },
-    "htft_top3": [
-      [
-        "DH",
-        0.1912
-      ],
-      [
-        "HH",
-        0.1836
-      ],
-      [
-        "DA",
-        0.1292
-      ]
-    ],
-    "reverse_upset_risk": null,
-    "reverse_direction": null,
-    "reverse_compression": null,
-    "same_odds_matched": 0,
-    "same_odds_confidence": 0,
-    "same_odds_bias": null,
-    "combo_boost": 0.0,
-    "djyy_enriched": false,
-    "djyy_model_prob": null,
-    "_djyy_id": null,
-    "elo_home": 1500.0,
-    "elo_away": 1495.5,
-    "kelly_edge": -0.1293
-  },
-  {
     "match_id": "2026-07-25_周五201",
     "competition": "芬超",
     "home_team": "雅罗",
     "away_team": "塞伊奈",
-    "home_win_prob": 0.5728,
-    "draw_prob": 0.2313,
-    "away_win_prob": 0.1959,
+    "home_win_prob": 0.5747,
+    "draw_prob": 0.2298,
+    "away_win_prob": 0.1955,
     "home_xg": 1.93,
     "away_xg": 1.039,
-    "home_odds": 1.52,
-    "draw_odds": 3.76,
-    "away_odds": 4.44,
+    "home_odds": 1.51,
+    "draw_odds": 3.79,
+    "away_odds": 4.45,
     "odds_synthetic": true,
     "handicap": null,
-    "confidence": 0.1883,
+    "confidence": 0.1888,
     "wilson_trust": 0.3286,
     "model_raw": {
-      "home": 0.5729,
-      "draw": 0.2313,
-      "away": 0.1959
+      "home": 0.5747,
+      "draw": 0.2298,
+      "away": 0.1955
     },
     "market_fair": null,
     "top_scores": [
       [
         1,
         1,
-        0.1139
+        0.1131
       ],
       [
         1,
         0,
-        0.1063
+        0.1093
       ],
       [
         2,
         1,
-        0.0996
+        0.0979
       ],
       [
         2,
         0,
-        0.0923
+        0.094
       ],
       [
         0,
         1,
-        0.0683
+        0.0681
       ],
       [
         0,
         0,
-        0.0635
+        0.0628
       ],
       [
         1,
         2,
-        0.0585
+        0.0578
       ],
       [
         3,
         1,
-        0.0558
+        0.0555
       ]
     ],
     "total_goals": [
       [
         2,
-        0.2401
+        0.2407
       ],
       [
         3,
-        0.2233
+        0.2214
       ],
       [
         1,
-        0.1746
+        0.1774
       ],
       [
         4,
-        0.1548
+        0.1522
       ],
       [
         5,
-        0.0828
+        0.0822
       ],
       [
         0,
-        0.0635
+        0.0628
       ]
     ],
     "htft": {
@@ -257,6 +127,136 @@
     "_djyy_id": null,
     "elo_home": 1497.0,
     "elo_away": 1435.6,
-    "kelly_edge": -0.1293
+    "kelly_edge": -0.1291
+  },
+  {
+    "match_id": "2026-07-25_周五202",
+    "competition": "瑞典超",
+    "home_team": "韦斯特罗斯",
+    "away_team": "厄格里特",
+    "home_win_prob": 0.426,
+    "draw_prob": 0.2562,
+    "away_win_prob": 0.3177,
+    "home_xg": 1.611,
+    "away_xg": 1.36,
+    "home_odds": 2.04,
+    "draw_odds": 3.4,
+    "away_odds": 2.74,
+    "odds_synthetic": true,
+    "handicap": null,
+    "confidence": 0.1168,
+    "wilson_trust": 0.2742,
+    "model_raw": {
+      "home": 0.426,
+      "draw": 0.2562,
+      "away": 0.3177
+    },
+    "market_fair": null,
+    "top_scores": [
+      [
+        1,
+        1,
+        0.1228
+      ],
+      [
+        1,
+        0,
+        0.0945
+      ],
+      [
+        2,
+        1,
+        0.0867
+      ],
+      [
+        0,
+        1,
+        0.0853
+      ],
+      [
+        1,
+        2,
+        0.0781
+      ],
+      [
+        2,
+        0,
+        0.0691
+      ],
+      [
+        0,
+        0,
+        0.0682
+      ],
+      [
+        0,
+        2,
+        0.0551
+      ]
+    ],
+    "total_goals": [
+      [
+        2,
+        0.247
+      ],
+      [
+        3,
+        0.2221
+      ],
+      [
+        1,
+        0.1799
+      ],
+      [
+        4,
+        0.1462
+      ],
+      [
+        5,
+        0.079
+      ],
+      [
+        0,
+        0.0682
+      ]
+    ],
+    "htft": {
+      "HH": 0.1836,
+      "HD": 0.0962,
+      "HA": 0.0518,
+      "DH": 0.1912,
+      "DD": 0.0833,
+      "DA": 0.1292,
+      "AH": 0.0589,
+      "AD": 0.0884,
+      "AA": 0.1174
+    },
+    "htft_top3": [
+      [
+        "DH",
+        0.1912
+      ],
+      [
+        "HH",
+        0.1836
+      ],
+      [
+        "DA",
+        0.1292
+      ]
+    ],
+    "reverse_upset_risk": null,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0,
+    "same_odds_bias": null,
+    "combo_boost": 0.0,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1500.0,
+    "elo_away": 1495.5,
+    "kelly_edge": -0.1289
   }
 ]
