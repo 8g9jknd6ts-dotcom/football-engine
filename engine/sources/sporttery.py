@@ -86,14 +86,9 @@ class SportterySource(DataSource):
         match_info_list = data.get("value", {}).get("matchInfoList", [])
 
         for day_group in match_info_list:
-            # matchInfoList 按天分组，每天下有 subMatchList
-            biz_date = day_group.get("businessDate", "")
+            # matchInfoList 按 matchDate 分组（周六=07-25, 周日=07-26...）
+            # 不按 businessDate 过滤：竞彩开售多天，全部拿
             sub_matches = day_group.get("subMatchList", [])
-
-            # 兼容：竞彩跨午夜，周三比赛可能包含"周四凌晨"的场次
-            target_iso = target_date.isoformat()
-            if biz_date and biz_date != target_iso:
-                continue
 
             for item in sub_matches:
                 match_num = item.get("matchNumStr", "") or str(item.get("matchNum", ""))
