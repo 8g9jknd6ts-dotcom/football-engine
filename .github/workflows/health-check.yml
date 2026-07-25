@@ -2,75 +2,51 @@ name: Health Check
 
 on:
   schedule:
-    # 每天北京时间 18:00 = UTC 10:00 检查当天是否正常
-    - cron: '0 10 * * *'
+    # 每5分钟检查一次，发现 daily-forecast 超过1小时没跑就自动触发
+    - cron: '*/5 * * * *'
   workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
 
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
 
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Check pipeline health
-        id: health
+      - name: Check last Daily Forecast run
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python -c "
-          import json, sys
-          from pathlib import Path
-          from datetime import date
+          # 获取最近一次 daily-forecast workflow 的完成时间
+          LAST_RUN=$(gh api repos/${{ github.repository }}/actions/workflows/daily-forecast.yml/runs \
+            --jq '.workflow_runs[0] | {conclusion: .conclusion, created_at: .created_at, status: .status}')
 
-          today = date.today().isoformat()
-          daily_dir = Path('data/daily') / today
+          CONCLUSION=$(echo "$LAST_RUN" | jq -r '.conclusion // "none"')
+          CREATED_AT=$(echo "$LAST_RUN" | jq -r '.created_at')
+          STATUS=$(echo "$LAST_RUN" | jq -r '.status')
 
-          issues = []
+          echo "→ 上次 Daily Forecast: $CREATED_AT ($STATUS, $CONCLUSION)"
 
-          # 检查预测是否生成
-          if not (daily_dir / 'predictions.json').exists():
-              issues.append(f'{today} 预测未生成')
+          # 计算距今分钟数
+          CREATED_TS=$(date -d "$CREATED_AT" +%s)
+          NOW_TS=$(date +%s)
+          ELAPSED_MIN=$(( (NOW_TS - CREATED_TS) / 60 ))
 
-          # 检查决策包
-          if not (daily_dir / f'decision_bundle_{today}.json').exists():
-              issues.append(f'{today} 决策包缺失')
+          echo "→ 距今 ${ELAPSED_MIN} 分钟"
 
-          # 检查数据源健康
-          try:
-              from engine.sources.manager import SourceManager
-              mgr = SourceManager(Path('data'))
-              status = mgr.health_check()
-              for name, ok in status.items():
-                  if not ok:
-                      issues.append(f'数据源 {name} 不可用')
-          except Exception as e:
-              issues.append(f'健康检查异常: {e}')
+          if [ "$STATUS" = "in_progress" ]; then
+            echo "→ Daily Forecast 正在运行中，跳过"
+            exit 0
+          fi
 
-          if issues:
-              print('::error::' + '; '.join(issues))
-              # 写入状态文件供外部监控读取
-              Path('web/health-status.json').write_text(json.dumps({
-                  'date': today,
-                  'healthy': False,
-                  'issues': issues,
-              }))
-              sys.exit(1)
-          else:
-              Path('web/health-status.json').write_text(json.dumps({
-                  'date': today,
-                  'healthy': True,
-                  'issues': [],
-              }))
-              print('All checks passed ✓')
-          "
-
-      - name: Notify on failure
-        if: failure()
-        run: |
-          echo "⚠️ 流水线健康检查失败，请检查 GitHub Actions 日志"
-          # 可扩展：发送企业微信/钉钉/邮件通知
-          # curl -X POST "${{ secrets.WEBHOOK_URL }}" -d '{"text": "流水线异常"}'
+          if [ "$ELAPSED_MIN" -gt 60 ]; then
+            echo "→ 超过60分钟未运行，触发 Daily Forecast..."
+            gh workflow run "Daily Forecast" --ref main
+            echo "::notice::已自动触发 Daily Forecast（上次运行于 ${ELAPSED_MIN} 分钟前）"
+          else
+            echo "→ 正常运行中，无需触发"
+          fi
