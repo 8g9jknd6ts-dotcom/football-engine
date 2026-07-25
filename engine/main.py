@@ -431,8 +431,13 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                 _djyy_ssr["away_odds_djyy"],
             )
         if market_odds is None and final_h > 0 and final_d > 0 and final_a > 0:
-            _margin = 0.87
-            market_odds = (round(_margin / final_h, 2), round(_margin / final_d, 2), round(_margin / final_a, 2))
+            # 合成赔率: 公平赔率 = 1/概率, 加 5% 庄家水位, 最低 1.01
+            _margin_rate = 1.05
+            market_odds = (
+                max(1.01, round(1 / (final_h * _margin_rate), 2)),
+                max(1.01, round(1 / (final_d * _margin_rate), 2)),
+                max(1.01, round(1 / (final_a * _margin_rate), 2)),
+            )
             _odds_synthetic = True
 
         predictions.append({
