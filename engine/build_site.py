@@ -256,7 +256,7 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     import re
     league_groups = OrderedDict()
     league_order = []
-    _day_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
+    _day_map = {'周六': 0, '周日': 1, '周一': 2, '周二': 3, '周三': 4, '周四': 5, '周五': 6}
     def _match_sort_key(p):
         mid = p.get("match_id", "")
         # 提取 周X 和 数字编号
