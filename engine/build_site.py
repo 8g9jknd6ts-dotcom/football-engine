@@ -1486,7 +1486,9 @@ def _tab_odds(p, uid):
     final_a = p.get("away_win_prob", 0)
     
     # 四庄家赔率对比
-    # 1. 体彩官方
+    is_synthetic = p.get("odds_synthetic", False)
+    src_label = "模型合成" if is_synthetic else "体彩官方"
+    # 1. 体彩官方 / 模型合成
     sporttery_odds = p.get("sporttery_odds") or {}
     st_h = sporttery_odds.get("home") or odds_h
     st_d = sporttery_odds.get("draw") or odds_d
@@ -1517,7 +1519,7 @@ def _tab_odds(p, uid):
     bookies_html = f"""
       <table class="edge-table" style="margin-top: 16px;">
         <tr><th>庄家</th><th>主胜</th><th>平局</th><th>客胜</th></tr>
-        <tr><td class="src-label">体彩官方</td><td>{_o(st_h)}</td><td>{_o(st_d)}</td><td>{_o(st_a)}</td></tr>
+        <tr><td class="src-label">{src_label}</td><td>{_o(st_h)}</td><td>{_o(st_d)}</td><td>{_o(st_a)}</td></tr>
         <tr><td class="src-label">Bet365</td><td>{_o(b365_h)}</td><td>{_o(b365_d)}</td><td>{_o(b365_a)}</td></tr>
         <tr><td class="src-label">Pinnacle</td><td>{_o(pinn_h)}</td><td>{_o(pinn_d)}</td><td>{_o(pinn_a)}</td></tr>
         <tr><td class="src-label" style="color:var(--purple);">DJYY模型</td><td>{_o(djyy_h)}</td><td>{_o(djyy_d)}</td><td>{_o(djyy_a)}</td></tr>
