@@ -529,22 +529,25 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     # 熔断检查
     breaker = CircuitBreaker(ROOT / "data" / "state" / "circuit_breaker.json")
     bankroll = strat_cfg.get("bankroll", 10000)
-    breaker_mult = breaker.get_multiplier(bankroll)
+    # 用 CPPI 实际资金池（而非永远 10000）
+    cppi = CPPIStrategy(
+        ROOT / "data" / "state" / "cppi.json",
+        initial_bankroll=bankroll,
+    )
+    actual_bankroll = cppi.state.current_bankroll if cppi.state.current_bankroll > 0 else bankroll
+    breaker_mult = breaker.get_multiplier(actual_bankroll)
     breaker_status = breaker.status_report()
     print(f"  熔断状态: tier={breaker_status['tier']}, "
           f"streak={breaker_status['current_streak']}, "
           f"multiplier={breaker_mult}")
+    print(f"  💰 资金池: {actual_bankroll:.0f}")
 
     # 虚拟投注：不熔断，始终正常投注
 
     # 自适应置信阈值（连败收紧）
     conf_threshold = 0  # 虚拟投注不限制置信度
 
-    # CPPI风险预算
-    cppi = CPPIStrategy(
-        ROOT / "data" / "state" / "cppi.json",
-        initial_bankroll=bankroll,
-    )
+    # CPPI风险预算（使用已加载的 cppi 实例）
     risk_budget = cppi.get_risk_budget()
     print(f"  CPPI: 安全垫={risk_budget['cushion']}, "
           f"风险预算={risk_budget['risk_exposure']}")
@@ -557,7 +560,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     # 三票制重分配
     effective_mult = 1.0  # 虚拟投注不降注
     allocator = ThreeTicketAllocator(
-        bankroll=bankroll,
+        bankroll=actual_bankroll,
         breaker_multiplier=effective_mult,
     )
     candidates = []
@@ -845,6 +848,10 @@ def run_settlement(target_date: date):
     breaker = CircuitBreaker(ROOT / "data" / "state" / "circuit_breaker.json")
     strat_cfg = load_config("strategy")
     bankroll = strat_cfg.get("bankroll", 10000)
+    # 从 CPPI 加载当前资金池（而非每次重置为 10000）
+    cppi = CPPIStrategy(ROOT / "data" / "state" / "cppi.json", initial_bankroll=bankroll)
+    running_bankroll = cppi.state.current_bankroll if cppi.state.current_bankroll > 0 else bankroll
+    print(f"  💰 当前资金池: {running_bankroll:.0f}")
 
     # 读取投注计划
     ticket_file = daily_dir / "ticket_plan.json"
@@ -905,7 +912,8 @@ def run_settlement(target_date: date):
         else:
             losses += 1
 
-        breaker.record_result(won=won, pnl=pnl, bankroll=bankroll)
+        breaker.record_result(won=won, pnl=pnl, bankroll=running_bankroll)
+        running_bankroll += pnl
 
     print(f"  ✓ 命中 {wins}/{wins+losses}, PnL={total_pnl:.2f}")
     print(f"  熔断状态: {breaker.status_report()}")
@@ -1012,16 +1020,11 @@ def run_settlement(target_date: date):
     pred_file.write_text(json.dumps(predictions, ensure_ascii=False, indent=2))
     print(f"  ✓ 已更新 {updated} 场预测赛果")
 
-    # CPPI 更新
+    # CPPI 更新（已在结算前加载，直接更新）
     print("\n[4/4] CPPI 资产更新...")
-    cppi = CPPIStrategy(
-        ROOT / "data" / "state" / "cppi.json",
-        initial_bankroll=bankroll,
-    )
-    new_bankroll = bankroll + total_pnl
-    cppi.update(new_bankroll)
+    cppi.update(running_bankroll)
     cppi.save()
-    print(f"  ✓ 资产: {bankroll:.0f} → {new_bankroll:.0f}")
+    print(f"  ✓ 资产: {bankroll:.0f} → {running_bankroll:.0f}  (PnL: {total_pnl:+.2f})")
 
     # 复盘 + 自我革新
     print("\n[5/6] 赛后复盘...")
