@@ -251,11 +251,22 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
             if fixture:
                 results_map[fixture] = entry
 
-    # 按联赛分组
+    # 按联赛分组（按 match_id 排序：周六201→周六202→...→周日201→周日202→...）
     from collections import OrderedDict
+    import re
     league_groups = OrderedDict()
     league_order = []
-    for p in sorted(predictions, key=lambda x: -x.get("confidence", 0)):
+    _day_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
+    def _match_sort_key(p):
+        mid = p.get("match_id", "")
+        # 提取 周X 和 数字编号
+        m = re.search(r'(周[一二三四五六日])(\d+)', mid)
+        if m:
+            day = _day_map.get(m.group(1), 99)
+            num = int(m.group(2))
+            return (day, num)
+        return (99, 0)
+    for p in sorted(predictions, key=_match_sort_key):
         lg = p.get("competition", "其他")
         if lg not in league_groups:
             league_groups[lg] = []
