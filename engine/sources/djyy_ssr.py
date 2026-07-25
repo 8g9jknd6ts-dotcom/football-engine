@@ -92,18 +92,31 @@ class DJYYSSRSource:
             except (ValueError, TypeError):
                 pass
 
-        # 赔率 (bet365 + Pinnacle) — regex 提取（RSC 嵌套转义无法 json.loads）
+        # 赔率 (bet365 + Pinnacle) — 优先尝试 JSON 解析，失败则 regex 兜底
         odds_str = m.get("odds_comparison", "")
         if odds_str and isinstance(odds_str, str) and len(odds_str) > 10:
             odds_data = {}
-            for section in ["Home", "Draw", "Away"]:
-                for book in ["Pinnacle", "bet365"]:
-                    pat = re.search(
-                        section + r'[^}]*?' + book + r'[^0-9]*(\d+\.\d+)',
-                        odds_str,
-                    )
-                    if pat:
-                        odds_data.setdefault(section, {})[book] = pat.group(1)
+            # 尝试 JSON 解析
+            try:
+                parsed = json.loads(odds_str)
+                ft = parsed.get("FT Result", parsed)
+                for section in ["Home", "Draw", "Away"]:
+                    if section in ft and isinstance(ft[section], dict):
+                        for book in ["Pinnacle", "bet365"]:
+                            if book in ft[section]:
+                                val = ft[section][book]
+                                if val:
+                                    odds_data.setdefault(section, {})[book] = str(val)
+            except (json.JSONDecodeError, TypeError):
+                # JSON 解析失败，regex 兜底
+                for section in ["Home", "Draw", "Away"]:
+                    for book in ["Pinnacle", "bet365"]:
+                        pat = re.search(
+                            section + r'[^}]*?' + book + r'[^0-9]*(\d+\.\d+)',
+                            odds_str,
+                        )
+                        if pat:
+                            odds_data.setdefault(section, {})[book] = pat.group(1)
             home_odds_d = odds_data.get("Home", {})
             draw_odds_d = odds_data.get("Draw", {})
             away_odds_d = odds_data.get("Away", {})
