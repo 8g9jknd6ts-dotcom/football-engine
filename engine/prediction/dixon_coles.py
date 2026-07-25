@@ -137,6 +137,14 @@ class DixonColesModel(PredictionModel):
         home_xg = max(0.15, min(4.5, math.exp(log_home)))
         away_xg = max(0.15, min(4.5, math.exp(log_away)))
 
+        # 同联赛xG差距封顶: 防止模型对弱队过度惩罚
+        _xg_gap = abs(home_xg - away_xg)
+        if _xg_gap > 1.5:
+            _scale = 1.5 / _xg_gap
+            _mid = (home_xg + away_xg) / 2
+            home_xg = _mid + (home_xg - _mid) * _scale
+            away_xg = _mid + (away_xg - _mid) * _scale
+
         return home_xg, away_xg
 
     def _score_distribution(self, lambda_h: float, lambda_a: float) -> np.ndarray:
