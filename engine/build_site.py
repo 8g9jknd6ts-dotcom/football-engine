@@ -251,46 +251,37 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
             if fixture:
                 results_map[fixture] = entry
 
-    # 按联赛分组（按 match_id 排序：周六201→周六202→...→周日201→周日202→...）
-    from collections import OrderedDict
+    # 按 match_id 排序：周六201→周六202→...→周日201→周日202→...→周一201→...
     import re
-    league_groups = OrderedDict()
-    league_order = []
     _day_map = {'周六': 0, '周日': 1, '周一': 2, '周二': 3, '周三': 4, '周四': 5, '周五': 6}
     def _match_sort_key(p):
         mid = p.get("match_id", "")
-        # 提取 周X 和 数字编号
         m = re.search(r'(周[一二三四五六日])(\d+)', mid)
         if m:
             day = _day_map.get(m.group(1), 99)
             num = int(m.group(2))
             return (day, num)
         return (99, 0)
-    for p in sorted(predictions, key=_match_sort_key):
-        lg = p.get("competition", "其他")
-        if lg not in league_groups:
-            league_groups[lg] = []
-            league_order.append(lg)
-        league_groups[lg].append(p)
+    sorted_preds = sorted(predictions, key=_match_sort_key)
 
-    # 联赛筛选导航
-    if len(league_groups) > 1:
+    # 联赛筛选导航（仅用于过滤，不改排序）
+    from collections import Counter
+    league_counts = Counter(p.get("competition", "其他") for p in sorted_preds)
+    if len(league_counts) > 1:
         cards += '<div class="league-nav">'
         cards += '<button class="league-btn active" data-league="all">全部</button>'
-        for lg in league_order:
-            cnt = len(league_groups[lg])
+        for lg, cnt in league_counts.most_common():
             cards += f'<button class="league-btn" data-league="{_slug(lg)}">{lg}<span class="cnt">{cnt}</span></button>'
         cards += '</div>'
 
+    # 平铺渲染，严格按 match_id 排序
     global_idx = 0
-    for lg in league_order:
-        lg_matches = league_groups[lg]
+    for p in sorted_preds:
+        lg = p.get("competition", "其他")
         cards += f'<div class="league-section" data-league="{_slug(lg)}">'
-        cards += _league_header_enriched(lg, len(lg_matches), league_matrix)
-        for p in lg_matches:
-            cards += _match_card(p, value_matches, global_idx, results_map)
-            global_idx += 1
-        cards += '</div>' 
+        cards += _match_card(p, value_matches, global_idx, results_map)
+        cards += '</div>'
+        global_idx += 1 
 
     # 三票方案
     ticket_html = _ticket_section(ticket, predictions)
