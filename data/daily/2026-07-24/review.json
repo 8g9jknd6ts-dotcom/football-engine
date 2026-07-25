@@ -1,0 +1,40 @@
+{
+  "date": "2026-07-24",
+  "n_matches": 2,
+  "hit_rate": 1.0,
+  "hits": 2,
+  "source_brier": {
+    "model": 0.017,
+    "market": null,
+    "djyy": null,
+    "final": 0.016
+  },
+  "by_league": {
+    "K1联赛": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.016
+    }
+  },
+  "by_confidence_tier": {
+    "high": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.016
+    }
+  },
+  "by_odds_band": {
+    "1.0-1.5": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.016
+    }
+  },
+  "biases": [],
+  "total_pnl": 0,
+  "generated_at": "2026-07-25T01:10:10.008346",
+  "sha256": "31e136b692cb325344b9a058174c236c"
+}
