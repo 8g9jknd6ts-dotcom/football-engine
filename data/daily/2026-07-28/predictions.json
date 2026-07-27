@@ -4,28 +4,24 @@
     "competition": "瑞典超",
     "home_team": "赫根",
     "away_team": "索尔纳",
-    "home_win_prob": 0.5088,
-    "draw_prob": 0.2332,
-    "away_win_prob": 0.258,
+    "home_win_prob": 0.5412,
+    "draw_prob": 0.2211,
+    "away_win_prob": 0.2378,
     "home_xg": 1.917,
     "away_xg": 0.991,
     "home_odds": 1.76,
-    "draw_odds": 3.5,
-    "away_odds": 3.63,
-    "odds_synthetic": false,
-    "handicap": -1.0,
-    "confidence": 0.177,
+    "draw_odds": 4.31,
+    "away_odds": 4.01,
+    "odds_synthetic": true,
+    "handicap": null,
+    "confidence": 0.1877,
     "wilson_trust": 0.3286,
     "model_raw": {
-      "home": 0.5385,
-      "draw": 0.2334,
-      "away": 0.2281
+      "home": 0.5713,
+      "draw": 0.2227,
+      "away": 0.2059
     },
-    "market_fair": [
-      0.5031,
-      0.253,
-      0.2439
-    ],
+    "market_fair": null,
     "top_scores": [
       [
         1,
@@ -121,16 +117,12 @@
         0.0806
       ]
     ],
-    "reverse_upset_risk": 44.9,
+    "reverse_upset_risk": null,
     "reverse_direction": null,
     "reverse_compression": null,
     "same_odds_matched": 0,
-    "same_odds_confidence": 0.0,
-    "same_odds_bias": [
-      0.0,
-      0.0,
-      0.0
-    ],
+    "same_odds_confidence": 0,
+    "same_odds_bias": null,
     "combo_boost": 0.0712,
     "djyy_enriched": true,
     "djyy_model_prob": {
@@ -141,35 +133,31 @@
     "_djyy_id": 19635942,
     "elo_home": 1445.5,
     "elo_away": 1484.5,
-    "kelly_edge": -0.0635
+    "kelly_edge": -0.0464
   },
   {
     "match_id": "2026-07-28_周一202",
     "competition": "挪超",
     "home_team": "罗森博格",
     "away_team": "腓特烈",
-    "home_win_prob": 0.5529,
-    "draw_prob": 0.2276,
-    "away_win_prob": 0.2196,
+    "home_win_prob": 0.5165,
+    "draw_prob": 0.243,
+    "away_win_prob": 0.2405,
     "home_xg": 1.625,
     "away_xg": 1.07,
-    "home_odds": 1.37,
-    "draw_odds": 4.4,
-    "away_odds": 5.8,
-    "odds_synthetic": false,
-    "handicap": -1.0,
-    "confidence": 0.1679,
-    "wilson_trust": 0.3286,
+    "home_odds": 1.84,
+    "draw_odds": 3.92,
+    "away_odds": 3.96,
+    "odds_synthetic": true,
+    "handicap": null,
+    "confidence": 0.1367,
+    "wilson_trust": 0.2742,
     "model_raw": {
-      "home": 0.5109,
-      "draw": 0.2458,
-      "away": 0.2434
+      "home": 0.4984,
+      "draw": 0.2543,
+      "away": 0.2473
     },
-    "market_fair": [
-      0.6462,
-      0.2012,
-      0.1526
-    ],
+    "market_fair": null,
     "top_scores": [
       [
         1,
@@ -265,16 +253,12 @@
         0.1047
       ]
     ],
-    "reverse_upset_risk": 32.8,
+    "reverse_upset_risk": null,
     "reverse_direction": null,
     "reverse_compression": null,
     "same_odds_matched": 0,
-    "same_odds_confidence": 0.0,
-    "same_odds_bias": [
-      0.0,
-      0.0,
-      0.0
-    ],
+    "same_odds_confidence": 0,
+    "same_odds_bias": null,
     "combo_boost": 0.3,
     "djyy_enriched": true,
     "djyy_model_prob": {
@@ -285,6 +269,6 @@
     "_djyy_id": 19629623,
     "elo_home": 1440.8,
     "elo_away": 1453.2,
-    "kelly_edge": 0.2737
+    "kelly_edge": -0.0474
   }
 ]
