@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import numpy as np
 from datetime import date, datetime
 from pathlib import Path
 
@@ -46,6 +47,9 @@ from engine.learning.combo_miner import ComboMiner
 from engine.learning.online_weights import OnlineWeightLearner
 from engine.prediction.lgbm_model import LGBMModel, LGBMConfig, build_features
 from engine.prediction.isotonic_cal import IsotonicCalibrator, CalibrationConfig
+from engine.prediction.temperature_scaling import TemperatureScaler
+from engine.prediction.rho_fitter import RhoFitter
+from engine.prediction.time_decay import time_decay_weights
 from engine.learning.league_params import LeagueParamsManager
 from engine.storage.match_db import MatchDB
 from engine.prediction.htft_model import htft_probabilities, top_htft
@@ -127,6 +131,13 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         print(f"  ✓ Isotonic 校准已加载 (method={calibrator.method_used})")
     else:
         print(f"  - Isotonic 未拟合（原样输出）")
+
+    # Temperature Scaling 校准层（在 Isotonic 之后应用）
+    temp_scaler = TemperatureScaler(ROOT / "data" / "models" / "temperature.json")
+    if temp_scaler.is_fitted:
+        print(f"  ✓ Temperature Scaling 已加载 (T={temp_scaler.temperature_value:.3f})")
+    else:
+        print(f"  - Temperature Scaling 未拟合（跳过）")
 
     # 联赛独立参数
     league_mgr = LeagueParamsManager(ROOT / "data" / "state" / "league_params.json")
@@ -424,6 +435,10 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         # --- Isotonic 校准（最终修正） ---
         if calibrator.is_fitted:
             final_h, final_d, final_a = calibrator.calibrate((final_h, final_d, final_a))
+
+        # --- Temperature Scaling 校准 ---
+        if temp_scaler.is_fitted:
+            final_h, final_d, final_a = temp_scaler.calibrate((final_h, final_d, final_a))
 
         # 半全场概率 (基于最终xG)
         _htft = htft_probabilities(pred.home_xg, pred.away_xg)
@@ -1068,6 +1083,58 @@ def run_settlement(target_date: date):
     print(f"  原因: {decision.reason}")
     if decision.guard_rails_applied:
         print(f"  守卫: {decision.guard_rails_applied}")
+
+    # Temperature Scaling 重新拟合
+    print("\n  [校准更新] Temperature Scaling...")
+    ledger_path = ROOT / "data" / "state" / "review_ledger.jsonl"
+    all_records = []
+    if ledger_path.exists():
+        for line in ledger_path.read_text().strip().split("\n"):
+            if line.strip():
+                try:
+                    all_records.append(json.loads(line))
+                except Exception:
+                    continue
+    if len(all_records) >= 30:
+        ts_probs = np.array([r.get("final_prob", [0.33, 0.34, 0.33]) for r in all_records])
+        ts_actuals = np.array([r.get("actual_idx", 0) for r in all_records])
+        temp_scaler = TemperatureScaler(ROOT / "data" / "models" / "temperature.json")
+        temp_scaler.fit(ts_probs, ts_actuals)
+    else:
+        print(f"    样本不足 ({len(all_records)} < 30)")
+
+    # Rho MLE 拟合
+    print("\n  [校准更新] Rho MLE...")
+    rho_fitter = RhoFitter(ROOT / "data" / "state" / "match_history.db")
+    rho_result = rho_fitter.fit()
+    if rho_result["rho"] is not None:
+        # 写入 config
+        config_path = ROOT / "config" / "prediction.json"
+        if config_path.exists():
+            cfg = json.loads(config_path.read_text())
+            cfg.setdefault("prediction", {})["rho"] = rho_result["rho"]
+            config_path.write_text(json.dumps(cfg, indent=2, ensure_ascii=False))
+            print(f"    ✓ rho={rho_result['rho']} 已写入 config")
+
+    # Walk-forward 回测
+    print("\n  [校准更新] Walk-forward 回测...")
+    from engine.backtest.walk_forward import WalkForwardEvaluator
+    wf_eval = WalkForwardEvaluator(ROOT / "data")
+    wf_report = wf_eval.evaluate()
+    wf_path = ROOT / "data" / "state" / "walk_forward_report.json"
+    wf_path.write_text(json.dumps(wf_report, indent=2, ensure_ascii=False))
+    metrics = wf_report.get("metrics", {})
+    draw_a = wf_report.get("draw_analysis", {})
+    strat = wf_report.get("strategy_comparison", {})
+    print(f"    命中率: {metrics.get('hit_rate', 0):.1%} | "
+          f"Brier: {metrics.get('brier', 0):.4f} | "
+          f"RPS: {metrics.get('rps', 0):.4f} | "
+          f"ECE: {metrics.get('ece', 0):.4f}")
+    print(f"    平局: 实际{draw_a.get('actual_draw_rate', 0):.0%} "
+          f"预测{draw_a.get('predicted_draw_rate', 0):.0%} "
+          f"最高{draw_a.get('max_draw_prob', 0):.0%}")
+    best_strat = max(strat.items(), key=lambda x: x[1]["hit_rate"])
+    print(f"    最优策略: {best_strat[0]} ({best_strat[1]['hit_rate']:.1%})")
 
     print(f"\n{'='*60}")
     print(f"  结算完成 ✓")
