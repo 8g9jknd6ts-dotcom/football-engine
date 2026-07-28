@@ -440,6 +440,21 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         if temp_scaler.is_fitted:
             final_h, final_d, final_a = temp_scaler.calibrate((final_h, final_d, final_a))
 
+        # --- 平局预警分类 ---
+        # 冷门平局: 一方被市场看好但模型+市场证据显示存在平局风险
+        # 均势平局: 双方实力接近、平局被市场低估
+        draw_alert = None
+        if calibrated_probs:
+            market_h, market_d, market_a = calibrated_probs
+            max_market = max(market_h, market_d, market_a)
+            max_model = max(final_h, final_d, final_a)
+            # 冷门平局: 市场强烈看好一方(>50%)，但平局概率>=25%
+            if max_market > 0.50 and market_d >= 0.25:
+                draw_alert = "cold_draw"  # 冷门平局
+            # 均势平局: 双方接近(差距<15%)，平局概率>=26%
+            elif abs(market_h - market_a) < 0.15 and market_d >= 0.26:
+                draw_alert = "balanced_draw"  # 均势平局
+
         # 半全场概率 (基于最终xG)
         _htft = htft_probabilities(pred.home_xg, pred.away_xg)
 
@@ -548,6 +563,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             # Elo
             "elo_home": round(home_rating.elo, 1),
             "elo_away": round(away_rating.elo, 1),
+            # 平局预警
+            "draw_alert": draw_alert,
         })
 
     print(f"  ✓ 完成 {len(predictions)} 场预测（含增强分析）")
