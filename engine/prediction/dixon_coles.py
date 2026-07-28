@@ -19,7 +19,7 @@ class DixonColesConfig:
     rest_weight: float = 0.035
     home_adv_weight: float = 1.0
     market_blend_weight: float = 0.28
-    rho: float = -0.10
+    rho: float = -0.20
     max_goals: int = 10
 
 
