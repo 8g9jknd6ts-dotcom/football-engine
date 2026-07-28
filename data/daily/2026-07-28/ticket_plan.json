@@ -1,16 +1,35 @@
 {
   "stable": [
     {
-      "match": "2026-07-28_周一202",
+      "match": "2026-07-28_周三002",
       "sel": "home",
-      "odds": 1.45,
+      "odds": 1.68,
       "stake": 30172.53
     }
   ],
-  "value": [],
+  "value": [
+    {
+      "match": "2026-07-28_周二002",
+      "sel": "away",
+      "odds": 3.45,
+      "stake": 30172.53
+    },
+    {
+      "match": "2026-07-28_周三001",
+      "sel": "away",
+      "odds": 3.05,
+      "stake": 30172.53
+    },
+    {
+      "match": "2026-07-28_周二001",
+      "sel": "home",
+      "odds": 2.6,
+      "stake": 17538.0
+    }
+  ],
   "lottery": [],
-  "total_stake": 30172.53,
-  "expected_roi": -0.0487,
+  "total_stake": 108055.59,
+  "expected_roi": 0.3499,
   "bankroll": 377156.5636,
   "breaker_multiplier": 1.0
 }

@@ -1,40 +1,58 @@
 {
   "date": "2026-07-27",
-  "n_matches": 1,
-  "hit_rate": 0.0,
-  "hits": 0,
+  "n_matches": 3,
+  "hit_rate": 0.3333,
+  "hits": 1,
   "source_brier": {
-    "model": 0.9344,
-    "market": 0.8706,
-    "djyy": 0.8512,
-    "final": 0.9161
+    "model": 0.7427,
+    "market": 0.6434,
+    "djyy": 0.6847,
+    "final": 0.7108
   },
   "by_league": {
     "瑞典超": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9161
+    },
+    "挪超": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9161
+    },
+    "high": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3
     }
   },
   "by_odds_band": {
     "1.5-2.0": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9161
+    },
+    "1.0-1.5": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3
     }
   },
   "biases": [],
   "total_pnl": 0,
-  "generated_at": "2026-07-27T23:46:40.646768",
-  "sha256": "25db56afe279a95ed20e4c4aefa17219"
+  "generated_at": "2026-07-28T03:34:59.108949",
+  "sha256": "8e64901ff51b9cff6b9f9a455887f413"
 }
