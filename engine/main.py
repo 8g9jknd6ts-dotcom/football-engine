@@ -407,19 +407,19 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             final_d /= total_prob
             final_a /= total_prob
 
-        # 平局先验修正: 泊松模型系统性低估平局，用市场赔率拉回
-        if calibrated_probs and calibrated_probs[1] >= 0.22:
+        # 平局先验修正: 泊松模型系统性低估平局
+        # 策略: 当市场隐含平局概率 >= 25% 时，将模型平局概率向市场方向强力修正
+        if calibrated_probs and calibrated_probs[1] >= 0.25:
             market_d = calibrated_probs[1]
-            # 向市场平局概率方向修正，幅度为差距的 60%
-            gap = market_d - final_d
-            if gap > 0.01:  # 差距超过 1% 就修
-                adj = gap * 0.60
-                final_d += adj
-                # 从主客胜中按比例扣除
+            # 直接拉到市场平局概率的 90%
+            target_d = market_d * 0.90
+            gap = target_d - final_d
+            if gap > 0.005:  # 差距超过 0.5% 就修
+                final_d += gap
                 total_ha = final_h + final_a
                 if total_ha > 0:
-                    final_h -= adj * (final_h / total_ha)
-                    final_a -= adj * (final_a / total_ha)
+                    final_h -= gap * (final_h / total_ha)
+                    final_a -= gap * (final_a / total_ha)
 
         # --- Isotonic 校准（最终修正） ---
         if calibrator.is_fitted:
