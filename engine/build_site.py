@@ -1280,6 +1280,7 @@ def _match_card(p, value_matches, idx, results_map=None):
         <span class="league-tag">{p.get('competition', '')}</span>
         <div class="match-meta">
           {'<span class="value-badge">价值精选</span>' if is_val else ''}
+          {'<span class="draw-alert-badge" style="background:var(--purple);color:#fff;padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px">⚠平局预警</span>' if p.get('draw_alert') else ''}
           <span class="match-id">{match_id.split('_', 1)[-1] if '_' in match_id else match_id}</span>
           <span class="expand-icon">详情 &#9660;</span>
         </div>
@@ -1296,6 +1297,7 @@ def _match_card(p, value_matches, idx, results_map=None):
       </div>
       <div class="pred-pick">{_pred_pick(p)}{_pred_score(p)}</div>
       {result_html}
+      {'<div class="draw-alert-info" style="background:rgba(147,51,234,0.1);border:1px solid var(--purple);border-radius:6px;padding:8px 12px;margin:8px 0;font-size:0.72rem"><b>⚠ 平局预警</b> — ' + ('冷门平局：一方被看好但平局风险偏高' if p.get('draw_alert') == 'cold_draw' else '均势平局：双方接近，平局被低估') + '</div>' if p.get('draw_alert') else ''}
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot {conf_cls}"></span><b>{conf:.0%}</b></span>
         <span class="info-chip">xG <b>{xg_h:.2f} - {xg_a:.2f}</b></span>
