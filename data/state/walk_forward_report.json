@@ -1,0 +1,96 @@
+{
+  "total_matches": 391,
+  "date_range": [
+    "2026-07-20",
+    "2026-07-30"
+  ],
+  "metrics": {
+    "brier": 0.5714,
+    "weighted_brier": 0.5717,
+    "rps": 0.1925,
+    "weighted_rps": 0.1925,
+    "log_loss": 0.958,
+    "hit_rate": 0.5703,
+    "ece": 0.2582
+  },
+  "draw_analysis": {
+    "actual_draws": 99,
+    "actual_draw_rate": 0.2532,
+    "predicted_draws": 0,
+    "predicted_draw_rate": 0.0,
+    "max_draw_prob": 0.2906,
+    "avg_draw_prob": 0.2107,
+    "avg_market_draw": 0.2322,
+    "market_high_draw_n": 20,
+    "market_high_draw_actual": 11,
+    "market_high_draw_rate": 0.55
+  },
+  "strategy_comparison": {
+    "model": {
+      "hit_rate": 0.5703,
+      "n": 391
+    },
+    "market": {
+      "hit_rate": 0.5253,
+      "n": 158
+    },
+    "hybrid_v2": {
+      "hit_rate": 0.5696,
+      "n": 158
+    },
+    "market_d28": {
+      "hit_rate": 0.4937,
+      "n": 158
+    }
+  },
+  "by_league": {
+    "K1联赛": {
+      "n": 130,
+      "hit_rate": 0.6846,
+      "brier": 0.5174,
+      "rps": 0.1754
+    },
+    "瑞典超": {
+      "n": 84,
+      "hit_rate": 0.3929,
+      "brier": 0.6659,
+      "rps": 0.1682
+    },
+    "芬超": {
+      "n": 54,
+      "hit_rate": 0.7778,
+      "brier": 0.4412,
+      "rps": 0.193
+    },
+    "挪超": {
+      "n": 51,
+      "hit_rate": 0.6078,
+      "brier": 0.4733,
+      "rps": 0.1524
+    },
+    "欧罗巴": {
+      "n": 31,
+      "hit_rate": 0.2258,
+      "brier": 0.891,
+      "rps": 0.3689
+    },
+    "巴甲": {
+      "n": 25,
+      "hit_rate": 0.44,
+      "brier": 0.693,
+      "rps": 0.2174
+    },
+    "欧冠": {
+      "n": 8,
+      "hit_rate": 0.25,
+      "brier": 0.5368,
+      "rps": 0.2393
+    },
+    "美职联": {
+      "n": 8,
+      "hit_rate": 1.0,
+      "brier": 0.3791,
+      "rps": 0.167
+    }
+  }
+}
