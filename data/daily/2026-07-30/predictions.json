@@ -1,695 +1,127 @@
 [
   {
-    "match_id": "2026-07-30_周三001",
-    "competition": "欧冠",
-    "home_team": "阿拉木图",
-    "away_team": "奥莫尼亚",
-    "home_win_prob": 0.2569,
-    "draw_prob": 0.283,
-    "away_win_prob": 0.4601,
-    "home_xg": 0.99,
-    "away_xg": 2.047,
-    "home_odds": 2.3,
-    "draw_odds": 3.0,
-    "away_odds": 3.3,
-    "odds_synthetic": false,
-    "handicap": null,
-    "confidence": 0.1679,
-    "wilson_trust": 0.3286,
-    "model_raw": {
-      "home": 0.2058,
-      "draw": 0.2833,
-      "away": 0.5109
-    },
-    "market_fair": [
-      0.4059,
-      0.3112,
-      0.2829
-    ],
-    "top_scores": [
-      [
-        0,
-        0,
-        0.2847
-      ],
-      [
-        0,
-        1,
-        0.234
-      ],
-      [
-        1,
-        0,
-        0.1217
-      ],
-      [
-        1,
-        1,
-        0.1005
-      ],
-      [
-        0,
-        2,
-        0.0982
-      ],
-      [
-        1,
-        2,
-        0.0418
-      ],
-      [
-        0,
-        3,
-        0.0281
-      ],
-      [
-        2,
-        0,
-        0.0264
-      ]
-    ],
-    "total_goals": [
-      [
-        1,
-        0.3557
-      ],
-      [
-        0,
-        0.2847
-      ],
-      [
-        2,
-        0.2251
-      ],
-      [
-        3,
-        0.0966
-      ],
-      [
-        4,
-        0.029
-      ],
-      [
-        5,
-        0.0069
-      ]
-    ],
-    "htft": {
-      "HH": 0.0504,
-      "HD": 0.078,
-      "HA": 0.042,
-      "DH": 0.0825,
-      "DD": 0.0677,
-      "DA": 0.2322,
-      "AH": 0.0472,
-      "AD": 0.0708,
-      "AA": 0.3292
-    },
-    "htft_top3": [
-      [
-        "AA",
-        0.3292
-      ],
-      [
-        "DA",
-        0.2322
-      ],
-      [
-        "DH",
-        0.0825
-      ]
-    ],
-    "reverse_upset_risk": 54.0,
-    "reverse_direction": null,
-    "reverse_compression": null,
-    "same_odds_matched": 0,
-    "same_odds_confidence": 0.0,
-    "same_odds_bias": [
-      0.0,
-      0.0,
-      0.0
-    ],
-    "combo_boost": 0.3648,
-    "djyy_enriched": false,
-    "djyy_model_prob": null,
-    "_djyy_id": null,
-    "elo_home": 1422.6,
-    "elo_away": 1458.0,
-    "draw_alert": "balanced_draw",
-    "kelly_edge": 0.5183
-  },
-  {
-    "match_id": "2026-07-30_周三002",
-    "competition": "欧冠",
-    "home_team": "波兹南",
-    "away_team": "奥胡斯",
-    "home_win_prob": 0.5844,
-    "draw_prob": 0.2179,
-    "away_win_prob": 0.1977,
-    "home_xg": 2.263,
-    "away_xg": 1.048,
-    "home_odds": 1.53,
-    "draw_odds": 3.85,
-    "away_odds": 4.62,
-    "odds_synthetic": false,
-    "handicap": -1.0,
-    "confidence": 0.239,
-    "wilson_trust": 0.3876,
-    "model_raw": {
-      "home": 0.6167,
-      "draw": 0.2157,
-      "away": 0.1677
-    },
-    "market_fair": [
-      0.5785,
-      0.2299,
-      0.1916
-    ],
-    "top_scores": [
-      [
-        1,
-        1,
-        0.10830000000000001
-      ],
-      [
-        1,
-        0,
-        0.09119999999999999
-      ],
-      [
-        2,
-        1,
-        0.0902
-      ],
-      [
-        2,
-        0,
-        0.0718
-      ],
-      [
-        0,
-        1,
-        0.0713
-      ],
-      [
-        1,
-        2,
-        0.0676
-      ],
-      [
-        0,
-        0,
-        0.0613
-      ],
-      [
-        2,
-        2,
-        0.0536
-      ],
-      [
-        3,
-        1,
-        0.0492
-      ],
-      [
-        0,
-        2,
-        0.044500000000000005
-      ]
-    ],
-    "total_goals": [
-      [
-        1,
-        0.7763
-      ],
-      [
-        2,
-        0.5517
-      ],
-      [
-        3,
-        0.33409999999999995
-      ],
-      [
-        4,
-        0.2036
-      ]
-    ],
-    "htft": {
-      "HH": 0.3626,
-      "HD": 0.0727,
-      "HA": 0.0391,
-      "DH": 0.2454,
-      "DD": 0.0584,
-      "DA": 0.0548,
-      "AH": 0.0478,
-      "AD": 0.0717,
-      "AA": 0.0474
-    },
-    "htft_top3": [
-      [
-        "HH",
-        0.3626
-      ],
-      [
-        "DH",
-        0.2454
-      ],
-      [
-        "HD",
-        0.0727
-      ]
-    ],
-    "reverse_upset_risk": 38.7,
-    "reverse_direction": null,
-    "reverse_compression": null,
-    "same_odds_matched": 0,
-    "same_odds_confidence": 0.0,
-    "same_odds_bias": [
-      0.0,
-      0.0,
-      0.0
-    ],
-    "combo_boost": 0.0583,
-    "djyy_enriched": true,
-    "djyy_model_prob": {
-      "home": 0.4681,
-      "draw": 0.23850000000000002,
-      "away": 0.2934
-    },
-    "_djyy_id": 19721239,
-    "elo_home": 1572.1,
-    "elo_away": 1399.6,
-    "draw_alert": null,
-    "kelly_edge": -0.0866
-  },
-  {
-    "match_id": "2026-07-30_周三003",
-    "competition": "巴甲",
-    "home_team": "米拉索尔",
-    "away_team": "里莫",
-    "home_win_prob": 0.6373,
-    "draw_prob": 0.2336,
-    "away_win_prob": 0.1291,
-    "home_xg": 1.89,
-    "away_xg": 0.578,
-    "home_odds": 1.5,
+    "match_id": "2026-07-30_周四001",
+    "competition": "欧罗巴",
+    "home_team": "中日德兰",
+    "away_team": "贝西克塔",
+    "home_win_prob": 0.4369,
+    "draw_prob": 0.2598,
+    "away_win_prob": 0.3033,
+    "home_xg": 1.229,
+    "away_xg": 1.305,
+    "home_odds": 1.69,
     "draw_odds": 3.8,
-    "away_odds": 5.0,
+    "away_odds": 3.65,
     "odds_synthetic": false,
     "handicap": -1.0,
-    "confidence": 0.2547,
-    "wilson_trust": 0.3876,
+    "confidence": 0.085,
+    "wilson_trust": 0.2247,
     "model_raw": {
-      "home": 0.657,
-      "draw": 0.2339,
-      "away": 0.1091
+      "home": 0.3783,
+      "draw": 0.291,
+      "away": 0.3307
     },
     "market_fair": [
-      0.5901,
-      0.2329,
-      0.177
+      0.5242,
+      0.2331,
+      0.2427
     ],
     "top_scores": [
       [
         1,
-        0,
-        0.2413
-      ],
-      [
-        0,
-        0,
-        0.1761
-      ],
-      [
-        2,
-        0,
-        0.166
+        1,
+        0.114
       ],
       [
         1,
-        1,
-        0.0893
-      ],
-      [
-        3,
         0,
-        0.0788
-      ],
-      [
-        0,
-        1,
-        0.0617
+        0.0892
       ],
       [
         2,
         1,
-        0.0601
+        0.0866
+      ],
+      [
+        1,
+        2,
+        0.0782
+      ],
+      [
+        0,
+        1,
+        0.0758
+      ],
+      [
+        2,
+        0,
+        0.0646
+      ],
+      [
+        0,
+        0,
+        0.0623
+      ],
+      [
+        2,
+        2,
+        0.056100000000000004
+      ],
+      [
+        0,
+        2,
+        0.0508
       ],
       [
         3,
         1,
-        0.0278
+        0.0431
       ]
     ],
     "total_goals": [
       [
         1,
-        0.303
+        0.7728
       ],
       [
         2,
-        0.2665
-      ],
-      [
-        0,
-        0.1761
+        0.5433
       ],
       [
         3,
-        0.1551
+        0.31739999999999996
       ],
       [
         4,
-        0.0674
-      ],
-      [
-        5,
-        0.0233
+        0.1861
       ]
     ],
     "htft": {
-      "HH": 0.3821,
-      "HD": 0.0591,
-      "HA": 0.0318,
-      "DH": 0.3053,
-      "DD": 0.0737,
-      "DA": 0.0405,
-      "AH": 0.0333,
-      "AD": 0.0499,
-      "AA": 0.0242
+      "HH": 0.1252,
+      "HD": 0.0925,
+      "HA": 0.0498,
+      "DH": 0.1722,
+      "DD": 0.101,
+      "DA": 0.1705,
+      "AH": 0.0573,
+      "AD": 0.086,
+      "AA": 0.1456
     },
     "htft_top3": [
-      [
-        "HH",
-        0.3821
-      ],
       [
         "DH",
-        0.3053
+        0.1722
       ],
       [
-        "DD",
-        0.0737
-      ]
-    ],
-    "reverse_upset_risk": 38.0,
-    "reverse_direction": null,
-    "reverse_compression": null,
-    "same_odds_matched": 0,
-    "same_odds_confidence": 0.0,
-    "same_odds_bias": [
-      0.0,
-      0.0,
-      0.0
-    ],
-    "combo_boost": 0.0,
-    "djyy_enriched": false,
-    "djyy_model_prob": null,
-    "_djyy_id": null,
-    "elo_home": 1588.4,
-    "elo_away": 1413.8,
-    "draw_alert": null,
-    "kelly_edge": -0.0441
-  },
-  {
-    "match_id": "2026-07-30_周三004",
-    "competition": "巴甲",
-    "home_team": "巴西国际",
-    "away_team": "弗拉门戈",
-    "home_win_prob": 0.1762,
-    "draw_prob": 0.2416,
-    "away_win_prob": 0.5823,
-    "home_xg": 0.835,
-    "away_xg": 2.171,
-    "home_odds": 4.32,
-    "draw_odds": 3.52,
-    "away_odds": 1.63,
-    "odds_synthetic": false,
-    "handicap": 1.0,
-    "confidence": 0.252,
-    "wilson_trust": 0.3876,
-    "model_raw": {
-      "home": 0.1156,
-      "draw": 0.2343,
-      "away": 0.6501
-    },
-    "market_fair": [
-      0.205,
-      0.2516,
-      0.5434
-    ],
-    "top_scores": [
-      [
-        1,
-        1,
-        0.1346
+        "DA",
+        0.1705
       ],
-      [
-        0,
-        1,
-        0.1066
-      ],
-      [
-        1,
-        0,
-        0.09230000000000001
-      ],
-      [
-        1,
-        2,
-        0.08869999999999999
-      ],
-      [
-        0,
-        0,
-        0.08380000000000001
-      ],
-      [
-        0,
-        2,
-        0.0731
-      ],
-      [
-        2,
-        1,
-        0.071
-      ],
-      [
-        2,
-        0,
-        0.051399999999999994
-      ],
-      [
-        2,
-        2,
-        0.050199999999999995
-      ],
-      [
-        1,
-        3,
-        0.039599999999999996
-      ]
-    ],
-    "total_goals": [
-      [
-        1,
-        0.7177
-      ],
-      [
-        2,
-        0.4586
-      ],
-      [
-        3,
-        0.2468
-      ],
-      [
-        4,
-        0.1297
-      ]
-    ],
-    "htft": {
-      "HH": 0.0349,
-      "HD": 0.0672,
-      "HA": 0.0362,
-      "DH": 0.0646,
-      "DD": 0.0606,
-      "DA": 0.2494,
-      "AH": 0.0395,
-      "AD": 0.0592,
-      "AA": 0.3883
-    },
-    "htft_top3": [
       [
         "AA",
-        0.3883
-      ],
-      [
-        "DA",
-        0.2494
-      ],
-      [
-        "HD",
-        0.0672
+        0.1456
       ]
     ],
-    "reverse_upset_risk": 52.2,
-    "reverse_direction": null,
-    "reverse_compression": null,
-    "same_odds_matched": 0,
-    "same_odds_confidence": 0.0,
-    "same_odds_bias": [
-      0.0,
-      0.0,
-      0.0
-    ],
-    "combo_boost": 0.2167,
-    "djyy_enriched": true,
-    "djyy_model_prob": {
-      "home": 0.3042,
-      "draw": 0.2781,
-      "away": 0.4181
-    },
-    "_djyy_id": 19621873,
-    "elo_home": 1382.6,
-    "elo_away": 1754.4,
-    "draw_alert": "cold_draw",
-    "kelly_edge": -0.0509
-  },
-  {
-    "match_id": "2026-07-30_周三005",
-    "competition": "巴甲",
-    "home_team": "弗鲁米嫩",
-    "away_team": "巴伊亚",
-    "home_win_prob": 0.5066,
-    "draw_prob": 0.266,
-    "away_win_prob": 0.2274,
-    "home_xg": 1.352,
-    "away_xg": 1.113,
-    "home_odds": 1.63,
-    "draw_odds": 3.4,
-    "away_odds": 4.5,
-    "odds_synthetic": false,
-    "handicap": -1.0,
-    "confidence": 0.1143,
-    "wilson_trust": 0.2742,
-    "model_raw": {
-      "home": 0.4167,
-      "draw": 0.3028,
-      "away": 0.2805
-    },
-    "market_fair": [
-      0.543,
-      0.2603,
-      0.1967
-    ],
-    "top_scores": [
-      [
-        1,
-        0,
-        0.1273
-      ],
-      [
-        2,
-        0,
-        0.113
-      ],
-      [
-        1,
-        1,
-        0.1104
-      ],
-      [
-        2,
-        1,
-        0.10830000000000001
-      ],
-      [
-        3,
-        0,
-        0.0653
-      ],
-      [
-        0,
-        0,
-        0.0625
-      ],
-      [
-        3,
-        1,
-        0.0601
-      ],
-      [
-        0,
-        1,
-        0.0533
-      ],
-      [
-        1,
-        2,
-        0.0467
-      ],
-      [
-        2,
-        2,
-        0.043
-      ]
-    ],
-    "total_goals": [
-      [
-        1,
-        0.7569
-      ],
-      [
-        2,
-        0.51
-      ],
-      [
-        3,
-        0.28309999999999996
-      ],
-      [
-        4,
-        0.1671
-      ]
-    ],
-    "htft": {
-      "HH": 0.1675,
-      "HD": 0.092,
-      "HA": 0.0495,
-      "DH": 0.2078,
-      "DD": 0.1033,
-      "DA": 0.1387,
-      "AH": 0.0552,
-      "AD": 0.0828,
-      "AA": 0.1032
-    },
-    "htft_top3": [
-      [
-        "DH",
-        0.2078
-      ],
-      [
-        "HH",
-        0.1675
-      ],
-      [
-        "DA",
-        0.1387
-      ]
-    ],
-    "reverse_upset_risk": 42.4,
+    "reverse_upset_risk": 43.0,
     "reverse_direction": null,
     "reverse_compression": null,
     "same_odds_matched": 0,
@@ -702,137 +134,137 @@
     "combo_boost": 0.1437,
     "djyy_enriched": true,
     "djyy_model_prob": {
-      "home": 0.6093999999999999,
-      "draw": 0.2234,
-      "away": 0.1673
+      "home": 0.4164,
+      "draw": 0.24780000000000002,
+      "away": 0.33590000000000003
     },
-    "_djyy_id": 19621879,
-    "elo_home": 1580.6,
-    "elo_away": 1629.4,
-    "draw_alert": "cold_draw",
-    "kelly_edge": 0.0233
+    "_djyy_id": 19720994,
+    "elo_home": 1609.8,
+    "elo_away": 1585.2,
+    "draw_alert": null,
+    "kelly_edge": 0.107
   },
   {
-    "match_id": "2026-07-30_周三006",
-    "competition": "巴甲",
-    "home_team": "维多利亚",
-    "away_team": "帕梅拉斯",
-    "home_win_prob": 0.1603,
-    "draw_prob": 0.2743,
-    "away_win_prob": 0.5654,
-    "home_xg": 0.877,
-    "away_xg": 1.977,
-    "home_odds": 4.3,
-    "draw_odds": 3.3,
-    "away_odds": 1.69,
+    "match_id": "2026-07-30_周四002",
+    "competition": "欧罗巴",
+    "home_team": "帕福斯",
+    "away_team": "斯海杜克",
+    "home_win_prob": 0.2594,
+    "draw_prob": 0.2121,
+    "away_win_prob": 0.5285,
+    "home_xg": 1.059,
+    "away_xg": 2.492,
+    "home_odds": 1.78,
+    "draw_odds": 3.6,
+    "away_odds": 3.45,
     "odds_synthetic": false,
-    "handicap": 1.0,
-    "confidence": 0.1853,
-    "wilson_trust": 0.3286,
+    "handicap": -1.0,
+    "confidence": 0.2409,
+    "wilson_trust": 0.3876,
     "model_raw": {
-      "home": 0.148,
-      "draw": 0.2882,
-      "away": 0.5638
+      "home": 0.1715,
+      "draw": 0.207,
+      "away": 0.6216
     },
     "market_fair": [
-      0.2063,
-      0.2688,
-      0.5249
+      0.4974,
+      0.2459,
+      0.2566
     ],
     "top_scores": [
       [
         0,
-        0,
-        0.3402
-      ],
-      [
-        0,
         1,
-        0.2704
+        0.289
       ],
       [
         0,
         2,
-        0.1047
+        0.215
       ],
       [
-        1,
         0,
-        0.1001
-      ],
-      [
-        1,
-        1,
-        0.0766
-      ],
-      [
-        1,
-        2,
-        0.03
+        0,
+        0.1946
       ],
       [
         0,
         3,
-        0.0294
+        0.1074
       ],
       [
-        2,
+        1,
+        1,
+        0.0447
+      ],
+      [
         0,
-        0.0131
+        4,
+        0.0397
+      ],
+      [
+        1,
+        2,
+        0.0317
+      ],
+      [
+        1,
+        0,
+        0.0295
       ]
     ],
     "total_goals": [
       [
         1,
-        0.3705
-      ],
-      [
-        0,
-        0.3402
+        0.3185
       ],
       [
         2,
-        0.1944
+        0.2615
+      ],
+      [
+        0,
+        0.1946
       ],
       [
         3,
-        0.0709
+        0.1425
       ],
       [
         4,
-        0.0193
+        0.0576
       ],
       [
         5,
-        0.0038
+        0.0187
       ]
     ],
     "htft": {
-      "HH": 0.0435,
-      "HD": 0.0728,
-      "HA": 0.0392,
-      "DH": 0.0789,
-      "DD": 0.0708,
-      "DA": 0.2451,
-      "AH": 0.0451,
-      "AD": 0.0677,
-      "AA": 0.3368
+      "HH": 0.0411,
+      "HD": 0.0746,
+      "HA": 0.0401,
+      "DH": 0.062,
+      "DD": 0.0505,
+      "DA": 0.2244,
+      "AH": 0.0406,
+      "AD": 0.0609,
+      "AA": 0.4058
     },
     "htft_top3": [
       [
         "AA",
-        0.3368
+        0.4058
       ],
       [
         "DA",
-        0.2451
+        0.2244
       ],
       [
-        "DH",
-        0.0789
+        "HD",
+        0.0746
       ]
     ],
-    "reverse_upset_risk": 53.6,
+    "reverse_upset_risk": 45.4,
     "reverse_direction": null,
     "reverse_compression": null,
     "same_odds_matched": 0,
@@ -842,13 +274,1004 @@
       0.0,
       0.0
     ],
-    "combo_boost": 0.2329,
+    "combo_boost": 0.0583,
     "djyy_enriched": false,
     "djyy_model_prob": null,
     "_djyy_id": null,
-    "elo_home": 1478.0,
-    "elo_away": 1590.1,
+    "elo_home": 1392.4,
+    "elo_away": 1651.2,
+    "draw_alert": null,
+    "kelly_edge": 0.8233
+  },
+  {
+    "match_id": "2026-07-30_周四003",
+    "competition": "欧罗巴",
+    "home_team": "安德莱",
+    "away_team": "哈马比",
+    "home_win_prob": 0.4472,
+    "draw_prob": 0.2911,
+    "away_win_prob": 0.2618,
+    "home_xg": 1.482,
+    "away_xg": 0.784,
+    "home_odds": 1.97,
+    "draw_odds": 3.4,
+    "away_odds": 3.06,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "confidence": 0.1241,
+    "wilson_trust": 0.2742,
+    "model_raw": {
+      "home": 0.4527,
+      "draw": 0.3437,
+      "away": 0.2035
+    },
+    "market_fair": [
+      0.4498,
+      0.2606,
+      0.2896
+    ],
+    "top_scores": [
+      [
+        1,
+        1,
+        0.10800000000000001
+      ],
+      [
+        1,
+        2,
+        0.0843
+      ],
+      [
+        2,
+        1,
+        0.0837
+      ],
+      [
+        0,
+        1,
+        0.0814
+      ],
+      [
+        1,
+        0,
+        0.0791
+      ],
+      [
+        0,
+        0,
+        0.0602
+      ],
+      [
+        0,
+        2,
+        0.0587
+      ],
+      [
+        2,
+        2,
+        0.056100000000000004
+      ],
+      [
+        2,
+        0,
+        0.0546
+      ],
+      [
+        1,
+        3,
+        0.0404
+      ]
+    ],
+    "total_goals": [
+      [
+        1,
+        0.7787000000000001
+      ],
+      [
+        2,
+        0.5576
+      ],
+      [
+        3,
+        0.32539999999999997
+      ],
+      [
+        4,
+        0.19140000000000001
+      ]
+    ],
+    "htft": {
+      "HH": 0.2431,
+      "HD": 0.0824,
+      "HA": 0.0444,
+      "DH": 0.2672,
+      "DD": 0.104,
+      "DA": 0.0917,
+      "AH": 0.0456,
+      "AD": 0.0684,
+      "AA": 0.0532
+    },
+    "htft_top3": [
+      [
+        "DH",
+        0.2672
+      ],
+      [
+        "HH",
+        0.2431
+      ],
+      [
+        "DD",
+        0.104
+      ]
+    ],
+    "reverse_upset_risk": 50.1,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.0583,
+    "djyy_enriched": true,
+    "djyy_model_prob": {
+      "home": 0.3644,
+      "draw": 0.23920000000000002,
+      "away": 0.3961
+    },
+    "_djyy_id": 19720989,
+    "elo_home": 1594.9,
+    "elo_away": 1530.2,
+    "draw_alert": null,
+    "kelly_edge": -0.0103
+  },
+  {
+    "match_id": "2026-07-30_周四004",
+    "competition": "欧罗巴",
+    "home_team": "费伦茨",
+    "away_team": "特温特",
+    "home_win_prob": 0.5375,
+    "draw_prob": 0.2093,
+    "away_win_prob": 0.2531,
+    "home_xg": 2.631,
+    "away_xg": 1.176,
+    "home_odds": 2.66,
+    "draw_odds": 3.6,
+    "away_odds": 2.1,
+    "odds_synthetic": false,
+    "handicap": 1.0,
+    "confidence": 0.244,
+    "wilson_trust": 0.3876,
+    "model_raw": {
+      "home": 0.6296,
+      "draw": 0.193,
+      "away": 0.1774
+    },
+    "market_fair": [
+      0.3327,
+      0.2458,
+      0.4214
+    ],
+    "top_scores": [
+      [
+        1,
+        1,
+        0.1091
+      ],
+      [
+        2,
+        1,
+        0.095
+      ],
+      [
+        1,
+        0,
+        0.0913
+      ],
+      [
+        0,
+        1,
+        0.07400000000000001
+      ],
+      [
+        2,
+        0,
+        0.0723
+      ],
+      [
+        1,
+        2,
+        0.0705
+      ],
+      [
+        0,
+        0,
+        0.0623
+      ],
+      [
+        2,
+        2,
+        0.0537
+      ],
+      [
+        0,
+        2,
+        0.045700000000000005
+      ],
+      [
+        3,
+        1,
+        0.045599999999999995
+      ]
+    ],
+    "total_goals": [
+      [
+        1,
+        0.7728
+      ],
+      [
+        2,
+        0.5457
+      ],
+      [
+        3,
+        0.31420000000000003
+      ],
+      [
+        4,
+        0.18710000000000002
+      ]
+    ],
+    "htft": {
+      "HH": 0.4093,
+      "HD": 0.0669,
+      "HA": 0.036,
+      "DH": 0.2322,
+      "DD": 0.0484,
+      "DA": 0.0423,
+      "AH": 0.048,
+      "AD": 0.0721,
+      "AA": 0.0447
+    },
+    "htft_top3": [
+      [
+        "HH",
+        0.4093
+      ],
+      [
+        "DH",
+        0.2322
+      ],
+      [
+        "AD",
+        0.0721
+      ]
+    ],
+    "reverse_upset_risk": 56.5,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.3648,
+    "djyy_enriched": true,
+    "djyy_model_prob": {
+      "home": 0.4658,
+      "draw": 0.2377,
+      "away": 0.2968
+    },
+    "_djyy_id": 19720993,
+    "elo_home": 1591.1,
+    "elo_away": 1409.3,
+    "draw_alert": null,
+    "kelly_edge": 0.4298
+  },
+  {
+    "match_id": "2026-07-30_周四005",
+    "competition": "欧罗巴",
+    "home_team": "本菲卡",
+    "away_team": "圣加仑",
+    "home_win_prob": 0.4877,
+    "draw_prob": 0.1811,
+    "away_win_prob": 0.3312,
+    "home_xg": 1.205,
+    "away_xg": 2.437,
+    "home_odds": 1.13,
+    "draw_odds": 8.5,
+    "away_odds": 13.0,
+    "odds_synthetic": false,
+    "handicap": -2.0,
+    "confidence": 0.1746,
+    "wilson_trust": 0.3286,
+    "model_raw": {
+      "home": 0.2588,
+      "draw": 0.21,
+      "away": 0.5312
+    },
+    "market_fair": [
+      0.8198,
+      0.109,
+      0.0713
+    ],
+    "top_scores": [
+      [
+        1,
+        0,
+        0.10800000000000001
+      ],
+      [
+        2,
+        1,
+        0.1027
+      ],
+      [
+        2,
+        0,
+        0.1011
+      ],
+      [
+        1,
+        1,
+        0.0975
+      ],
+      [
+        3,
+        0,
+        0.06309999999999999
+      ],
+      [
+        3,
+        1,
+        0.06
+      ],
+      [
+        0,
+        0,
+        0.0582
+      ],
+      [
+        0,
+        1,
+        0.053200000000000004
+      ],
+      [
+        1,
+        2,
+        0.043
+      ],
+      [
+        2,
+        2,
+        0.042199999999999994
+      ]
+    ],
+    "total_goals": [
+      [
+        1,
+        0.7811
+      ],
+      [
+        2,
+        0.5576
+      ],
+      [
+        3,
+        0.3406
+      ],
+      [
+        4,
+        0.2245
+      ]
+    ],
+    "htft": {
+      "HH": 0.0532,
+      "HD": 0.0825,
+      "HA": 0.0444,
+      "DH": 0.0729,
+      "DD": 0.053,
+      "DA": 0.2127,
+      "AH": 0.0461,
+      "AD": 0.0692,
+      "AA": 0.3659
+    },
+    "htft_top3": [
+      [
+        "AA",
+        0.3659
+      ],
+      [
+        "DA",
+        0.2127
+      ],
+      [
+        "HD",
+        0.0825
+      ]
+    ],
+    "reverse_upset_risk": 17.0,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.2527,
+    "djyy_enriched": true,
+    "djyy_model_prob": {
+      "home": 0.6235,
+      "draw": 0.20600000000000002,
+      "away": 0.17079999999999998
+    },
+    "_djyy_id": 19720990,
+    "elo_home": 1666.0,
+    "elo_away": 1729.7,
+    "draw_alert": null,
+    "kelly_edge": 3.3056
+  },
+  {
+    "match_id": "2026-07-30_周四006",
+    "competition": "巴甲",
+    "home_team": "科林蒂安",
+    "away_team": "巴竞技",
+    "home_win_prob": 0.3088,
+    "draw_prob": 0.3113,
+    "away_win_prob": 0.3799,
+    "home_xg": 1.175,
+    "away_xg": 2.108,
+    "home_odds": 1.74,
+    "draw_odds": 3.15,
+    "away_odds": 4.22,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "confidence": 0.1163,
+    "wilson_trust": 0.2742,
+    "model_raw": {
+      "home": 0.2386,
+      "draw": 0.3371,
+      "away": 0.4243
+    },
+    "market_fair": [
+      0.509,
+      0.2812,
+      0.2099
+    ],
+    "top_scores": [
+      [
+        0,
+        0,
+        0.4906
+      ],
+      [
+        0,
+        1,
+        0.193
+      ],
+      [
+        1,
+        0,
+        0.1546
+      ],
+      [
+        1,
+        1,
+        0.0625
+      ],
+      [
+        0,
+        2,
+        0.0391
+      ],
+      [
+        2,
+        0,
+        0.0237
+      ],
+      [
+        1,
+        2,
+        0.0125
+      ],
+      [
+        2,
+        1,
+        0.0104
+      ]
+    ],
+    "total_goals": [
+      [
+        0,
+        0.4906
+      ],
+      [
+        1,
+        0.3476
+      ],
+      [
+        2,
+        0.1253
+      ],
+      [
+        3,
+        0.0309
+      ],
+      [
+        4,
+        0.0048
+      ],
+      [
+        5,
+        0.0008
+      ]
+    ],
+    "htft": {
+      "HH": 0.0642,
+      "HD": 0.0859,
+      "HA": 0.0463,
+      "DH": 0.0911,
+      "DD": 0.0651,
+      "DA": 0.2126,
+      "AH": 0.0513,
+      "AD": 0.0769,
+      "AA": 0.3066
+    },
+    "htft_top3": [
+      [
+        "AA",
+        0.3066
+      ],
+      [
+        "DA",
+        0.2126
+      ],
+      [
+        "DH",
+        0.0911
+      ]
+    ],
+    "reverse_upset_risk": 45.6,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.1437,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1748.7,
+    "elo_away": 1722.9,
     "draw_alert": "cold_draw",
-    "kelly_edge": -0.0445
+    "kelly_edge": 0.6032
+  },
+  {
+    "match_id": "2026-07-30_周五001",
+    "competition": "挪超",
+    "home_team": "瓦勒伦加",
+    "away_team": "汉坎",
+    "home_win_prob": 0.6906,
+    "draw_prob": 0.1768,
+    "away_win_prob": 0.1326,
+    "home_xg": 2.647,
+    "away_xg": 1.013,
+    "home_odds": 1.49,
+    "draw_odds": 4.15,
+    "away_odds": 4.6,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "confidence": 0.3239,
+    "wilson_trust": 0.4514,
+    "model_raw": {
+      "home": 0.7175,
+      "draw": 0.1691,
+      "away": 0.1134
+    },
+    "market_fair": [
+      0.5942,
+      0.2133,
+      0.1925
+    ],
+    "top_scores": [
+      [
+        1,
+        0,
+        0.2311
+      ],
+      [
+        2,
+        0,
+        0.2307
+      ],
+      [
+        3,
+        0,
+        0.1525
+      ],
+      [
+        0,
+        0,
+        0.1177
+      ],
+      [
+        4,
+        0,
+        0.0758
+      ],
+      [
+        2,
+        1,
+        0.0374
+      ],
+      [
+        1,
+        1,
+        0.037
+      ],
+      [
+        5,
+        0,
+        0.0312
+      ]
+    ],
+    "total_goals": [
+      [
+        2,
+        0.269
+      ],
+      [
+        1,
+        0.2503
+      ],
+      [
+        3,
+        0.1926
+      ],
+      [
+        0,
+        0.1177
+      ],
+      [
+        4,
+        0.1022
+      ],
+      [
+        5,
+        0.0451
+      ]
+    ],
+    "htft": {
+      "HH": 0.4476,
+      "HD": 0.0569,
+      "HA": 0.0307,
+      "DH": 0.2447,
+      "DD": 0.0485,
+      "DA": 0.0303,
+      "AH": 0.0428,
+      "AD": 0.0642,
+      "AA": 0.0344
+    },
+    "htft_top3": [
+      [
+        "HH",
+        0.4476
+      ],
+      [
+        "DH",
+        0.2447
+      ],
+      [
+        "AD",
+        0.0642
+      ]
+    ],
+    "reverse_upset_risk": 36.9,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.3395,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1709.8,
+    "elo_away": 1345.1,
+    "draw_alert": null,
+    "kelly_edge": 0.029
+  },
+  {
+    "match_id": "2026-07-30_周五002",
+    "competition": "挪超",
+    "home_team": "博德闪耀",
+    "away_team": "利勒斯特",
+    "home_win_prob": 0.7872,
+    "draw_prob": 0.1191,
+    "away_win_prob": 0.0937,
+    "home_xg": 3.232,
+    "away_xg": 1.114,
+    "home_odds": 1.17,
+    "draw_odds": 6.1,
+    "away_odds": 9.0,
+    "odds_synthetic": false,
+    "handicap": -2.0,
+    "confidence": 0.3571,
+    "wilson_trust": 0.4514,
+    "model_raw": {
+      "home": 0.791,
+      "draw": 0.1134,
+      "away": 0.0957
+    },
+    "market_fair": [
+      0.7565,
+      0.1451,
+      0.0984
+    ],
+    "top_scores": [
+      [
+        3,
+        0,
+        0.1903
+      ],
+      [
+        2,
+        0,
+        0.1747
+      ],
+      [
+        4,
+        0,
+        0.1545
+      ],
+      [
+        1,
+        0,
+        0.1099
+      ],
+      [
+        5,
+        0,
+        0.0997
+      ],
+      [
+        6,
+        0,
+        0.0503
+      ],
+      [
+        0,
+        0,
+        0.033
+      ],
+      [
+        3,
+        1,
+        0.0311
+      ]
+    ],
+    "total_goals": [
+      [
+        3,
+        0.2203
+      ],
+      [
+        2,
+        0.1924
+      ],
+      [
+        4,
+        0.1879
+      ],
+      [
+        5,
+        0.126
+      ],
+      [
+        1,
+        0.1155
+      ],
+      [
+        6,
+        0.0682
+      ]
+    ],
+    "htft": {
+      "HH": 0.5076,
+      "HD": 0.0582,
+      "HA": 0.0314,
+      "DH": 0.2212,
+      "DD": 0.0408,
+      "DA": 0.0136,
+      "AH": 0.0398,
+      "AD": 0.0597,
+      "AA": 0.0278
+    },
+    "htft_top3": [
+      [
+        "HH",
+        0.5076
+      ],
+      [
+        "DH",
+        0.2212
+      ],
+      [
+        "AD",
+        0.0597
+      ]
+    ],
+    "reverse_upset_risk": 22.8,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.3395,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1940.4,
+    "elo_away": 1414.7,
+    "draw_alert": null,
+    "kelly_edge": -0.079
+  },
+  {
+    "match_id": "2026-07-30_周五003",
+    "competition": "美职联",
+    "home_team": "纽约城",
+    "away_team": "多伦多",
+    "home_win_prob": 0.6587,
+    "draw_prob": 0.1996,
+    "away_win_prob": 0.1417,
+    "home_xg": 2.568,
+    "away_xg": 1.096,
+    "home_odds": 1.55,
+    "draw_odds": 3.78,
+    "away_odds": 4.55,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "confidence": 0.2638,
+    "wilson_trust": 0.3876,
+    "model_raw": {
+      "home": 0.6805,
+      "draw": 0.1937,
+      "away": 0.1257
+    },
+    "market_fair": [
+      0.5712,
+      0.2342,
+      0.1946
+    ],
+    "top_scores": [
+      [
+        1,
+        0,
+        0.2433
+      ],
+      [
+        2,
+        0,
+        0.2131
+      ],
+      [
+        0,
+        0,
+        0.1481
+      ],
+      [
+        3,
+        0,
+        0.1141
+      ],
+      [
+        1,
+        1,
+        0.0596
+      ],
+      [
+        4,
+        0,
+        0.0485
+      ],
+      [
+        2,
+        1,
+        0.0482
+      ],
+      [
+        0,
+        1,
+        0.035
+      ]
+    ],
+    "total_goals": [
+      [
+        1,
+        0.2783
+      ],
+      [
+        2,
+        0.277
+      ],
+      [
+        3,
+        0.1694
+      ],
+      [
+        0,
+        0.1481
+      ],
+      [
+        4,
+        0.081
+      ],
+      [
+        5,
+        0.0321
+      ]
+    ],
+    "htft": {
+      "HH": 0.4139,
+      "HD": 0.0647,
+      "HA": 0.0348,
+      "DH": 0.2392,
+      "DD": 0.0494,
+      "DA": 0.0408,
+      "AH": 0.0463,
+      "AD": 0.0694,
+      "AA": 0.0414
+    },
+    "htft_top3": [
+      [
+        "HH",
+        0.4139
+      ],
+      [
+        "DH",
+        0.2392
+      ],
+      [
+        "AD",
+        0.0694
+      ]
+    ],
+    "reverse_upset_risk": 39.4,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.175,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1643.3,
+    "elo_away": 1448.7,
+    "draw_alert": null,
+    "kelly_edge": 0.021
   }
 ]
