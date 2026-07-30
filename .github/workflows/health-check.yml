@@ -45,7 +45,10 @@ jobs:
 
           if [ "$ELAPSED_MIN" -gt 60 ]; then
             echo "→ 超过60分钟未运行，触发 Daily Forecast..."
-            gh workflow run "Daily Forecast" --ref main
+            # 用 gh api 触发，不需要 git checkout
+            gh api repos/${{ github.repository }}/actions/workflows/daily-forecast.yml/dispatches \
+              -X POST \
+              -f ref=main
             echo "::notice::已自动触发 Daily Forecast（上次运行于 ${ELAPSED_MIN} 分钟前）"
           else
             echo "→ 正常运行中，无需触发"
