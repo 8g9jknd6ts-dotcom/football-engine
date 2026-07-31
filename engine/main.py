@@ -23,6 +23,7 @@ ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
 from engine.sources.manager import SourceManager
+from engine.sources.base import MatchResult
 from engine.sources.same_odds import SameOddsAnalyzer
 from engine.prediction.ensemble import EnsembleModel
 from engine.prediction.dixon_coles import DixonColesConfig
@@ -732,6 +733,30 @@ def run_settlement(target_date: date):
 
     source_mgr = SourceManager(ROOT / "data")
     results = source_mgr.fetch_results(target_date)
+    
+    # 合并新浪赛果（互补数据源）
+    sina_file = ROOT / "data" / "daily" / target_date.isoformat() / "results.json"
+    if sina_file.exists():
+        try:
+            sina_results_raw = json.loads(sina_file.read_text())
+            existing_teams = {(r.home_team, r.away_team) for r in results}
+            sina_added = 0
+            for sr in sina_results_raw:
+                if (sr.get("home_team"), sr.get("away_team")) not in existing_teams:
+                    results.append(MatchResult(
+                        match_id=sr.get("match_id", f"{sr['home_team']}_vs_{sr['away_team']}"),
+                        home_team=sr["home_team"],
+                        away_team=sr["away_team"],
+                        home_score=sr["home_score"],
+                        away_score=sr["away_score"],
+                        match_date=target_date.isoformat(),
+                        competition=sr.get("league", ""),
+                    ))
+                    sina_added += 1
+            print(f"  ✓ 新浪补充: {sina_added} 场 (total={len(results)})")
+        except Exception as e:
+            print(f"  ⚠ 新浪赛果合并失败: {e}")
+    
     if not results:
         print("  ⚠ 无比赛结果")
         return
