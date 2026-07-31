@@ -99,9 +99,7 @@ jobs:
           git add data/ web/
           git diff --cached --quiet || git commit -m "daily: forecast $(date +%Y-%m-%d)"
           for i in 1 2 3; do
-            git stash --include-untracked 2>/dev/null || true
-            git pull --rebase origin main && git stash pop 2>/dev/null || true
-            git push && break
+            git pull --rebase --autostash origin main && git push && break
             sleep 5
           done
 
