@@ -96,7 +96,10 @@ class SportterySource(DataSource):
                 away = item.get("awayTeamAbbName", "") or item.get("awayTeamName", "")
                 league = item.get("leagueAbbName", "") or item.get("leagueName", "")
                 match_time = item.get("matchTime", "")
-                match_date_str = item.get("matchDate", target_date.isoformat())
+                # 用实际比赛日期，不是竞彩开售日期
+                match_date_str = item.get("matchDate", "")
+                if not match_date_str:
+                    match_date_str = day_group.get("businessDate", target_date.isoformat())
                 kickoff = f"{match_date_str} {match_time}" if match_time else ""
 
                 # 胜平负 (had): {h, d, a}
@@ -106,8 +109,9 @@ class SportterySource(DataSource):
 
                 handicap = self._safe_float(hhad.get("goalLine"))
 
+                # match_id 用实际比赛日期，避免跨日重复
                 fixture = Fixture(
-                    match_id=f"{target_date.isoformat()}_{match_num}",
+                    match_id=f"{match_date_str}_{match_num}",
                     competition=league,
                     home_team=home,
                     away_team=away,
@@ -147,12 +151,13 @@ class SportterySource(DataSource):
         results = []
         for item in data.get("value", {}).get("matchResultList", []):
             match_date_str = item.get("matchDate", "")
-            if match_date_str and match_date_str != target_date.isoformat():
-                continue
+            # 不再按 matchDate 过滤，拿所有已完赛的结果
 
             match_num = item.get("matchNumStr", "") or str(item.get("matchNum", ""))
+            # match_id 用实际比赛日期
+            actual_date = match_date_str or target_date.isoformat()
             results.append(MatchResult(
-                match_id=f"{target_date.isoformat()}_{match_num}",
+                match_id=f"{actual_date}_{match_num}",
                 home_score=self._safe_int(item.get("homeScore")),
                 away_score=self._safe_int(item.get("awayScore")),
                 home_team=item.get("homeTeamAbbName", "") or item.get("homeTeamName", ""),
