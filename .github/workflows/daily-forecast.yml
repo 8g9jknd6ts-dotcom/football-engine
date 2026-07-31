@@ -55,12 +55,22 @@ jobs:
           SPORTTERY_PROXY: ${{ secrets.SPORTTERY_PROXY }}
         run: |
           YESTERDAY=$(TZ=Asia/Shanghai date -d 'yesterday' +%Y-%m-%d)
-          SETTLE_FILE="data/settlement/${YESTERDAY}.json"
+          # 检查 results.json 是否已存在（结算完成的标志）
+          SETTLE_FILE="data/daily/${YESTERDAY}/results.json"
           if [ -f "$SETTLE_FILE" ]; then
             echo "✓ 结算已完成: $YESTERDAY (跳过)"
           else
             echo "→ 开始结算昨天: $YESTERDAY"
             python -m engine.main --settle --date "$YESTERDAY"
+            # 如果昨天没有赛果，尝试结算前天（周末比赛可能延后出结果）
+            if [ ! -f "data/daily/${YESTERDAY}/results.json" ]; then
+              DAY_BEFORE=$(TZ=Asia/Shanghai date -d '2 days ago' +%Y-%m-%d)
+              SETTLE_FILE2="data/daily/${DAY_BEFORE}/results.json"
+              if [ ! -f "$SETTLE_FILE2" ]; then
+                echo "→ 尝试结算前天: $DAY_BEFORE"
+                python -m engine.main --settle --date "$DAY_BEFORE"
+              fi
+            fi
           fi
 
 
