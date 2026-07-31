@@ -1,126 +1,178 @@
-"""从 djyydata.com SSR 抓取比赛数据，写入 data/djyy_matches.json
+"""从 djyylive.com API 抓取比赛数据（v2 - 2026-07-31 改版后）
 
-GitHub Actions 定时运行，每天 2 次（UTC 02:00 / 08:00）
+DJYY 网站改版，不再用 SSR RSC Flight Data，改为公开 JSON API。
+本脚本通过 /api/leagues/fixtures + /api/match/{id}/comparison 抓取：
+  - 比赛列表（含队名、联赛、比分）
+  - Pinnacle 赔率（胜平负 + BTTS + 大小球）
+  - DJYY 模型概率（p_home/p_draw/p_away + 比分矩阵 + 大小球）
+  - 角球、半全场等
+
 用法: python scripts/fetch_djyy_ssr.py
+输出: data/djyy_matches.json
 """
 import json
-import re
 import sys
 import urllib.request
 import ssl
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-DJYY_URL = "https://djyydata.com/en/data/league-matrix.json"
+BASE = "https://djyylive.com"
 OUTPUT = ROOT / "data" / "djyy_matches.json"
 
-# Cloudflare SSL 兼容
 _SSL_CTX = ssl.create_default_context()
 _SSL_CTX.check_hostname = False
 _SSL_CTX.verify_mode = ssl.CERT_NONE
 
 
-def fetch_rsc() -> str:
-    """获取 djyydata.com SSR HTML，返回原始文本"""
+def _fetch_json(url: str, timeout: int = 15) -> dict | list | None:
     req = urllib.request.Request(
-        DJYY_URL,
-        headers={"User-Agent": "Mozilla/5.0 (compatible; football-engine/1.0)"},
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (compatible; football-engine/1.0)",
+            "Accept": "application/json",
+        },
     )
-    with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+    try:
+        with urllib.request.urlopen(req, timeout=timeout, context=_SSL_CTX) as resp:
+            return json.loads(resp.read().decode("utf-8", errors="replace"))
+    except Exception as e:
+        print(f"  ✗ Failed: {e}", file=sys.stderr)
+        return None
 
 
-def extract_matches(html: str) -> list[dict]:
-    """从 RSC Flight Data 提取比赛对象（正则提取，避免嵌套JSON解析问题）"""
-    chunks = re.findall(r'self\.__next_f\.push\(\[1,\\"(.*?)\\"\]\)', html)
-    if not chunks:
-        chunks = re.findall(r'self\.__next_f\.push\(\[1,"(.*?)"\]\)', html)
-
-    for chunk in chunks:
-        if 'home_name' not in chunk:
-            continue
-        decoded = chunk.replace('\\"', '"').replace('\\n', '\n')
-        matches = []
-
-        for hm in re.finditer(r'"home_name":"([^"]+)"', decoded):
-            home = hm.group(1)
-            pos = hm.start()
-            snippet = decoded[pos:pos + 6000]  # 扩大到 6000 以包含 odds_comparison
-
-            away = re.search(r'"away_name":"([^"]+)"', snippet)
-            home_cn = re.search(r'"home_name_cn":"([^"]+)"', snippet)
-            away_cn = re.search(r'"away_name_cn":"([^"]+)"', snippet)
-            status = re.search(r'"status":"([^"]+)"', snippet)
-            league = re.search(r'"league":\{[^}]*"name":"([^"]+)"', snippet)
-            fs_match_id = re.search(r'"fs_match_id":(\d+)', snippet)
-            home_goals = re.search(r'"home_goals":"(\d+)"', snippet)
-            away_goals = re.search(r'"away_goals":"(\d+)"', snippet)
-            home_xg = re.search(r'"home_xg":"([\d.]+)"', snippet)
-            away_xg = re.search(r'"away_xg":"([\d.]+)"', snippet)
-            home_pre_xg = re.search(r'"home_prematch_xg":"([\d.]+)"', snippet)
-            away_pre_xg = re.search(r'"away_prematch_xg":"([\d.]+)"', snippet)
-            home_corners = re.search(r'"home_corners":"(-?\d+)"', snippet)
-            away_corners = re.search(r'"away_corners":"(-?\d+)"', snippet)
-            home_red = re.search(r'"home_red_cards":"(\d+)"', snippet)
-            away_red = re.search(r'"away_red_cards":"(\d+)"', snippet)
-            in_today = re.search(r'"in_today":(\d)', snippet)
-            pt_value = re.search(r'"pt_value_bet":(\d+)', snippet)
-            pt_home = re.search(r'"pt_home_advantage":(\d+)', snippet)
-            # 提取 odds_comparison（双重转义的 JSON）
-            odds_raw = re.search(r'"odds_comparison":"(\{.*?\})"', snippet)
-
-            match = {
-                "fs_match_id": int(fs_match_id.group(1)) if fs_match_id else None,
-                "home_name": home,
-                "away_name": away.group(1) if away else "",
-                "home_name_cn": home_cn.group(1) if home_cn else "",
-                "away_name_cn": away_cn.group(1) if away_cn else "",
-                "status": status.group(1) if status else "",
-                "league": league.group(1) if league else "",
-                "home_goals": home_goals.group(1) if home_goals else "",
-                "away_goals": away_goals.group(1) if away_goals else "",
-                "home_xg": home_xg.group(1) if home_xg else "",
-                "away_xg": away_xg.group(1) if away_xg else "",
-                "home_prematch_xg": home_pre_xg.group(1) if home_pre_xg else "",
-                "away_prematch_xg": away_pre_xg.group(1) if away_pre_xg else "",
-                "home_corners": int(home_corners.group(1)) if home_corners else None,
-                "away_corners": int(away_corners.group(1)) if away_corners else None,
-                "home_red_cards": int(home_red.group(1)) if home_red else 0,
-                "away_red_cards": int(away_red.group(1)) if away_red else 0,
-                "in_today": bool(int(in_today.group(1))) if in_today else False,
-                "pt_value_bet": int(pt_value.group(1)) if pt_value else 0,
-                "pt_home_advantage": int(pt_home.group(1)) if pt_home else 0,
-                "odds_comparison": odds_raw.group(1).replace('\\\\"', '"').replace('\\"', '"') if odds_raw else "",
-            }
-            matches.append(match)
-
-        return matches
-
+def fetch_fixtures(date_from: str, date_to: str) -> list[dict]:
+    url = f"{BASE}/api/leagues/fixtures?date_from={date_from}&date_to={date_to}"
+    data = _fetch_json(url)
+    if isinstance(data, list):
+        return data
     return []
 
 
-def main():
-    print(f"[{datetime.now().isoformat()}] Fetching DJYY SSR data...")
-    try:
-        html = fetch_rsc()
-        matches = extract_matches(html)
-        if not matches:
-            print("  ⚠ No matches extracted, keeping existing file")
-            sys.exit(0)
+def fetch_comparison(match_id: int) -> dict | None:
+    url = f"{BASE}/api/match/{match_id}/comparison"
+    return _fetch_json(url, timeout=10)
 
-        data = {
-            "source": "djyydata.com SSR",
-            "extracted_at": datetime.now().isoformat(),
-            "total": len(matches),
-            "matches": matches,
+
+def extract_match(fixture: dict, comp: dict | None) -> dict:
+    m = {
+        "fs_match_id": fixture.get("id"),
+        "home_name": fixture.get("home", {}).get("name_en", ""),
+        "away_name": fixture.get("away", {}).get("name_en", ""),
+        "home_name_cn": fixture.get("home", {}).get("name_zh", ""),
+        "away_name_cn": fixture.get("away", {}).get("name_zh", ""),
+        "league": fixture.get("league", {}).get("name_en", ""),
+        "league_zh": fixture.get("league", {}).get("name_zh", ""),
+        "starting_at": fixture.get("starting_at", ""),
+        "status": fixture.get("score", {}).get("status", ""),
+        "home_goals": str(fixture.get("score", {}).get("home", "")),
+        "away_goals": str(fixture.get("score", {}).get("away", "")),
+        "has_odds": fixture.get("has_odds", False),
+        # Defaults
+        "home_odds_djyy": None,
+        "draw_odds_djyy": None,
+        "away_odds_djyy": None,
+        "djyy_model_prob": None,
+        "odds_source": None,
+        "home_prematch_xg": None,
+        "away_prematch_xg": None,
+        "btts_yes_odds": None,
+        "btts_no_odds": None,
+        "over_25_odds": None,
+        "under_25_odds": None,
+        "top_scores": None,
+        "totals": None,
+    }
+
+    if not comp:
+        return m
+
+    # Model probabilities
+    model = comp.get("model", {})
+    if model.get("p_home") is not None:
+        m["djyy_model_prob"] = {
+            "home": model.get("p_home"),
+            "draw": model.get("p_draw"),
+            "away": model.get("p_away"),
         }
-        OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-        OUTPUT.write_text(json.dumps(data, ensure_ascii=False, indent=2))
-        print(f"  ✓ {len(matches)} matches → {OUTPUT}")
-    except Exception as e:
-        print(f"  ✗ Failed: {e}")
-        sys.exit(1)
+        m["top_scores"] = model.get("top_scores")
+        m["totals"] = model.get("totals")
+
+    # Markets → Pinnacle odds
+    markets = comp.get("markets", [])
+    for mk in markets:
+        key = mk.get("key", "")
+        bm = mk.get("bookmaker")
+        if not bm:
+            continue
+
+        raw = bm.get("raw_odds", {})
+
+        if key == "1x2_fulltime":
+            m["home_odds_djyy"] = raw.get("home")
+            m["draw_odds_djyy"] = raw.get("draw")
+            m["away_odds_djyy"] = raw.get("away")
+            m["odds_source"] = f"DJYY/{bm.get('name', 'Pinnacle')}"
+
+        elif key == "btts":
+            m["btts_yes_odds"] = raw.get("yes")
+            m["btts_no_odds"] = raw.get("no")
+
+        elif key in ("total_over_under_2_5", "totals_2_5"):
+            m["over_25_odds"] = raw.get("over")
+            m["under_25_odds"] = raw.get("under")
+
+    return m
+
+
+def main():
+    print("[fetch_djyy_v2] Fetching from djyylive.com API...")
+
+    # 抓今明两天
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+    tomorrow = (datetime.utcnow() + timedelta(days=2)).strftime("%Y-%m-%d")
+
+    fixtures = fetch_fixtures(today, tomorrow)
+    print(f"  ✓ Fixtures: {len(fixtures)} matches")
+
+    if not fixtures:
+        print("  ⚠ No fixtures found, keeping existing file")
+        return
+
+    matches = []
+    enriched = 0
+    for i, fx in enumerate(fixtures):
+        mid = fx.get("id")
+        if not mid:
+            continue
+
+        comp = None
+        try:
+            comp = fetch_comparison(mid)
+        except Exception:
+            pass
+
+        m = extract_match(fx, comp)
+        matches.append(m)
+
+        if m.get("home_odds_djyy"):
+            enriched += 1
+
+        if (i + 1) % 10 == 0:
+            print(f"    ... {i+1}/{len(fixtures)} ({enriched} with odds)")
+
+    output = {
+        "source": "djyylive.com API v2",
+        "extracted_at": datetime.utcnow().isoformat(),
+        "total": len(matches),
+        "with_odds": enriched,
+        "matches": matches,
+    }
+
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(json.dumps(output, ensure_ascii=False, indent=2))
+    print(f"  ✓ {len(matches)} matches ({enriched} with Pinnacle odds) → {OUTPUT}")
 
 
 if __name__ == "__main__":
