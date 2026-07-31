@@ -190,14 +190,19 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
 
     # 加载新浪赔率数据（初始+即时+变化历史）
     sina_odds_map = {}
+    sina_odds_by_no = {}  # 按竞彩编号索引（优先匹配方式）
     sina_odds_file = ROOT / "data" / "daily" / target_date.isoformat() / "odds_sina.json"
     if sina_odds_file.exists():
         try:
             sina_data = json.loads(sina_odds_file.read_text())
             for m in sina_data:
-                # 按队名索引
+                # 按队名索引（fallback）
                 sina_odds_map[(m.get("home_team", ""), m.get("away_team", ""))] = m
-            print(f"  ✓ 新浪赔率: {len(sina_odds_map)} 场")
+                # 按竞彩编号索引（优先）
+                match_no = m.get("match_no", "")
+                if match_no:
+                    sina_odds_by_no[match_no] = m
+            print(f"  ✓ 新浪赔率: {len(sina_data)} 场 (编号匹配: {len(sina_odds_by_no)})")
         except Exception as e:
             print(f"  ⚠ 新浪赔率加载失败: {e}")
 
@@ -271,11 +276,16 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             if away_miss > 0:
                 away_rating.attack *= max(0.88, 1.0 - away_miss * 0.04)
 
-        # 查找新浪赔率数据
+        # 查找新浪赔率数据（优先用竞彩编号匹配，fallback用队名）
         _sina_data = None
-        _sina_match = sina_odds_map.get((fixture.home_team, fixture.away_team))
+        # 从 match_id 提取竞彩编号: "2026-08-01_周六001" → "周六001"
+        _match_no = fixture.match_id.split("_", 1)[-1] if "_" in fixture.match_id else ""
+        _sina_match = sina_odds_by_no.get(_match_no) if _match_no else None
         if not _sina_match:
-            # 模糊匹配：去掉常见后缀和前缀
+            # fallback: 队名精确匹配
+            _sina_match = sina_odds_map.get((fixture.home_team, fixture.away_team))
+        if not _sina_match:
+            # fallback: 模糊匹配
             import re as _re
             def _norm_name(s):
                 s = s.replace("FC", "").replace("队", "").replace("市", "")
@@ -283,17 +293,13 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                 return s.strip()
             _ht = _norm_name(fixture.home_team)
             _at = _norm_name(fixture.away_team)
-            # 尝试精确模糊匹配
-            _sina_match = sina_odds_map.get((_ht, _at))
-            if not _sina_match:
-                # 尝试包含匹配
-                for (sh, sa), v in sina_odds_map.items():
-                    _sh = _norm_name(sh)
-                    _sa = _norm_name(sa)
-                    if (_ht and _sh and (_ht in _sh or _sh in _ht)) and \
-                       (_at and _sa and (_at in _sa or _sa in _at)):
-                        _sina_match = v
-                        break
+            for (sh, sa), v in sina_odds_map.items():
+                _sh = _norm_name(sh)
+                _sa = _norm_name(sa)
+                if (_ht and _sh and (_ht in _sh or _sh in _ht)) and \
+                   (_at and _sa and (_at in _sa or _sa in _at)):
+                    _sina_match = v
+                    break
         if _sina_match:
             _sina_data = {
                 "initial_odds": _sina_match.get("euro", {}).get("initial"),
