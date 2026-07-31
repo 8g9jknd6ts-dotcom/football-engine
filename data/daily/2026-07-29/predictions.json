@@ -414,7 +414,14 @@
     "elo_home": 1422.6,
     "elo_away": 1458.0,
     "draw_alert": "balanced_draw",
-    "kelly_edge": 0.4337
+    "kelly_edge": 0.4337,
+    "actual_result": "1-0",
+    "actual_home_score": 1,
+    "actual_away_score": 0,
+    "direction": "away",
+    "direction_correct": false,
+    "predicted_score": "0-0",
+    "score_correct": false
   },
   {
     "match_id": "2026-07-29_周三002",
@@ -559,6 +566,13 @@
     "elo_home": 1572.1,
     "elo_away": 1399.6,
     "draw_alert": null,
-    "kelly_edge": -0.0778
+    "kelly_edge": -0.0778,
+    "actual_result": "0-3",
+    "actual_home_score": 0,
+    "actual_away_score": 3,
+    "direction": "home",
+    "direction_correct": false,
+    "predicted_score": "1-1",
+    "score_correct": false
   }
 ]
