@@ -89,6 +89,7 @@ class SourceManager:
                         "ttg": getattr(sf, "_raw_ttg", {}),
                         "crs": getattr(sf, "_raw_crs", {}),
                         "hafu": getattr(sf, "_raw_hafu", {}),
+                        "kickoff": sf.kickoff,
                     }
             print(f"    体彩 {len(st_by_num)} 场已索引")
         except Exception as e:
@@ -174,7 +175,7 @@ class SourceManager:
                 competition=m.get("league", ""),
                 home_team=m.get("home", ""),
                 away_team=m.get("away", ""),
-                kickoff="",
+                kickoff=m.get("kickoff", ""),
                 home_odds=final_h,
                 draw_odds=final_d,
                 away_odds=final_a,
