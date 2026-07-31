@@ -52,7 +52,11 @@ def _fetch_json(cat1: str, **extra) -> dict | list | None:
 
 
 def fetch_match_list(date_str: str) -> list[dict]:
-    """获取某日比赛列表"""
+    """获取某日竞彩比赛列表（带matchNo编号，用于和竞彩匹配）"""
+    data = _fetch_json("footballMatchListJczq", date=date_str)
+    if isinstance(data, list):
+        return data
+    # fallback: 如果竞足列表为空，用全部比赛
     data = _fetch_json("footballMatchListAll", date=date_str)
     if isinstance(data, list):
         return data
@@ -101,6 +105,7 @@ def extract_odds_snapshot(match: dict, euro: list, asia: list, totals: list, cha
 
     result = {
         "match_id": match.get("matchId", ""),
+        "match_no": match.get("matchNo", ""),  # 竞彩编号如"周五001"
         "home_team": match.get("team1", ""),
         "away_team": match.get("team2", ""),
         "league": match.get("league", ""),
