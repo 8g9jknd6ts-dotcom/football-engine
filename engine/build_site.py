@@ -1302,6 +1302,7 @@ def _match_card(p, value_matches, idx, results_map=None):
           {'<span class="value-badge">价值精选</span>' if is_val else ''}
           {'<span class="draw-alert-badge" style="background:var(--purple);color:#fff;padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px">⚠平局预警</span>' if p.get('draw_alert') else ''}
           <span class="match-id">{match_id.split('_', 1)[-1] if '_' in match_id else match_id}</span>
+          {f'<span class="match-id" style="color:var(--amber)">{p.get("kickoff","")}</span>' if p.get('kickoff') else ''}
           <span class="expand-icon">详情 &#9660;</span>
         </div>
       </div>
