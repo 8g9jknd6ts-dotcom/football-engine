@@ -158,8 +158,19 @@ class SourceManager:
             st_goal = st_hhad.get("goalLine")
             final_handicap = st_goal if st_goal else wancai._safe_float(_safe_lt(b_as, 1))
 
+            # 从竞彩编号推断实际比赛日期（周X → 日期）
+            _weekday_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
+            actual_date_str = target_date.isoformat()
+            for wd_str, wd_num in _weekday_map.items():
+                if wd_str in num:
+                    today_wd = target_date.weekday()
+                    diff = (wd_num - today_wd) % 7
+                    from datetime import timedelta
+                    actual_date_str = (target_date + timedelta(days=diff)).isoformat()
+                    break
+
             fixture = Fixture(
-                match_id=f"{target_date.isoformat()}_{num}",
+                match_id=f"{actual_date_str}_{num}",
                 competition=m.get("league", ""),
                 home_team=m.get("home", ""),
                 away_team=m.get("away", ""),
