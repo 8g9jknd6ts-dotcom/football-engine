@@ -110,7 +110,7 @@ def save_results(date_str: str, results: list[dict], output_dir: Path | None = N
         output_dir = ROOT / "data" / "daily" / date_str
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_file = output_dir / "results.json"
+    output_file = output_dir / "results_sina.json"
     
     # 合并已有数据（来自 DJYY 等源）
     existing = []
