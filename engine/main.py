@@ -735,7 +735,7 @@ def run_settlement(target_date: date):
     results = source_mgr.fetch_results(target_date)
     
     # 合并新浪赛果（互补数据源）
-    sina_file = ROOT / "data" / "daily" / target_date.isoformat() / "results.json"
+    sina_file = ROOT / "data" / "daily" / target_date.isoformat() / "results_sina.json"
     if sina_file.exists():
         try:
             sina_results_raw = json.loads(sina_file.read_text())
