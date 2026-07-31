@@ -105,14 +105,31 @@ def extract_results(matches: list[dict]) -> list[dict]:
 
 
 def save_results(date_str: str, results: list[dict], output_dir: Path | None = None):
-    """保存赛果到 data/daily/{date}/results.json"""
+    """保存赛果到 data/daily/{date}/results.json（合并已有数据，队名去重）"""
     if output_dir is None:
         output_dir = ROOT / "data" / "daily" / date_str
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_file = output_dir / "results.json"
-    output_file.write_text(json.dumps(results, ensure_ascii=False, indent=2))
-    print(f"  ✓ {date_str}: {len(results)} 场比赛结果 → {output_file}")
+    
+    # 合并已有数据（来自 DJYY 等源）
+    existing = []
+    if output_file.exists():
+        try:
+            existing = json.loads(output_file.read_text())
+        except Exception:
+            pass
+    
+    # 队名去重
+    existing_teams = {(r.get("home_team"), r.get("away_team")) for r in existing}
+    added = 0
+    for r in results:
+        if (r.get("home_team"), r.get("away_team")) not in existing_teams:
+            existing.append(r)
+            added += 1
+    
+    output_file.write_text(json.dumps(existing, ensure_ascii=False, indent=2))
+    print(f"  ✓ {date_str}: {len(results)} 新浪 + {len(existing)-len(results)} 已有 = {len(existing)} 场 → {output_file}")
     return output_file
 
 
