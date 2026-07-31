@@ -10,6 +10,10 @@ on:
         description: 'Target date (YYYY-MM-DD)'
         required: false
         default: ''
+      settle_only:
+        description: '仅结算指定日期（YYYY-MM-DD），跳过预测'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -39,7 +43,17 @@ jobs:
       - name: Fetch DJYY SSR odds
         run: python scripts/fetch_djyy_ssr.py
 
+      - name: Settlement only (manual trigger)
+        if: ${{ github.event.inputs.settle_only != '' }}
+        env:
+          SPORTTERY_PROXY: ${{ secrets.SPORTTERY_PROXY }}
+        run: |
+          echo "→ 仅结算模式: ${{ github.event.inputs.settle_only }}"
+          python -m engine.main --settle --date "${{ github.event.inputs.settle_only }}"
+          python engine/build_site.py
+
       - name: Run daily forecast
+        if: ${{ github.event.inputs.settle_only == '' }}
         env:
           SPORTTERY_PROXY: ${{ secrets.SPORTTERY_PROXY }}
         run: |
@@ -51,6 +65,7 @@ jobs:
           python -m engine.main --date "$DATE"
 
       - name: Settlement (yesterday, if not done yet)
+        if: ${{ github.event.inputs.settle_only == '' }}
         env:
           SPORTTERY_PROXY: ${{ secrets.SPORTTERY_PROXY }}
         run: |
