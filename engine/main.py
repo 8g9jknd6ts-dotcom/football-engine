@@ -188,6 +188,19 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     fusion_cfg.setdefault("combo_boost_cap", 0.03)
     fusion_cfg.setdefault("trust_shrink_enabled", True)
 
+    # 加载新浪赔率数据（初始+即时+变化历史）
+    sina_odds_map = {}
+    sina_odds_file = ROOT / "data" / "daily" / target_date.isoformat() / "odds_sina.json"
+    if sina_odds_file.exists():
+        try:
+            sina_data = json.loads(sina_odds_file.read_text())
+            for m in sina_data:
+                # 按队名索引
+                sina_odds_map[(m.get("home_team", ""), m.get("away_team", ""))] = m
+            print(f"  ✓ 新浪赔率: {len(sina_odds_map)} 场")
+        except Exception as e:
+            print(f"  ⚠ 新浪赔率加载失败: {e}")
+
     # 自我革新: 读取优化器冠军权重覆盖静态默认
     from engine.learning.fusion_optimizer import FusionOptimizer, FusionWeights
     from engine.review.post_match import ReviewLedger
@@ -257,6 +270,25 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                 home_rating.attack *= max(0.88, 1.0 - home_miss * 0.04)
             if away_miss > 0:
                 away_rating.attack *= max(0.88, 1.0 - away_miss * 0.04)
+
+        # 查找新浪赔率数据
+        _sina_data = None
+        _sina_match = sina_odds_map.get((fixture.home_team, fixture.away_team))
+        if not _sina_match:
+            # 模糊匹配（去掉常见后缀）
+            _ht = fixture.home_team.replace("FC", "").strip()
+            _at = fixture.away_team.replace("FC", "").strip()
+            _sina_match = sina_odds_map.get((_ht, _at))
+        if _sina_match:
+            _sina_data = {
+                "initial_odds": _sina_match.get("euro", {}).get("initial"),
+                "current_odds": _sina_match.get("euro", {}).get("current"),
+                "movement": _sina_match.get("euro", {}).get("movement"),
+                "compression": _sina_match.get("euro", {}).get("compression"),
+                "odds_history_count": len(_sina_match.get("odds_history", [])),
+                "asia": _sina_match.get("asia"),
+                "totals": _sina_match.get("totals"),
+            }
 
         market_odds = None
         if fixture.home_odds and fixture.draw_odds and fixture.away_odds:
@@ -423,15 +455,35 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         # 策略: 当市场隐含平局概率 >= 25% 时，将模型平局概率向市场方向强力修正
         if calibrated_probs and calibrated_probs[1] >= 0.25:
             market_d = calibrated_probs[1]
-            # 直接拉到市场平局概率的 90%
             target_d = market_d * 0.90
             gap = target_d - final_d
-            if gap > 0.005:  # 差距超过 0.5% 就修
+            if gap > 0.005:
                 final_d += gap
                 total_ha = final_h + final_a
                 if total_ha > 0:
                     final_h -= gap * (final_h / total_ha)
                     final_a -= gap * (final_a / total_ha)
+
+        # --- 赔率变动信号修正 ---
+        # 新浪赔率变化方向作为信号：赔率下降=资金涌入=庄家看好
+        if _sina_data and _sina_data.get("movement"):
+            mv = _sina_data["movement"]
+            comp = _sina_data.get("compression", {})
+            # 压缩比 < 0.95 表示赔率明显下降（资金涌入）
+            # 压缩比 > 1.05 表示赔率明显上升（资金撤出）
+            _signal_strength = 0
+            if comp.get("home", 1.0) < 0.95:
+                final_h += 0.02; _signal_strength += 1
+            elif comp.get("home", 1.0) > 1.05:
+                final_h -= 0.02; _signal_strength += 1
+            if comp.get("away", 1.0) < 0.95:
+                final_a += 0.02; _signal_strength += 1
+            elif comp.get("away", 1.0) > 1.05:
+                final_a -= 0.02; _signal_strength += 1
+            if _signal_strength > 0:
+                total_p = final_h + final_d + final_a
+                if total_p > 0:
+                    final_h /= total_p; final_d /= total_p; final_a /= total_p
 
         # --- Isotonic 校准（最终修正） ---
         if calibrator.is_fitted:
@@ -566,6 +618,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             "elo_away": round(away_rating.elo, 1),
             # 平局预警
             "draw_alert": draw_alert,
+            # 新浪赔率数据（初始+即时+变化方向+压缩比+亚盘+大小球）
+            "sina_odds": _sina_data,
         })
 
     print(f"  ✓ 完成 {len(predictions)} 场预测（含增强分析）")
