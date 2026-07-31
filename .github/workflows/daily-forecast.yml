@@ -43,8 +43,10 @@ jobs:
       - name: Fetch DJYY SSR odds
         run: python scripts/fetch_djyy_ssr.py
 
-      - name: Fetch Sina results (for settlement)
-        run: python scripts/fetch_sina_results.py
+      - name: Fetch Sina results + odds
+        run: |
+          python scripts/fetch_sina_results.py
+          python scripts/fetch_sina_odds.py
 
       - name: Settlement only (manual trigger)
         if: ${{ github.event.inputs.settle_only != '' }}
