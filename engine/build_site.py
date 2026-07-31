@@ -1012,6 +1012,26 @@ document.querySelectorAll('.league-btn').forEach(function(btn) {{
 </html>"""
 
 
+def _odds_movement_chip(p):
+    """赔率变动信号标签"""
+    sina = p.get("sina_odds")
+    if not sina or not sina.get("movement"):
+        return ""
+    mv = sina["movement"]
+    comp = sina.get("compression", {})
+    # 生成箭头
+    arrows = []
+    colors = {"down": "↓", "up": "↑", "flat": "→"}
+    for sel in ["home", "draw", "away"]:
+        direction = mv.get(sel, "flat")
+        cr = comp.get(sel, 1.0)
+        if abs(cr - 1.0) > 0.03:  # 变化超过3%才显示
+            arrows.append(f"{sel[0].upper()}{colors.get(direction,'→')}{cr:.2f}")
+    if not arrows:
+        return ""
+    return f'<span class="info-chip" style="color:var(--purple)">赔率变动 {" ".join(arrows)}</span>'
+
+
 def _pred_pick(p):
     """生成明确的预测结论"""
     ph = p.get("home_win_prob") or 0
@@ -1302,6 +1322,7 @@ def _match_card(p, value_matches, idx, results_map=None):
         <span class="conf-meter"><span class="conf-dot {conf_cls}"></span><b>{conf:.0%}</b></span>
         <span class="info-chip">xG <b>{xg_h:.2f} - {xg_a:.2f}</b></span>
         <span class="info-chip">Odds <b>{odds_h}/{odds_d}/{odds_a}</b></span>
+        {_odds_movement_chip(p)}
       </div>
     </div>
     <div class="match-detail">
