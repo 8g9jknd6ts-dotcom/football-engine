@@ -4,9 +4,9 @@
     "competition": "挪超",
     "home_team": "瓦勒伦加",
     "away_team": "汉坎",
-    "home_win_prob": 0.6298,
-    "draw_prob": 0.2054,
-    "away_win_prob": 0.1648,
+    "home_win_prob": 0.6251,
+    "draw_prob": 0.2075,
+    "away_win_prob": 0.1674,
     "home_xg": 2.647,
     "away_xg": 1.013,
     "home_odds": 1.49,
@@ -17,9 +17,9 @@
     "confidence": 0.324,
     "wilson_trust": 0.4514,
     "model_raw": {
-      "home": 0.7178,
-      "draw": 0.1685,
-      "away": 0.1138
+      "home": 0.7177,
+      "draw": 0.1687,
+      "away": 0.1136
     },
     "market_fair": [
       0.5942,
@@ -142,16 +142,16 @@
     "elo_home": 1709.8,
     "elo_away": 1345.1,
     "draw_alert": null,
-    "kelly_edge": -0.0616
+    "kelly_edge": -0.0686
   },
   {
     "match_id": "2026-07-31_周五002",
     "competition": "挪超",
     "home_team": "博德闪耀",
     "away_team": "利勒斯特",
-    "home_win_prob": 0.722,
-    "draw_prob": 0.1548,
-    "away_win_prob": 0.1233,
+    "home_win_prob": 0.7187,
+    "draw_prob": 0.1567,
+    "away_win_prob": 0.1246,
     "home_xg": 3.232,
     "away_xg": 1.114,
     "home_odds": 1.17,
@@ -159,12 +159,12 @@
     "away_odds": 9.0,
     "odds_synthetic": false,
     "handicap": -2.0,
-    "confidence": 0.3565,
+    "confidence": 0.3569,
     "wilson_trust": 0.4514,
     "model_raw": {
-      "home": 0.7897,
-      "draw": 0.1145,
-      "away": 0.0958
+      "home": 0.7906,
+      "draw": 0.114,
+      "away": 0.0954
     },
     "market_fair": [
       0.7565,
@@ -287,16 +287,16 @@
     "elo_home": 1940.4,
     "elo_away": 1414.7,
     "draw_alert": null,
-    "kelly_edge": 0.1097
+    "kelly_edge": 0.1214
   },
   {
     "match_id": "2026-07-31_周五003",
     "competition": "美职联",
     "home_team": "纽约城",
     "away_team": "多伦多",
-    "home_win_prob": 0.5971,
-    "draw_prob": 0.2255,
-    "away_win_prob": 0.1774,
+    "home_win_prob": 0.5934,
+    "draw_prob": 0.2271,
+    "away_win_prob": 0.1795,
     "home_xg": 2.568,
     "away_xg": 1.096,
     "home_odds": 1.52,
@@ -304,12 +304,12 @@
     "away_odds": 4.72,
     "odds_synthetic": false,
     "handicap": -1.0,
-    "confidence": 0.2641,
+    "confidence": 0.2647,
     "wilson_trust": 0.3876,
     "model_raw": {
-      "home": 0.6814,
-      "draw": 0.193,
-      "away": 0.1255
+      "home": 0.683,
+      "draw": 0.1926,
+      "away": 0.1244
     },
     "market_fair": [
       0.5825,
@@ -432,6 +432,852 @@
     "elo_home": 1643.3,
     "elo_away": 1448.7,
     "draw_alert": null,
-    "kelly_edge": -0.0924
+    "kelly_edge": -0.098
+  },
+  {
+    "match_id": "2026-07-31_周六001",
+    "competition": "K1联赛",
+    "home_team": "江原FC",
+    "away_team": "富川FC",
+    "home_win_prob": 0.4411,
+    "draw_prob": 0.2766,
+    "away_win_prob": 0.2823,
+    "home_xg": 0.544,
+    "away_xg": 1.585,
+    "home_odds": 1.37,
+    "draw_odds": 3.9,
+    "away_odds": 7.0,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "confidence": 0.131,
+    "wilson_trust": 0.2742,
+    "model_raw": {
+      "home": 0.2032,
+      "draw": 0.3192,
+      "away": 0.4776
+    },
+    "market_fair": [
+      0.6464,
+      0.2271,
+      0.1265
+    ],
+    "top_scores": [
+      [
+        1,
+        0,
+        0.1577
+      ],
+      [
+        1,
+        1,
+        0.12960000000000002
+      ],
+      [
+        2,
+        0,
+        0.1131
+      ],
+      [
+        0,
+        0,
+        0.1011
+      ],
+      [
+        2,
+        1,
+        0.10039999999999999
+      ],
+      [
+        0,
+        1,
+        0.077
+      ],
+      [
+        3,
+        0,
+        0.0495
+      ],
+      [
+        1,
+        2,
+        0.049
+      ],
+      [
+        3,
+        1,
+        0.0406
+      ],
+      [
+        2,
+        2,
+        0.0395
+      ]
+    ],
+    "total_goals": [
+      [
+        1,
+        0.6636
+      ],
+      [
+        2,
+        0.391
+      ],
+      [
+        3,
+        0.1845
+      ],
+      [
+        4,
+        0.0931
+      ]
+    ],
+    "htft": {
+      "HH": 0.0279,
+      "HD": 0.0559,
+      "HA": 0.0301,
+      "DH": 0.0769,
+      "DD": 0.0977,
+      "DA": 0.2921,
+      "AH": 0.0421,
+      "AD": 0.0632,
+      "AA": 0.3142
+    },
+    "htft_top3": [
+      [
+        "AA",
+        0.3142
+      ],
+      [
+        "DA",
+        0.2921
+      ],
+      [
+        "DD",
+        0.0977
+      ]
+    ],
+    "reverse_upset_risk": 33.8,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.4912,
+    "djyy_enriched": true,
+    "djyy_model_prob": {
+      "home": 0.5346,
+      "draw": 0.2746,
+      "away": 0.19039999999999999
+    },
+    "_djyy_id": 19648112,
+    "elo_home": 1373.8,
+    "elo_away": 1485.6,
+    "draw_alert": null,
+    "kelly_edge": 0.9761
+  },
+  {
+    "match_id": "2026-07-31_周六002",
+    "competition": "K1联赛",
+    "home_team": "全北现代",
+    "away_team": "首尔FC",
+    "home_win_prob": 0.5032,
+    "draw_prob": 0.2642,
+    "away_win_prob": 0.2326,
+    "home_xg": 2.765,
+    "away_xg": 1.09,
+    "home_odds": 2.55,
+    "draw_odds": 3.12,
+    "away_odds": 2.4,
+    "odds_synthetic": false,
+    "handicap": 1.0,
+    "confidence": 0.2643,
+    "wilson_trust": 0.3876,
+    "model_raw": {
+      "home": 0.682,
+      "draw": 0.1728,
+      "away": 0.1452
+    },
+    "market_fair": [
+      0.3472,
+      0.2838,
+      0.3689
+    ],
+    "top_scores": [
+      [
+        2,
+        0,
+        0.2293
+      ],
+      [
+        1,
+        0,
+        0.2255
+      ],
+      [
+        3,
+        0,
+        0.164
+      ],
+      [
+        0,
+        0,
+        0.1056
+      ],
+      [
+        4,
+        0,
+        0.084
+      ],
+      [
+        5,
+        0,
+        0.0367
+      ],
+      [
+        2,
+        1,
+        0.0342
+      ],
+      [
+        1,
+        1,
+        0.0334
+      ]
+    ],
+    "total_goals": [
+      [
+        2,
+        0.2638
+      ],
+      [
+        1,
+        0.2413
+      ],
+      [
+        3,
+        0.2009
+      ],
+      [
+        4,
+        0.1113
+      ],
+      [
+        0,
+        0.1056
+      ],
+      [
+        5,
+        0.0511
+      ]
+    ],
+    "htft": {
+      "HH": 0.4534,
+      "HD": 0.0572,
+      "HA": 0.0308,
+      "DH": 0.2368,
+      "DD": 0.0469,
+      "DA": 0.0289,
+      "AH": 0.044,
+      "AD": 0.066,
+      "AA": 0.036
+    },
+    "htft_top3": [
+      [
+        "HH",
+        0.4534
+      ],
+      [
+        "DH",
+        0.2368
+      ],
+      [
+        "AD",
+        0.066
+      ]
+    ],
+    "reverse_upset_risk": 58.7,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.3214,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1693.7,
+    "elo_away": 1313.4,
+    "draw_alert": "balanced_draw",
+    "kelly_edge": 0.2832
+  },
+  {
+    "match_id": "2026-07-31_周六003",
+    "competition": "K1联赛",
+    "home_team": "浦项制铁",
+    "away_team": "金泉尚武",
+    "home_win_prob": 0.2988,
+    "draw_prob": 0.2708,
+    "away_win_prob": 0.4304,
+    "home_xg": 1.022,
+    "away_xg": 2.738,
+    "home_odds": 2.08,
+    "draw_odds": 3.02,
+    "away_odds": 3.15,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "confidence": 0.2628,
+    "wilson_trust": 0.3876,
+    "model_raw": {
+      "home": 0.1516,
+      "draw": 0.1704,
+      "away": 0.678
+    },
+    "market_fair": [
+      0.4257,
+      0.2932,
+      0.2811
+    ],
+    "top_scores": [
+      [
+        1,
+        1,
+        0.1362
+      ],
+      [
+        1,
+        0,
+        0.11380000000000001
+      ],
+      [
+        0,
+        1,
+        0.0917
+      ],
+      [
+        2,
+        1,
+        0.08929999999999999
+      ],
+      [
+        0,
+        0,
+        0.0834
+      ],
+      [
+        2,
+        0,
+        0.0758
+      ],
+      [
+        1,
+        2,
+        0.0733
+      ],
+      [
+        2,
+        2,
+        0.051
+      ],
+      [
+        0,
+        2,
+        0.048799999999999996
+      ],
+      [
+        3,
+        1,
+        0.039599999999999996
+      ]
+    ],
+    "total_goals": [
+      [
+        1,
+        0.711
+      ],
+      [
+        2,
+        0.45030000000000003
+      ],
+      [
+        3,
+        0.24
+      ],
+      [
+        4,
+        0.1225
+      ]
+    ],
+    "htft": {
+      "HH": 0.0329,
+      "HD": 0.0684,
+      "HA": 0.0369,
+      "DH": 0.0498,
+      "DD": 0.0473,
+      "DA": 0.2183,
+      "AH": 0.0437,
+      "AD": 0.0656,
+      "AA": 0.4372
+    },
+    "htft_top3": [
+      [
+        "AA",
+        0.4372
+      ],
+      [
+        "DA",
+        0.2183
+      ],
+      [
+        "HD",
+        0.0684
+      ]
+    ],
+    "reverse_upset_risk": 51.9,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.3214,
+    "djyy_enriched": true,
+    "djyy_model_prob": {
+      "home": 0.4179,
+      "draw": 0.2803,
+      "away": 0.3018
+    },
+    "_djyy_id": 19648110,
+    "elo_home": 1237.2,
+    "elo_away": 1633.4,
+    "draw_alert": "balanced_draw",
+    "kelly_edge": 0.3558
+  },
+  {
+    "match_id": "2026-07-31_周日001",
+    "competition": "K1联赛",
+    "home_team": "蔚山现代",
+    "away_team": "安养FC",
+    "home_win_prob": 0.4619,
+    "draw_prob": 0.2683,
+    "away_win_prob": 0.2699,
+    "home_xg": 1.836,
+    "away_xg": 1.362,
+    "home_odds": 1.86,
+    "draw_odds": 3.45,
+    "away_odds": 3.32,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "confidence": 0.1234,
+    "wilson_trust": 0.2742,
+    "model_raw": {
+      "home": 0.45,
+      "draw": 0.2772,
+      "away": 0.2728
+    },
+    "market_fair": [
+      0.4763,
+      0.2568,
+      0.2669
+    ],
+    "top_scores": [
+      [
+        0,
+        0,
+        0.2291
+      ],
+      [
+        1,
+        0,
+        0.1843
+      ],
+      [
+        0,
+        1,
+        0.1538
+      ],
+      [
+        1,
+        1,
+        0.1219
+      ],
+      [
+        2,
+        0,
+        0.075
+      ],
+      [
+        0,
+        2,
+        0.0512
+      ],
+      [
+        2,
+        1,
+        0.0487
+      ],
+      [
+        1,
+        2,
+        0.0415
+      ]
+    ],
+    "total_goals": [
+      [
+        1,
+        0.3381
+      ],
+      [
+        2,
+        0.2481
+      ],
+      [
+        0,
+        0.2291
+      ],
+      [
+        3,
+        0.1213
+      ],
+      [
+        4,
+        0.0447
+      ],
+      [
+        5,
+        0.0144
+      ]
+    ],
+    "htft": {
+      "HH": 0.2237,
+      "HD": 0.0948,
+      "HA": 0.051,
+      "DH": 0.2017,
+      "DD": 0.0745,
+      "DA": 0.1077,
+      "AH": 0.0585,
+      "AD": 0.0878,
+      "AA": 0.1001
+    },
+    "htft_top3": [
+      [
+        "HH",
+        0.2237
+      ],
+      [
+        "DH",
+        0.2017
+      ],
+      [
+        "DA",
+        0.1077
+      ]
+    ],
+    "reverse_upset_risk": 47.3,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.4912,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1666.1,
+    "elo_away": 1657.6,
+    "draw_alert": null,
+    "kelly_edge": -0.0744
+  },
+  {
+    "match_id": "2026-07-31_周日002",
+    "competition": "K1联赛",
+    "home_team": "济州SK",
+    "away_team": "仁川联",
+    "home_win_prob": 0.4233,
+    "draw_prob": 0.2981,
+    "away_win_prob": 0.2787,
+    "home_xg": 2.282,
+    "away_xg": 1.171,
+    "home_odds": 3.11,
+    "draw_odds": 2.9,
+    "away_odds": 2.16,
+    "odds_synthetic": false,
+    "handicap": 1.0,
+    "confidence": 0.1695,
+    "wilson_trust": 0.3286,
+    "model_raw": {
+      "home": 0.5159,
+      "draw": 0.3004,
+      "away": 0.1838
+    },
+    "market_fair": [
+      0.2847,
+      0.3053,
+      0.4099
+    ],
+    "top_scores": [
+      [
+        0,
+        0,
+        0.3966
+      ],
+      [
+        1,
+        0,
+        0.2893
+      ],
+      [
+        2,
+        0,
+        0.1042
+      ],
+      [
+        0,
+        1,
+        0.0783
+      ],
+      [
+        1,
+        1,
+        0.0565
+      ],
+      [
+        3,
+        0,
+        0.0253
+      ],
+      [
+        2,
+        1,
+        0.0215
+      ],
+      [
+        0,
+        2,
+        0.0079
+      ]
+    ],
+    "total_goals": [
+      [
+        0,
+        0.3966
+      ],
+      [
+        1,
+        0.3676
+      ],
+      [
+        2,
+        0.1686
+      ],
+      [
+        3,
+        0.0529
+      ],
+      [
+        4,
+        0.0116
+      ],
+      [
+        5,
+        0.0023
+      ]
+    ],
+    "htft": {
+      "HH": 0.342,
+      "HD": 0.0781,
+      "HA": 0.0421,
+      "DH": 0.233,
+      "DD": 0.0584,
+      "DA": 0.0617,
+      "AH": 0.0513,
+      "AD": 0.0769,
+      "AA": 0.0564
+    },
+    "htft_top3": [
+      [
+        "HH",
+        0.342
+      ],
+      [
+        "DH",
+        0.233
+      ],
+      [
+        "HD",
+        0.0781
+      ]
+    ],
+    "reverse_upset_risk": 57.3,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.55,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1670.5,
+    "elo_away": 1464.2,
+    "draw_alert": "balanced_draw",
+    "kelly_edge": 0.3165
+  },
+  {
+    "match_id": "2026-07-31_周日003",
+    "competition": "K1联赛",
+    "home_team": "大田市民",
+    "away_team": "光州FC",
+    "home_win_prob": 0.5557,
+    "draw_prob": 0.272,
+    "away_win_prob": 0.1723,
+    "home_xg": 1.353,
+    "away_xg": 0.682,
+    "home_odds": 1.4,
+    "draw_odds": 3.9,
+    "away_odds": 6.3,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "confidence": 0.1705,
+    "wilson_trust": 0.3286,
+    "model_raw": {
+      "home": 0.5189,
+      "draw": 0.3021,
+      "away": 0.179
+    },
+    "market_fair": [
+      0.6324,
+      0.227,
+      0.1405
+    ],
+    "top_scores": [
+      [
+        0,
+        0,
+        0.2525
+      ],
+      [
+        1,
+        0,
+        0.2137
+      ],
+      [
+        0,
+        1,
+        0.1334
+      ],
+      [
+        1,
+        1,
+        0.1126
+      ],
+      [
+        2,
+        0,
+        0.0928
+      ],
+      [
+        2,
+        1,
+        0.0457
+      ],
+      [
+        0,
+        2,
+        0.035
+      ],
+      [
+        1,
+        2,
+        0.0305
+      ]
+    ],
+    "total_goals": [
+      [
+        1,
+        0.3471
+      ],
+      [
+        0,
+        0.2525
+      ],
+      [
+        2,
+        0.2404
+      ],
+      [
+        3,
+        0.1091
+      ],
+      [
+        4,
+        0.038
+      ],
+      [
+        5,
+        0.0104
+      ]
+    ],
+    "htft": {
+      "HH": 0.2306,
+      "HD": 0.0809,
+      "HA": 0.0436,
+      "DH": 0.2796,
+      "DD": 0.1178,
+      "DA": 0.0936,
+      "AH": 0.0426,
+      "AD": 0.0639,
+      "AA": 0.0475
+    },
+    "htft_top3": [
+      [
+        "DH",
+        0.2796
+      ],
+      [
+        "HH",
+        0.2306
+      ],
+      [
+        "DD",
+        0.1178
+      ]
+    ],
+    "reverse_upset_risk": 34.8,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.4912,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1393.6,
+    "elo_away": 1309.3,
+    "draw_alert": null,
+    "kelly_edge": 0.0855
   }
 ]
