@@ -86,8 +86,7 @@ class SportterySource(DataSource):
         match_info_list = data.get("value", {}).get("matchInfoList", [])
 
         for day_group in match_info_list:
-            # matchInfoList 按 matchDate 分组（周六=07-25, 周日=07-26...）
-            # 不按 businessDate 过滤：竞彩开售多天，全部拿
+            # matchInfoList 按 businessDate 分组，但竞彩编号"周X001"里的周X才是实际比赛日
             sub_matches = day_group.get("subMatchList", [])
 
             for item in sub_matches:
@@ -96,10 +95,21 @@ class SportterySource(DataSource):
                 away = item.get("awayTeamAbbName", "") or item.get("awayTeamName", "")
                 league = item.get("leagueAbbName", "") or item.get("leagueName", "")
                 match_time = item.get("matchTime", "")
-                # 用实际比赛日期，不是竞彩开售日期
+
+                # 从竞彩编号推断实际比赛日期（周X → 日期）
+                # 周一=0, 周二=1, ..., 周日=6
+                _weekday_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
                 match_date_str = item.get("matchDate", "")
+                for wd_str, wd_num in _weekday_map.items():
+                    if wd_str in match_num:
+                        today_wd = target_date.weekday()
+                        diff = (wd_num - today_wd) % 7
+                        actual_date = target_date + __import__('datetime').timedelta(days=diff)
+                        match_date_str = actual_date.isoformat()
+                        break
                 if not match_date_str:
-                    match_date_str = day_group.get("businessDate", target_date.isoformat())
+                    match_date_str = target_date.isoformat()
+                
                 kickoff = f"{match_date_str} {match_time}" if match_time else ""
 
                 # 胜平负 (had): {h, d, a}
@@ -109,7 +119,7 @@ class SportterySource(DataSource):
 
                 handicap = self._safe_float(hhad.get("goalLine"))
 
-                # match_id 用实际比赛日期，避免跨日重复
+                # match_id 用从编号推断的实际比赛日期
                 fixture = Fixture(
                     match_id=f"{match_date_str}_{match_num}",
                     competition=league,
@@ -149,15 +159,23 @@ class SportterySource(DataSource):
             return []
 
         results = []
+        _weekday_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
         for item in data.get("value", {}).get("matchResultList", []):
-            match_date_str = item.get("matchDate", "")
-            # 不再按 matchDate 过滤，拿所有已完赛的结果
-
             match_num = item.get("matchNumStr", "") or str(item.get("matchNum", ""))
-            # match_id 用实际比赛日期
-            actual_date = match_date_str or target_date.isoformat()
+            
+            # 从竞彩编号推断实际比赛日期
+            match_date_str = item.get("matchDate", "")
+            for wd_str, wd_num in _weekday_map.items():
+                if wd_str in match_num:
+                    today_wd = target_date.weekday()
+                    diff = (wd_num - today_wd) % 7
+                    actual_date = target_date + __import__('datetime').timedelta(days=diff)
+                    match_date_str = actual_date.isoformat()
+                    break
+            if not match_date_str:
+                match_date_str = target_date.isoformat()
             results.append(MatchResult(
-                match_id=f"{actual_date}_{match_num}",
+                match_id=f"{match_date_str}_{match_num}",
                 home_score=self._safe_int(item.get("homeScore")),
                 away_score=self._safe_int(item.get("awayScore")),
                 home_team=item.get("homeTeamAbbName", "") or item.get("homeTeamName", ""),
