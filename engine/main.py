@@ -288,6 +288,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                 "odds_history_count": len(_sina_match.get("odds_history", [])),
                 "asia": _sina_match.get("asia"),
                 "totals": _sina_match.get("totals"),
+                "match_time": _sina_match.get("match_time"),
             }
 
         market_odds = None
@@ -618,6 +619,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             "elo_away": round(away_rating.elo, 1),
             # 平局预警
             "draw_alert": draw_alert,
+            # 开赛时间（从新浪数据获取）
+            "kickoff": _sina_data.get("match_time") if _sina_data else "",
             # 新浪赔率数据（初始+即时+变化方向+压缩比+亚盘+大小球）
             "sina_odds": _sina_data,
         })
