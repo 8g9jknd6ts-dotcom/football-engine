@@ -36,7 +36,7 @@ HEADERS = {
 
 def fetch_match_list(target_date: str) -> list[dict]:
     """获取指定日期的比赛列表（含队名、比分、赔率）"""
-    params = {**SX, "cat1": "footballMatchListAll", "date": target_date, "dpc": "1"}
+    params = {**SX, "cat1": "footballMatchListJczq", "date": target_date, "dpc": "1"}
 
     for attempt in range(3):
         try:
@@ -78,6 +78,7 @@ def extract_results(matches: list[dict]) -> list[dict]:
         results.append(
             {
                 "match_id": m.get("matchId", ""),
+                "match_no": m.get("matchNo", ""),  # 竞彩编号如"周五001"
                 "home_team": m.get("team1", ""),
                 "away_team": m.get("team2", ""),
                 "home_score": home_score,
