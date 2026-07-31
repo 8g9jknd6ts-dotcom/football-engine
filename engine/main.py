@@ -275,10 +275,25 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         _sina_data = None
         _sina_match = sina_odds_map.get((fixture.home_team, fixture.away_team))
         if not _sina_match:
-            # 模糊匹配（去掉常见后缀）
-            _ht = fixture.home_team.replace("FC", "").strip()
-            _at = fixture.away_team.replace("FC", "").strip()
+            # 模糊匹配：去掉常见后缀和前缀
+            import re as _re
+            def _norm_name(s):
+                s = s.replace("FC", "").replace("队", "").replace("市", "")
+                s = _re.sub(r'[^\u4e00-\u9fffa-zA-Z]', '', s)
+                return s.strip()
+            _ht = _norm_name(fixture.home_team)
+            _at = _norm_name(fixture.away_team)
+            # 尝试精确模糊匹配
             _sina_match = sina_odds_map.get((_ht, _at))
+            if not _sina_match:
+                # 尝试包含匹配
+                for (sh, sa), v in sina_odds_map.items():
+                    _sh = _norm_name(sh)
+                    _sa = _norm_name(sa)
+                    if (_ht and _sh and (_ht in _sh or _sh in _ht)) and \
+                       (_at and _sa and (_at in _sa or _sa in _at)):
+                        _sina_match = v
+                        break
         if _sina_match:
             _sina_data = {
                 "initial_odds": _sina_match.get("euro", {}).get("initial"),
