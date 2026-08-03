@@ -1,28 +1,34 @@
 {
   "date": "2026-07-31",
-  "n_matches": 1,
-  "hit_rate": 0.0,
-  "hits": 0,
+  "n_matches": 5,
+  "hit_rate": 0.4,
+  "hits": 2,
   "source_brier": {
-    "model": 1.326,
-    "market": 1.026,
-    "djyy": 1.0938,
-    "final": 1.076
+    "model": 0.7462,
+    "market": 0.6424,
+    "djyy": 0.6441,
+    "final": 0.6592
   },
   "by_league": {
     "挪超": {
-      "n": 1,
+      "n": 3,
+      "hit_rate": 0.6667,
+      "wilson_lower": 0.2077,
+      "avg_brier": 0.4357
+    },
+    "美职联": {
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 1.076
+      "avg_brier": 0.9945
     }
   },
   "by_confidence_tier": {
     "high": {
-      "n": 1,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 1.076
+      "n": 5,
+      "hit_rate": 0.4,
+      "wilson_lower": 0.1176,
+      "avg_brier": 0.6592
     }
   },
   "by_odds_band": {
@@ -31,10 +37,28 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 1.076
+    },
+    "1.0-1.5": {
+      "n": 4,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.15,
+      "avg_brier": 0.5551
     }
   },
-  "biases": [],
+  "biases": [
+    {
+      "dimension": "outcome",
+      "key": "all",
+      "outcome": "draw",
+      "predicted_avg": 0.1927,
+      "actual_rate": 0.4,
+      "gap": -0.2073,
+      "n": 5,
+      "severity": "warn",
+      "suggested_action": "reduce draw_bias"
+    }
+  ],
   "total_pnl": 0,
-  "generated_at": "2026-08-03T10:38:23.072026",
-  "sha256": "0ef355b402df590f4e21ea3c2726fa6b"
+  "generated_at": "2026-08-03T02:57:02.828689",
+  "sha256": "faaef898d0ed4f609ab5348cd76ac66d"
 }
