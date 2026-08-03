@@ -1,0 +1,82 @@
+{
+  "date": "2026-08-02",
+  "n_matches": 13,
+  "hit_rate": 0.3077,
+  "hits": 4,
+  "source_brier": {
+    "model": 0.848,
+    "market": 0.5802,
+    "djyy": 0.5837,
+    "final": 0.7716
+  },
+  "by_league": {
+    "K1联赛": {
+      "n": 3,
+      "hit_rate": 0.6667,
+      "wilson_lower": 0.2077,
+      "avg_brier": 0.5258
+    },
+    "瑞典超": {
+      "n": 3,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.0364
+    },
+    "芬超": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.8371
+    },
+    "挪超": {
+      "n": 3,
+      "hit_rate": 0.6667,
+      "wilson_lower": 0.2077,
+      "avg_brier": 0.6925
+    },
+    "巴西杯": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7963
+    }
+  },
+  "by_confidence_tier": {
+    "mid": {
+      "n": 7,
+      "hit_rate": 0.4286,
+      "wilson_lower": 0.1582,
+      "avg_brier": 0.6497
+    },
+    "high": {
+      "n": 3,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.1655
+    },
+    "low": {
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.6622
+    }
+  },
+  "by_odds_band": {
+    "2.0-3.0": {
+      "n": 6,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0968,
+      "avg_brier": 0.6788
+    },
+    "1.5-2.0": {
+      "n": 7,
+      "hit_rate": 0.2857,
+      "wilson_lower": 0.0822,
+      "avg_brier": 0.8512
+    }
+  },
+  "biases": [],
+  "total_pnl": 0,
+  "generated_at": "2026-08-03T01:45:12.893328",
+  "sha256": "34048ec16953d4a27de832a07208aa0a"
+}
