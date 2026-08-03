@@ -1347,9 +1347,14 @@ def run_settlement(target_date: date):
             _by_mid = {p.get("match_id"): p for p in _pl}
             _chg = 0
             for _m in _mids:
-                if _m in _by_mid and _by_mid[_m].get("actual_result") is None:
-                    _by_mid[_m].update(pred_by_mid.get(_m, {}))
-                    _chg += 1
+                _src = pred_by_mid.get(_m)
+                if _m in _by_mid and _src:
+                    _new = _src.get("actual_result")
+                    _cur = _by_mid[_m].get("actual_result")
+                    # 修正条件：不仅 None 要写，比分变化（如进行中 0-0 → 终场 3-0）也要覆盖
+                    if _new is not None and _new != _cur:
+                        _by_mid[_m].update(_src)
+                        _chg += 1
             _pf.write_text(json.dumps(_pl, ensure_ascii=False, indent=2))
             _updated += _chg
         print(f"  ✓ 已更新 {_updated} 场预测赛果")
