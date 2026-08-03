@@ -55,19 +55,27 @@ def fetch_comparison(match_id: int) -> dict | None:
     return _fetch_json(url, timeout=10)
 
 
+def _safe(d: dict | None, key: str, default=None):
+    """安全取值: d 或 d[key] 为 None 时返回 default"""
+    if not isinstance(d, dict):
+        return default
+    v = d.get(key)
+    return v if v is not None else default
+
+
 def extract_match(fixture: dict, comp: dict | None) -> dict:
     m = {
         "fs_match_id": fixture.get("id"),
-        "home_name": fixture.get("home", {}).get("name_en", ""),
-        "away_name": fixture.get("away", {}).get("name_en", ""),
-        "home_name_cn": fixture.get("home", {}).get("name_zh", ""),
-        "away_name_cn": fixture.get("away", {}).get("name_zh", ""),
-        "league": fixture.get("league", {}).get("name_en", ""),
-        "league_zh": fixture.get("league", {}).get("name_zh", ""),
+        "home_name": _safe(_safe(fixture, "home"), "name_en", ""),
+        "away_name": _safe(_safe(fixture, "away"), "name_en", ""),
+        "home_name_cn": _safe(_safe(fixture, "home"), "name_zh", ""),
+        "away_name_cn": _safe(_safe(fixture, "away"), "name_zh", ""),
+        "league": _safe(_safe(fixture, "league"), "name_en", ""),
+        "league_zh": _safe(_safe(fixture, "league"), "name_zh", ""),
         "starting_at": fixture.get("starting_at", ""),
-        "status": fixture.get("score", {}).get("status", ""),
-        "home_goals": str(fixture.get("score", {}).get("home", "")),
-        "away_goals": str(fixture.get("score", {}).get("away", "")),
+        "status": _safe(_safe(fixture, "score"), "status", ""),
+        "home_goals": str(_safe(_safe(fixture, "score"), "home", "")),
+        "away_goals": str(_safe(_safe(fixture, "score"), "away", "")),
         "has_odds": fixture.get("has_odds", False),
         # Defaults
         "home_odds_djyy": None,
@@ -89,7 +97,7 @@ def extract_match(fixture: dict, comp: dict | None) -> dict:
         return m
 
     # Model probabilities
-    model = comp.get("model", {})
+    model = comp.get("model") or {}
     if model.get("p_home") is not None:
         m["djyy_model_prob"] = {
             "home": model.get("p_home"),
@@ -100,14 +108,14 @@ def extract_match(fixture: dict, comp: dict | None) -> dict:
         m["totals"] = model.get("totals")
 
     # Markets → Pinnacle odds
-    markets = comp.get("markets", [])
+    markets = comp.get("markets") or []
     for mk in markets:
         key = mk.get("key", "")
         bm = mk.get("bookmaker")
         if not bm:
             continue
 
-        raw = bm.get("raw_odds", {})
+        raw = bm.get("raw_odds") or {}
 
         if key == "1x2_fulltime":
             m["home_odds_djyy"] = raw.get("home")
