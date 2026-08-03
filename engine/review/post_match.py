@@ -208,6 +208,7 @@ class PostMatchReviewer:
 
         reviews = []
         seen_teams: set = set()
+        seen_preds: set = set()
         for r in results:
             mid = r.get("match_id", "")
             hs, as_ = r.get("home_score"), r.get("away_score")
@@ -242,6 +243,14 @@ class PostMatchReviewer:
                     pred = pred_map.get(f"{hm}_vs_{aw}")
             if not pred:
                 continue
+
+            # 同一预测只复盘一次：results.json 中同一场比赛可能有多种 ID/队名形式
+            # （如 "周五002" 与 "2026-07-31_周五002"、新浪缩写队名 vs 竞彩全名），
+            # 用预测的 match_id 去重，避免一场比赛在账本里记多条。
+            _pmid = pred.get("match_id", "")
+            if _pmid in seen_preds:
+                continue
+            seen_preds.add(_pmid)
 
             # 实际结果索引
             if hs > as_:
