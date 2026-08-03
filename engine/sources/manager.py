@@ -72,6 +72,7 @@ class SourceManager:
         # [2/3] 体彩官方: 一次性拉全部盘口，用场次号索引
         print("  [融合2/3] 体彩官方...")
         st_by_num: dict[str, dict] = {}
+        st_fixtures = []
         try:
             st_fixtures = sporttery.fetch_fixtures(target_date)
             for sf in st_fixtures:
@@ -125,98 +126,184 @@ class SourceManager:
         # [3/3] odds.500.com: 逐场抓机构赔率 + 融合
         print("  [融合3/3] odds.500.com (Bet365+平博)...")
         import time as _time
+        from datetime import timedelta as _td
         fixtures = []
 
-        for m in live_list:
-            fid = m["fid"]
-            num = m["num"]
+        # 以体彩官方在售为准（sporttery 是权威在售列表，500 页面可能滞后显示已结束场次）
+        # 500.com 仅提供 Bet365/平博赔率补充
+        if st_by_num and st_fixtures:
+            _live_by_num = {m.get("num"): m for m in live_list}
+            for sf in st_fixtures:
+                num = sf.match_id.split("_", 1)[-1] if "_" in sf.match_id else ""
+                m = _live_by_num.get(num)
+                fid = m.get("fid", "") if m else ""
+                # 体彩为主，Bet365/平博补充缺失赔率
+                b_eu = wancai.fetch_500_odds(fid, "europe", BOOKMAKER_CID["bet365"]) if fid else []
+                b_as = wancai.fetch_500_odds(fid, "asian", BOOKMAKER_CID["bet365"]) if fid else []
+                p_eu = wancai.fetch_500_odds(fid, "europe", BOOKMAKER_CID["pinnacle"]) if fid else []
+                p_as = wancai.fetch_500_odds(fid, "asian", BOOKMAKER_CID["pinnacle"]) if fid else []
+                b365_had = {
+                    "h": wancai._safe_float(_safe_lt(b_eu, 0)),
+                    "d": wancai._safe_float(_safe_lt(b_eu, 1)),
+                    "a": wancai._safe_float(_safe_lt(b_eu, 2)),
+                }
+                # 融合: 体彩优先，Bet365 兜底
+                final_h = sf.home_odds or b365_had["h"]
+                final_d = sf.draw_odds or b365_had["d"]
+                final_a = sf.away_odds or b365_had["a"]
+                st_goal = sf.handicap
+                final_handicap = st_goal if st_goal else wancai._safe_float(_safe_lt(b_as, 1))
 
-            # Bet365 欧赔 + 亚盘
-            b_eu = wancai.fetch_500_odds(fid, "europe", BOOKMAKER_CID["bet365"])
-            b_as = wancai.fetch_500_odds(fid, "asian", BOOKMAKER_CID["bet365"])
-            # 平博 欧赔 + 亚盘
-            p_eu = wancai.fetch_500_odds(fid, "europe", BOOKMAKER_CID["pinnacle"])
-            p_as = wancai.fetch_500_odds(fid, "asian", BOOKMAKER_CID["pinnacle"])
+                fixture = Fixture(
+                    match_id=sf.match_id,
+                    competition=sf.competition,
+                    home_team=sf.home_team,
+                    away_team=sf.away_team,
+                    kickoff=sf.kickoff,
+                    home_odds=final_h,
+                    draw_odds=final_d,
+                    away_odds=final_a,
+                    handicap=final_handicap,
+                    handicap_home_odds=sf.handicap_home_odds or wancai._safe_float(_safe_lt(b_as, 0)),
+                    handicap_away_odds=sf.handicap_away_odds or wancai._safe_float(_safe_lt(b_as, 2)),
+                    source="merged",
+                )
+                fixture._num = num
+                fixture._fid = fid
+                fixture._sporttery_had = {"h": sf.home_odds, "d": sf.draw_odds, "a": sf.away_odds}
+                fixture._sporttery_hhad = {"goalLine": sf.handicap,
+                                           "h": sf.handicap_home_odds, "a": sf.handicap_away_odds}
+                fixture._sporttery_ttg = getattr(sf, "_raw_ttg", {})
+                fixture._sporttery_crs = getattr(sf, "_raw_crs", {})
+                fixture._sporttery_hafu = getattr(sf, "_raw_hafu", {})
+                fixture._bet365 = {
+                    "had": b365_had,
+                    "hhad": {"goalLine": wancai._safe_float(_safe_lt(b_as, 1)),
+                             "h": wancai._safe_float(_safe_lt(b_as, 0)),
+                             "a": wancai._safe_float(_safe_lt(b_as, 2))},
+                }
+                fixture._pinnacle = {
+                    "had": {"h": wancai._safe_float(_safe_lt(p_eu, 0)),
+                            "d": wancai._safe_float(_safe_lt(p_eu, 1)),
+                            "a": wancai._safe_float(_safe_lt(p_eu, 2))},
+                    "hhad": {"goalLine": wancai._safe_float(_safe_lt(p_as, 1)),
+                             "h": wancai._safe_float(_safe_lt(p_as, 0)),
+                             "a": wancai._safe_float(_safe_lt(p_as, 2))},
+                }
+                fixtures.append(fixture)
+                _time.sleep(0.2)  # 限速防封
+            print(f"  ✓ 融合完成: {len(fixtures)} 场 (体彩在售为主)")
+        else:
+            # 降级: 体彩不可用时用 500 列表，但过滤已结束/异常场次
+            print("  ⚠ 体彩列表为空，使用 500 列表（已过滤历史场次）")
+            for m in live_list:
+                fid = m["fid"]
+                num = m["num"]
 
-            # 体彩数据（用 num 匹配，关键！）
-            st_match = st_by_num.get(num, {})
-            st_had = st_match.get("had", {})
-            st_hhad = st_match.get("hhad", {})
+                # 从竞彩编号推断实际比赛日期（周X → 日期）
+                _weekday_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
+                actual_date_str = target_date.isoformat()
+                for wd_str, wd_num in _weekday_map.items():
+                    if wd_str in num:
+                        today_wd = target_date.weekday()
+                        diff = (wd_num - today_wd) % 7
+                        actual_date_str = (target_date + _td(days=diff)).isoformat()
+                        break
+                # 过滤: 推断日期已过（历史列表残留）或超过5天（编号推断错误）
+                try:
+                    _ad = datetime.strptime(actual_date_str, "%Y-%m-%d").date()
+                except Exception:
+                    _ad = target_date
+                if _ad < target_date or _ad > target_date + _td(days=5):
+                    print(f"    ⏭ 跳过历史/异常场次 {num} ({actual_date_str})")
+                    continue
 
-            # Bet365 数据
-            b365_had = {
-                "h": wancai._safe_float(_safe_lt(b_eu, 0)),
-                "d": wancai._safe_float(_safe_lt(b_eu, 1)),
-                "a": wancai._safe_float(_safe_lt(b_eu, 2)),
-            }
+                # Bet365 欧赔 + 亚盘
+                b_eu = wancai.fetch_500_odds(fid, "europe", BOOKMAKER_CID["bet365"])
+                b_as = wancai.fetch_500_odds(fid, "asian", BOOKMAKER_CID["bet365"])
+                # 平博 欧赔 + 亚盘
+                p_eu = wancai.fetch_500_odds(fid, "europe", BOOKMAKER_CID["pinnacle"])
+                p_as = wancai.fetch_500_odds(fid, "asian", BOOKMAKER_CID["pinnacle"])
 
-            # 融合: 体彩优先，Bet365 兜底
-            final_h = st_had.get("h") or b365_had["h"]
-            final_d = st_had.get("d") or b365_had["d"]
-            final_a = st_had.get("a") or b365_had["a"]
+                # 体彩数据（用 num 匹配，关键！）
+                st_match = st_by_num.get(num, {})
+                st_had = st_match.get("had", {})
+                st_hhad = st_match.get("hhad", {})
 
-            # 让球盘同理
-            st_goal = st_hhad.get("goalLine")
-            final_handicap = st_goal if st_goal else wancai._safe_float(_safe_lt(b_as, 1))
+                # Bet365 数据
+                b365_had = {
+                    "h": wancai._safe_float(_safe_lt(b_eu, 0)),
+                    "d": wancai._safe_float(_safe_lt(b_eu, 1)),
+                    "a": wancai._safe_float(_safe_lt(b_eu, 2)),
+                }
 
-            # 从竞彩编号推断实际比赛日期（周X → 日期）
-            _weekday_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
-            actual_date_str = target_date.isoformat()
-            for wd_str, wd_num in _weekday_map.items():
-                if wd_str in num:
-                    today_wd = target_date.weekday()
-                    diff = (wd_num - today_wd) % 7
-                    from datetime import timedelta
-                    actual_date_str = (target_date + timedelta(days=diff)).isoformat()
-                    break
+                # 融合: 体彩优先，Bet365 兜底
+                final_h = st_had.get("h") or b365_had["h"]
+                final_d = st_had.get("d") or b365_had["d"]
+                final_a = st_had.get("a") or b365_had["a"]
 
-            fixture = Fixture(
-                match_id=f"{actual_date_str}_{num}",
-                competition=m.get("league", ""),
-                home_team=m.get("home", ""),
-                away_team=m.get("away", ""),
-                kickoff=m.get("kickoff", ""),
-                home_odds=final_h,
-                draw_odds=final_d,
-                away_odds=final_a,
-                handicap=final_handicap,
-                handicap_home_odds=st_hhad.get("h") or wancai._safe_float(_safe_lt(b_as, 0)),
-                handicap_away_odds=st_hhad.get("a") or wancai._safe_float(_safe_lt(b_as, 2)),
-                source="merged",
-            )
+                # 让球盘同理
+                st_goal = st_hhad.get("goalLine")
+                final_handicap = st_goal if st_goal else wancai._safe_float(_safe_lt(b_as, 1))
 
-            # 附加全部原始数据
-            fixture._num = num
-            fixture._fid = fid
-            fixture._sporttery_had = st_had
-            fixture._sporttery_hhad = st_hhad
-            fixture._sporttery_ttg = st_match.get("ttg", {})
-            fixture._sporttery_crs = st_match.get("crs", {})
-            fixture._sporttery_hafu = st_match.get("hafu", {})
-            fixture._bet365 = {
-                "had": b365_had,
-                "hhad": {"goalLine": wancai._safe_float(_safe_lt(b_as, 1)),
-                         "h": wancai._safe_float(_safe_lt(b_as, 0)),
-                         "a": wancai._safe_float(_safe_lt(b_as, 2))},
-            }
-            fixture._pinnacle = {
-                "had": {"h": wancai._safe_float(_safe_lt(p_eu, 0)),
-                        "d": wancai._safe_float(_safe_lt(p_eu, 1)),
-                        "a": wancai._safe_float(_safe_lt(p_eu, 2))},
-                "hhad": {"goalLine": wancai._safe_float(_safe_lt(p_as, 1)),
-                         "h": wancai._safe_float(_safe_lt(p_as, 0)),
-                         "a": wancai._safe_float(_safe_lt(p_as, 2))},
-            }
+                # 从竞彩编号推断实际比赛日期（周X → 日期）
+                _weekday_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
+                actual_date_str = target_date.isoformat()
+                for wd_str, wd_num in _weekday_map.items():
+                    if wd_str in num:
+                        today_wd = target_date.weekday()
+                        diff = (wd_num - today_wd) % 7
+                        from datetime import timedelta
+                        actual_date_str = (target_date + timedelta(days=diff)).isoformat()
+                        break
 
-            # 世界杯未开售标注
-            if m.get("league") == "世界杯":
-                has_st = bool(st_had.get("h") or st_hhad.get("h"))
-                fixture._sporttery_status = "已开售" if has_st else "未开售(待售)"
-            else:
-                fixture._sporttery_status = ""
+                fixture = Fixture(
+                    match_id=f"{actual_date_str}_{num}",
+                    competition=m.get("league", ""),
+                    home_team=m.get("home", ""),
+                    away_team=m.get("away", ""),
+                    kickoff=m.get("kickoff", ""),
+                    home_odds=final_h,
+                    draw_odds=final_d,
+                    away_odds=final_a,
+                    handicap=final_handicap,
+                    handicap_home_odds=st_hhad.get("h") or wancai._safe_float(_safe_lt(b_as, 0)),
+                    handicap_away_odds=st_hhad.get("a") or wancai._safe_float(_safe_lt(b_as, 2)),
+                    source="merged",
+                )
 
-            fixtures.append(fixture)
-            _time.sleep(0.2)  # 限速防封
+                # 附加全部原始数据
+                fixture._num = num
+                fixture._fid = fid
+                fixture._sporttery_had = st_had
+                fixture._sporttery_hhad = st_hhad
+                fixture._sporttery_ttg = st_match.get("ttg", {})
+                fixture._sporttery_crs = st_match.get("crs", {})
+                fixture._sporttery_hafu = st_match.get("hafu", {})
+                fixture._bet365 = {
+                    "had": b365_had,
+                    "hhad": {"goalLine": wancai._safe_float(_safe_lt(b_as, 1)),
+                             "h": wancai._safe_float(_safe_lt(b_as, 0)),
+                             "a": wancai._safe_float(_safe_lt(b_as, 2))},
+                }
+                fixture._pinnacle = {
+                    "had": {"h": wancai._safe_float(_safe_lt(p_eu, 0)),
+                            "d": wancai._safe_float(_safe_lt(p_eu, 1)),
+                            "a": wancai._safe_float(_safe_lt(p_eu, 2))},
+                    "hhad": {"goalLine": wancai._safe_float(_safe_lt(p_as, 1)),
+                             "h": wancai._safe_float(_safe_lt(p_as, 0)),
+                             "a": wancai._safe_float(_safe_lt(p_as, 2))},
+                }
+
+                # 世界杯未开售标注
+                if m.get("league") == "世界杯":
+                    has_st = bool(st_had.get("h") or st_hhad.get("h"))
+                    fixture._sporttery_status = "已开售" if has_st else "未开售(待售)"
+                else:
+                    fixture._sporttery_status = ""
+
+                fixtures.append(fixture)
+                _time.sleep(0.2)  # 限速防封
 
         manifest = self._create_manifest(target_date, wancai, fixtures)
         manifest.source = "merged(sporttery+500wan)"
