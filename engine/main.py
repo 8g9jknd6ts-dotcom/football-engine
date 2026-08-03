@@ -829,6 +829,7 @@ def run_settlement(target_date: date):
                         away_score=sr["away_score"],
                         match_date=target_date.isoformat(),
                         competition=sr.get("league", ""),
+                        match_no=sr.get("match_no", ""),
                     ))
                     sina_added += 1
             print(f"  ✓ 新浪补充: {sina_added} 场 (total={len(results)})")
@@ -1013,6 +1014,14 @@ def run_settlement(target_date: date):
     # 队名标准化（处理"迈阿密国际"vs"迈国际"等变体）
     _norm = lambda s: s.replace("迈阿密", "迈").replace("国际", "").replace("罗姆", "").replace("体育", "").replace("竞技", "").strip()
     _norm_map = {f"{_norm(r.home_team)}_vs_{_norm(r.away_team)}": r for r in results}
+    # 竞彩编号匹配（优先，如"周六001"）—— 解决竞彩队名 vs 新浪队名不一致
+    _no_map = {}
+    for r in results:
+        rn = getattr(r, "match_no", "") or ""
+        if not rn:
+            rn = getattr(r, "match_no", "") or ""
+        if rn:
+            _no_map[rn] = r
     total_pnl = 0.0
     wins = 0
     losses = 0
@@ -1020,6 +1029,11 @@ def run_settlement(target_date: date):
     for pred in predictions:
         key = f"{pred['home_team']}_vs_{pred['away_team']}"
         match_result = result_map.get(key)
+        if not match_result:
+            # 竞彩编号匹配（"2026-08-01_周六001" → "周六001"）
+            pno = pred.get("match_id", "").split("_", 1)[-1] if "_" in pred.get("match_id", "") else ""
+            if pno:
+                match_result = _no_map.get(pno)
         if not match_result:
             # 队名变体兜底
             nk = f"{_norm(pred['home_team'])}_vs_{_norm(pred['away_team'])}"
@@ -1073,6 +1087,10 @@ def run_settlement(target_date: date):
     for pred in predictions:
         key = f"{pred['home_team']}_vs_{pred['away_team']}"
         match_result = result_map.get(key)
+        if not match_result and _no_map:
+            pno = pred.get("match_id", "").split("_", 1)[-1] if "_" in pred.get("match_id", "") else ""
+            if pno:
+                match_result = _no_map.get(pno)
         if not match_result and _norm_map:
             match_result = _norm_map.get(f"{_norm(pred['home_team'])}_vs_{_norm(pred['away_team'])}")
         if not match_result:
@@ -1104,6 +1122,10 @@ def run_settlement(target_date: date):
     for pred in predictions:
         key = f"{pred['home_team']}_vs_{pred['away_team']}"
         match_result = result_map.get(key)
+        if not match_result and _no_map:
+            pno = pred.get("match_id", "").split("_", 1)[-1] if "_" in pred.get("match_id", "") else ""
+            if pno:
+                match_result = _no_map.get(pno)
         if not match_result and _norm_map:
             match_result = _norm_map.get(f"{_norm(pred['home_team'])}_vs_{_norm(pred['away_team'])}")
         if not match_result:
@@ -1137,6 +1159,10 @@ def run_settlement(target_date: date):
     for pred in predictions:
         key = f"{pred['home_team']}_vs_{pred['away_team']}"
         match_result = result_map.get(key)
+        if not match_result and _no_map:
+            pno = pred.get("match_id", "").split("_", 1)[-1] if "_" in pred.get("match_id", "") else ""
+            if pno:
+                match_result = _no_map.get(pno)
         if not match_result and _norm_map:
             match_result = _norm_map.get(f"{_norm(pred['home_team'])}_vs_{_norm(pred['away_team'])}")
         if not match_result:
