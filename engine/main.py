@@ -1000,6 +1000,30 @@ def run_settlement(target_date: date):
             "pred": pred_by_mid.get(r_mid) or pred_by_team.get(f"{r.home_team}_vs_{r.away_team}")
                     or pred_by_team.get(f"{_norm(r.home_team)}_vs_{_norm(r.away_team)}"),
         })
+
+    # 3.5) 同一预测合并：DJYY 与新浪可能对同一场比赛返回不同队名/比分
+    #     （如"佐加顿斯 vs 韦斯特罗 5-0" vs "佐加顿斯 vs 瓦斯特拉斯 6-0"）。
+    #     以预测 match_id 为比赛身份，合并多条赛果：带竞彩编号(match_no)的新浪赛果优先，
+    #     避免错误比分(5-0)覆盖权威终场比分(6-0)。
+    _by_pred: dict = {}
+    for n in norm:
+        _k = (n["date"], n["match_id"])
+        if _k not in _by_pred:
+            _by_pred[_k] = n
+            continue
+        old = _by_pred[_k]
+        _r, _nr = old["r"], n["r"]
+        if _nr.match_no and not _r.match_no:
+            _by_pred[_k] = n  # 新浪赛果替换 DJYY 赛果
+        elif _nr.match_no and _r.match_no and \
+                (_r.home_score, _r.away_score) != (_nr.home_score, _nr.away_score):
+            # 两条都带编号但比分不同（如旧进行中 0-0 vs 终场 3-0）：取比分更新的
+            # 无法判断新旧，保守取非零比分优先；仍冲突则保留先到的
+            if (_nr.home_score, _nr.away_score) not in ((0, 0),) and (_r.home_score, _r.away_score) == (0, 0):
+                _by_pred[_k] = n
+    if len(_by_pred) < len(norm):
+        print(f"  ✓ 同一预测赛果合并: {len(norm)} → {len(_by_pred)} 条")
+    norm = list(_by_pred.values())
     new_items = [n for n in norm if n["is_new"]]
     print(f"  ✓ 赛果 {len(norm)} 场, 其中新增 {len(new_items)} 场（其余已结算过，跳过重复处理）")
 
@@ -1042,8 +1066,6 @@ def run_settlement(target_date: date):
         for item in r_list:
             _tkey = (item["home_team"], item["away_team"])
             old = existing_by_team.get(_tkey)
-            if item["match_id"] in existing_ids:
-                continue
             if old is not None:
                 # 同队名已存在：比分不同则覆盖（终场比分修正进行中误抓）
                 if (old.get("home_score"), old.get("away_score")) != (item["home_score"], item["away_score"]):
@@ -1051,6 +1073,23 @@ def run_settlement(target_date: date):
                     old["away_score"] = item["away_score"]
                     old["match_id"] = item["match_id"] or old.get("match_id", "")
                     fixed += 1
+                continue
+            if item["match_id"] in existing_ids:
+                # 同 match_id（同预测）已存在但队名不同（DJYY/新浪译名差异）：
+                # 比分不同则覆盖，避免旧/错比分残留
+                _hit = False
+                for e in existing:
+                    if e.get("match_id") == item["match_id"] and \
+                            (e.get("home_score"), e.get("away_score")) != (item["home_score"], item["away_score"]):
+                        e["home_score"] = item["home_score"]
+                        e["away_score"] = item["away_score"]
+                        e["home_team"] = item["home_team"]
+                        e["away_team"] = item["away_team"]
+                        fixed += 1
+                        _hit = True
+                        break
+                if not _hit:
+                    continue
                 continue
             existing.append(item)
             existing_by_team[_tkey] = item
