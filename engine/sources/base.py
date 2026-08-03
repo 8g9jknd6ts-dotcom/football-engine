@@ -35,6 +35,7 @@ class MatchResult:
     away_team: str
     competition: str
     match_date: str
+    match_no: str = ""  # 竞彩编号如"周六001"（用于跨数据源匹配）
 
 
 @dataclass
