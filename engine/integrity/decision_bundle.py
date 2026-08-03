@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import time
 from pathlib import Path
 
@@ -129,6 +130,25 @@ class DecisionBundle:
             except OSError:
                 pass
         return deleted
+
+    @staticmethod
+    def prune_all_dates(daily_root: Path, keep: int = 3) -> int:
+        """清理所有日期目录的旧版本决策包（含历史日期，防止长期堆积）"""
+        total = 0
+        if not daily_root.exists():
+            return 0
+        for folder in sorted(daily_root.iterdir()):
+            if not folder.is_dir():
+                continue
+            date_str = folder.name
+            if not re.match(r'^\d{4}-\d{2}-\d{2}$', date_str):
+                continue
+            try:
+                mgr = DecisionBundle(folder)
+                total += mgr.prune_old_versions(date_str, keep=keep)
+            except Exception:
+                continue
+        return total
 
     def verify(self, date_str: str) -> tuple[bool, str]:
         """验证决策包完整性"""

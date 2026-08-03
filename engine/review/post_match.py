@@ -26,6 +26,19 @@ def _extract_fixture(match_id: str) -> str:
     return ""
 
 
+def _extract_pno(match_id: str) -> str:
+    """从 match_id 提取完整竞彩编号，如 '2026-07-20_周日201' → '周日201'
+
+    与 _extract_fixture 的区别: 保留"周X"前缀，避免不同星期的 001 互相误配。
+    """
+    if not match_id:
+        return ""
+    suffix = match_id.split("_", 1)[-1] if "_" in match_id else match_id
+    if re.match(r'^(周一|周二|周三|周四|周五|周六|周日)\d+$', suffix):
+        return suffix
+    return ""
+
+
 @dataclass
 class MatchReview:
     """单场复盘记录 - 优化器反事实重放的原子单元"""
@@ -96,9 +109,31 @@ class ReviewLedger:
         self.path.parent.mkdir(parents=True, exist_ok=True)
 
     def append(self, reviews: list[MatchReview]):
+        """追加复盘记录（按 (date, match_id) 去重，防止重复结算时账本膨胀）"""
+        # 已存在的键（账本可能较大，只在有记录时构建一次）
+        existing_keys = self._existing_keys()
         with open(self.path, "a", encoding="utf-8") as f:
             for r in reviews:
+                key = (r.date, r.match_id)
+                if key in existing_keys:
+                    continue
                 f.write(json.dumps(asdict(r), ensure_ascii=False) + "\n")
+                existing_keys.add(key)
+
+    def _existing_keys(self) -> set:
+        """账本中已有的 (date, match_id) 集合"""
+        keys = set()
+        if not self.path.exists():
+            return keys
+        for line in self.path.read_text(encoding="utf-8").strip().split("\n"):
+            if not line.strip():
+                continue
+            try:
+                rec = json.loads(line)
+                keys.add((rec.get("date", ""), rec.get("match_id", "")))
+            except (json.JSONDecodeError, TypeError):
+                continue
+        return keys
 
     def load_window(self, n_matches: int | None = None,
                     days: int | None = None) -> list[MatchReview]:
@@ -161,6 +196,10 @@ class PostMatchReviewer:
             fixture = _extract_fixture(mid)
             if fixture:
                 pred_map[fixture] = p
+            # 完整竞彩编号（如"周六001"），优先于裸数字，避免跨星期误配
+            pno = _extract_pno(mid)
+            if pno:
+                pred_map[pno] = p
             # 也用 "主队_vs_客队" 建索引
             hm = p.get("home_team", "")
             aw = p.get("away_team", "")
@@ -168,13 +207,25 @@ class PostMatchReviewer:
                 pred_map[f"{hm}_vs_{aw}"] = p
 
         reviews = []
+        seen_teams: set = set()
         for r in results:
             mid = r.get("match_id", "")
             hs, as_ = r.get("home_score"), r.get("away_score")
             if hs is None or as_ is None:
                 continue
 
+            # 同一场比赛可能以多个ID存在于 results.json（旧结算遗留），按队名去重
+            _tkey = (r.get("home_team", ""), r.get("away_team", ""))
+            if _tkey in seen_teams:
+                continue
+            seen_teams.add(_tkey)
+
             pred = pred_map.get(mid)
+            if not pred:
+                # 完整编号匹配（如 results.json 里存的是"周六001"）
+                pno = _extract_pno(mid)
+                if pno:
+                    pred = pred_map.get(pno)
             if not pred:
                 fixture = _extract_fixture(mid)
                 if fixture:
@@ -227,12 +278,13 @@ class PostMatchReviewer:
             conf = max(final_prob)
             tier = "high" if conf > 0.55 else "mid" if conf > 0.40 else "low"
 
-            # 赔率档
-            odds_h = pred.get("home_odds") or 2.0
-            band = self._odds_band(min(odds_h, pred.get("away_odds") or 2.0))
+            # 赔率档：用最大概率方向（预测选择）的赔率，而不是主客赔率的最小值
+            best_sel = final_prob.index(max(final_prob))
+            _sel_odds_key = ("home_odds", "draw_odds", "away_odds")[best_sel]
+            sel_odds = pred.get(_sel_odds_key) or 2.0
+            band = self._odds_band(sel_odds)
 
             # 命中
-            best_sel = final_prob.index(max(final_prob))
             hit = best_sel == actual_idx
 
             review = MatchReview(

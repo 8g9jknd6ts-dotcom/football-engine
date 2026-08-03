@@ -83,6 +83,34 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         fixtures, manifest = source_mgr.fetch_fixtures(target_date)
     print(f"  ✓ 获取 {len(fixtures)} 场比赛 (来源: {manifest.source})")
 
+    # 关键过滤：只预测"竞彩编号所属比赛日"== target_date 的场次
+    # 竞彩跨日开售（周五开售周六/周日比赛），match_id 前缀 = 编号推断的比赛日。
+    # 不过滤会导致同一场比赛出现在多个日期的预测页 + 复盘互相污染（历史痛点）。
+    _before = len(fixtures)
+    fixtures = [f for f in fixtures if f.match_id.startswith(target_date.isoformat())]
+    _dropped = _before - len(fixtures)
+    if _dropped:
+        print(f"  ⏭ 跨日场次过滤: 丢弃 {_dropped} 场非 {target_date} 比赛日的场次")
+
+    # 再过滤：开球时间已过的场次（防止把已开赛/已结束的比赛当未来场次预测）
+    _now = datetime.now()
+    _still = []
+    for f in fixtures:
+        _ko = (f.kickoff or "").strip()
+        if _ko:
+            try:
+                if datetime.fromisoformat(_ko.replace(" ", "T")) <= _now:
+                    print(f"  ⏭ 已开赛场次跳过: {f.match_id} ({_ko})")
+                    continue
+            except ValueError:
+                pass
+        _still.append(f)
+    fixtures = _still
+
+    if not fixtures:
+        print("  ⚠ 今日无待预测场次（可能无在售比赛或全部已开赛）")
+        return [], None
+
     # 2.5 DJYY增强: 获取第三方模型概率 + Pinnacle赔率 + xG
     print("\n[1.5/8] DJYY增强数据...")
     try:
@@ -640,8 +668,10 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             "elo_away": round(away_rating.elo, 1),
             # 平局预警
             "draw_alert": draw_alert,
-            # 开赛时间（从新浪数据获取）
-            "kickoff": _sina_data.get("match_time") if _sina_data else "",
+            # 开赛时间（新浪有就用新浪的完整时间，否则用体彩 matchDate+matchTime）
+            "kickoff": (_sina_data.get("match_time") if _sina_data else "") or fixture.kickoff,
+            # 竞彩编号（如"周六001"），与新浪/赛果匹配的稳定键
+            "match_no": fixture.match_id.split("_", 1)[-1] if "_" in fixture.match_id else "",
             # 新浪赔率数据（初始+即时+变化方向+压缩比+亚盘+大小球）
             "sina_odds": _sina_data,
         })
@@ -811,19 +841,78 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
 
 
 def run_settlement(target_date: date):
-    """执行结算 + Elo 更新 + 熔断记录 + 组合挖掘更新"""
+    """执行结算 + Elo 更新 + 熔断记录 + 组合挖掘更新（幂等）
+
+    幂等设计（历史反复出问题的核心修复）：
+      - 同一场比赛不会重复结算：以 (目录日期, 主队, 客队) 为幂等键，
+        已存在于任意日期 results.json 的比赛跳过 Elo/熔断/权重/组合更新。
+      - 赛果按"全局竞彩编号 → 预测所在目录"落盘，不再依赖接口返回的日期推断，
+        解决跨周/跨日赛果存错目录导致的复盘漏结算。
+      - review.json 每次结算都重新生成（不再被"已存在即跳过"冻结），
+        复盘数据始终反映最新赛果。
+      - 无新赛果时跳过重型校准（Temperature/Rho/Walk-forward），快速退出。
+    """
     print(f"\n{'='*60}")
     print(f"  结算流水线 - {target_date.isoformat()}")
     print(f"{'='*60}")
 
+    daily_root = ROOT / "data" / "daily"
+
+    # 1) 全局预测索引：竞彩编号 → (目录日期, 完整match_id)；match_id → pred；队名 → pred
+    pno_place: dict[str, tuple[str, str]] = {}
+    pred_by_mid: dict[str, dict] = {}
+    pred_by_team: dict[str, dict] = {}
+    _norm = lambda s: (s or "").replace("迈阿密", "迈").replace("国际", "").replace("罗姆", "").replace("体育", "").replace("竞技", "").strip()
+    if daily_root.exists():
+        for folder in sorted(daily_root.iterdir()):
+            if not folder.is_dir():
+                continue
+            pf = folder / "predictions.json"
+            if not pf.exists():
+                continue
+            try:
+                _preds = json.loads(pf.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            for _p in _preds:
+                _mid = _p.get("match_id", "")
+                if _mid:
+                    pred_by_mid.setdefault(_mid, _p)
+                    _pno = _mid.split("_", 1)[-1] if "_" in _mid else ""
+                    if _pno:
+                        pno_place.setdefault(_pno, (folder.name, _mid))
+                _hk, _ak = _p.get("home_team", ""), _p.get("away_team", "")
+                if _hk and _ak:
+                    pred_by_team.setdefault(f"{_hk}_vs_{_ak}", _p)
+                    pred_by_team.setdefault(f"{_norm(_hk)}_vs_{_norm(_ak)}", _p)
+    print(f"  ✓ 全局预测索引: 编号 {len(pno_place)} / match_id {len(pred_by_mid)} / 队名 {len(pred_by_team)}")
+
+    # 2) 幂等键：所有目录 results.json 中已记录的 (目录日期, 主队, 客队)
+    settled_pairs: set[tuple[str, str, str]] = set()
+    if daily_root.exists():
+        for folder in daily_root.iterdir():
+            if not folder.is_dir():
+                continue
+            rj = folder / "results.json"
+            if not rj.exists():
+                continue
+            try:
+                _rs = json.loads(rj.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            for _x in _rs:
+                if _x.get("home_team") and _x.get("away_team"):
+                    settled_pairs.add((folder.name, _x.get("home_team"), _x.get("away_team")))
+    print(f"  ✓ 已结算基准: {len(settled_pairs)} 条 (results.json 幂等保护)")
+
     source_mgr = SourceManager(ROOT / "data")
     results = source_mgr.fetch_results(target_date)
-    
+
     # 合并新浪赛果（互补数据源）
     sina_file = ROOT / "data" / "daily" / target_date.isoformat() / "results_sina.json"
     if sina_file.exists():
         try:
-            sina_results_raw = json.loads(sina_file.read_text())
+            sina_results_raw = json.loads(sina_file.read_text(encoding="utf-8"))
             existing_teams = {(r.home_team, r.away_team) for r in results}
             sina_added = 0
             for sr in sina_results_raw:
@@ -838,87 +927,118 @@ def run_settlement(target_date: date):
                         competition=sr.get("league", ""),
                         match_no=sr.get("match_no", ""),
                     ))
+                    existing_teams.add((sr.get("home_team"), sr.get("away_team")))
                     sina_added += 1
             print(f"  ✓ 新浪补充: {sina_added} 场 (total={len(results)})")
         except Exception as e:
             print(f"  ⚠ 新浪赛果合并失败: {e}")
-    
+
+    if not results:
+        # 兜底: 外部赛果接口为空时，用本地 results.json 重建复盘（老日期也可用）。
+        # 幂等保护仍在: 这些比赛已存在于 results.json，Elo/熔断/权重不会重复更新。
+        _local = daily_root / target_date.isoformat() / "results.json"
+        if _local.exists():
+            try:
+                _lr = json.loads(_local.read_text(encoding="utf-8"))
+                for _x in _lr:
+                    results.append(MatchResult(
+                        match_id=_x.get("match_id", ""),
+                        home_team=_x.get("home_team", ""),
+                        away_team=_x.get("away_team", ""),
+                        home_score=_x.get("home_score"),
+                        away_score=_x.get("away_score"),
+                        match_date=target_date.isoformat(),
+                    ))
+                print(f"  ✓ 外部赛果为空，使用本地 results.json 兜底: {len(results)} 场")
+            except Exception as _e:
+                print(f"  ⚠ 本地 results.json 读取失败: {_e}")
     if not results:
         print("  ⚠ 无比赛结果")
         return
 
-    # Elo 更新
-    print("\n[1/4] Elo 更新...")
-    elo_updater = EloUpdater(ROOT / "data" / "models" / "team_ratings.json")
+    # 3) 归一化：确定每场比赛的 (目录日期, 完整match_id, 是否新增)
+    norm = []
     for r in results:
+        _rno = getattr(r, "match_no", "") or ""
+        _placed = pno_place.get(_rno) if _rno else None
+        if _placed:
+            r_date, r_mid = _placed
+        else:
+            r_mid = getattr(r, "match_id", "") or ""
+            r_date = ""
+            if r_mid and "_" in r_mid and r_mid[:4].isdigit():
+                r_date = r_mid.split("_")[0]
+            if not r_date:
+                r_date = getattr(r, "match_date", "") or target_date.isoformat()
+        key = (r_date, r.home_team, r.away_team)
+        norm.append({
+            "date": r_date, "match_id": r_mid, "r": r,
+            "is_new": key not in settled_pairs, "key": key,
+            "pred": pred_by_mid.get(r_mid) or pred_by_team.get(f"{r.home_team}_vs_{r.away_team}")
+                    or pred_by_team.get(f"{_norm(r.home_team)}_vs_{_norm(r.away_team)}"),
+        })
+    new_items = [n for n in norm if n["is_new"]]
+    print(f"  ✓ 赛果 {len(norm)} 场, 其中新增 {len(new_items)} 场（其余已结算过，跳过重复处理）")
+
+    # 4) Elo 更新（只处理新增）
+    print("\n[1/5] Elo 更新...")
+    elo_updater = EloUpdater(ROOT / "data" / "models" / "team_ratings.json")
+    for n in new_items:
+        r = n["r"]
         elo_updater.update(r.home_team, r.away_team, r.home_score, r.away_score)
         print(f"  {r.home_team} {r.home_score}-{r.away_score} {r.away_team} ✓")
     elo_updater.save()
-    print(f"  ✓ Elo 已更新 ({len(results)} 场)")
+    print(f"  ✓ Elo 已更新 ({len(new_items)} 场新增)")
 
-    # 保存结果到 results.json（供复盘/网页使用）
-    # 按比赛实际日期分目录存储（API返回的可能是前天的比赛结果）
+    # 5) 保存结果到 results.json（按目录日期，追加去重）
     results_by_date: dict[str, list] = {}
-    for r in results:
-        # 从 match_id 提取实际日期，如 "2026-07-22_19635945" → "2026-07-22"
-        r_date = ""
-        r_mid = getattr(r, "match_id", "")
-        if r_mid and "_" in r_mid and r_mid[:4].isdigit():
-            r_date = r_mid.split("_")[0]
-        if not r_date:
-            r_date = getattr(r, "match_date", target_date.isoformat())
-        if r_date not in results_by_date:
-            results_by_date[r_date] = []
-        results_by_date[r_date].append({
-            "match_id": r_mid or f"{r.home_team}_vs_{r.away_team}",
+    for n in norm:
+        r = n["r"]
+        results_by_date.setdefault(n["date"], []).append({
+            "match_id": n["match_id"] or f"{r.home_team}_vs_{r.away_team}",
             "home_score": r.home_score,
             "away_score": r.away_score,
             "home_team": r.home_team,
             "away_team": r.away_team,
         })
+    stored_total = 0
     for r_date, r_list in results_by_date.items():
-        r_dir = ROOT / "data" / "daily" / r_date
+        r_dir = daily_root / r_date
         r_dir.mkdir(parents=True, exist_ok=True)
         r_file = r_dir / "results.json"
-        # 追加而非覆盖
         existing = []
         if r_file.exists():
             try:
-                existing = json.loads(r_file.read_text())
+                existing = json.loads(r_file.read_text(encoding="utf-8"))
             except Exception:
                 pass
         existing_ids = {e.get("match_id") for e in existing}
+        existing_teams2 = {(e.get("home_team"), e.get("away_team")) for e in existing}
+        added = 0
         for item in r_list:
-            if item["match_id"] not in existing_ids:
+            _tkey = (item["home_team"], item["away_team"])
+            if item["match_id"] not in existing_ids and _tkey not in existing_teams2:
                 existing.append(item)
-        r_file.write_text(json.dumps(existing, ensure_ascii=False, indent=2))
-        print(f"  ✓ results.json 已保存到 {r_date} ({len(r_list)} 场)")
+                existing_ids.add(item["match_id"])
+                existing_teams2.add(_tkey)
+                added += 1
+        if added:
+            r_file.write_text(json.dumps(existing, ensure_ascii=False, indent=2))
+        stored_total += added
+        print(f"  ✓ results.json 已保存到 {r_date} (+{added}, total={len(existing)})")
+    print(f"  ✓ 赛果落盘: 新增 {stored_total} 条")
 
-    # MatchDB: 记录比赛历史 + 积累球队xG
-    print("\n[1.5/4] MatchDB 数据积累...")
+    # 6) MatchDB 数据积累（只处理新增）
+    print("\n[1.5/5] MatchDB 数据积累...")
     pred_cfg = load_config("prediction")
     db = MatchDB(ROOT / "data" / "state" / "match_history.db")
     db_recorded = 0
-
-    # 读取当日预测用于关联
-    daily_dir = ROOT / "data" / "daily" / target_date.isoformat()
-    predictions = []
-    pred_file = daily_dir / "predictions.json"
-    if pred_file.exists():
-        predictions = json.loads(pred_file.read_text())
-
-    pred_map = {}
-    for p in predictions:
-        pred_map[f"{p['home_team']}_vs_{p['away_team']}"] = p
-
-    for r in results:
-        key = f"{r.home_team}_vs_{r.away_team}"
-        pred = pred_map.get(key)
-
+    for n in new_items:
+        r = n["r"]
+        pred = n["pred"]
         # 尝试获取DJYY赛后真实xG
         actual_xg = None
         djyy_id = pred.get("_djyy_id") if pred else None
-
         if djyy_id:
             try:
                 actual_xg = source_mgr._djyy.fetch_post_match_xg(djyy_id)
@@ -943,15 +1063,15 @@ def run_settlement(target_date: date):
                                     "minutes": p.get("minutes"),
                                 })
                         if players:
-                            db.record_lineup_xg(team, league, target_date.isoformat(), players)
+                            db.record_lineup_xg(team, league, n["date"], players)
             except Exception:
                 pass
 
         # 记录到match_history
         if pred:
             db.record_match({
-                "match_id": pred.get("match_id", key),
-                "date": target_date.isoformat(),
+                "match_id": pred.get("match_id", f"{r.home_team}_vs_{r.away_team}"),
+                "date": n["date"],
                 "league": pred.get("competition"),
                 "home_team": r.home_team,
                 "away_team": r.away_team,
@@ -975,7 +1095,6 @@ def run_settlement(target_date: date):
         league = pred.get("competition", "unknown") if pred else "unknown"
         home_xg = actual_xg.get("home_xg") if actual_xg else None
         away_xg = actual_xg.get("away_xg") if actual_xg else None
-
         db.update_team_stats(
             team_name=r.home_team, league=league,
             goals_for=r.home_score, goals_against=r.away_score,
@@ -996,12 +1115,11 @@ def run_settlement(target_date: date):
     except Exception:
         pass
 
-    print(f"  ✓ MatchDB: {db_recorded} 场记录, 球队统计已更新")
+    print(f"  ✓ MatchDB: {db_recorded} 场新增记录")
     db.close()
 
-    # 熔断 + 逐场结算
-    print("\n[2/4] 熔断 + 信任更新...")
-
+    # 7) 熔断 + 逐场结算（只处理新增）
+    print("\n[2/5] 熔断 + 信任更新...")
     breaker = CircuitBreaker(ROOT / "data" / "state" / "circuit_breaker.json")
     strat_cfg = load_config("strategy")
     bankroll = strat_cfg.get("bankroll", 10000)
@@ -1010,52 +1128,32 @@ def run_settlement(target_date: date):
     running_bankroll = cppi.state.current_bankroll if cppi.state.current_bankroll > 0 else bankroll
     print(f"  💰 当前资金池: {running_bankroll:.0f}")
 
-    # 读取投注计划
+    # 读取投注计划（该日期目录的 ticket_plan）
+    daily_dir = daily_root / target_date.isoformat()
     ticket_file = daily_dir / "ticket_plan.json"
     ticket_data = {}
     if ticket_file.exists():
         ticket_data = json.loads(ticket_file.read_text())
+    ticket_map = {}
+    for grp in ("stable", "value", "lottery"):
+        for s in ticket_data.get(grp, []):
+            ticket_map[s.get("match")] = s
 
-    # 逐场结算
-    result_map = {f"{r.home_team}_vs_{r.away_team}": r for r in results}
-    # 队名标准化（处理"迈阿密国际"vs"迈国际"等变体）
-    _norm = lambda s: s.replace("迈阿密", "迈").replace("国际", "").replace("罗姆", "").replace("体育", "").replace("竞技", "").strip()
-    _norm_map = {f"{_norm(r.home_team)}_vs_{_norm(r.away_team)}": r for r in results}
-    # 竞彩编号匹配（优先，如"周六001"）—— 解决竞彩队名 vs 新浪队名不一致
-    _no_map = {}
-    for r in results:
-        rn = getattr(r, "match_no", "") or ""
-        if not rn:
-            rn = getattr(r, "match_no", "") or ""
-        if rn:
-            _no_map[rn] = r
     total_pnl = 0.0
     wins = 0
     losses = 0
-
-    for pred in predictions:
-        key = f"{pred['home_team']}_vs_{pred['away_team']}"
-        match_result = result_map.get(key)
-        if not match_result:
-            # 竞彩编号匹配（"2026-08-01_周六001" → "周六001"）
-            pno = pred.get("match_id", "").split("_", 1)[-1] if "_" in pred.get("match_id", "") else ""
-            if pno:
-                match_result = _no_map.get(pno)
-        if not match_result:
-            # 队名变体兜底
-            nk = f"{_norm(pred['home_team'])}_vs_{_norm(pred['away_team'])}"
-            match_result = _norm_map.get(nk)
-        if not match_result:
+    for n in new_items:
+        r = n["r"]
+        pred = n["pred"]
+        if not pred:
             continue
-
         # 判断赛果
-        if match_result.home_score > match_result.away_score:
+        if r.home_score > r.away_score:
             actual = "home"
-        elif match_result.home_score == match_result.away_score:
+        elif r.home_score == r.away_score:
             actual = "draw"
         else:
             actual = "away"
-
         # 检查是否命中（基于最大概率选项）
         best_sel = max(
             [("home", pred["home_win_prob"]),
@@ -1064,155 +1162,134 @@ def run_settlement(target_date: date):
             key=lambda x: x[1],
         )
         won = best_sel[0] == actual
-
-        # 计算PnL（简化: 基于Kelly plan）
+        # 计算PnL（基于Kelly plan）
         pnl = 0.0
-        for s in (ticket_data.get("stable", []) +
-                  ticket_data.get("value", []) +
-                  ticket_data.get("lottery", [])):
-            if s.get("match") == pred["match_id"]:
-                if s.get("sel") == actual:
-                    pnl += s["stake"] * (s["odds"] - 1)
-                else:
-                    pnl -= s["stake"]
-
+        s = ticket_map.get(pred["match_id"])
+        if s:
+            if s.get("sel") == actual:
+                pnl += s["stake"] * (s["odds"] - 1)
+            else:
+                pnl -= s["stake"]
         total_pnl += pnl
         if won:
             wins += 1
         else:
             losses += 1
-
         breaker.record_result(won=won, pnl=pnl, bankroll=running_bankroll)
         running_bankroll += pnl
-
     print(f"  ✓ 命中 {wins}/{wins+losses}, PnL={total_pnl:.2f}")
     print(f"  熔断状态: {breaker.status_report()}")
 
-    # 在线权重学习反馈
-    print("\n[2.5/4] 在线权重学习更新...")
-    weight_learner = OnlineWeightLearner(ROOT / "data" / "state" / "online_weights.json")
-    for pred in predictions:
-        key = f"{pred['home_team']}_vs_{pred['away_team']}"
-        match_result = result_map.get(key)
-        if not match_result and _no_map:
-            pno = pred.get("match_id", "").split("_", 1)[-1] if "_" in pred.get("match_id", "") else ""
-            if pno:
-                match_result = _no_map.get(pno)
-        if not match_result and _norm_map:
-            match_result = _norm_map.get(f"{_norm(pred['home_team'])}_vs_{_norm(pred['away_team'])}")
-        if not match_result:
-            continue
-        if match_result.home_score > match_result.away_score:
-            actual_idx = 0  # home
-        elif match_result.home_score == match_result.away_score:
-            actual_idx = 1  # draw
-        else:
-            actual_idx = 2  # away
+    # 8) 在线权重学习 + 组合挖掘 + 赛果回写（只处理新增）
+    if new_items:
+        print("\n[2.5/5] 在线权重学习更新...")
+        weight_learner = OnlineWeightLearner(ROOT / "data" / "state" / "online_weights.json")
+        for n in new_items:
+            r, pred = n["r"], n["pred"]
+            if not pred:
+                continue
+            if r.home_score > r.away_score:
+                actual_idx = 0  # home
+            elif r.home_score == r.away_score:
+                actual_idx = 1  # draw
+            else:
+                actual_idx = 2  # away
+            # Brier Score: sum of (prob - actual)^2 for all 3 outcomes
+            probs = [pred["home_win_prob"], pred["draw_prob"], pred["away_win_prob"]]
+            actuals = [0.0, 0.0, 0.0]
+            actuals[actual_idx] = 1.0
+            brier = sum((p - a) ** 2 for p, a in zip(probs, actuals))
+            best_sel_idx = probs.index(max(probs))
+            hit = best_sel_idx == actual_idx
+            # 更新ensemble整体表现
+            weight_learner.update("ensemble", brier=brier, hit=hit)
+        print(f"  ✓ 权重学习已更新: {weight_learner.get_weights()}")
 
-        # Brier Score: sum of (prob - actual)^2 for all 3 outcomes
-        probs = [pred["home_win_prob"], pred["draw_prob"], pred["away_win_prob"]]
-        actuals = [0.0, 0.0, 0.0]
-        actuals[actual_idx] = 1.0
-        brier = sum((p - a) ** 2 for p, a in zip(probs, actuals))
+        print("\n[3/5] 组合挖掘更新...")
+        combo_miner = ComboMiner(ROOT / "data" / "state" / "combo_stats.json")
+        for n in new_items:
+            r, pred = n["r"], n["pred"]
+            if not pred:
+                continue
+            if r.home_score > r.away_score:
+                actual = "home"
+            elif r.home_score == r.away_score:
+                actual = "draw"
+            else:
+                actual = "away"
+            best_sel = max(
+                [("home", pred["home_win_prob"]),
+                 ("draw", pred["draw_prob"]),
+                 ("away", pred["away_win_prob"])],
+                key=lambda x: x[1],
+            )
+            won = best_sel[0] == actual
+            features = {
+                "league": pred.get("competition", "unknown"),
+                "prob_band": _prob_band(best_sel[1]),
+                "odds_band": _odds_band(pred.get(f"{best_sel[0]}_odds", 2.0)),
+            }
+            combo_miner.record(features, won=won)
+        print(f"  ✓ 组合统计已更新")
 
-        best_sel_idx = probs.index(max(probs))
-        hit = best_sel_idx == actual_idx
+        # 将赛果写回 predictions.json（自愈: 写回预测所在目录）
+        print("\n[3.5/5] 更新预测赛果...")
+        _touch: dict[str, list] = {}
+        for n in new_items:
+            r, pred = n["r"], n["pred"]
+            if not pred:
+                continue
+            pred["actual_result"] = f"{r.home_score}-{r.away_score}"
+            pred["actual_home_score"] = r.home_score
+            pred["actual_away_score"] = r.away_score
+            best_sel = max(
+                [("home", pred["home_win_prob"]),
+                 ("draw", pred["draw_prob"]),
+                 ("away", pred["away_win_prob"])],
+                key=lambda x: x[1],
+            )
+            if r.home_score > r.away_score:
+                actual = "home"
+            elif r.home_score == r.away_score:
+                actual = "draw"
+            else:
+                actual = "away"
+            pred["direction"] = best_sel[0]
+            pred["direction_correct"] = best_sel[0] == actual
+            top_scores = pred.get("top_scores", [])
+            if top_scores and isinstance(top_scores[0], list):
+                ps = f"{top_scores[0][0]}-{top_scores[0][1]}"
+                pred["predicted_score"] = ps
+                pred["score_correct"] = ps == f"{r.home_score}-{r.away_score}"
+            _touch.setdefault(n["date"], []).append(pred["match_id"])
+        _updated = 0
+        for _d, _mids in _touch.items():
+            _pf = daily_root / _d / "predictions.json"
+            if not _pf.exists():
+                continue
+            try:
+                _pl = json.loads(_pf.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            _by_mid = {p.get("match_id"): p for p in _pl}
+            _chg = 0
+            for _m in _mids:
+                if _m in _by_mid and _by_mid[_m].get("actual_result") is None:
+                    _by_mid[_m].update(pred_by_mid.get(_m, {}))
+                    _chg += 1
+            _pf.write_text(json.dumps(_pl, ensure_ascii=False, indent=2))
+            _updated += _chg
+        print(f"  ✓ 已更新 {_updated} 场预测赛果")
 
-        # 更新ensemble整体表现（后续可扩展为per-model）
-        weight_learner.update("ensemble", brier=brier, hit=hit)
-
-    print(f"  ✓ 权重学习已更新: {weight_learner.get_weights()}")
-
-    # 组合挖掘更新
-    print("\n[3/4] 组合挖掘更新...")
-    combo_miner = ComboMiner(ROOT / "data" / "state" / "combo_stats.json")
-    for pred in predictions:
-        key = f"{pred['home_team']}_vs_{pred['away_team']}"
-        match_result = result_map.get(key)
-        if not match_result and _no_map:
-            pno = pred.get("match_id", "").split("_", 1)[-1] if "_" in pred.get("match_id", "") else ""
-            if pno:
-                match_result = _no_map.get(pno)
-        if not match_result and _norm_map:
-            match_result = _norm_map.get(f"{_norm(pred['home_team'])}_vs_{_norm(pred['away_team'])}")
-        if not match_result:
-            continue
-        if match_result.home_score > match_result.away_score:
-            actual = "home"
-        elif match_result.home_score == match_result.away_score:
-            actual = "draw"
-        else:
-            actual = "away"
-
-        best_sel = max(
-            [("home", pred["home_win_prob"]),
-             ("draw", pred["draw_prob"]),
-             ("away", pred["away_win_prob"])],
-            key=lambda x: x[1],
-        )
-        won = best_sel[0] == actual
-
-        features = {
-            "league": pred.get("competition", "unknown"),
-            "prob_band": _prob_band(best_sel[1]),
-            "odds_band": _odds_band(pred.get(f"{best_sel[0]}_odds", 2.0)),
-        }
-        combo_miner.record(features, won=won)
-    print(f"  ✓ 组合统计已更新")
-
-    # 将赛果写回 predictions.json（供网页显示）
-    print("\n[3.5/4] 更新预测赛果...")
-    updated = 0
-    for pred in predictions:
-        key = f"{pred['home_team']}_vs_{pred['away_team']}"
-        match_result = result_map.get(key)
-        if not match_result and _no_map:
-            pno = pred.get("match_id", "").split("_", 1)[-1] if "_" in pred.get("match_id", "") else ""
-            if pno:
-                match_result = _no_map.get(pno)
-        if not match_result and _norm_map:
-            match_result = _norm_map.get(f"{_norm(pred['home_team'])}_vs_{_norm(pred['away_team'])}")
-        if not match_result:
-            continue
-        pred["actual_result"] = f"{match_result.home_score}-{match_result.away_score}"
-        pred["actual_home_score"] = match_result.home_score
-        pred["actual_away_score"] = match_result.away_score
-        # 判断方向预测是否正确
-        best_sel = max(
-            [("home", pred["home_win_prob"]),
-             ("draw", pred["draw_prob"]),
-             ("away", pred["away_win_prob"])],
-            key=lambda x: x[1],
-        )
-        if match_result.home_score > match_result.away_score:
-            actual = "home"
-        elif match_result.home_score == match_result.away_score:
-            actual = "draw"
-        else:
-            actual = "away"
-        pred["direction"] = best_sel[0]
-        pred["direction_correct"] = best_sel[0] == actual
-        # 比分预测是否正确
-        top_scores = pred.get("top_scores", [])
-        if top_scores and isinstance(top_scores[0], list):
-            ps = f"{top_scores[0][0]}-{top_scores[0][1]}"
-            pred["predicted_score"] = ps
-            pred["score_correct"] = ps == f"{match_result.home_score}-{match_result.away_score}"
-        updated += 1
-    pred_file.write_text(json.dumps(predictions, ensure_ascii=False, indent=2))
-    print(f"  ✓ 已更新 {updated} 场预测赛果")
-
-    # CPPI 更新（已在结算前加载，直接更新）
-    print("\n[4/4] CPPI 资产更新...")
+    # 9) CPPI 更新（已在结算前加载，直接更新）
+    print("\n[4/5] CPPI 资产更新...")
     cppi.update(running_bankroll)
     cppi.save()
     print(f"  ✓ 资产: {bankroll:.0f} → {running_bankroll:.0f}  (PnL: {total_pnl:+.2f})")
 
-    # 复盘 + 自我革新
-    print("\n[5/6] 赛后复盘...")
+    # 10) 复盘（每次结算都重新生成，绝不因 review.json 存在而冻结）
+    print("\n[5/5] 赛后复盘...")
     from engine.review.post_match import PostMatchReviewer, ReviewLedger
-    from engine.learning.fusion_optimizer import FusionOptimizer, FusionWeights
-
     reviewer = PostMatchReviewer(ROOT / "data", pred_cfg.get("review", {}))
     review_report = reviewer.review_day(target_date.isoformat())
     if review_report.get("n_matches", 0) > 0:
@@ -1223,6 +1300,14 @@ def run_settlement(target_date: date):
             print(f"    ⚠ 偏差: {bias['dimension']}:{bias['key']} {bias['outcome']} gap={bias['gap']:+.3f}")
     else:
         print(f"  - 无可复盘数据")
+
+    # 11) 重型校准：仅在有新赛果时执行（避免每次定时任务都跑全套）
+    if not new_items:
+        print("\n  ⏭ 无新增赛果，跳过校准/优化步骤（快速退出）")
+        print(f"\n{'='*60}")
+        print(f"  结算完成 ✓ (无新增)")
+        print(f"{'='*60}")
+        return
 
     print("\n[6/6] 融合权重优化...")
     ledger = ReviewLedger(ROOT / "data" / "state" / "review_ledger.jsonl")
@@ -1290,7 +1375,7 @@ def run_settlement(target_date: date):
     print(f"    最优策略: {best_strat[0]} ({best_strat[1]['hit_rate']:.1%})")
 
     print(f"\n{'='*60}")
-    print(f"  结算完成 ✓")
+    print(f"  结算完成 ✓ ({len(new_items)} 场新增)")
     print(f"{'='*60}")
 
 

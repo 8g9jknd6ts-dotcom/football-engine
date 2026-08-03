@@ -1,32 +1,20 @@
 {
   "date": "2026-07-30",
-  "n_matches": 8,
-  "hit_rate": 0.5,
-  "hits": 4,
+  "n_matches": 6,
+  "hit_rate": 0.3333,
+  "hits": 2,
   "source_brier": {
-    "model": 0.7671,
-    "market": 0.5063,
-    "djyy": 0.5498,
-    "final": 0.6232
+    "model": 0.8136,
+    "market": 0.5771,
+    "djyy": 0.5984,
+    "final": 0.6954
   },
   "by_league": {
     "欧罗巴": {
-      "n": 4,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.15,
-      "avg_brier": 0.6916
-    },
-    "挪超": {
-      "n": 2,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.0945,
-      "avg_brier": 0.6644
-    },
-    "美职联": {
-      "n": 1,
-      "hit_rate": 1.0,
-      "wilson_lower": 0.2065,
-      "avg_brier": 0.1764
+      "n": 5,
+      "hit_rate": 0.4,
+      "wilson_lower": 0.1176,
+      "avg_brier": 0.6917
     },
     "巴甲": {
       "n": 1,
@@ -37,16 +25,10 @@
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 4,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.15,
-      "avg_brier": 0.6916
-    },
-    "high": {
-      "n": 3,
-      "hit_rate": 0.6667,
-      "wilson_lower": 0.2077,
-      "avg_brier": 0.5017
+      "n": 5,
+      "hit_rate": 0.4,
+      "wilson_lower": 0.1176,
+      "avg_brier": 0.6917
     },
     "low": {
       "n": 1,
@@ -57,38 +39,44 @@
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 2,
+      "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9782
     },
     "1.0-1.5": {
-      "n": 4,
-      "hit_rate": 0.75,
-      "wilson_lower": 0.3006,
-      "avg_brier": 0.5347
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.4049
     },
     "1.5-2.0": {
       "n": 2,
       "hit_rate": 0.5,
       "wilson_lower": 0.0945,
-      "avg_brier": 0.4452
+      "avg_brier": 0.6013
+    },
+    "3.0+": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7934
     }
   },
   "biases": [
     {
-      "dimension": "outcome",
-      "key": "all",
-      "outcome": "draw",
-      "predicted_avg": 0.1985,
-      "actual_rate": 0.375,
-      "gap": -0.1765,
-      "n": 8,
+      "dimension": "league",
+      "key": "欧罗巴",
+      "outcome": "home",
+      "predicted_avg": 0.4337,
+      "actual_rate": 0.6,
+      "gap": -0.1663,
+      "n": 5,
       "severity": "warn",
-      "suggested_action": "reduce draw_bias"
+      "suggested_action": "increase home_adv_weight"
     }
   ],
   "total_pnl": 0,
-  "generated_at": "2026-07-31T03:07:01.590251",
-  "sha256": "6763b3ba497b218a783b89ddd6366c3b"
+  "generated_at": "2026-08-03T10:38:23.070771",
+  "sha256": "1f0417c5eac6b4e7473d092a7b2e8345"
 }

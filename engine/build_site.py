@@ -76,6 +76,15 @@ def build_site():
             (web_dir / "index.html").write_text(html, encoding="utf-8")
         (web_dir / f"{target_date}.html").write_text(html, encoding="utf-8")
 
+    # 全局清理旧版决策包（所有日期保留最新3个，历史日期也清理）
+    try:
+        from engine.integrity.decision_bundle import DecisionBundle
+        _pruned = DecisionBundle.prune_all_dates(daily_root, keep=3)
+        if _pruned:
+            print(f"[build_site] 🧹 已清理 {_pruned} 个旧决策包版本")
+    except Exception as _e:
+        print(f"[build_site] ⚠ 决策包清理跳过: {_e}")
+
     status = {
         "date": all_dates[0] if all_dates else today,
         "generated_at": datetime.now().isoformat(),

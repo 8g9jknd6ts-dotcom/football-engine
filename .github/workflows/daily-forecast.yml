@@ -14,6 +14,10 @@ on:
         description: '仅结算指定日期（YYYY-MM-DD），跳过预测'
         required: false
         default: ''
+      backfill_days:
+        description: '结算回溯天数（默认4天）'
+        required: false
+        default: '4'
 
 permissions:
   contents: write
@@ -41,12 +45,13 @@ jobs:
         run: pip install -r requirements.txt --quiet
 
       - name: Fetch DJYY SSR odds
-        run: python scripts/fetch_djyy_ssr.py
+        run: |
+          python scripts/fetch_djyy_ssr.py || echo "⚠ DJYY SSR 抓取失败（辅助数据源，继续）"
 
       - name: Fetch Sina results + odds
         run: |
-          python scripts/fetch_sina_results.py
-          python scripts/fetch_sina_odds.py
+          python scripts/fetch_sina_results.py || echo "⚠ 新浪赛果抓取失败（继续，结算时再补抓）"
+          python scripts/fetch_sina_odds.py || echo "⚠ 新浪赔率抓取失败（辅助数据源，继续）"
 
       - name: Settlement only (manual trigger)
         if: ${{ github.event.inputs.settle_only != '' }}
@@ -54,6 +59,7 @@ jobs:
           SPORTTERY_PROXY: ${{ secrets.SPORTTERY_PROXY }}
         run: |
           echo "→ 仅结算模式: ${{ github.event.inputs.settle_only }}"
+          python scripts/fetch_sina_results.py --date "${{ github.event.inputs.settle_only }}" || echo "  ⚠ 新浪赛果刷新失败"
           python -m engine.main --settle --date "${{ github.event.inputs.settle_only }}"
           python engine/build_site.py
 
@@ -69,29 +75,21 @@ jobs:
           fi
           python -m engine.main --date "$DATE"
 
-      - name: Settlement (yesterday, if not done yet)
+      - name: Settlement (last N days, idempotent)
         if: ${{ github.event.inputs.settle_only == '' }}
         env:
           SPORTTERY_PROXY: ${{ secrets.SPORTTERY_PROXY }}
         run: |
-          YESTERDAY=$(TZ=Asia/Shanghai date -d 'yesterday' +%Y-%m-%d)
-          # 检查 review.json 是否已存在（结算完成的标志，Sina 不会产生这个文件）
-          SETTLE_FILE="data/daily/${YESTERDAY}/review.json"
-          if [ -f "$SETTLE_FILE" ]; then
-            echo "✓ 结算已完成: $YESTERDAY (跳过)"
-          else
-            echo "→ 开始结算昨天: $YESTERDAY"
-            python -m engine.main --settle --date "$YESTERDAY"
-            # 如果昨天没有赛果，尝试结算前天（周末比赛可能延后出结果）
-            if [ ! -f "data/daily/${YESTERDAY}/review.json" ]; then
-              DAY_BEFORE=$(TZ=Asia/Shanghai date -d '2 days ago' +%Y-%m-%d)
-              SETTLE_FILE2="data/daily/${DAY_BEFORE}/review.json"
-              if [ ! -f "$SETTLE_FILE2" ]; then
-                echo "→ 尝试结算前天: $DAY_BEFORE"
-                python -m engine.main --settle --date "$DAY_BEFORE"
-              fi
-            fi
-          fi
+          # 每次运行都结算最近 N 天（默认4天）：先刷新该日新浪赛果（幂等合并），再结算。
+          # 引擎侧幂等：已结算场次自动跳过（Elo/熔断/权重不重复更新），
+          # review.json 每次都会重新生成，因此复盘不会被"已存在即跳过"冻结。
+          BACKFILL_DAYS="${{ github.event.inputs.backfill_days || '4' }}"
+          for DAYS_BACK in $(seq 1 "$BACKFILL_DAYS"); do
+            D=$(TZ=Asia/Shanghai date -d "$DAYS_BACK days ago" +%Y-%m-%d)
+            echo "→ [结算] $D (${DAYS_BACK} 天前)"
+            python scripts/fetch_sina_results.py --date "$D" || echo "  ⚠ 新浪赛果刷新失败: $D"
+            python -m engine.main --settle --date "$D" || echo "  ⚠ 结算异常: $D"
+          done
 
 
       - name: Build site

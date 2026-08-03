@@ -85,8 +85,21 @@ class SportterySource(DataSource):
         fixtures = []
         match_info_list = data.get("value", {}).get("matchInfoList", [])
 
+        _weekday_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
+
         for day_group in match_info_list:
-            # matchInfoList 按 businessDate 分组，但竞彩编号"周X001"里的周X才是实际比赛日
+            # matchInfoList 按 businessDate（销售日）分组。
+            # 竞彩编号"周X001"里的周X = 销售日星期，页面分组按它来（用户视角的比赛日）。
+            # 以本组 businessDate 为基准推断编号日期，兼容多组响应，不依赖外部传入的 target_date。
+            base_str = day_group.get("businessDate", "")
+            base_date = None
+            try:
+                base_date = date.fromisoformat(base_str) if base_str else None
+            except ValueError:
+                base_date = None
+            if base_date is None:
+                base_date = target_date
+
             sub_matches = day_group.get("subMatchList", [])
 
             for item in sub_matches:
@@ -96,21 +109,18 @@ class SportterySource(DataSource):
                 league = item.get("leagueAbbName", "") or item.get("leagueName", "")
                 match_time = item.get("matchTime", "")
 
-                # 从竞彩编号推断实际比赛日期（周X → 日期）
-                # 周一=0, 周二=1, ..., 周日=6
-                _weekday_map = {'周一': 0, '周二': 1, '周三': 2, '周四': 3, '周五': 4, '周六': 5, '周日': 6}
-                match_date_str = item.get("matchDate", "")
+                # 分组日期：从编号推断（周X → 基准周内的日期），作为 match_id 前缀
+                match_date_str = base_date.isoformat()
                 for wd_str, wd_num in _weekday_map.items():
                     if wd_str in match_num:
-                        today_wd = target_date.weekday()
-                        diff = (wd_num - today_wd) % 7
-                        actual_date = target_date + __import__('datetime').timedelta(days=diff)
-                        match_date_str = actual_date.isoformat()
+                        diff = (wd_num - base_date.weekday()) % 7
+                        match_date_str = (base_date + __import__('datetime').timedelta(days=diff)).isoformat()
                         break
-                if not match_date_str:
-                    match_date_str = target_date.isoformat()
-                
-                kickoff = f"{match_date_str} {match_time}" if match_time else ""
+
+                # 开球时间：用接口返回的真实比赛日期 matchDate + matchTime
+                # （matchDate 是真实开球日，可能与编号日相差1天：如"周一001"在周二 00:00 开球）
+                real_date_str = item.get("matchDate", "") or match_date_str
+                kickoff = f"{real_date_str} {match_time}" if match_time else ""
 
                 # 胜平负 (had): {h, d, a}
                 had = item.get("had", {})
