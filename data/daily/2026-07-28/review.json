@@ -1,8 +1,8 @@
 {
   "date": "2026-07-28",
-  "n_matches": 4,
+  "n_matches": 2,
   "hit_rate": 0.5,
-  "hits": 2,
+  "hits": 1,
   "source_brier": {
     "model": 0.5161,
     "market": 0.6649,
@@ -11,36 +11,36 @@
   },
   "by_league": {
     "欧冠": {
-      "n": 4,
+      "n": 2,
       "hit_rate": 0.5,
-      "wilson_lower": 0.15,
+      "wilson_lower": 0.0945,
       "avg_brier": 0.5405
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 4,
+      "n": 2,
       "hit_rate": 0.5,
-      "wilson_lower": 0.15,
+      "wilson_lower": 0.0945,
       "avg_brier": 0.5405
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 2,
+      "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.6993
     },
     "3.0+": {
-      "n": 2,
+      "n": 1,
       "hit_rate": 1.0,
-      "wilson_lower": 0.3424,
+      "wilson_lower": 0.2065,
       "avg_brier": 0.3817
     }
   },
   "biases": [],
   "total_pnl": 0,
-  "generated_at": "2026-08-03T03:03:57.121417",
-  "sha256": "7677106d8fdf3b6b06f5c3f7f0848141"
+  "generated_at": "2026-08-03T03:20:36.011076",
+  "sha256": "c515dccab060474a122b183e39422385"
 }
