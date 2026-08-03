@@ -5,10 +5,14 @@ from __future__ import annotations
 交互式: 点击展开比赛详情, 多Tab分析面板, 响应式布局
 """
 import json
+import sys
 from datetime import date, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
+# 以脚本方式运行时 sys.path[0] 是 engine/ 目录，补上仓库根，保证 import engine.* 可用
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def build_site():
