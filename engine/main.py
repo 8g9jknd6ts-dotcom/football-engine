@@ -888,8 +888,10 @@ def run_settlement(target_date: date):
                     pred_by_team.setdefault(f"{_norm(_hk)}_vs_{_norm(_ak)}", _p)
     print(f"  ✓ 全局预测索引: 编号 {len(pno_place)} / match_id {len(pred_by_mid)} / 队名 {len(pred_by_team)}")
 
-    # 2) 幂等键：所有目录 results.json 中已记录的 (目录日期, 主队, 客队)
-    settled_pairs: set[tuple[str, str, str]] = set()
+    # 2) 幂等键：所有目录 results.json 中已记录的 (目录日期, 主队, 客队) → 比分
+    #    比分也记录：若同一场比赛比分发生变化（如"进行中 0-0"被修正为终场 3-0），
+    #    视为新增重新结算，而不是永远被旧记录挡住。
+    settled_pairs: dict[tuple[str, str, str], tuple] = {}
     if daily_root.exists():
         for folder in daily_root.iterdir():
             if not folder.is_dir():
@@ -903,34 +905,51 @@ def run_settlement(target_date: date):
                 continue
             for _x in _rs:
                 if _x.get("home_team") and _x.get("away_team"):
-                    settled_pairs.add((folder.name, _x.get("home_team"), _x.get("away_team")))
+                    settled_pairs[(folder.name, _x.get("home_team"), _x.get("away_team"))] = (
+                        _x.get("home_score"), _x.get("away_score"))
     print(f"  ✓ 已结算基准: {len(settled_pairs)} 条 (results.json 幂等保护)")
 
     source_mgr = SourceManager(ROOT / "data")
     results = source_mgr.fetch_results(target_date)
 
-    # 合并新浪赛果（互补数据源）
+    # 合并新浪赛果（互补数据源，同队名比分不同 → 覆盖修正）
     sina_file = ROOT / "data" / "daily" / target_date.isoformat() / "results_sina.json"
     if sina_file.exists():
         try:
             sina_results_raw = json.loads(sina_file.read_text(encoding="utf-8"))
-            existing_teams = {(r.home_team, r.away_team) for r in results}
+            existing_teams = {(r.home_team, r.away_team): (r.home_score, r.away_score) for r in results}
             sina_added = 0
+            sina_fixed = 0
             for sr in sina_results_raw:
-                if (sr.get("home_team"), sr.get("away_team")) not in existing_teams:
-                    results.append(MatchResult(
-                        match_id=sr.get("match_id", f"{sr['home_team']}_vs_{sr['away_team']}"),
-                        home_team=sr["home_team"],
-                        away_team=sr["away_team"],
-                        home_score=sr["home_score"],
-                        away_score=sr["away_score"],
-                        match_date=target_date.isoformat(),
-                        competition=sr.get("league", ""),
-                        match_no=sr.get("match_no", ""),
-                    ))
-                    existing_teams.add((sr.get("home_team"), sr.get("away_team")))
-                    sina_added += 1
-            print(f"  ✓ 新浪补充: {sina_added} 场 (total={len(results)})")
+                tkey = (sr.get("home_team"), sr.get("away_team"))
+                if tkey in existing_teams:
+                    # 同队名已存在：比分不同则用新浪赛果修正（终场为准）
+                    if existing_teams[tkey] != (sr.get("home_score"), sr.get("away_score")):
+                        for r in results:
+                            if (r.home_team, r.away_team) == tkey:
+                                print(f"  ↻ 赛果修正: {tkey[0]} vs {tkey[1]} "
+                                      f"{existing_teams[tkey][0]}-{existing_teams[tkey][1]} → "
+                                      f"{sr['home_score']}-{sr['away_score']}")
+                                r.home_score = sr["home_score"]
+                                r.away_score = sr["away_score"]
+                                r.match_no = sr.get("match_no", r.match_no)
+                                break
+                        existing_teams[tkey] = (sr["home_score"], sr["away_score"])
+                        sina_fixed += 1
+                    continue
+                results.append(MatchResult(
+                    match_id=sr.get("match_id", f"{sr['home_team']}_vs_{sr['away_team']}"),
+                    home_team=sr["home_team"],
+                    away_team=sr["away_team"],
+                    home_score=sr["home_score"],
+                    away_score=sr["away_score"],
+                    match_date=target_date.isoformat(),
+                    competition=sr.get("league", ""),
+                    match_no=sr.get("match_no", ""),
+                ))
+                existing_teams[tkey] = (sr["home_score"], sr["away_score"])
+                sina_added += 1
+            print(f"  ✓ 新浪补充: {sina_added} 新增, {sina_fixed} 比分修正 (total={len(results)})")
         except Exception as e:
             print(f"  ⚠ 新浪赛果合并失败: {e}")
 
@@ -972,9 +991,12 @@ def run_settlement(target_date: date):
             if not r_date:
                 r_date = getattr(r, "match_date", "") or target_date.isoformat()
         key = (r_date, r.home_team, r.away_team)
+        old_score = settled_pairs.get(key)
+        # 新增判定：无记录，或比分与已记录不同（进行中误抓被修正为终场）→ 重新结算
+        is_new = old_score is None or old_score != (r.home_score, r.away_score)
         norm.append({
             "date": r_date, "match_id": r_mid, "r": r,
-            "is_new": key not in settled_pairs, "key": key,
+            "is_new": is_new, "key": key,
             "pred": pred_by_mid.get(r_mid) or pred_by_team.get(f"{r.home_team}_vs_{r.away_team}")
                     or pred_by_team.get(f"{_norm(r.home_team)}_vs_{_norm(r.away_team)}"),
         })
@@ -1014,18 +1036,29 @@ def run_settlement(target_date: date):
             except Exception:
                 pass
         existing_ids = {e.get("match_id") for e in existing}
-        existing_teams2 = {(e.get("home_team"), e.get("away_team")) for e in existing}
+        existing_by_team = {(e.get("home_team"), e.get("away_team")): e for e in existing}
         added = 0
+        fixed = 0
         for item in r_list:
             _tkey = (item["home_team"], item["away_team"])
-            if item["match_id"] not in existing_ids and _tkey not in existing_teams2:
-                existing.append(item)
-                existing_ids.add(item["match_id"])
-                existing_teams2.add(_tkey)
-                added += 1
-        if added:
+            old = existing_by_team.get(_tkey)
+            if item["match_id"] in existing_ids:
+                continue
+            if old is not None:
+                # 同队名已存在：比分不同则覆盖（终场比分修正进行中误抓）
+                if (old.get("home_score"), old.get("away_score")) != (item["home_score"], item["away_score"]):
+                    old["home_score"] = item["home_score"]
+                    old["away_score"] = item["away_score"]
+                    old["match_id"] = item["match_id"] or old.get("match_id", "")
+                    fixed += 1
+                continue
+            existing.append(item)
+            existing_by_team[_tkey] = item
+            existing_ids.add(item["match_id"])
+            added += 1
+        if added or fixed:
             r_file.write_text(json.dumps(existing, ensure_ascii=False, indent=2))
-        stored_total += added
+        stored_total += added + fixed
         print(f"  ✓ results.json 已保存到 {r_date} (+{added}, total={len(existing)})")
     print(f"  ✓ 赛果落盘: 新增 {stored_total} 条")
 

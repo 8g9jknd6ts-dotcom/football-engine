@@ -60,8 +60,9 @@ def extract_results(matches: list[dict]) -> list[dict]:
     results = []
     for m in matches:
         status = m.get("status", "")
-        # status: 2=in progress, 3=finished/ended, 4=not started
-        if status not in ("2", "3"):
+        # 只取已结束(status=3)。2=进行中、4=未开赛——进行中的比分不是终场，
+        # 若误当赛果会导致结算错误（历史教训: 00:40 抓到进行中 0-0 当终场）。
+        if status != "3":
             continue
 
         score1 = m.get("score1", "")
@@ -121,16 +122,30 @@ def save_results(date_str: str, results: list[dict], output_dir: Path | None = N
         except Exception:
             pass
     
-    # 队名去重
-    existing_teams = {(r.get("home_team"), r.get("away_team")) for r in existing}
+    # 队名去重（同队名但比分不同 → 用新比分覆盖，修正早期"进行中误当终场"的旧数据）
+    existing_by_team = {}
+    for r in existing:
+        existing_by_team[(r.get("home_team"), r.get("away_team"))] = r
     added = 0
+    updated = 0
     for r in results:
-        if (r.get("home_team"), r.get("away_team")) not in existing_teams:
+        tkey = (r.get("home_team"), r.get("away_team"))
+        old = existing_by_team.get(tkey)
+        if old is None:
             existing.append(r)
+            existing_by_team[tkey] = r
             added += 1
+        elif (old.get("home_score"), old.get("away_score")) != (r.get("home_score"), r.get("away_score")):
+            # 比分变化：覆盖旧记录（比赛已结束，终场比分为准）
+            old["home_score"] = r.get("home_score")
+            old["away_score"] = r.get("away_score")
+            old["status"] = r.get("status", "3")
+            if r.get("match_no"):
+                old["match_no"] = r.get("match_no")
+            updated += 1
     
     output_file.write_text(json.dumps(existing, ensure_ascii=False, indent=2))
-    print(f"  ✓ {date_str}: {len(results)} 新浪 + {len(existing)-len(results)} 已有 = {len(existing)} 场 → {output_file}")
+    print(f"  ✓ {date_str}: {len(results)} 新浪 (+{added} 新增, {updated} 比分修正) = {len(existing)} 场 → {output_file}")
     return output_file
 
 
