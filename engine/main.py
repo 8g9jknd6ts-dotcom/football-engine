@@ -761,6 +761,13 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         config_strategy=strat_cfg,
     )
     print(f"  ✓ 决策包 SHA-256: {bundle['bundle_sha256'][:16]}...")
+    # 清理旧版本决策包（保留最新3个），防止30分钟一次的流水线无限堆积
+    try:
+        _pruned = bundle_mgr.prune_old_versions(target_date.isoformat(), keep=3)
+        if _pruned:
+            print(f"  🧹 已清理 {_pruned} 个旧决策包版本")
+    except Exception as _e:
+        print(f"  ⚠ 决策包清理跳过: {_e}")
 
     # 8. 锁定计划
     print("\n[7/8] 锁定计划...")
