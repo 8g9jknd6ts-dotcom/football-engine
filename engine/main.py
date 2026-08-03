@@ -52,6 +52,7 @@ from engine.prediction.temperature_scaling import TemperatureScaler
 from engine.prediction.rho_fitter import RhoFitter
 from engine.prediction.time_decay import time_decay_weights
 from engine.learning.league_params import LeagueParamsManager
+from engine.learning.fusion_optimizer import FusionOptimizer, FusionWeights
 from engine.storage.match_db import MatchDB
 from engine.prediction.htft_model import htft_probabilities, top_htft
 
