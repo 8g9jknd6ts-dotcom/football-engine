@@ -93,6 +93,43 @@ class DecisionBundle:
             version += 1
         return version
 
+    def prune_old_versions(self, date_str: str, keep: int = 3) -> int:
+        """
+        清理旧版本决策包，只保留最新 keep 个版本（含未编号的最新文件）。
+        防止每30分钟跑一次流水线导致版本文件无限堆积。
+        返回删除的文件数。
+        """
+        # 收集该日期的所有版本文件（含无版本号的 latest 文件）
+        version_files = []
+        latest_file = self.output_dir / f"decision_bundle_{date_str}.json"
+        for p in self.output_dir.glob(f"decision_bundle_{date_str}_v*.json"):
+            try:
+                ver = int(p.stem.rsplit("_v", 1)[-1])
+                version_files.append((ver, p))
+            except (ValueError, IndexError):
+                continue
+        if not version_files:
+            return 0
+        # 按版本号排序，保留最大的 keep 个
+        version_files.sort(key=lambda x: x[0])
+        to_delete = version_files[:-keep] if len(version_files) > keep else []
+        deleted = 0
+        for _, p in to_delete:
+            try:
+                p.unlink()
+                deleted += 1
+            except OSError:
+                pass
+        # 确保 latest 文件存在
+        if not latest_file.exists() and version_files:
+            latest = version_files[-1][1]
+            try:
+                import shutil
+                shutil.copy2(latest, latest_file)
+            except OSError:
+                pass
+        return deleted
+
     def verify(self, date_str: str) -> tuple[bool, str]:
         """验证决策包完整性"""
         bundle_path = self.output_dir / f"decision_bundle_{date_str}.json"
