@@ -1241,19 +1241,6 @@ def run_settlement(target_date: date):
         pred = n["pred"]
         if not pred:
             continue
-        # 联赛参数记录：方向命中反馈
-        lg_name = pred.get("league") or r.competition or "未知"
-        try:
-            if r.home_score > r.away_score:
-                _won = (pred.get("direction") == "home")
-            elif r.home_score == r.away_score:
-                _won = (pred.get("direction") == "draw")
-            else:
-                _won = (pred.get("direction") == "away")
-            league_mgr.record_result(league=lg_name, hit=_won)
-            league_fed += 1
-        except Exception:
-            pass
         # 判断赛果
         if r.home_score > r.away_score:
             actual = "home"
@@ -1269,6 +1256,13 @@ def run_settlement(target_date: date):
             key=lambda x: x[1],
         )
         won = best_sel[0] == actual
+        # 联赛参数记录：方向命中反馈（用本循环已算出的 won，避免 direction 未回写时误判）
+        lg_name = pred.get("competition") or r.competition or "未知"
+        try:
+            league_mgr.record_result(league=lg_name, hit=won)
+            league_fed += 1
+        except Exception:
+            pass
         # 计算PnL（基于Kelly plan）
         pnl = 0.0
         s = ticket_map.get(pred["match_id"])
