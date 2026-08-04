@@ -309,7 +309,7 @@ class PostMatchReviewer:
                 odds_band=band,
                 best_selection=best_sel,
                 hit=hit,
-                pnl=r.get("pnl", 0),
+                pnl=pred.get("pnl", 0),
                 brier_model=brier_score(model_raw, actual_idx) if model_raw else None,
                 brier_market=brier_score(market_fair, actual_idx) if market_fair else None,
                 brier_djyy=brier_score(djyy_prob, actual_idx) if djyy_prob else None,
