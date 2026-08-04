@@ -105,7 +105,14 @@ class KellyStrategy:
         candidates = []
         rejected_value = 0
         for pred in predictions:
+            # 只押模型预测方向（8/3 教训：预测 home 却押 away+draw，8549 元全输）
+            direction = pred.get("direction")
+            if not direction:
+                _probs = (pred.get("home_win_prob", 0), pred.get("draw_prob", 0), pred.get("away_win_prob", 0))
+                direction = ["home", "draw", "away"][_probs.index(max(_probs))]
             for sel in ["home", "draw", "away"]:
+                if sel != direction:
+                    continue  # 禁止押反方向，保证预测与投注一致
                 if sel == "home":
                     prob_key = "home_win_prob"
                 elif sel == "draw":

@@ -748,11 +748,18 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             continue
         is_synthetic = p.get("odds_synthetic", False)
         max_edge = -1.0  # 记录最大期望值 (prob * odds - 1)
+        # 只押模型预测方向（8/3 教训：预测 home 押 away+draw 全输）
+        _direction = p.get("direction")
+        if not _direction:
+            _probs = (p.get("home_win_prob", 0), p.get("draw_prob", 0), p.get("away_win_prob", 0))
+            _direction = ["home", "draw", "away"][_probs.index(max(_probs))]
         for sel, prob, odds_key in [
             ("home", p["home_win_prob"], "home_odds"),
             ("draw", p["draw_prob"], "draw_odds"),
             ("away", p["away_win_prob"], "away_odds"),
         ]:
+            if sel != _direction:
+                continue  # 禁止押反方向，保证预测与投注一致
             odds = p.get(odds_key)
             if not odds:
                 continue
