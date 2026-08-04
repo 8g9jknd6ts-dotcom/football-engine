@@ -1296,6 +1296,7 @@ def run_settlement(target_date: date):
                 pnl += s["stake"] * (s["odds"] - 1)
             else:
                 pnl -= s["stake"]
+        pred["pnl"] = round(pnl, 2)  # 写回预测记录，review.json 才能统计真实盈亏
         total_pnl += pnl
         if won:
             wins += 1
