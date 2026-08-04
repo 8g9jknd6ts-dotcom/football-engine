@@ -678,6 +678,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         })
 
     print(f"  ✓ 完成 {len(predictions)} 场预测（含增强分析）")
+    if djyy_ssr_enriched:
+        print(f"  DJYY SSR 增强: {djyy_ssr_enriched}/{len(predictions)} 场匹配 (Pinnacle赔率+xG)")
 
     # 6. 资金管理 + 投注计划
     print("\n[5/8] 资金管理与投注计划...")

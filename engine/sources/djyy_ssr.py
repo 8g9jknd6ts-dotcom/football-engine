@@ -14,6 +14,8 @@ import json
 import re
 from pathlib import Path
 
+from .team_match import match_pair
+
 
 class DJYYSSRSource:
     """DJYY SSR 数据源 — 提供真实赛前 xG 和赔率"""
@@ -43,12 +45,19 @@ class DJYYSSRSource:
         return self._matches
 
     def enrich_prediction(self, home_team: str, away_team: str) -> dict:
-        """用 DJYY 数据增强一场预测，返回 {prematch_xg, odds, cn_names}"""
+        """用 DJYY 数据增强一场预测，返回 {prematch_xg, odds, cn_names}
+
+        匹配策略（多级，解决跨源译名不一致）:
+            1. 中文队名精确/别名/子串匹配（match_pair）
+            2. 英文队名精确匹配
+        """
         self._load()
         for m in self._matches:
-            # 中文队名匹配
-            if (m.get("home_name_cn") == home_team and
-                    m.get("away_name_cn") == away_team):
+            # 中文队名匹配（精确 + 别名 + 子串，见 team_match.match_pair）
+            if match_pair(
+                m.get("home_name_cn", ""), m.get("away_name_cn", ""),
+                home_team, away_team,
+            ):
                 return self._extract_enrichment(m)
             # 英文名匹配
             if (m.get("home_name") == home_team and
@@ -92,42 +101,68 @@ class DJYYSSRSource:
             except (ValueError, TypeError):
                 pass
 
-        # 赔率 (bet365 + Pinnacle) — 优先尝试 JSON 解析，失败则 regex 兜底
-        odds_str = m.get("odds_comparison", "")
-        if odds_str and isinstance(odds_str, str) and len(odds_str) > 10:
-            odds_data = {}
-            # 尝试 JSON 解析
-            try:
-                parsed = json.loads(odds_str)
-                ft = parsed.get("FT Result", parsed)
-                for section in ["Home", "Draw", "Away"]:
-                    if section in ft and isinstance(ft[section], dict):
+        # 赔率 (bet365 + Pinnacle) — 新版 JSON 字段优先，旧版 odds_comparison 字符串兜底
+        odds_data = {}
+        # 新版: fetch_djyy_ssr.py v2 (2026-07-31 改版) 直接输出结构化字段
+        if m.get("home_odds_djyy") or m.get("draw_odds_djyy") or m.get("away_odds_djyy"):
+            odds_data = {
+                "Home": {"Pinnacle": m.get("home_odds_djyy")},
+                "Draw": {"Pinnacle": m.get("draw_odds_djyy")},
+                "Away": {"Pinnacle": m.get("away_odds_djyy")},
+            }
+        else:
+            # 旧版: RSC 数据中的 odds_comparison 字符串
+            odds_str = m.get("odds_comparison", "")
+            if odds_str and isinstance(odds_str, str) and len(odds_str) > 10:
+                # 尝试 JSON 解析
+                try:
+                    parsed = json.loads(odds_str)
+                    ft = parsed.get("FT Result", parsed)
+                    for section in ["Home", "Draw", "Away"]:
+                        if section in ft and isinstance(ft[section], dict):
+                            for book in ["Pinnacle", "bet365"]:
+                                if book in ft[section]:
+                                    val = ft[section][book]
+                                    if val:
+                                        odds_data.setdefault(section, {})[book] = str(val)
+                except (json.JSONDecodeError, TypeError):
+                    # JSON 解析失败，regex 兜底
+                    for section in ["Home", "Draw", "Away"]:
                         for book in ["Pinnacle", "bet365"]:
-                            if book in ft[section]:
-                                val = ft[section][book]
-                                if val:
-                                    odds_data.setdefault(section, {})[book] = str(val)
-            except (json.JSONDecodeError, TypeError):
-                # JSON 解析失败，regex 兜底
-                for section in ["Home", "Draw", "Away"]:
-                    for book in ["Pinnacle", "bet365"]:
-                        pat = re.search(
-                            section + r'[^}]*?' + book + r'[^0-9]*(\d+\.\d+)',
-                            odds_str,
-                        )
-                        if pat:
-                            odds_data.setdefault(section, {})[book] = pat.group(1)
-            home_odds_d = odds_data.get("Home", {})
-            draw_odds_d = odds_data.get("Draw", {})
-            away_odds_d = odds_data.get("Away", {})
-            if home_odds_d or draw_odds_d or away_odds_d:
-                result["home_odds_djyy"] = float(
-                    home_odds_d.get("Pinnacle") or home_odds_d.get("bet365") or 0)
-                result["draw_odds_djyy"] = float(
-                    draw_odds_d.get("Pinnacle") or draw_odds_d.get("bet365") or 0)
-                result["away_odds_djyy"] = float(
-                    away_odds_d.get("Pinnacle") or away_odds_d.get("bet365") or 0)
-                result["odds_source"] = "DJYY/Pinnacle"
+                            pat = re.search(
+                                section + r'[^}]*?' + book + r'[^0-9]*(\d+\.\d+)',
+                                odds_str,
+                            )
+                            if pat:
+                                odds_data.setdefault(section, {})[book] = pat.group(1)
+        home_odds_d = odds_data.get("Home", {})
+        draw_odds_d = odds_data.get("Draw", {})
+        away_odds_d = odds_data.get("Away", {})
+        if home_odds_d or draw_odds_d or away_odds_d:
+            result["home_odds_djyy"] = float(
+                home_odds_d.get("Pinnacle") or home_odds_d.get("bet365") or 0)
+            result["draw_odds_djyy"] = float(
+                draw_odds_d.get("Pinnacle") or draw_odds_d.get("bet365") or 0)
+            result["away_odds_djyy"] = float(
+                away_odds_d.get("Pinnacle") or away_odds_d.get("bet365") or 0)
+            result["odds_source"] = "DJYY/Pinnacle"
+
+        # DJYY 模型概率 (新版 JSON 字段)
+        djyy_prob = m.get("djyy_model_prob")
+        if isinstance(djyy_prob, dict) and djyy_prob.get("home") is not None:
+            try:
+                result["djyy_model_prob"] = {
+                    "home": float(djyy_prob["home"]),
+                    "draw": float(djyy_prob.get("draw") or 0),
+                    "away": float(djyy_prob.get("away") or 0),
+                }
+            except (ValueError, TypeError):
+                pass
+        # top_scores / totals (新版 JSON 字段)
+        if m.get("top_scores"):
+            result["top_scores_djyy"] = m.get("top_scores")
+        if m.get("totals"):
+            result["totals_djyy"] = m.get("totals")
 
         # 角球
         hc = m.get("home_corners")
