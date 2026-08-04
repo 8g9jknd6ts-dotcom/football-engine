@@ -64,6 +64,17 @@ def load_config(name: str) -> dict:
     return {}
 
 
+def _pick_direction(h: float, d: float, a: float, draw_alert=None) -> str:
+    """从最终概率选方向（argmax），draw_alert 触发且平局概率接近最高时改判平局。
+
+    与结算口径一致：修复预测时 direction 为空、复盘口径不一致的问题。
+    """
+    best = max(("home", h), ("draw", d), ("away", a), key=lambda x: x[1])
+    if draw_alert and best[0] != "draw" and best[1] - d < 0.08 and d >= 0.26:
+        return "draw"
+    return best[0]
+
+
 def run_daily_pipeline(target_date: date, predict_only: bool = False):
     """执行每日完整流水线"""
     print(f"{'='*60}")
@@ -675,6 +686,10 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             "match_no": fixture.match_id.split("_", 1)[-1] if "_" in fixture.match_id else "",
             # 新浪赔率数据（初始+即时+变化方向+压缩比+亚盘+大小球）
             "sina_odds": _sina_data,
+            # 方向：预测时即写入（最终概率 argmax + 平局改判），与结算口径一致
+            # （修复：预测时 direction 为空，页面/复盘拿不到方向）
+            "direction": _pick_direction(final_h, final_d, final_a, draw_alert),
+            "direction_prob": max(final_h, final_d, final_a),
         })
 
     print(f"  ✓ 完成 {len(predictions)} 场预测（含增强分析）")
@@ -703,7 +718,9 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     # 虚拟投注：不熔断，始终正常投注
 
     # 自适应置信阈值（连败收紧）
-    conf_threshold = 0  # 虚拟投注不限制置信度
+    # shadow(虚拟)模式放开；真实下注模式保留最低置信 0.25，避免 0.09 置信的重注
+    _activation = strat_cfg.get("activation_mode", "shadow")
+    conf_threshold = 0.25 if _activation != "shadow" else 0
 
     # CPPI风险预算（使用已加载的 cppi 实例）
     risk_budget = cppi.get_risk_budget()
@@ -720,6 +737,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     allocator = ThreeTicketAllocator(
         bankroll=actual_bankroll,
         breaker_multiplier=effective_mult,
+        limits=strat_cfg.get("limits", {}),
     )
     candidates = []
     filtered_count = 0

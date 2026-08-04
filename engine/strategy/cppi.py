@@ -126,6 +126,12 @@ class CPPIStrategy:
         s = self.state
         s.current_bankroll = new_bankroll
 
+        # 破产保护：资产跌破底线时重置棘轮（否则 floor 只升不降会永久锁死投注）
+        if new_bankroll < s.floor * 0.5:
+            s.peak_bankroll = new_bankroll
+            s.floor = new_bankroll * self.cfg.floor_ratio
+            s.total_risk_exposure = 0.0
+
         # 更新峰值
         if new_bankroll > s.peak_bankroll:
             s.peak_bankroll = new_bankroll

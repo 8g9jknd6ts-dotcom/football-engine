@@ -78,10 +78,17 @@ class ThreeTicketAllocator:
         bankroll: float,
         config: ThreeTicketConfig | None = None,
         breaker_multiplier: float = 1.0,
+        limits: dict | None = None,
     ):
         self.bankroll = bankroll
         self.cfg = config or ThreeTicketConfig()
         self.breaker_multiplier = breaker_multiplier
+        # 硬性风控限额（来自 strategy.json limits）
+        self.limits = limits or {}
+        self.max_daily = self.limits.get("max_daily_stake", 500)
+        self.max_single = self.limits.get("max_single_stake", 200)
+        self.max_match_exposure = self.limits.get("max_match_exposure", 200)
+        self.max_singles_per_match = self.limits.get("max_singles_per_match", 1)
 
     def allocate(
         self,
@@ -123,15 +130,27 @@ class ThreeTicketAllocator:
         value.sort(key=lambda p: p.prob * p.odds - 1, reverse=True)
         lottery.sort(key=lambda p: p.prob * p.odds - 1, reverse=True)
 
-        stable = stable[: self.cfg.stable_max_picks]
-        value = value[: self.cfg.value_max_picks]
-        lottery = lottery[: self.cfg.lottery_max_picks]
+        # 同一场只保留最高 edge 的一个方向（避免对冲：同场押 away+draw 必有一注浪费）
+        def _dedup(picks: list[TicketPick]) -> list[TicketPick]:
+            seen: set = set()
+            out = []
+            for p in picks:
+                if p.match_id in seen:
+                    continue
+                seen.add(p.match_id)
+                out.append(p)
+            return out
 
-        # 计算注额
+        stable = _dedup(stable)[: self.cfg.stable_max_picks]
+        value = _dedup(value)[: self.cfg.value_max_picks]
+        lottery = _dedup(lottery)[: self.cfg.lottery_max_picks]
+
+        # 计算注额（硬限额封顶：单日总注 ≤ max_daily_stake）
         effective_bankroll = self.bankroll * self.breaker_multiplier
-        stable_pool = effective_bankroll * self.cfg.stable_ratio
-        value_pool = effective_bankroll * self.cfg.value_ratio
-        lottery_pool = effective_bankroll * self.cfg.lottery_ratio
+        _cap = min(effective_bankroll, self.max_daily)  # 每日总注上限
+        stable_pool = _cap * self.cfg.stable_ratio
+        value_pool = _cap * self.cfg.value_ratio
+        lottery_pool = _cap * self.cfg.lottery_ratio
 
         self._assign_stakes(stable, stable_pool)
         self._assign_stakes(value, value_pool)
@@ -152,13 +171,13 @@ class ThreeTicketAllocator:
         )
 
     def _assign_stakes(self, picks: list[TicketPick], pool: float) -> None:
-        """按Kelly比例分配池内资金"""
+        """按Kelly比例分配池内资金（硬限额：单注 ≤ max_single_stake）"""
         if not picks:
             return
         total_kelly = sum(p.kelly_fraction for p in picks if p.kelly_fraction > 0)
         if total_kelly <= 0:
             return
-        max_single = self.bankroll * self.cfg.max_single_ratio
+        max_single = min(self.bankroll * self.cfg.max_single_ratio, self.max_single)
 
         for p in picks:
             if p.kelly_fraction <= 0:
