@@ -617,6 +617,14 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             "away_odds": market_odds[2] if market_odds else None,
             "odds_synthetic": _odds_synthetic,
             "handicap": fixture.handicap,
+            # 竞彩让球盘（hhad）赔率：sporttery 主源采集，供让球玩法 EV 评估
+            "handicap_home_odds": getattr(fixture, "handicap_home_odds", None),
+            "handicap_draw_odds": getattr(fixture, "handicap_draw_odds", None),
+            "handicap_away_odds": getattr(fixture, "handicap_away_odds", None),
+            # 模型让球后胜平负概率（DC/MC 已按官方让球线计算，落盘供 EV 出注）
+            "handicap_home_prob": round(float(getattr(pred, "handicap_home_prob", 0) or 0), 4),
+            "handicap_draw_prob": round(float(getattr(pred, "handicap_draw_prob", 0) or 0), 4),
+            "handicap_away_prob": round(float(getattr(pred, "handicap_away_prob", 0) or 0), 4),
             # 置信度
             "confidence": round(pred.confidence * trust_score, 4),
             "wilson_trust": round(trust_score, 4),
@@ -753,6 +761,25 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         if not _direction:
             _probs = (p.get("home_win_prob", 0), p.get("draw_prob", 0), p.get("away_win_prob", 0))
             _direction = ["home", "draw", "away"][_probs.index(max(_probs))]
+
+        # 竞彩让球玩法 EV：同一场让球 vs 胜平负只取更高 EV（避免同场重复押）
+        _hcap_cand = None
+        try:
+            from engine.strategy.handicap_ev import evaluate_handicap_ev
+            _hev = evaluate_handicap_ev(p)
+            if _hev and _hev.best_edge > 0:
+                _odds = _hev.odds[_hev.best_sel]
+                _hcap_cand = {
+                    "match_id": p["match_id"],
+                    "selection": f"hcap_{_hev.best_sel}",  # 让球玩法标记
+                    "odds": _odds,
+                    "prob": _hev.probs[_hev.best_sel],
+                    "kelly_fraction": _hev.best_edge / (_odds - 1) * 0.25,
+                    "_hcap_edge": _hev.best_edge,
+                }
+        except Exception:
+            _hcap_cand = None
+
         for sel, prob, odds_key in [
             ("home", p["home_win_prob"], "home_odds"),
             ("draw", p["draw_prob"], "draw_odds"),
@@ -787,6 +814,15 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                     "prob": prob,
                     "kelly_fraction": kelly_f,
                 })
+
+        # 让球候选：同一场只留 EV 更高的方向（胜平负 vs 让球取最优）
+        if _hcap_cand:
+            _plain_cands = [c for c in candidates if c["match_id"] == p["match_id"]]
+            _plain_best = max((c.get("_hcap_edge", 0) or (c["prob"] * c["odds"] - 1)) for c in _plain_cands) if _plain_cands else 0
+            if _hcap_cand["_hcap_edge"] >= _plain_best:
+                candidates = [c for c in candidates if c["match_id"] != p["match_id"]]
+                candidates.append(_hcap_cand)
+                p["handicap_kelly_edge"] = round(_hcap_cand["_hcap_edge"], 4)
         
         # 写回 kelly_edge 到预测字典，解决 Kelly=0 问题
         p["kelly_edge"] = round(max_edge, 4) if max_edge > -1.0 else 0.0
@@ -1292,7 +1328,11 @@ def run_settlement(target_date: date):
         pnl = 0.0
         s = ticket_map.get(pred["match_id"])
         if s:
-            if s.get("sel") == actual:
+            # 让球候选 selection 带 hcap_ 前缀（如 hcap_home），剥离后与赛果方向比较
+            _sel = s.get("sel", "")
+            if _sel.startswith("hcap_"):
+                _sel = _sel[len("hcap_"):]
+            if _sel == actual:
                 pnl += s["stake"] * (s["odds"] - 1)
             else:
                 pnl -= s["stake"]

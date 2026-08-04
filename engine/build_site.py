@@ -103,6 +103,12 @@ def build_site():
         build_report(daily_root, ROOT / "data" / "state" / "ev_report.json")
     except Exception as e:
         print(f"[build_site] ⚠ EV 报告生成跳过: {e}")
+    # 让球玩法回测报告（验证让球 EV 历史表现，从有让球赔率的场次积累）
+    try:
+        from engine.strategy.handicap_ev import build_handicap_report
+        build_handicap_report(daily_root, ROOT / "data" / "state" / "handicap_report.json")
+    except Exception as e:
+        print(f"[build_site] ⚠ 让球回测报告生成跳过: {e}")
     print(f"[build_site] 仪表盘已生成: {len(all_dates)} 个日期页面")
 
 
@@ -1074,6 +1080,24 @@ def _pred_pick(p):
         return f'<span class="pick-label">预测</span> <span class="pick-val away">客胜 {pa:.0%}</span>'
 
 
+def _handicap_pick(p):
+    """让球玩法预测结论（竞彩 hhad）"""
+    hcap = p.get("handicap")
+    if hcap is None:
+        return ""
+    hhp, hdp, hap = (p.get("handicap_home_prob") or 0, p.get("handicap_draw_prob") or 0, p.get("handicap_away_prob") or 0)
+    if not (hhp or hdp or hap):
+        return ""
+    label = "主胜" if hhp >= hdp and hhp >= hap else ("平局" if hdp >= hhp and hdp >= hap else "客胜")
+    prob = max(hhp, hdp, hap)
+    hh_odds = p.get("handicap_home_odds") or p.get("handicap_draw_odds") or p.get("handicap_away_odds")
+    edge = p.get("handicap_kelly_edge")
+    cls = "home" if hhp >= hdp and hhp >= hap else ("draw" if hdp >= hhp and hdp >= hap else "away")
+    edge_html = f' <span class="pick-val {cls}" style="font-size:.85em">让球EV {edge:+.0%}</span>' if edge is not None else ""
+    sign = "+" if hcap > 0 else ""
+    return f'<span class="pick-label">让球{sign}{hcap:g}</span> <span class="pick-val {cls}">{label} {prob:.0%}</span>{edge_html}'
+
+
 def _pred_score(p):
     """预测比分（前3个最可能比分）"""
     top_scores = p.get("top_scores")
@@ -1345,7 +1369,7 @@ def _match_card(p, value_matches, idx, results_map=None):
         <div class="prob-seg d" style="width:{dp:.1f}%">D {dp:.0f}%</div>
         <div class="prob-seg a" style="width:{ap:.1f}%">A {ap:.0f}%</div>
       </div>
-      <div class="pred-pick">{_pred_pick(p)}{_pred_score(p)}</div>
+      <div class="pred-pick">{_pred_pick(p)}{_pred_score(p)}{_handicap_pick(p)}</div>
       {result_html}
       {'<div class="draw-alert-info" style="background:rgba(147,51,234,0.1);border:1px solid var(--purple);border-radius:6px;padding:8px 12px;margin:8px 0;font-size:0.72rem"><b>⚠ 平局预警</b> — ' + ('冷门平局：一方被看好但平局风险偏高' if p.get('draw_alert') == 'cold_draw' else '均势平局：双方接近，平局被低估') + '</div>' if p.get('draw_alert') else ''}
       <div class="match-info-row">
