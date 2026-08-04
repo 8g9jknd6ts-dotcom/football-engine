@@ -4,9 +4,9 @@
     "competition": "欧冠",
     "home_team": "奥胡斯",
     "away_team": "萨巴赫",
-    "home_win_prob": 0.3687,
-    "draw_prob": 0.2887,
-    "away_win_prob": 0.3426,
+    "home_win_prob": 0.3686,
+    "draw_prob": 0.2892,
+    "away_win_prob": 0.3422,
     "home_xg": 1.071,
     "away_xg": 2.083,
     "home_odds": 1.57,
@@ -14,12 +14,18 @@
     "away_odds": 4.6,
     "odds_synthetic": false,
     "handicap": -1.0,
-    "confidence": 0.1352,
+    "handicap_home_odds": 2.8,
+    "handicap_draw_odds": null,
+    "handicap_away_odds": 2.09,
+    "handicap_home_prob": 0.0864,
+    "handicap_draw_prob": 0.1417,
+    "handicap_away_prob": 0.7719,
+    "confidence": 0.1346,
     "wilson_trust": 0.2742,
     "model_raw": {
-      "home": 0.2624,
-      "draw": 0.2444,
-      "away": 0.4931
+      "home": 0.2622,
+      "draw": 0.2468,
+      "away": 0.491
     },
     "market_fair": [
       0.5645,
@@ -146,17 +152,17 @@
     "match_no": "周三002",
     "sina_odds": null,
     "direction": "home",
-    "direction_prob": 0.3686904833499216,
-    "kelly_edge": -0.4211
+    "direction_prob": 0.36861520888486377,
+    "kelly_edge": -0.4213
   },
   {
     "match_id": "2026-08-05_周三003",
     "competition": "欧冠",
     "home_team": "费内巴切",
     "away_team": "格风暴",
-    "home_win_prob": 0.4283,
-    "draw_prob": 0.2741,
-    "away_win_prob": 0.2976,
+    "home_win_prob": 0.4284,
+    "draw_prob": 0.2742,
+    "away_win_prob": 0.2974,
     "home_xg": 1.069,
     "away_xg": 1.552,
     "home_odds": 1.24,
@@ -164,12 +170,18 @@
     "away_odds": 8.0,
     "odds_synthetic": false,
     "handicap": -1.0,
-    "confidence": 0.0845,
+    "handicap_home_odds": 1.81,
+    "handicap_draw_odds": null,
+    "handicap_away_odds": 3.25,
+    "handicap_home_prob": 0.1446,
+    "handicap_draw_prob": 0.1752,
+    "handicap_away_prob": 0.6802,
+    "confidence": 0.0847,
     "wilson_trust": 0.2247,
     "model_raw": {
-      "home": 0.3762,
-      "draw": 0.2521,
-      "away": 0.3716
+      "home": 0.3768,
+      "draw": 0.2522,
+      "away": 0.371
     },
     "market_fair": [
       0.714,
@@ -180,68 +192,68 @@
       [
         1,
         0,
-        0.1893
+        0.188
       ],
       [
         0,
         0,
-        0.1715
+        0.1728
       ],
       [
         1,
         1,
-        0.1257
+        0.1247
       ],
       [
         0,
         1,
-        0.1124
+        0.1114
       ],
       [
         2,
         0,
-        0.1051
+        0.1065
       ],
       [
         2,
         1,
-        0.0684
+        0.0709
       ],
       [
         1,
         2,
-        0.0406
+        0.041
       ],
       [
         3,
         0,
-        0.0394
+        0.0377
       ]
     ],
     "total_goals": [
       [
         1,
-        0.3016
+        0.2995
       ],
       [
         2,
-        0.268
+        0.2676
       ],
       [
         0,
-        0.1715
+        0.1728
       ],
       [
         3,
-        0.1567
+        0.1578
       ],
       [
         4,
-        0.0693
+        0.0689
       ],
       [
         5,
-        0.0234
+        0.0233
       ]
     ],
     "htft": {
@@ -290,7 +302,7 @@
     "match_no": "周三003",
     "sina_odds": null,
     "direction": "home",
-    "direction_prob": 0.428251226289781,
-    "kelly_edge": -0.4689
+    "direction_prob": 0.4283916215453998,
+    "kelly_edge": -0.4688
   }
 ]
