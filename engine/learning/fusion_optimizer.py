@@ -24,9 +24,10 @@ from ..review.post_match import ReviewLedger, MatchReview, brier_score
 @dataclass
 class FusionWeights:
     """三路融合权重"""
-    model: float = 0.60
-    market: float = 0.25
-    djyy: float = 0.15
+    # 默认值向市场倾斜（2026-08-04 校准：109场ledger显示 market Brier 0.638 优于 model 0.714）
+    model: float = 0.40
+    market: float = 0.35
+    djyy: float = 0.25
 
     def normalized(self) -> "FusionWeights":
         total = self.model + self.market + self.djyy

@@ -1233,11 +1233,27 @@ def run_settlement(target_date: date):
     total_pnl = 0.0
     wins = 0
     losses = 0
+    # 联赛自适应：结算时把每场赛果喂给联赛管理器（修复 league_params.json 永为空）
+    league_mgr = LeagueParamsManager(ROOT / "data" / "state" / "league_params.json")
+    league_fed = 0
     for n in new_items:
         r = n["r"]
         pred = n["pred"]
         if not pred:
             continue
+        # 联赛参数记录：方向命中反馈
+        lg_name = pred.get("league") or r.competition or "未知"
+        try:
+            if r.home_score > r.away_score:
+                _won = (pred.get("direction") == "home")
+            elif r.home_score == r.away_score:
+                _won = (pred.get("direction") == "draw")
+            else:
+                _won = (pred.get("direction") == "away")
+            league_mgr.record_result(league=lg_name, hit=_won)
+            league_fed += 1
+        except Exception:
+            pass
         # 判断赛果
         if r.home_score > r.away_score:
             actual = "home"
@@ -1270,6 +1286,14 @@ def run_settlement(target_date: date):
         running_bankroll += pnl
     print(f"  ✓ 命中 {wins}/{wins+losses}, PnL={total_pnl:.2f}")
     print(f"  熔断状态: {breaker.status_report()}")
+
+    # 联赛自适应调参（命中率<45% → 更信任市场；>60% → 更信任模型）
+    if league_fed > 0:
+        try:
+            league_mgr.adapt_all()
+            print(f"  ✓ 联赛自适应完成（{league_fed} 场反馈，{len(league_mgr.summary())} 个联赛）")
+        except Exception as e:
+            print(f"  ⚠️ 联赛自适应跳过: {e}")
 
     # 8) 在线权重学习 + 组合挖掘 + 赛果回写（只处理新增）
     if new_items:
@@ -1339,6 +1363,13 @@ def run_settlement(target_date: date):
                  ("away", pred["away_win_prob"])],
                 key=lambda x: x[1],
             )
+            # 平局盲点修复：模型已预警平局风险(draw_alert) 且 平局概率接近最高(<8pt) 时，
+            # direction 改判平局（否则纯 argmax 永远只选 H/A，109场只判2场平局 vs 实际29%平局率）
+            if pred.get("draw_alert") and best_sel[0] != "draw":
+                _best_p = best_sel[1]
+                _draw_p = pred.get("draw_prob", 0)
+                if _best_p - _draw_p < 0.08 and _draw_p >= 0.26:
+                    best_sel = ("draw", _draw_p)
             if r.home_score > r.away_score:
                 actual = "home"
             elif r.home_score == r.away_score:

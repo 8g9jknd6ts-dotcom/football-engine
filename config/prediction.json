@@ -48,9 +48,9 @@
     "monte_carlo_weight": 0.4
   },
   "fusion": {
-    "model_weight": 0.6,
-    "market_weight": 0.25,
-    "djyy_weight": 0.15,
+    "model_weight": 0.4,
+    "market_weight": 0.35,
+    "djyy_weight": 0.25,
     "lgbm_weight": 0.1,
     "same_odds_max_adjust": 0.05,
     "same_odds_min_confidence": 0.3,
@@ -92,12 +92,12 @@
     "val_matches": 20,
     "weight_bounds": {
       "model": [
-        0.3,
-        0.8
+        0.2,
+        0.6
       ],
       "market": [
         0.1,
-        0.5
+        0.6
       ],
       "djyy": [
         0.05,
