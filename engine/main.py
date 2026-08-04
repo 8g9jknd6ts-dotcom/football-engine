@@ -1003,11 +1003,15 @@ def run_settlement(target_date: date):
 
     # 3.5) 同一预测合并：DJYY 与新浪可能对同一场比赛返回不同队名/比分
     #     （如"佐加顿斯 vs 韦斯特罗 5-0" vs "佐加顿斯 vs 瓦斯特拉斯 6-0"）。
-    #     以预测 match_id 为比赛身份，合并多条赛果：带竞彩编号(match_no)的新浪赛果优先，
-    #     避免错误比分(5-0)覆盖权威终场比分(6-0)。
+    #     以预测的竞彩编号为比赛身份，合并多条赛果：带竞彩编号(match_no)的新浪赛果优先，
+    #     避免错误比分(5-0)覆盖权威终场比分(6-0)，也避免同一场双条目重复计 Elo。
+    #     match_id 格式可能不同（"2026-08-03_周一001" vs "周一001"），统一取编号段。
+    def _num_of(mid: str) -> str:
+        return mid.split("_", 1)[-1] if mid and "_" in mid else (mid or "")
+
     _by_pred: dict = {}
     for n in norm:
-        _k = (n["date"], n["match_id"])
+        _k = (n["date"], _num_of(n["match_id"]))
         if _k not in _by_pred:
             _by_pred[_k] = n
             continue
@@ -1024,6 +1028,18 @@ def run_settlement(target_date: date):
     if len(_by_pred) < len(norm):
         print(f"  ✓ 同一预测赛果合并: {len(norm)} → {len(_by_pred)} 条")
     norm = list(_by_pred.values())
+    # 合并后按 (日期, 队名) 再兜底去重：极端情况下不同编号但同队名的重复
+    _seen_team: set = set()
+    _dedup = []
+    for n in norm:
+        _tk = (n["date"], n["r"].home_team, n["r"].away_team)
+        if _tk in _seen_team:
+            continue
+        _seen_team.add(_tk)
+        _dedup.append(n)
+    if len(_dedup) < len(norm):
+        print(f"  ✓ 队名兜底去重: {len(norm)} → {len(_dedup)} 条")
+    norm = _dedup
     new_items = [n for n in norm if n["is_new"]]
     print(f"  ✓ 赛果 {len(norm)} 场, 其中新增 {len(new_items)} 场（其余已结算过，跳过重复处理）")
 
