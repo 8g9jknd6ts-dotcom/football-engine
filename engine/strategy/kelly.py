@@ -62,6 +62,29 @@ class KellyStrategy:
         self.min_edge = gates.get("min_probability_edge", 0.03)
         self.min_ev = gates.get("min_ev", 0.03)
 
+    def _load_value_zones(self) -> dict:
+        """加载 EV 价值区报告，返回 {赔率区间: roi}（无报告返回空）"""
+        try:
+            p = Path(__file__).parent.parent.parent / "data" / "state" / "ev_report.json"
+            if not p.exists():
+                return {}
+            d = json.loads(p.read_text(encoding="utf-8"))
+            return {k: v.get("roi", 0) for k, v in d.get("layers", {}).items()}
+        except Exception:
+            return {}
+
+    @staticmethod
+    def _layer_of(odds: float) -> str:
+        if odds < 1.5:
+            return "L1 大热(<1.5)"
+        if odds < 1.8:
+            return "L2 热(1.5-1.8)"
+        if odds < 2.2:
+            return "L3 中(1.8-2.2)"
+        if odds < 3.0:
+            return "L4 冷(2.2-3.0)"
+        return "L5 深冷(≥3.0)"
+
     def evaluate_candidates(
         self,
         predictions: list[dict],
@@ -70,12 +93,17 @@ class KellyStrategy:
     ) -> BettingPlan:
         """评估所有候选，生成投注计划"""
         plan = BettingPlan(date=predictions[0].get("date", "") if predictions else "")
+        # 价值区过滤：历史 ROI 为负的赔率区间降权（老系统实证：L1/L2 大热是送钱区）
+        value_zones = self._load_value_zones()
+        if not value_zones:
+            print("  ⚠ EV价值区报告缺失，跳过价值区过滤（用纯EV）")
 
         # 月度止损检查
         if monthly_pnl <= -self.monthly_stop_loss:
             return plan  # 空计划
 
         candidates = []
+        rejected_value = 0
         for pred in predictions:
             for sel in ["home", "draw", "away"]:
                 if sel == "home":
@@ -91,6 +119,26 @@ class KellyStrategy:
                 if not odds or odds <= 1.0:
                     continue
 
+                # 价值区过滤：该赔率区间历史 ROI<-10% 直接拒绝（送钱区）
+                if value_zones:
+                    _layer = self._layer_of(odds)
+                    _roi = value_zones.get(_layer, 0)
+                    if _roi < -0.10:
+                        rejected_value += 1
+                        plan.rejected.append((
+                            BetCandidate(
+                                match_id=pred.get("match_id", ""),
+                                selection=sel, model_prob=0, market_prob=0,
+                                odds=odds, edge=0, ev=0,
+                                risk_notes=[f"送钱区({_layer} ROI {_roi*100:.0f}%) 拒绝"],
+                            ),
+                            f"送钱区({_layer} ROI {_roi*100:.0f}%)",
+                        ))
+                        continue
+                    # 历史 ROI 为负但未达送钱线：降权（0.5倍注额）
+                    if _roi < 0:
+                        pass  # 由下方正常流程评估，但记录风险
+
                 market_prob = 1.0 / odds
                 edge = model_prob - market_prob
                 ev = model_prob * odds - 1.0
@@ -102,6 +150,12 @@ class KellyStrategy:
                 b = odds - 1.0
                 full_kelly = max(0, (b * model_prob - (1 - model_prob)) / b)
                 stake = self.bankroll * full_kelly * self.kelly_fraction
+
+                # 历史 ROI 为负的赔率区间（非送钱线）降权 50%
+                if value_zones:
+                    _roi = value_zones.get(self._layer_of(odds), 0)
+                    if -0.10 <= _roi < 0:
+                        stake *= 0.5
 
                 # 取整到投注单位
                 stake = int(stake / self.stake_unit) * self.stake_unit

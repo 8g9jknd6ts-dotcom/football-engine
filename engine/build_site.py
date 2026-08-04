@@ -97,6 +97,12 @@ def build_site():
         "healthy": True,
     }
     (web_dir / "report-status.json").write_text(json.dumps(status, indent=2))
+    # EV 价值区报告（全量复盘分层 ROI，供页面与 Kelly 参考）
+    try:
+        from engine.review.ev_report import build_report
+        build_report(daily_root, ROOT / "data" / "state" / "ev_report.json")
+    except Exception as e:
+        print(f"[build_site] ⚠ EV 报告生成跳过: {e}")
     print(f"[build_site] 仪表盘已生成: {len(all_dates)} 个日期页面")
 
 
@@ -213,6 +219,13 @@ def _slug(s: str) -> str:
 def _render_html(today, predictions, bundle, ticket, breaker, health, results=None, results_preds=None, all_dates=None, review_ledger=None):
     # 计算摘要
     total = len(predictions)
+    # EV 价值区报告（全量已结算预测的分层 ROI）
+    try:
+        _ev_path = ROOT / "data" / "state" / "ev_report.json"
+        _ev_report = json.loads(_ev_path.read_text(encoding="utf-8")) if _ev_path.exists() else {}
+    except Exception:
+        _ev_report = {}
+    ev_html = _ev_section(_ev_report)
     # 三票方案中的场次 = 真正的价值投注
     value_matches = set()
     for it in ticket.get("stable", []) + ticket.get("value", []):
@@ -964,6 +977,9 @@ body {{
 
   <!-- BETTING PLAN -->
   {ticket_html}
+
+  <!-- EV VALUE REPORT -->
+  {ev_html}
 
   <!-- RESULTS REVIEW -->
   {results_html}
@@ -1743,6 +1759,60 @@ def _ticket_section(ticket, predictions):
     <div class="ts-chip"><div class="ts-label">资金池</div><div class="ts-val">&yen;{bankroll:.0f}</div></div>
     <div class="ts-chip"><div class="ts-label">熔断系数</div><div class="ts-val" style="color:{'var(--green)' if breaker_mult >= 1 else 'var(--red)'}">x{breaker_mult:.2f}</div></div>
   </div>"""
+
+
+def _ev_section(ev_report):
+    """EV 价值区报告：全量已结算预测按赔率区间×联赛分层的 ROI"""
+    if not ev_report or not ev_report.get("total"):
+        return ""
+    t = ev_report["total"]
+    layers = ev_report.get("layers", {})
+    leagues = ev_report.get("leagues", {})
+    takeaways = ev_report.get("takeaways", [])
+
+    def _cls(roi):
+        return "green" if roi > 0 else ("red" if roi < -0.10 else "amber")
+
+    rows = "".join(
+        f"<tr><td>{k}</td><td>{v['n']}</td><td>{v['hit_rate']*100:.1f}%</td>"
+        f"<td class='{_cls(v['roi'])}'>{v['roi']*100:+.1f}%</td>"
+        f"<td class='{_cls(v['roi'])}'>{v['verdict']}</td></tr>"
+        for k, v in layers.items()
+    )
+    lg_rows = "".join(
+        f"<tr><td>{k}</td><td>{v['n']}</td><td>{v['hit_rate']*100:.1f}%</td>"
+        f"<td class='{_cls(v['roi'])}'>{v['roi']*100:+.1f}%</td></tr>"
+        for k, v in leagues.items()
+    )
+    tk = "".join(f"<li style='color:var(--text-secondary);font-size:0.82rem;margin:3px 0;'>{x}</li>" for x in takeaways)
+
+    return f"""
+  <div class="section-title">🎯 EV 价值区报告（全量复盘）</div>
+  <div class="card" style="padding:20px;margin-bottom:14px;">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:16px;">
+      <div class="stat"><div class="label">已结算场次</div><div class="value">{t['n']}</div></div>
+      <div class="stat"><div class="label">方向命中率</div><div class="value">{t['hit_rate']*100:.1f}%</div></div>
+      <div class="stat"><div class="label">整体 ROI（每场押1单位）</div><div class="value {_cls(t['roi'])}">{t['roi']*100:+.1f}%</div></div>
+    </div>
+    <ul style="padding-left:18px;margin-bottom:16px;">{tk}</ul>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div>
+        <div style="font-weight:700;font-size:0.85rem;margin-bottom:8px;color:var(--text);">按赔率区间（押注结构诊断）</div>
+        <table class="data-table" style="width:100%;font-size:0.82rem;">
+          <tr><th>区间</th><th>场数</th><th>命中率</th><th>ROI</th><th>判读</th></tr>
+          {rows}
+        </table>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:0.85rem;margin-bottom:8px;color:var(--text);">按联赛（≥3场）</div>
+        <table class="data-table" style="width:100%;font-size:0.82rem;">
+          <tr><th>联赛</th><th>场数</th><th>命中率</th><th>ROI</th></tr>
+          {lg_rows}
+        </table>
+      </div>
+    </div>
+  </div>
+"""
 
 
 def _results_section(results, predictions, review_ledger=None):
