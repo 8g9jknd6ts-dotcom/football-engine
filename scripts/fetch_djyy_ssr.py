@@ -12,9 +12,10 @@ DJYY 网站改版，不再用 SSR RSC Flight Data，改为公开 JSON API。
 """
 import json
 import sys
+import urllib.parse
 import urllib.request
 import ssl
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
@@ -42,8 +43,20 @@ def _fetch_json(url: str, timeout: int = 15) -> dict | list | None:
         return None
 
 
-def fetch_fixtures(date_from: str, date_to: str) -> list[dict]:
-    url = f"{BASE}/api/leagues/fixtures?date_from={date_from}&date_to={date_to}"
+def fetch_fixtures(
+    date_from: str,
+    date_to: str,
+    category: str = "tier1+euro+tier2+other+world",
+) -> list[dict]:
+    """抓取赛程（默认覆盖全部联赛分类，与 engine/sources/djyy.py 的 DJYYSource 一致）
+
+    注意: category 值含 '+'，需用 quote 编码（'+' 在 query string 中表示空格）
+    """
+    url = (
+        f"{BASE}/api/leagues/fixtures"
+        f"?date_from={date_from}&date_to={date_to}"
+        f"&category={urllib.parse.quote(category)}"
+    )
     data = _fetch_json(url)
     if isinstance(data, list):
         return data
@@ -137,11 +150,11 @@ def extract_match(fixture: dict, comp: dict | None) -> dict:
 def main():
     print("[fetch_djyy_v2] Fetching from djyylive.com API...")
 
-    # 抓今明两天
-    today = datetime.utcnow().strftime("%Y-%m-%d")
-    tomorrow = (datetime.utcnow() + timedelta(days=2)).strftime("%Y-%m-%d")
+    # 抓今明两天（UTC 日期，多抓一天覆盖时区差异）
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    date_to = (datetime.now(timezone.utc) + timedelta(days=2)).strftime("%Y-%m-%d")
 
-    fixtures = fetch_fixtures(today, tomorrow)
+    fixtures = fetch_fixtures(today, date_to)
     print(f"  ✓ Fixtures: {len(fixtures)} matches")
 
     if not fixtures:
@@ -172,7 +185,7 @@ def main():
 
     output = {
         "source": "djyylive.com API v2",
-        "extracted_at": datetime.utcnow().isoformat(),
+        "extracted_at": datetime.now(timezone.utc).isoformat(),
         "total": len(matches),
         "with_odds": enriched,
         "matches": matches,

@@ -41,6 +41,7 @@ TEAM_ALIASES: dict[str, str] = {
     # 北欧联赛（芬超/瑞超/挪超）
     "塞那乔其": "塞伊奈",          # SJK
     "哈尔姆": "哈尔姆斯",          # Halmstad
+    "尤尔加登": "佐加顿斯",        # Djurgården（DJYY 音译 vs 竞彩通用译名）
     "瓦斯特拉斯": "韦斯特罗",      # Västerås
     "布鲁马": "布鲁马波",          # Brommapojkarna
     "奥尔格里特": "厄格里特",      # Örgryte
