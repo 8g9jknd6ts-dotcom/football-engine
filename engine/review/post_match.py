@@ -427,7 +427,7 @@ class PostMatchReviewer:
                 score_rank_hist[r.score_rank] = score_rank_hist.get(r.score_rank, 0) + 1
 
         # 双源比分命中（2026-08-05）：DJYY vs MC 谁更准 → 数据决定融合权重
-        def _src_hit(attr, valid):
+        def _src_hit(attr):
             items = [r for r in reviews if getattr(r, attr, -1) >= 0]
             return {"n": len(items), "hits": sum(1 for r in items if 1 <= getattr(r, attr) <= 5)}
 
