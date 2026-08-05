@@ -1,13 +1,13 @@
 {
   "date": "2026-08-04",
-  "n_matches": 4,
-  "hit_rate": 0.0,
-  "hits": 0,
+  "n_matches": 5,
+  "hit_rate": 0.2,
+  "hits": 1,
   "source_brier": {
-    "model": 0.8826,
-    "market": 0.8923,
+    "model": 0.7756,
+    "market": 0.8087,
     "djyy": 0.7541,
-    "final": 0.737
+    "final": 0.693
   },
   "by_league": {
     "欧冠": {
@@ -15,6 +15,12 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.737
+    },
+    "巴西杯": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.5172
     }
   },
   "by_confidence_tier": {
@@ -25,10 +31,10 @@
       "avg_brier": 0.7181
     },
     "mid": {
-      "n": 1,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.7936
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.6554
     }
   },
   "by_odds_band": {
@@ -39,10 +45,10 @@
       "avg_brier": 0.6761
     },
     "2.0-3.0": {
-      "n": 1,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.802
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.6596
     },
     "1.0-1.5": {
       "n": 1,
@@ -51,8 +57,20 @@
       "avg_brier": 0.7936
     }
   },
-  "biases": [],
+  "biases": [
+    {
+      "dimension": "outcome",
+      "key": "all",
+      "outcome": "draw",
+      "predicted_avg": 0.2878,
+      "actual_rate": 0.4,
+      "gap": -0.1122,
+      "n": 5,
+      "severity": "warn",
+      "suggested_action": "reduce draw_bias"
+    }
+  ],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-05T11:13:35.114712",
-  "sha256": "93a5d59bedab6c53445207e4330fcf7c"
+  "generated_at": "2026-08-05T03:16:01.456332",
+  "sha256": "06f089c4a786caf04cc94bb0305de25a"
 }

@@ -1,46 +1,46 @@
 {
-  "total_matches": 112,
+  "total_matches": 113,
   "date_range": [
-    "2026-07-19",
+    "2026-07-20",
     "2026-08-04"
   ],
   "metrics": {
-    "brier": 0.6677,
-    "weighted_brier": 0.6685,
-    "rps": 0.2256,
-    "weighted_rps": 0.2259,
-    "log_loss": 1.1033,
-    "hit_rate": 0.4375,
-    "ece": 0.2737
+    "brier": 0.6687,
+    "weighted_brier": 0.6695,
+    "rps": 0.2245,
+    "weighted_rps": 0.2248,
+    "log_loss": 1.1048,
+    "hit_rate": 0.4336,
+    "ece": 0.2822
   },
   "draw_analysis": {
-    "actual_draws": 33,
-    "actual_draw_rate": 0.2946,
+    "actual_draws": 34,
+    "actual_draw_rate": 0.3009,
     "predicted_draws": 2,
-    "predicted_draw_rate": 0.0179,
+    "predicted_draw_rate": 0.0177,
     "max_draw_prob": 0.3914,
-    "avg_draw_prob": 0.2377,
-    "avg_market_draw": 0.2355,
-    "market_high_draw_n": 9,
+    "avg_draw_prob": 0.2386,
+    "avg_market_draw": 0.2361,
+    "market_high_draw_n": 10,
     "market_high_draw_actual": 4,
-    "market_high_draw_rate": 0.4444
+    "market_high_draw_rate": 0.4
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4375,
-      "n": 112
+      "hit_rate": 0.4336,
+      "n": 113
     },
     "market": {
-      "hit_rate": 0.4754,
-      "n": 61
+      "hit_rate": 0.4762,
+      "n": 63
     },
     "hybrid_v2": {
-      "hit_rate": 0.4098,
-      "n": 61
+      "hit_rate": 0.3968,
+      "n": 63
     },
     "market_d28": {
-      "hit_rate": 0.459,
-      "n": 61
+      "hit_rate": 0.4444,
+      "n": 63
     }
   },
   "by_league": {
@@ -69,10 +69,10 @@
       "rps": 0.2491
     },
     "欧冠": {
-      "n": 11,
-      "hit_rate": 0.2727,
-      "brier": 0.6278,
-      "rps": 0.2616
+      "n": 12,
+      "hit_rate": 0.25,
+      "brier": 0.6417,
+      "rps": 0.2511
     },
     "美职联": {
       "n": 11,
@@ -93,10 +93,10 @@
       "rps": 0.3177
     },
     "巴西杯": {
-      "n": 4,
-      "hit_rate": 0.25,
-      "brier": 0.7092,
-      "rps": 0.1906
+      "n": 5,
+      "hit_rate": 0.4,
+      "brier": 0.6708,
+      "rps": 0.1941
     }
   }
 }
