@@ -1218,12 +1218,15 @@ def _handicap_pick(p):
 
 
 def _pred_score(p):
-    """预测比分（前3个最可能比分）"""
+    """预测比分（前5个最可能比分）"""
+    # 2026-08-05: 3→5。账本 113 场实证：top3 命中 38% vs top5 52%，
+    # 高进球场次(≥3球,占一半) top3 仅 16%——前3个被 1-0/1-1 占满，
+    # DJYY 实际给了 8-10 个比分，主推 3 个浪费了能中的第4/5个。
     top_scores = p.get("top_scores")
     if not top_scores or not isinstance(top_scores, list) or len(top_scores) == 0:
         return ""
     scores = []
-    for item in top_scores[:3]:
+    for item in top_scores[:5]:
         if isinstance(item, (list, tuple)) and len(item) >= 3:
             scores.append(f"{item[0]}-{item[1]}")
     if scores:

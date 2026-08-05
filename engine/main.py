@@ -45,6 +45,12 @@ from engine.integrity.plan_lock import PlanLock
 from engine.learning.elo_updater import EloUpdater
 from engine.learning.wilson_trust import TrustSystem
 from engine.learning.combo_miner import ComboMiner
+
+# 判平白名单（2026-08-05 账本 113 场 precision 实证）：
+#   巴甲 6/10=60%、美职联 6/11=55% → 判平可用
+#   瑞典超 0/2、巴西杯 0/1 → 判平全错，关闭（基线≥35% 也不判）
+#   新联赛接入判平前须先积累 precision 样本，否则维持保守（不判）
+DRAW_ACTIVE_LEAGUES = {"巴甲", "美职联"}
 from engine.learning.online_weights import OnlineWeightLearner
 from engine.prediction.lgbm_model import LGBMModel, LGBMConfig, build_features
 from engine.prediction.isotonic_cal import IsotonicCalibrator, CalibrationConfig
@@ -540,8 +546,11 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         # 美职联 55% / 巴甲 60% / 瑞典超 43% 平局率 vs 模型判平几乎为 0 → 平局盲点主战场
         # walk-forward 回测: 高平局率联赛(基线≥0.35)平局概率向基线抬升(85%折)，
         #   113 场方向命中 43.4%→46.0% (+3场)，低平局率联赛不受影响（gap≈0）
+        # 2026-08-05 精准度修正: 判平 precision 分联赛差异巨大——巴甲 60% / 美职联 55%
+        #   （可用），瑞典超 0% / 巴西杯 0%（判平全错，关闭）。DRAW_ACTIVE_LEAGUES 是
+        #   判平 history precision 有数据支撑的联赛白名单。
         _league_db = league_mgr.get_draw_baseline(fixture.competition) if league_mgr else 0.25
-        if _league_db >= 0.35:
+        if _league_db >= 0.35 and fixture.competition in DRAW_ACTIVE_LEAGUES:
             _target_d = max(final_d, _league_db * 0.85)
             _gap = _target_d - final_d
             if _gap > 0.01:
