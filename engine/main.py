@@ -925,6 +925,14 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             p["direction_low_confidence"] = True
             filtered_count += 1
             continue
+        # P0+ 概率段降档（2026-08-06 MBS 实证 + 本账本互证）：
+        # 最终方向概率落在 [0.50, 0.60) 是"平局盲点区"——113 场账本中此段命中率仅 37.1%
+        # （整体 43.4%），35 场实际平局 16 场（45.7%），模型 0 场判平；
+        # MBS 8/3 自检同构：50-60% 概率段 0/3 全败，称"中高概率段集中回撤"。
+        # 处理：降档不禁投（仍有 37% 命中）→ 稳胆降搏冷 / 搏冷降彩票 / 减注 50%
+        _final_prob = max(p.get("home_win_prob", 0), p.get("draw_prob", 0), p.get("away_win_prob", 0))
+        if 0.50 <= _final_prob < 0.60:
+            p["prob_band_5060"] = True  # 触发降档
         # 联赛分层禁投：送钱区联赛（历史 ROI<-5% 且 ≥5 场）不出任何注
         if p.get("competition") in league_forbid:
             p["league_forbidden"] = True
@@ -979,6 +987,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                         "odds": odds,
                         "prob": prob,
                         "kelly_fraction": 0.05,  # 保守固定仓位
+                        "prob_band_5060": p.get("prob_band_5060", False),
+                        "prob_max": _final_prob,
                     })
             elif edge > 0:  # 真实赔率: 正期望
                 kelly_f = edge / (odds - 1) * 0.25  # quarter-Kelly
@@ -988,6 +998,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                     "odds": odds,
                     "prob": prob,
                     "kelly_fraction": kelly_f,
+                    "prob_band_5060": p.get("prob_band_5060", False),
+                    "prob_max": _final_prob,
                 })
 
         # 让球候选：同一场只留 EV 更高的方向（胜平负 vs 让球取最优）

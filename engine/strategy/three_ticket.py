@@ -52,6 +52,7 @@ class TicketPick:
     kelly_fraction: float   # Kelly建议仓位
     ticket_type: str = ""   # "stable" / "value" / "lottery"
     stake: float = 0.0      # 实际注额
+    stake_reduction: float = 1.0  # 注额缩减系数（50-60% 概率段彩票降半，2026-08-06）
 
 
 @dataclass
@@ -125,6 +126,21 @@ class ThreeTicketAllocator:
                     pick.ticket_type = "lottery"
                     lottery.append(pick)
 
+            # 50-60% 概率段降档（2026-08-06）：MBS 8/3 自检 + 本账本 113 场互证
+            # 此段命中率 37.1%（整体 43.4%），35 场实际平局 16 场（45.7%）模型 0 场判平
+            # = 平局盲点集中爆发区。处理：稳胆→搏冷、搏冷→彩票、彩票→减注 50%
+            if c.get("prob_band_5060") and pick.ticket_type:
+                if pick.ticket_type == "stable":
+                    pick.ticket_type = "value"
+                    stable = [s for s in stable if s is not pick]
+                    value.append(pick)
+                elif pick.ticket_type == "value":
+                    pick.ticket_type = "lottery"
+                    value = [s for s in value if s is not pick]
+                    lottery.append(pick)
+                else:  # lottery: 减注 50%
+                    pick.stake_reduction = 0.5
+
         # 按 edge = prob*odds - 1 排序，取前N
         stable.sort(key=lambda p: p.prob * p.odds - 1, reverse=True)
         value.sort(key=lambda p: p.prob * p.odds - 1, reverse=True)
@@ -184,23 +200,22 @@ class ThreeTicketAllocator:
                 continue
             weight = p.kelly_fraction / total_kelly
             raw_stake = pool * weight
+            raw_stake *= p.stake_reduction  # 50-60% 段彩票减注（2026-08-06）
             p.stake = round(min(raw_stake, max_single), 2)
 
     def summary(self, plan: TicketPlan) -> dict:
         """方案摘要"""
+        def _pick(p):
+            d = {"match": p.match_id, "sel": p.selection, "odds": p.odds, "stake": p.stake,
+                 "prob": round(p.prob, 3)}
+            # 降档标记（2026-08-06）：原搏冷降彩票 / 彩票减注 50%
+            if p.stake_reduction < 1.0:
+                d["downgraded"] = "stake_half"
+            return d
         return {
-            "stable": [
-                {"match": p.match_id, "sel": p.selection, "odds": p.odds, "stake": p.stake}
-                for p in plan.stable_picks
-            ],
-            "value": [
-                {"match": p.match_id, "sel": p.selection, "odds": p.odds, "stake": p.stake}
-                for p in plan.value_picks
-            ],
-            "lottery": [
-                {"match": p.match_id, "sel": p.selection, "odds": p.odds, "stake": p.stake}
-                for p in plan.lottery_picks
-            ],
+            "stable": [_pick(p) for p in plan.stable_picks],
+            "value": [_pick(p) for p in plan.value_picks],
+            "lottery": [_pick(p) for p in plan.lottery_picks],
             "total_stake": plan.total_stake,
             "expected_roi": plan.expected_roi,
             "bankroll": self.bankroll,

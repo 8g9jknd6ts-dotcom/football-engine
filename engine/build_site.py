@@ -1079,6 +1079,7 @@ body {{
 .ticket-item:last-child {{ border-bottom: none; }}
 .ticket-item .ti-match {{ color: var(--text-secondary); }}
 .ticket-item .ti-odds {{ color: var(--text); font-weight: 600; font-family: monospace; }}
+.tag-warn {{ background: rgba(255, 170, 60, 0.15); color: #ffaa3c; border: 1px solid rgba(255, 170, 60, 0.35); border-radius: 4px; padding: 0 4px; font-size: 11px; margin-left: 4px; }}
 .ticket-empty {{ font-size: 0.72rem; color: var(--dim); font-style: italic; padding: 8px 0; }}
 .ticket-summary {{
   margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -2102,7 +2103,13 @@ def _ticket_section(ticket, predictions):
                 sel_label = "半全场·" + _hafu_name.get(sel[5:], sel[5:])
             else:
                 sel_label = sel_map.get(sel, sel)
-            html += f'<div class="ticket-item"><span class="ti-match">{teams} [{sel_label}]</span><span class="ti-odds">@{it.get("odds", 0):.2f} / &yen;{it.get("stake", 0):.0f}</span></div>'
+            # 降档角标（2026-08-06）：50-60% 概率段 = 平局盲点区，被降档或减注
+            _downgrade = ""
+            if it.get("downgraded") == "stake_half":
+                _downgrade = ' <span class="tag-warn" title="50-60% 概率段（平局盲点区）减注50%">减注</span>'
+            elif it.get("prob") and 0.50 <= it.get("prob", 0) < 0.60:
+                _downgrade = ' <span class="tag-warn" title="50-60% 概率段（平局盲点区）已降档">降档</span>'
+            html += f'<div class="ticket-item"><span class="ti-match">{teams} [{sel_label}]{_downgrade}</span><span class="ti-odds">@{it.get("odds", 0):.2f} / &yen;{it.get("stake", 0):.0f}</span></div>'
         return html
 
     return f"""
