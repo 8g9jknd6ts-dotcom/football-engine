@@ -536,6 +536,21 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                     final_h -= gap * (final_h / total_ha)
                     final_a -= gap * (final_a / total_ha)
 
+        # 联赛平局基线修正（2026-08-05 账本 113 场实证 + walk-forward 验证）
+        # 美职联 55% / 巴甲 60% / 瑞典超 43% 平局率 vs 模型判平几乎为 0 → 平局盲点主战场
+        # walk-forward 回测: 高平局率联赛(基线≥0.35)平局概率向基线抬升(85%折)，
+        #   113 场方向命中 43.4%→46.0% (+3场)，低平局率联赛不受影响（gap≈0）
+        _league_db = league_mgr.get_draw_baseline(fixture.competition) if league_mgr else 0.25
+        if _league_db >= 0.35:
+            _target_d = max(final_d, _league_db * 0.85)
+            _gap = _target_d - final_d
+            if _gap > 0.01:
+                final_d += _gap
+                _th = final_h + final_a
+                if _th > 0:
+                    final_h -= _gap * (final_h / _th)
+                    final_a -= _gap * (final_a / _th)
+
         # --- 赔率变动信号修正 ---
         # 新浪赔率变化方向作为信号：赔率下降=资金涌入=庄家看好
         if _sina_data and _sina_data.get("movement"):

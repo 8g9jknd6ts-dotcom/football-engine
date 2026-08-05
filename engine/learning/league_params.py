@@ -20,6 +20,13 @@ class LeagueParam:
     base_goals: float = 1.35          # 基础进球期望（影响DC模型λ）
     home_adv_weight: float = 1.0      # 主场优势权重
     market_blend_weight: float = 0.28 # 市场赔率混合权重
+    # xG 校准（2026-08-05 账本 113 场实证：不同联赛偏差方向相反）
+    #   挪超 -0.43/场（低估→>1）vs 巴西杯 +1.38/场（高估→<1），一刀切校准会害低估联赛
+    #   系数 = 实际场均总进球 / 预测场均总进球（账本回算，范围 0.55-1.3）
+    xg_calibration: float = 1.0
+    # 平局基线（该联赛实际平局率，账本实证）
+    #   美职联 55% / 巴甲 60% / 瑞典超 43% vs 模型判平几乎为 0 → 平局盲点主战场
+    draw_baseline: float = 0.25
     # 自适应统计
     total_predictions: int = 0
     total_hits: int = 0
@@ -67,6 +74,22 @@ LEAGUE_PRIORS = {
     "日职": {"base_goals": 1.35, "home_adv_weight": 1.00, "market_blend_weight": 0.22},
 }
 
+# 2026-08-05 账本 113 场回算的联赛 xG 校准系数 + 平局基线
+# 系数 = 实际场均总进球 / 预测场均总进球（<1=高估需下调, >1=低估需上调）
+# 平局基线 = 该联赛实际平局率（模型判平几乎为 0 → 用基线兜底改判）
+LEAGUE_CALIBRATION_PRIORS = {
+    "K1联赛":   {"xg_calibration": 0.95, "draw_baseline": 0.33},
+    "挪超":     {"xg_calibration": 1.13, "draw_baseline": 0.12},
+    "芬超":     {"xg_calibration": 0.68, "draw_baseline": 0.14},
+    "瑞典超":   {"xg_calibration": 0.78, "draw_baseline": 0.43},
+    "欧冠":     {"xg_calibration": 0.82, "draw_baseline": 0.17},
+    "美职联":   {"xg_calibration": 0.66, "draw_baseline": 0.55},
+    "巴甲":     {"xg_calibration": 0.71, "draw_baseline": 0.60},
+    "欧罗巴":   {"xg_calibration": 0.81, "draw_baseline": 0.20},
+    "巴西杯":   {"xg_calibration": 0.55, "draw_baseline": 0.40},
+    "瑞超":     {"xg_calibration": 0.98, "draw_baseline": 0.00},
+}
+
 
 class LeagueParamsManager:
     """联赛独立参数管理器
@@ -86,11 +109,16 @@ class LeagueParamsManager:
         self._load()
 
     def _load(self):
-        """加载持久化状态"""
+        """加载持久化状态（旧文件缺 xg_calibration/draw_baseline 时用账本先验补）"""
         if self.state_path.exists():
             try:
                 raw = json.loads(self.state_path.read_text())
                 for league, data in raw.items():
+                    # 旧版本字段缺失 → 用账本先验补齐（2026-08-05 新增字段）
+                    if "xg_calibration" not in data or "draw_baseline" not in data:
+                        calib = LEAGUE_CALIBRATION_PRIORS.get(league, {})
+                        data.setdefault("xg_calibration", calib.get("xg_calibration", 1.0))
+                        data.setdefault("draw_baseline", calib.get("draw_baseline", 0.25))
                     self._params[league] = LeagueParam(**data)
             except Exception:
                 pass
@@ -104,6 +132,8 @@ class LeagueParamsManager:
                 "base_goals": param.base_goals,
                 "home_adv_weight": param.home_adv_weight,
                 "market_blend_weight": param.market_blend_weight,
+                "xg_calibration": param.xg_calibration,
+                "draw_baseline": param.draw_baseline,
                 "total_predictions": param.total_predictions,
                 "total_hits": param.total_hits,
                 "avg_overround": param.avg_overround,
@@ -118,10 +148,13 @@ class LeagueParamsManager:
 
         # 用先验初始化
         prior = LEAGUE_PRIORS.get(league, {})
+        calib = LEAGUE_CALIBRATION_PRIORS.get(league, {})
         param = LeagueParam(
             base_goals=prior.get("base_goals", self.config.default_base_goals),
             home_adv_weight=prior.get("home_adv_weight", self.config.default_home_adv),
             market_blend_weight=prior.get("market_blend_weight", self.config.default_market_blend),
+            xg_calibration=calib.get("xg_calibration", 1.0),
+            draw_baseline=calib.get("draw_baseline", 0.25),
         )
         self._params[league] = param
         return param
@@ -137,6 +170,14 @@ class LeagueParamsManager:
     def get_market_blend(self, league: str) -> float:
         """获取联赛市场混合权重"""
         return self.get_params(league).market_blend_weight
+
+    def get_xg_calibration(self, league: str) -> float:
+        """获取联赛 xG 校准系数（账本实证：挪超 1.13 低估 / 巴西杯 0.55 高估）"""
+        return self.get_params(league).xg_calibration
+
+    def get_draw_baseline(self, league: str) -> float:
+        """获取联赛平局基线（账本实证：美职联 55% / 巴甲 60% / 瑞典超 43%）"""
+        return self.get_params(league).draw_baseline
 
     def record_result(self, league: str, hit: bool, overround: float = 0.0):
         """记录一场预测结果"""
