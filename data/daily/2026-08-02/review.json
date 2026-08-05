@@ -105,8 +105,34 @@
     "n": 0,
     "hits": 0
   },
+  "layered": {
+    "log_loss_final": 1.2413,
+    "goal_framework": {
+      "n": 14,
+      "hits": 6
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 5,
+        "hit_rate": 0.4
+      },
+      "50-60%": {
+        "n": 5,
+        "hit_rate": 0.4
+      },
+      "60%+": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "<40%": {
+        "n": 3,
+        "hit_rate": 0.3333
+      }
+    },
+    "freshness_groups": {}
+  },
   "biases": [],
   "total_pnl": 0,
-  "generated_at": "2026-08-05T16:54:45.806134",
-  "sha256": "edc327b1f222b2498891b6d772a6e38a"
+  "generated_at": "2026-08-05T17:17:17.993098",
+  "sha256": "93f2f022b9013eed817da7260a6bf62f"
 }

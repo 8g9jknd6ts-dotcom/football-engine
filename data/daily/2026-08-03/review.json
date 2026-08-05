@@ -82,8 +82,30 @@
     "n": 0,
     "hits": 0
   },
+  "layered": {
+    "log_loss_final": 0.8499,
+    "goal_framework": {
+      "n": 4,
+      "hits": 2
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 1,
+        "hit_rate": 1.0
+      },
+      "50-60%": {
+        "n": 2,
+        "hit_rate": 0.5
+      },
+      "60%+": {
+        "n": 1,
+        "hit_rate": 1.0
+      }
+    },
+    "freshness_groups": {}
+  },
   "biases": [],
   "total_pnl": -8548.81,
-  "generated_at": "2026-08-05T16:54:42.034021",
-  "sha256": "b1f6c27309becb4f9e7e99e42d1bff4a"
+  "generated_at": "2026-08-05T17:17:14.095084",
+  "sha256": "a9c385b524f977c195dd729a002690bc"
 }

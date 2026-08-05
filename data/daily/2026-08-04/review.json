@@ -84,6 +84,24 @@
     "n": 0,
     "hits": 0
   },
+  "layered": {
+    "log_loss_final": 1.1384,
+    "goal_framework": {
+      "n": 5,
+      "hits": 2
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 2,
+        "hit_rate": 0.5
+      },
+      "<40%": {
+        "n": 3,
+        "hit_rate": 0.0
+      }
+    },
+    "freshness_groups": {}
+  },
   "biases": [
     {
       "dimension": "outcome",
@@ -98,6 +116,6 @@
     }
   ],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-05T16:54:37.737020",
-  "sha256": "fa43ba61c49cb1cea2639ba557c64851"
+  "generated_at": "2026-08-05T17:17:09.306236",
+  "sha256": "6c553e21bd6853b3a66903319e25fb41"
 }
