@@ -298,20 +298,34 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
         _lrep_path = ROOT / "data" / "state" / "league_report.json"
         _lrep = json.loads(_lrep_path.read_text(encoding="utf-8")) if _lrep_path.exists() else {}
         _rows = _lrep.get("leagues", [])[:10]
+        # 判平反馈（2026-08-05 结构升级：判平强度连续自适应，可核查学习过程）
+        _lp_path = ROOT / "data" / "state" / "league_params.json"
+        _lp = json.loads(_lp_path.read_text(encoding="utf-8")) if _lp_path.exists() else {}
         if _rows:
+            def _draw_cell(league):
+                p = _lp.get(league, {})
+                dp = p.get("draw_predictions", 0)
+                dh = p.get("draw_hits", 0)
+                if dp == 0:
+                    return '<td style="color:var(--dim)">—</td>'
+                prec = dh / dp
+                st = 0.85 if (dp >= 4 and dh >= 3) else (0.35 if dp >= 2 else 0.40)
+                _c = "var(--green)" if prec >= 0.5 else ("var(--amber)" if prec > 0 else "var(--red)")
+                return f'<td style="color:{_c}">{dh}/{dp} ({prec*100:.0f}%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 {st:.2f}</span></td>'
             _rows_html = "".join(
                 f'<tr><td>{r["league"]}</td><td>{r["n"]}</td>'
                 f'<td>{r["hit_rate"]*100:.0f}%</td><td>{r["avg_odds"]:.2f}</td>'
                 f'<td style="color:{"var(--green)" if r["roi"] > 0 else "var(--red)"};font-weight:700">{r["roi"]*100:+.1f}%</td>'
-                f'<td>{"✅ 价值区" if r["verdict"] == "价值区" else ("🚫 送钱区" if r["verdict"] == "送钱区" else ("⚠️ 谨慎" if r["verdict"] == "谨慎" else "👀 观望"))}</td></tr>'
+                f'<td>{"✅ 价值区" if r["verdict"] == "价值区" else ("🚫 送钱区" if r["verdict"] == "送钱区" else ("⚠️ 谨慎" if r["verdict"] == "谨慎" else "👀 观望"))}</td>'
+                f'{_draw_cell(r["league"])}</tr>'
                 for r in _rows if r["n"] >= 3
             )
             if _rows_html:
                 league_html = f'''
-  <div class="section-title">联赛分层（送钱区禁投）</div>
+  <div class="section-title">联赛分层（送钱区禁投 · 判平强度自适应）</div>
   <div style="overflow-x:auto">
   <table class="edge-table">
-    <tr><th>联赛</th><th>场数</th><th>命中率</th><th>均赔</th><th>ROI</th><th>判断</th></tr>
+    <tr><th>联赛</th><th>场数</th><th>命中率</th><th>均赔</th><th>ROI</th><th>判断</th><th>判平(命中/次数·强度)</th></tr>
     {_rows_html}
   </table>
   </div>'''
