@@ -1,11 +1,226 @@
 [
   {
+    "match_id": "2026-08-05_周三001",
+    "competition": "巴西杯",
+    "home_team": "弗鲁米嫩",
+    "away_team": "达伽马",
+    "home_win_prob": 0.3722,
+    "draw_prob": 0.31,
+    "away_win_prob": 0.3177,
+    "home_xg": 1.317,
+    "away_xg": 1.468,
+    "home_odds": 2.03,
+    "draw_odds": 2.8,
+    "away_odds": 3.62,
+    "odds_synthetic": false,
+    "handicap": -1.0,
+    "handicap_home_odds": 4.7,
+    "handicap_draw_odds": null,
+    "handicap_away_odds": 1.61,
+    "handicap_home_prob": 0.1844,
+    "handicap_draw_prob": 0.1905,
+    "handicap_away_prob": 0.6251,
+    "confidence": 0.084,
+    "wilson_trust": 0.2247,
+    "model_raw": {
+      "home": 0.374,
+      "draw": 0.2723,
+      "away": 0.3537
+    },
+    "market_fair": [
+      0.4375,
+      0.3172,
+      0.2453
+    ],
+    "top_scores": [
+      [
+        1,
+        0,
+        0.1472
+      ],
+      [
+        1,
+        1,
+        0.1286
+      ],
+      [
+        0,
+        0,
+        0.109
+      ],
+      [
+        2,
+        0,
+        0.0968
+      ],
+      [
+        0,
+        1,
+        0.0966
+      ],
+      [
+        2,
+        1,
+        0.083
+      ],
+      [
+        1,
+        2,
+        0.0568
+      ],
+      [
+        0,
+        2,
+        0.0437
+      ]
+    ],
+    "total_goals": [
+      [
+        2,
+        0.2691
+      ],
+      [
+        1,
+        0.2438
+      ],
+      [
+        3,
+        0.1943
+      ],
+      [
+        0,
+        0.109
+      ],
+      [
+        4,
+        0.1087
+      ],
+      [
+        5,
+        0.0491
+      ]
+    ],
+    "over_under_lines": {
+      "company": "威*",
+      "initial": {
+        "over": 2.1,
+        "line": "2.5",
+        "under": 1.67
+      },
+      "current": {
+        "over": 2.25,
+        "line": "2.5",
+        "under": 1.6
+      }
+    },
+    "ttg_odds": null,
+    "crs_odds": null,
+    "hafu_odds": null,
+    "htft": {
+      "HH": 0.1237,
+      "HD": 0.0947,
+      "HA": 0.051,
+      "DH": 0.1593,
+      "DD": 0.0903,
+      "DA": 0.1703,
+      "AH": 0.0587,
+      "AD": 0.0881,
+      "AA": 0.1639
+    },
+    "htft_top3": [
+      [
+        "DA",
+        0.1703
+      ],
+      [
+        "AA",
+        0.1639
+      ],
+      [
+        "DH",
+        0.1593
+      ]
+    ],
+    "reverse_upset_risk": 52.1,
+    "reverse_direction": null,
+    "reverse_compression": null,
+    "same_odds_matched": 0,
+    "same_odds_confidence": 0.0,
+    "same_odds_bias": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "combo_boost": 0.1083,
+    "djyy_enriched": false,
+    "djyy_model_prob": null,
+    "_djyy_id": null,
+    "elo_home": 1580.5,
+    "elo_away": 1500.0,
+    "draw_alert": null,
+    "kickoff": "2026-08-06 08:30:00",
+    "match_no": "周三001",
+    "sina_odds": {
+      "initial_odds": {
+        "home": 2.02,
+        "draw": 3.12,
+        "away": 3.25
+      },
+      "current_odds": {
+        "home": 2.02,
+        "draw": 3.12,
+        "away": 3.25
+      },
+      "movement": {
+        "home": "flat",
+        "draw": "flat",
+        "away": "flat"
+      },
+      "compression": {
+        "home": 1.0,
+        "draw": 1.0,
+        "away": 1.0
+      },
+      "odds_history_count": 1,
+      "asia": {
+        "company": "威*",
+        "initial": {
+          "home": 1.91,
+          "handicap": "-0.5",
+          "away": 1.83
+        },
+        "current": {
+          "home": 1.95,
+          "handicap": "-0.5",
+          "away": 1.8
+        }
+      },
+      "totals": {
+        "company": "威*",
+        "initial": {
+          "over": 2.1,
+          "line": "2.5",
+          "under": 1.67
+        },
+        "current": {
+          "over": 2.25,
+          "line": "2.5",
+          "under": 1.6
+        }
+      },
+      "match_time": "2026-08-06 08:30:00"
+    },
+    "direction": "home",
+    "direction_prob": 0.37221566417375135,
+    "league_forbidden": true
+  },
+  {
     "match_id": "2026-08-05_周三002",
     "competition": "欧冠",
     "home_team": "奥胡斯",
     "away_team": "萨巴赫",
-    "home_win_prob": 0.3694,
-    "draw_prob": 0.2889,
+    "home_win_prob": 0.3692,
+    "draw_prob": 0.2891,
     "away_win_prob": 0.3417,
     "home_xg": 1.071,
     "away_xg": 2.083,
@@ -17,14 +232,14 @@
     "handicap_home_odds": 2.72,
     "handicap_draw_odds": null,
     "handicap_away_odds": 2.14,
-    "handicap_home_prob": 0.0861,
-    "handicap_draw_prob": 0.1406,
-    "handicap_away_prob": 0.7732,
+    "handicap_home_prob": 0.0862,
+    "handicap_draw_prob": 0.1414,
+    "handicap_away_prob": 0.7724,
     "confidence": 0.1348,
     "wilson_trust": 0.2742,
     "model_raw": {
-      "home": 0.2626,
-      "draw": 0.2457,
+      "home": 0.2638,
+      "draw": 0.2446,
       "away": 0.4917
     },
     "market_fair": [
@@ -36,17 +251,17 @@
       [
         1,
         1,
-        0.1118
+        0.1116
       ],
       [
         2,
         1,
-        0.08789999999999999
+        0.0882
       ],
       [
         1,
         0,
-        0.0877
+        0.08779999999999999
       ],
       [
         1,
@@ -56,7 +271,7 @@
       [
         0,
         1,
-        0.0707
+        0.0706
       ],
       [
         2,
@@ -66,17 +281,17 @@
       [
         2,
         2,
-        0.059500000000000004
+        0.0593
       ],
       [
         0,
         0,
-        0.059000000000000004
+        0.058899999999999994
       ],
       [
         0,
         2,
-        0.047
+        0.0472
       ],
       [
         3,
@@ -87,23 +302,23 @@
     "total_goals": [
       [
         1,
-        0.3031
+        0.3045
       ],
       [
         2,
-        0.2663
+        0.2628
       ],
       [
         0,
-        0.1718
+        0.1726
       ],
       [
         3,
-        0.156
+        0.1577
       ],
       [
         4,
-        0.0692
+        0.0688
       ],
       [
         5,
@@ -112,20 +327,20 @@
     ],
     "over_under_lines": {
       "1.5": [
-        0.21760000000000002,
-        0.7824
+        0.217,
+        0.7829999999999999
       ],
       "2.5": [
-        0.4456,
-        0.5544
+        0.44520000000000004,
+        0.5548
       ],
       "3.5": [
-        0.6653,
-        0.3347
+        0.6655,
+        0.3345
       ],
       "4.5": [
-        0.8038,
-        0.1962
+        0.8035,
+        0.19649999999999998
       ]
     },
     "ttg_odds": null,
@@ -169,9 +384,9 @@
     "combo_boost": 0.0,
     "djyy_enriched": true,
     "djyy_model_prob": {
-      "home": 0.4372,
-      "draw": 0.24760000000000001,
-      "away": 0.3151
+      "home": 0.43810000000000004,
+      "draw": 0.2466,
+      "away": 0.3157
     },
     "_djyy_id": 19766313,
     "elo_home": 1521.9,
@@ -222,15 +437,15 @@
           "under": 2.1
         },
         "current": {
-          "over": 1.73,
+          "over": 1.75,
           "line": "2.5",
-          "under": 2.0
+          "under": 1.95
         }
       },
       "match_time": "2026-08-06 00:30:00"
     },
     "direction": "home",
-    "direction_prob": 0.3694177490975188,
+    "direction_prob": 0.3691681124083163,
     "league_forbidden": true
   },
   {
@@ -238,92 +453,92 @@
     "competition": "欧冠",
     "home_team": "费内巴切",
     "away_team": "格风暴",
-    "home_win_prob": 0.4261,
-    "draw_prob": 0.2756,
-    "away_win_prob": 0.2983,
+    "home_win_prob": 0.4232,
+    "draw_prob": 0.2758,
+    "away_win_prob": 0.3009,
     "home_xg": 1.069,
     "away_xg": 1.552,
-    "home_odds": 1.24,
+    "home_odds": 1.25,
     "draw_odds": 5.05,
-    "away_odds": 8.0,
+    "away_odds": 7.6,
     "odds_synthetic": false,
     "handicap": -1.0,
-    "handicap_home_odds": 1.81,
+    "handicap_home_odds": 1.84,
     "handicap_draw_odds": null,
-    "handicap_away_odds": 3.25,
-    "handicap_home_prob": 0.1428,
-    "handicap_draw_prob": 0.176,
-    "handicap_away_prob": 0.6812,
-    "confidence": 0.0844,
+    "handicap_away_odds": 3.15,
+    "handicap_home_prob": 0.1438,
+    "handicap_draw_prob": 0.1744,
+    "handicap_away_prob": 0.6818,
+    "confidence": 0.0841,
     "wilson_trust": 0.2247,
     "model_raw": {
-      "home": 0.3755,
-      "draw": 0.2532,
-      "away": 0.3712
+      "home": 0.3744,
+      "draw": 0.2515,
+      "away": 0.3741
     },
     "market_fair": [
-      0.714,
+      0.7082,
       0.1753,
-      0.1107
+      0.1165
     ],
     "top_scores": [
       [
         1,
         0,
-        0.1906
+        0.1885
       ],
       [
         0,
         0,
-        0.1741
+        0.1712
       ],
       [
         1,
         1,
-        0.1248
+        0.1244
       ],
       [
         0,
         1,
-        0.1118
+        0.1146
       ],
       [
         2,
         0,
-        0.1025
+        0.1049
       ],
       [
         2,
         1,
-        0.0703
+        0.0689
       ],
       [
         1,
         2,
-        0.0408
+        0.0415
       ],
       [
         3,
         0,
-        0.0378
+        0.0382
       ]
     ],
     "total_goals": [
       [
         1,
-        0.3023
+        0.3031
       ],
       [
         2,
-        0.2638
+        0.2657
       ],
       [
         0,
-        0.1741
+        0.1712
       ],
       [
         3,
-        0.1566
+        0.1573
       ],
       [
         4,
@@ -331,7 +546,7 @@
       ],
       [
         5,
-        0.0251
+        0.0241
       ]
     ],
     "over_under_lines": {
@@ -375,7 +590,7 @@
         0.1301
       ]
     ],
-    "reverse_upset_risk": 27.0,
+    "reverse_upset_risk": 27.4,
     "reverse_direction": null,
     "reverse_compression": null,
     "same_odds_matched": 0,
@@ -385,7 +600,7 @@
       0.0,
       0.0
     ],
-    "combo_boost": 0.1046,
+    "combo_boost": 0.1083,
     "djyy_enriched": false,
     "djyy_model_prob": null,
     "_djyy_id": null,
@@ -415,7 +630,7 @@
         "draw": 1.0,
         "away": 1.0
       },
-      "odds_history_count": 2,
+      "odds_history_count": 3,
       "asia": {
         "company": "威*",
         "initial": {
@@ -445,7 +660,7 @@
       "match_time": "2026-08-06 02:00:00"
     },
     "direction": "home",
-    "direction_prob": 0.42609917420427346,
+    "direction_prob": 0.423232264969495,
     "league_forbidden": true
   }
 ]
