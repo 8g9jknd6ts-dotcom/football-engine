@@ -68,6 +68,8 @@ def _pick_direction(h: float, d: float, a: float, draw_alert=None) -> str:
     """从最终概率选方向（argmax），draw_alert 触发且平局概率接近最高时改判平局。
 
     与结算口径一致：修复预测时 direction 为空、复盘口径不一致的问题。
+    2026-08-05 已验证：市场平局改判（market_d≥0.30 且 d≥0.22）回测 112 场
+    命中率 43.8%→42.9% 不升反降 → 维持原逻辑，勿再盲目调参（walk_forward 二次验证）。
     """
     best = max(("home", h), ("draw", d), ("away", a), key=lambda x: x[1])
     if draw_alert and best[0] != "draw" and best[1] - d < 0.08 and d >= 0.26:
@@ -1432,28 +1434,12 @@ def run_settlement(target_date: date):
 
     # 8) 在线权重学习 + 组合挖掘 + 赛果回写（只处理新增）
     if new_items:
-        print("\n[2.5/5] 在线权重学习更新...")
-        weight_learner = OnlineWeightLearner(ROOT / "data" / "state" / "online_weights.json")
-        for n in new_items:
-            r, pred = n["r"], n["pred"]
-            if not pred:
-                continue
-            if r.home_score > r.away_score:
-                actual_idx = 0  # home
-            elif r.home_score == r.away_score:
-                actual_idx = 1  # draw
-            else:
-                actual_idx = 2  # away
-            # Brier Score: sum of (prob - actual)^2 for all 3 outcomes
-            probs = [pred["home_win_prob"], pred["draw_prob"], pred["away_win_prob"]]
-            actuals = [0.0, 0.0, 0.0]
-            actuals[actual_idx] = 1.0
-            brier = sum((p - a) ** 2 for p, a in zip(probs, actuals))
-            best_sel_idx = probs.index(max(probs))
-            hit = best_sel_idx == actual_idx
-            # 更新ensemble整体表现
-            weight_learner.update("ensemble", brier=brier, hit=hit)
-        print(f"  ✓ 权重学习已更新: {weight_learner.get_weights()}")
+        # [2.5/5] 在线权重学习：已停用（2026-08-05 审计）
+        # OnlineWeightLearner 只被 update("ensemble") 写入 performances，
+        # 权重计算只认 dixon_coles/monte_carlo → current_weights 永远空；
+        # 且 ensemble.py 从不读 online_weights → 纯死代码、假学习。
+        # 真正的融合权重学习走 fusion_optimizer（fusion_weights.json，反事实验证+守卫栏）。
+        print("  ⏭ 在线权重学习已停用（死代码无消费者，权重学习走 fusion_optimizer）")
 
         print("\n[3/5] 组合挖掘更新...")
         combo_miner = ComboMiner(ROOT / "data" / "state" / "combo_stats.json")

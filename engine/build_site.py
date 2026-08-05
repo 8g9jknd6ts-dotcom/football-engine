@@ -129,6 +129,13 @@ def build_site():
         parlay_report = build_parlay_report(daily_root, ROOT / "data" / "state" / "parlay_report.json")
     except Exception as e:
         print(f"[build_site] ⚠ 串关回测报告生成跳过: {e}")
+    # 准确率趋势报告（回答"是否每天在提升"）
+    try:
+        from engine.review.accuracy_trend import build_accuracy_trend
+        trend_report = build_accuracy_trend(ROOT / "data" / "state" / "review_ledger.jsonl", ROOT / "data" / "state" / "accuracy_trend.json")
+    except Exception as e:
+        print(f"[build_site] ⚠ 准确率趋势报告生成跳过: {e}")
+        trend_report = {}
     # 每日简报（最新日期）
     try:
         if all_dates:
@@ -136,7 +143,7 @@ def build_site():
             _lp = _load_json(daily_root / _latest / "predictions.json", [])
             _tp = _load_json(daily_root / _latest / "ticket_plan.json", {})
             _rv = _load_json(daily_root / _latest / "review.json", None)
-            _brief = _build_daily_brief(web_dir, _latest, _lp, _tp, _rv, league_report, parlay_report)
+            _brief = _build_daily_brief(web_dir, _latest, _lp, _tp, _rv, league_report, parlay_report, trend_report)
             print(f"[build_site] 📋 每日简报已生成: {_brief.name}")
     except Exception as e:
         print(f"[build_site] ⚠ 每日简报生成跳过: {e}")
@@ -303,6 +310,33 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
   </div>'''
     except Exception as e:
         print(f"⚠ 联赛分层区块跳过: {e}")
+
+    # 准确率趋势（诚实回答"是否每天在提升"）
+    trend_html = ""
+    try:
+        _trend_path = ROOT / "data" / "state" / "accuracy_trend.json"
+        _trend = json.loads(_trend_path.read_text(encoding="utf-8")) if _trend_path.exists() else {}
+        _daily = _trend.get("daily", [])[-10:]
+        if _daily:
+            _v = _trend.get("verdict", "样本不足")
+            _v_color = "var(--green)" if "提升" in _v else ("var(--red)" if "下降" in _v else "var(--amber)")
+            _rows_html = "".join(
+                f'<tr><td>{d["date"]}</td><td>{d["n"]}</td><td>{d["hits"]}/{d["n"]}</td>'
+                f'<td style="font-weight:700">{d["hit_rate"]*100:.0f}%</td>'
+                f'<td>{d["brier_final"]:.2f}</td><td>{d["cum_hit_rate"]*100:.0f}%</td>'
+                f'<td style="color:{"var(--green)" if d["pnl"] > 0 else ("var(--red)" if d["pnl"] < 0 else "var(--dim)")}">{d["pnl"]:+.0f}</td></tr>'
+                for d in reversed(_daily)
+            )
+            trend_html = f'''
+  <div class="section-title">准确率趋势（最近7天 vs 前7天: <span style="color:{_v_color}">{_v}</span>）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>日期</th><th>场次</th><th>命中</th><th>命中率</th><th>Brier</th><th>累计命中率</th><th>盈亏</th></tr>
+    {_rows_html}
+  </table>
+  </div>'''
+    except Exception as e:
+        print(f"⚠ 准确率趋势区块跳过: {e}")
 
     # 渲染比赛卡片（按联赛分组）
     cards = ""
@@ -1046,6 +1080,9 @@ body {{
 
   <!-- LEAGUE LAYERS -->
   {league_html}
+
+  <!-- ACCURACY TREND -->
+  {trend_html}
 
   <!-- RESULTS REVIEW -->
   {results_html}
@@ -2151,6 +2188,7 @@ def _build_daily_brief(
     review: dict | None,
     league_report: dict | None,
     parlay_report: dict | None,
+    trend_report: dict | None = None,
 ) -> Path:
     """生成每日简报 markdown（投注决策一目了然）"""
     lines = [
@@ -2220,6 +2258,26 @@ def _build_daily_brief(
             f"命中 {review.get('hits', 0)}/{review.get('n_matches', 0)} "
             f"({review.get('hit_rate', 0)*100:.0f}%)，盈亏 **¥{review.get('total_pnl', 0):+.0f}**\n"
         )
+
+    # 准确率趋势（诚实回答"是否每天在提升"）
+    if trend_report and trend_report.get("daily"):
+        v = trend_report.get("verdict", "")
+        r7 = trend_report.get("rolling7") or {}
+        p7 = trend_report.get("prev7") or {}
+        lines.append("\n## 📈 准确率趋势\n")
+        if v:
+            lines.append(f"**判定：{v}**\n")
+        if r7 and p7:
+            lines.append(
+                f"- 最近7天：{r7.get('n', 0)}场 命中率 {r7.get('hit_rate', 0)*100:.0f}% "
+                f"Brier {r7.get('brier_final', 0):.2f}\n"
+                f"- 前7天：{p7.get('n', 0)}场 命中率 {p7.get('hit_rate', 0)*100:.0f}% "
+                f"Brier {p7.get('brier_final', 0):.2f}\n"
+            )
+        lines.append("\n| 日期 | 场次 | 命中 | 命中率 | 累计命中率 |\n")
+        lines.append("|---|---|---|---|---|\n")
+        for d in trend_report["daily"][-7:]:
+            lines.append(f"| {d['date']} | {d['n']} | {d['hits']}/{d['n']} | {d['hit_rate']*100:.0f}% | {d['cum_hit_rate']*100:.0f}% |\n")
 
     out = web_dir / f"daily-brief-{target_date}.md"
     out.write_text("".join(lines), encoding="utf-8")
