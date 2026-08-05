@@ -156,6 +156,12 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     print("\n[2/8] 加载球队评级...")
     elo_updater = EloUpdater(ROOT / "data" / "models" / "team_ratings.json")
 
+    # 3.5 数据新鲜度护栏（2026-08-06 借鉴 MBS 概率系统）
+    # 长时间无正式比赛（季前赛/杯赛间歇/跨联赛）→ 概率向均势收缩，避免旧状态当新状态
+    from engine.learning.freshness import FreshnessTracker
+    freshness_tracker = FreshnessTracker(ROOT / "data" / "state" / "match_history.db")
+    freshness_active = 0
+
     # 4. 初始化增强模块
     print("\n[3/8] 初始化增强分析模块...")
     trust_system = TrustSystem()
@@ -595,6 +601,17 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         if temp_scaler.is_fitted:
             final_h, final_d, final_a = temp_scaler.calibrate((final_h, final_d, final_a))
 
+        # --- 数据新鲜度护栏（2026-08-06） ---
+        # 借鉴 MBS 概率系统：长时间无正式比赛 → 不确定性扩散（概率向均势收缩）
+        _fresh = freshness_tracker.evaluate(fixture.home_team, fixture.away_team, target_date)
+        if _fresh.shrink > 0:
+            _fh, _fd, _fa = freshness_tracker.apply([final_h, final_d, final_a], _fresh.shrink)
+            final_h, final_d, final_a = _fh, _fd, _fa
+            freshness_active += 1
+            if _fresh.risk == "alert":
+                print(f"  ⚠ 新鲜度预警 [{fixture.home_team} {_fresh.home_days}天 / "
+                      f"{fixture.away_team} {_fresh.away_days}天] 概率收缩 {_fresh.shrink:.0%} → 均势")
+
         # --- 平局预警分类 ---
         # 冷门平局: 一方被市场看好但模型+市场证据显示存在平局风险
         # 均势平局: 双方实力接近、平局被市场低估
@@ -747,6 +764,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             "djyy_top_scores": _djyy_norm[:8] if _djyy_norm else None,
             "mc_top_scores": _mc_norm[:8] if _mc_norm else None,
             "market_signal": _market_signal,
+            # 数据新鲜度护栏（2026-08-06）：无正式比赛天数 + 风险级别 + 收缩强度
+            "freshness": _fresh.to_dict(),
             # 总进球分布：只用模型真分布（top_total_goals）。
             # DJYY totals 是大小球让球线独立概率(1.5大/2.5大/3.5大…)，不是总进球数分布，
             # 混入会导致概率和>1的假分布（8/5 奥胡斯 total_goals 和=1.868 即此污染）。
@@ -1078,6 +1097,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     print(f"\n{'='*60}")
     print(f"  流水线完成 ✓")
     print(f"  预测: {len(predictions)} 场")
+    if freshness_active:
+        print(f"  ⚠ 新鲜度护栏触发: {freshness_active} 场（概率向均势收缩）")
     print(f"  投注: {ticket_plan.total_stake} 元 (乘数={effective_mult:.2f})")
     print(f"{'='*60}")
 
@@ -1787,6 +1808,21 @@ def run_settlement(target_date: date):
         print(f"  ✓ 复盘: {review_report['n_matches']}场, 命中率{review_report.get('hit_rate', 0):.0%}")
         src_b = review_report.get("source_brier", {})
         print(f"    Brier: model={src_b.get('model', '?')} market={src_b.get('market', '?')} djyy={src_b.get('djyy', '?')} final={src_b.get('final', '?')}")
+        _layered = review_report.get("layered", {})
+        _ll = _layered.get("log_loss_final")
+        if _ll is not None:
+            print(f"    LogLoss(final): {_ll}")
+        _gf = _layered.get("goal_framework", {})
+        if _gf.get("n"):
+            print(f"    进球框架: {_gf.get('hits')}/{_gf.get('n')} ({_gf.get('hits', 0) / _gf.get('n', 1):.0%})")
+        _bands = _layered.get("prob_bands", {})
+        if _bands:
+            _band_str = " | ".join(f"{k}:{v['hit_rate']:.0%}({v['n']})" for k, v in _bands.items())
+            print(f"    概率分段: {_band_str}")
+        _fres = _layered.get("freshness_groups", {})
+        if _fres:
+            _fres_str = " | ".join(f"{k}:{v['hit_rate']:.0%}({v['n']})" for k, v in _fres.items())
+            print(f"    新鲜度分层: {_fres_str}")
         for bias in review_report.get("biases", []):
             print(f"    ⚠ 偏差: {bias['dimension']}:{bias['key']} {bias['outcome']} gap={bias['gap']:+.3f}")
     else:

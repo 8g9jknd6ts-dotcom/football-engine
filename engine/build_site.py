@@ -2303,6 +2303,35 @@ def _results_section(results, predictions, review_ledger=None):
     hit_rate = hits / matched
     avg_brier = total_brier / matched
 
+    # 分层评价（2026-08-06 借鉴 MBS 方法论）：从 review.json 读 LogLoss/进球框架/概率分段
+    _layered_html = ""
+    _rv_date = ""
+    if results and results[0].get("match_id", ""):
+        _mid0 = results[0]["match_id"]
+        # match_id 形如 "2026-08-04_周二001"，前10位是日期
+        _rv_date = _mid0[:10] if len(_mid0) >= 10 and _mid0[4] == "-" else ""
+    _rv = _load_json(ROOT / "data" / "daily" / _rv_date / "review.json", None) if _rv_date else None
+    if _rv and _rv.get("layered"):
+        _ly = _rv["layered"]
+        _ll = _ly.get("log_loss_final")
+        _gf = _ly.get("goal_framework", {})
+        _bands = _ly.get("prob_bands", {})
+        _fres = _ly.get("freshness_groups", {})
+        _chips = ""
+        if _ll is not None:
+            _chips += f'<div class="ts-chip"><div class="ts-label">LogLoss(final)</div><div class="ts-val" style="color:{"var(--green)" if _ll < 0.9 else "var(--amber)"}">{_ll:.3f}</div></div>'
+        if _gf.get("n"):
+            _gf_rate = _gf["hits"] / _gf["n"]
+            _chips += f'<div class="ts-chip"><div class="ts-label">进球框架</div><div class="ts-val" style="color:{"var(--green)" if _gf_rate >= 0.5 else "var(--amber)"}">{_gf_rate:.0%} ({_gf["hits"]}/{_gf["n"]})</div></div>'
+        if _bands:
+            _band_str = " · ".join(f"{k}:{v['hit_rate']:.0%}" for k, v in _bands.items())
+            _chips += f'<div class="ts-chip"><div class="ts-label">概率分段</div><div class="ts-val" style="font-size:0.68rem;">{_band_str}</div></div>'
+        if _fres:
+            _fres_str = " · ".join(f"{k}:{v['hit_rate']:.0%}" for k, v in _fres.items())
+            _chips += f'<div class="ts-chip"><div class="ts-label">新鲜度分层</div><div class="ts-val" style="font-size:0.68rem;">{_fres_str}</div></div>'
+        if _chips:
+            _layered_html = f'<div class="results-summary" style="margin-top:6px;">{_chips}</div>'
+
     return f"""
   <div class="section-title">赛果复盘</div>
   <div class="results-summary">
@@ -2310,6 +2339,7 @@ def _results_section(results, predictions, review_ledger=None):
     <div class="ts-chip"><div class="ts-label">平均Brier</div><div class="ts-val" style="color:{'var(--green)' if avg_brier < 0.5 else 'var(--amber)'}">{avg_brier:.3f}</div></div>
     <div class="ts-chip"><div class="ts-label">总盈亏</div><div class="ts-val" style="color:{'var(--green)' if total_pnl >= 0 else 'var(--red)'}">&yen;{total_pnl:+.0f}</div></div>
   </div>
+  {_layered_html}
   <div class="results-table-wrap">
     <table class="results-table">
       <tr><th>比赛</th><th>比分</th><th>实际</th><th>预测</th><th>命中</th><th>Brier</th><th>盈亏</th></tr>

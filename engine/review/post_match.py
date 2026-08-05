@@ -90,6 +90,12 @@ class MatchReview:
     score_mc_rank: int = -1
     # 盘口信号（2026-08-05 结构化验证）：market_signal 最强方向是否命中
     market_signal_hit: bool | None = None
+    # 分层评价（2026-08-06 借鉴 MBS 概率系统 8/3 批次自检方法论）
+    # 结果层/进球框架层/比分层分开统计，禁止合并单一命中率掩盖结构性失真
+    log_loss_final: float | None = None      # 概率质量（越低越好，不随命中次数波动）
+    goal_framework_hit: bool | None = None   # 进球框架：预测大小球方向(≥3/≤2) vs 实际总进球
+    prob_band: str = ""                      # 概率分段：<40% / 40-50% / 50-60% / 60%+
+    freshness_risk: str = ""                 # 新鲜度风险：ok / watch / alert
 
 
 @dataclass
@@ -112,6 +118,73 @@ def brier_score(probs: list, actual_idx: int) -> float:
         return 1.0
     return sum((p - (1.0 if i == actual_idx else 0.0)) ** 2
                for i, p in enumerate(probs[:3]))
+
+
+def log_loss_score(probs: list, actual_idx: int) -> float:
+    """三分类 LogLoss（MBS 概率质量主指标，2026-08-06 引入）"""
+    import math as _m
+    if not probs or len(probs) < 3:
+        return _m.log(3.0)  # 无数据=均匀分布熵
+    p = max(min(probs[actual_idx], 0.999), 0.001)
+    return -_m.log(p)
+
+
+def _log_loss(probs: list, actual_idx: int) -> float:
+    """账本字段计算入口（兼容 None）"""
+    if not probs:
+        return None
+    return round(log_loss_score(probs, actual_idx), 4)
+
+
+def _prob_band(conf: float) -> str:
+    """MBS 概率分段（8/3 自检实证：50-60% 段最危险）"""
+    if conf < 0.40:
+        return "<40%"
+    if conf < 0.50:
+        return "40-50%"
+    if conf < 0.60:
+        return "50-60%"
+    return "60%+"
+
+
+def _goal_framework_hit(pred: dict, total_goals: int) -> bool | None:
+    """进球框架：模型总进球≥3 概率 >50% → 预测 ≥3球；否则 ≤2球。
+    与实际总进球比较。MBS 用文字框架（≥3/≤2/2-3中枢），我们用可落盘的 Over2.5 阈值。
+    total_goals 存在两种历史格式（2026-08-06 容错）：
+      A. 恰好分布 [[goals, p], ...] 且 Σp≈1（如 [[1,0.35],[0,0.25],[2,0.24],...]）
+      B. 累积分布 [[goals, p], ...] 递减（至少N球，如 [[1,0.77],[2,0.53],[3,0.31],...]）
+    """
+    tg = pred.get("total_goals") or pred.get("top_total_goals")
+    if not tg:
+        return None
+    if not isinstance(tg, (list, tuple)):
+        return None
+    items = []
+    for it in tg:
+        if (isinstance(it, (list, tuple)) and len(it) >= 2
+                and isinstance(it[0], (int, float)) and isinstance(it[1], (int, float))):
+            items.append((int(it[0]), float(it[1])))
+    if not items:
+        return None
+    items.sort(key=lambda x: x[0])  # 按进球数升序
+    probs = {g: p for g, p in items}
+    # 判定格式：累积分布特征 = 首项（最低进球数）概率 >= 0.5 且严格递减
+    g0, p0 = items[0]
+    cum = p0 >= 0.5 and all(items[i][1] > items[i + 1][1] for i in range(len(items) - 1))
+    if cum:
+        # 累积：P(≥3球) = 进球数3对应项（若缺，用 2 与 4 线性内插的保守值）
+        p_over25 = probs.get(3)
+        if p_over25 is None:
+            p2, p4 = probs.get(2), probs.get(4)
+            p_over25 = (p2 + p4) / 2 if p2 is not None and p4 is not None else None
+    else:
+        # 恰好分布：P(≥3球) = Σ goals>=3
+        p_over25 = sum(p for g, p in items if g >= 3)
+    if p_over25 is None or p_over25 <= 0 or p_over25 >= 1:
+        return None
+    pred_over = p_over25 > 0.5
+    actual_over = total_goals >= 3
+    return pred_over == actual_over
 
 
 def wilson_lower(hits: int, n: int, z: float = 1.96) -> float:
@@ -372,6 +445,11 @@ class PostMatchReviewer:
                 score_djyy_rank=int(pred.get("djyy_score_rank", -1) or -1),
                 score_mc_rank=int(pred.get("mc_score_rank", -1) or -1),
                 market_signal_hit=pred.get("market_signal_hit"),
+                # 分层评价（2026-08-06 借鉴 MBS 方法论）
+                log_loss_final=_log_loss(final_prob, actual_idx) if final_prob else None,
+                goal_framework_hit=_goal_framework_hit(pred, hs + as_),
+                prob_band=_prob_band(max(final_prob) if final_prob else 0),
+                freshness_risk=(pred.get("freshness") or {}).get("risk", ""),
             )
             reviews.append(review)
 
@@ -442,6 +520,46 @@ class PostMatchReviewer:
             "hits": sum(1 for r in msig_items if r.market_signal_hit),
         }
 
+        # 分层评价（2026-08-06 借鉴 MBS 8/3 批次自检）：结果/进球框架/比分 分开统计
+        # LogLoss 概率质量（主指标，不随命中次数波动）
+        _ll = [r.log_loss_final for r in reviews if r.log_loss_final is not None]
+        # 进球框架命中（预测 Over2.5 方向 vs 实际总进球）
+        _gf = [r for r in reviews if r.goal_framework_hit is not None]
+        # 概率分段（MBS 实证 50-60% 段最危险 → 单独跟踪）
+        _bands: dict[str, dict] = {}
+        for r in reviews:
+            if not r.prob_band:
+                continue
+            b = _bands.setdefault(r.prob_band, {"n": 0, "hits": 0})
+            b["n"] += 1
+            if r.hit:
+                b["hits"] += 1
+        # 新鲜度风险分层（验证护栏有效性）
+        _fresh_groups: dict[str, dict] = {}
+        for r in reviews:
+            if not r.freshness_risk:
+                continue
+            g = _fresh_groups.setdefault(r.freshness_risk, {"n": 0, "hits": 0})
+            g["n"] += 1
+            if r.hit:
+                g["hits"] += 1
+
+        layered = {
+            "log_loss_final": round(sum(_ll) / len(_ll), 4) if _ll else None,
+            "goal_framework": {
+                "n": len(_gf),
+                "hits": sum(1 for r in _gf if r.goal_framework_hit),
+            },
+            "prob_bands": {
+                k: {"n": v["n"], "hit_rate": round(v["hits"] / v["n"], 4)}
+                for k, v in sorted(_bands.items())
+            },
+            "freshness_groups": {
+                k: {"n": v["n"], "hit_rate": round(v["hits"] / v["n"], 4)}
+                for k, v in sorted(_fresh_groups.items())
+            },
+        }
+
         # 偏差检测
         biases = self._detect_biases(reviews)
 
@@ -458,6 +576,7 @@ class PostMatchReviewer:
             "score_rank_hist": score_rank_hist,
             "score_source_stats": score_source_stats,
             "market_signal_stats": market_signal_stats,
+            "layered": layered,
             "biases": [asdict(b) for b in biases],
             "total_pnl": round(sum(r.pnl for r in reviews), 2),
             "generated_at": datetime.now().isoformat(),
