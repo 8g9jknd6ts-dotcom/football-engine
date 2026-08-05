@@ -55,6 +55,7 @@ from engine.learning.league_params import LeagueParamsManager
 from engine.learning.fusion_optimizer import FusionOptimizer, FusionWeights
 from engine.storage.match_db import MatchDB
 from engine.prediction.htft_model import htft_probabilities, top_htft
+from engine.team_aliases import normalize_team, loose_normalize
 
 
 def load_config(name: str) -> dict:
@@ -326,6 +327,13 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         if not _sina_match:
             # fallback: 队名精确匹配
             _sina_match = sina_odds_map.get((fixture.home_team, fixture.away_team))
+        if not _sina_match:
+            # fallback: 队名归一化匹配（译名变体，如 奥林匹亚 vs 奥林匹亚科斯）
+            _hk_n, _ak_n = normalize_team(fixture.home_team), normalize_team(fixture.away_team)
+            for (_sh, _sa), _v in sina_odds_map.items():
+                if (normalize_team(_sh), normalize_team(_sa)) == (_hk_n, _ak_n):
+                    _sina_match = _v
+                    break
         if not _sina_match:
             # fallback: 模糊匹配
             import re as _re
@@ -971,10 +979,13 @@ def run_settlement(target_date: date):
     daily_root = ROOT / "data" / "daily"
 
     # 1) 全局预测索引：竞彩编号 → (目录日期, 完整match_id)；match_id → pred；队名 → pred
-    pno_place: dict[str, tuple[str, str]] = {}
+    # 1) 全局预测索引：竞彩编号 → [(目录日期, 完整match_id)]；match_id → pred；队名 → pred
+    # 注意：竞彩编号跨周复用（如"周二002"每周都有），编号必须按日期就近解析
+    pno_place: dict[str, list[tuple[str, str]]] = {}
     pred_by_mid: dict[str, dict] = {}
-    pred_by_team: dict[str, dict] = {}
-    _norm = lambda s: (s or "").replace("迈阿密", "迈").replace("国际", "").replace("罗姆", "").replace("体育", "").replace("竞技", "").strip()
+    pred_by_team: dict[str, tuple[str, dict]] = {}  # 队名key -> (目录日期, pred)
+    _norm = normalize_team
+    _loose = loose_normalize
     if daily_root.exists():
         for folder in sorted(daily_root.iterdir()):
             if not folder.is_dir():
@@ -992,12 +1003,14 @@ def run_settlement(target_date: date):
                     pred_by_mid.setdefault(_mid, _p)
                     _pno = _mid.split("_", 1)[-1] if "_" in _mid else ""
                     if _pno:
-                        pno_place.setdefault(_pno, (folder.name, _mid))
+                        pno_place.setdefault(_pno, []).append((folder.name, _mid))
                 _hk, _ak = _p.get("home_team", ""), _p.get("away_team", "")
                 if _hk and _ak:
-                    pred_by_team.setdefault(f"{_hk}_vs_{_ak}", _p)
-                    pred_by_team.setdefault(f"{_norm(_hk)}_vs_{_norm(_ak)}", _p)
-    print(f"  ✓ 全局预测索引: 编号 {len(pno_place)} / match_id {len(pred_by_mid)} / 队名 {len(pred_by_team)}")
+                    # 三级队名索引：原文 / 主归一化 / 宽松归一化（译名变体兜底）
+                    pred_by_team.setdefault(f"{_hk}_vs_{_ak}", (folder.name, _p))
+                    pred_by_team.setdefault(f"{_norm(_hk)}_vs_{_norm(_ak)}", (folder.name, _p))
+                    pred_by_team.setdefault(f"{_loose(_hk)}_vs_{_loose(_ak)}", (folder.name, _p))
+    print(f"  ✓ 全局预测索引: 编号 {sum(len(v) for v in pno_place.values())} / match_id {len(pred_by_mid)} / 队名 {len(pred_by_team)}")
 
     # 2) 幂等键：所有目录 results.json 中已记录的 (目录日期, 主队, 客队) → 比分
     #    比分也记录：若同一场比赛比分发生变化（如"进行中 0-0"被修正为终场 3-0），
@@ -1016,7 +1029,7 @@ def run_settlement(target_date: date):
                 continue
             for _x in _rs:
                 if _x.get("home_team") and _x.get("away_team"):
-                    settled_pairs[(folder.name, _x.get("home_team"), _x.get("away_team"))] = (
+                    settled_pairs[(folder.name, _norm(_x.get("home_team")), _norm(_x.get("away_team")))] = (
                         _x.get("home_score"), _x.get("away_score"))
     print(f"  ✓ 已结算基准: {len(settled_pairs)} 条 (results.json 幂等保护)")
 
@@ -1028,27 +1041,24 @@ def run_settlement(target_date: date):
     if sina_file.exists():
         try:
             sina_results_raw = json.loads(sina_file.read_text(encoding="utf-8"))
-            existing_teams = {(r.home_team, r.away_team): (r.home_score, r.away_score) for r in results}
+            existing_teams = {(_norm(r.home_team), _norm(r.away_team)): r for r in results}
             sina_added = 0
             sina_fixed = 0
             for sr in sina_results_raw:
-                tkey = (sr.get("home_team"), sr.get("away_team"))
+                tkey = (_norm(sr.get("home_team")), _norm(sr.get("away_team")))
                 if tkey in existing_teams:
-                    # 同队名已存在：比分不同则用新浪赛果修正（终场为准）
-                    if existing_teams[tkey] != (sr.get("home_score"), sr.get("away_score")):
-                        for r in results:
-                            if (r.home_team, r.away_team) == tkey:
-                                print(f"  ↻ 赛果修正: {tkey[0]} vs {tkey[1]} "
-                                      f"{existing_teams[tkey][0]}-{existing_teams[tkey][1]} → "
-                                      f"{sr['home_score']}-{sr['away_score']}")
-                                r.home_score = sr["home_score"]
-                                r.away_score = sr["away_score"]
-                                r.match_no = sr.get("match_no", r.match_no)
-                                # 半场比分同步（半全场玩法结算依赖）
-                                r.half_home_score = int(sr.get("half_home_score") or 0)
-                                r.half_away_score = int(sr.get("half_away_score") or 0)
-                                break
-                        existing_teams[tkey] = (sr["home_score"], sr["away_score"])
+                    # 同队名（归一化后）已存在：比分不同则用新浪赛果修正（终场为准）
+                    r = existing_teams[tkey]
+                    if (r.home_score, r.away_score) != (sr.get("home_score"), sr.get("away_score")):
+                        print(f"  ↻ 赛果修正: {tkey[0]} vs {tkey[1]} "
+                              f"{r.home_score}-{r.away_score} → "
+                              f"{sr['home_score']}-{sr['away_score']}")
+                        r.home_score = sr["home_score"]
+                        r.away_score = sr["away_score"]
+                        r.match_no = sr.get("match_no", r.match_no)
+                        # 半场比分同步（半全场玩法结算依赖）
+                        r.half_home_score = int(sr.get("half_home_score") or 0)
+                        r.half_away_score = int(sr.get("half_away_score") or 0)
                         sina_fixed += 1
                     continue
                 results.append(MatchResult(
@@ -1063,7 +1073,7 @@ def run_settlement(target_date: date):
                     half_home_score=int(sr.get("half_home_score") or 0),
                     half_away_score=int(sr.get("half_away_score") or 0),
                 ))
-                existing_teams[tkey] = (sr["home_score"], sr["away_score"])
+                existing_teams[tkey] = results[-1]
                 sina_added += 1
             print(f"  ✓ 新浪补充: {sina_added} 新增, {sina_fixed} 比分修正 (total={len(results)})")
         except Exception as e:
@@ -1094,27 +1104,55 @@ def run_settlement(target_date: date):
 
     # 3) 归一化：确定每场比赛的 (目录日期, 完整match_id, 是否新增)
     norm = []
+    _target_iso = target_date.isoformat()
     for r in results:
         _rno = getattr(r, "match_no", "") or ""
-        _placed = pno_place.get(_rno) if _rno else None
-        if _placed:
-            r_date, r_mid = _placed
-        else:
-            r_mid = getattr(r, "match_id", "") or ""
-            r_date = ""
+        _rmid = getattr(r, "match_id", "") or ""
+        r_date, r_mid, pred = "", _rmid, None
+        # 1) 完整 match_id 直接命中（带日期前缀，如 "2026-08-04_周二002"）
+        if pred_by_mid.get(_rmid) is not None:
+            pred = pred_by_mid[_rmid]
+            r_mid = _rmid
+            r_date = _rmid.split("_", 1)[0] if "_" in _rmid and _rmid[:4].isdigit() else ""
+        if pred is None:
+            # 2) 竞彩编号解析：编号跨周复用（"周二002"每周都有），
+            #    必须按与目标日期的距离就近选择，距离 >2 天不认（防跨周误认）
+            _pno = _rno or (_rmid.split("_", 1)[-1] if "_" in _rmid else _rmid)
+            if _pno:
+                _cands = pno_place.get(_pno)
+                if _cands:
+                    def _dkey(_c: tuple) -> int:
+                        try:
+                            from datetime import date as _d
+                            return abs((_d.fromisoformat(_c[0]) - _d.fromisoformat(_target_iso)).days)
+                        except Exception:
+                            return 999
+                    _best = min(_cands, key=_dkey)
+                    if _dkey(_best) <= 2:
+                        r_date, r_mid = _best
+                        pred = pred_by_mid.get(r_mid)
+        if pred is None:
+            # 3) 队名三级匹配：原文 → 主归一化 → 宽松归一化（译名变体兜底）
+            pred_meta = (pred_by_team.get(f"{r.home_team}_vs_{r.away_team}")
+                         or pred_by_team.get(f"{_norm(r.home_team)}_vs_{_norm(r.away_team)}")
+                         or pred_by_team.get(f"{_loose(r.home_team)}_vs_{_loose(r.away_team)}"))
+            if pred_meta:
+                # 用预测身份统一赛果：新浪数字ID("3802146") → 竞彩编号("2026-08-04_周二004")
+                r_date, pred = pred_meta
+                r_mid = pred.get("match_id") or _rmid
+        if not r_date:
             if r_mid and "_" in r_mid and r_mid[:4].isdigit():
                 r_date = r_mid.split("_")[0]
             if not r_date:
-                r_date = getattr(r, "match_date", "") or target_date.isoformat()
-        key = (r_date, r.home_team, r.away_team)
+                r_date = getattr(r, "match_date", "") or _target_iso
+        key = (r_date, _norm(r.home_team), _norm(r.away_team))
         old_score = settled_pairs.get(key)
         # 新增判定：无记录，或比分与已记录不同（进行中误抓被修正为终场）→ 重新结算
         is_new = old_score is None or old_score != (r.home_score, r.away_score)
         norm.append({
             "date": r_date, "match_id": r_mid, "r": r,
             "is_new": is_new, "key": key,
-            "pred": pred_by_mid.get(r_mid) or pred_by_team.get(f"{r.home_team}_vs_{r.away_team}")
-                    or pred_by_team.get(f"{_norm(r.home_team)}_vs_{_norm(r.away_team)}"),
+            "pred": pred,
         })
 
     # 3.5) 同一预测合并：DJYY 与新浪可能对同一场比赛返回不同队名/比分
@@ -1148,7 +1186,7 @@ def run_settlement(target_date: date):
     _seen_team: set = set()
     _dedup = []
     for n in norm:
-        _tk = (n["date"], n["r"].home_team, n["r"].away_team)
+        _tk = (n["date"], _norm(n["r"].home_team), _norm(n["r"].away_team))
         if _tk in _seen_team:
             continue
         _seen_team.add(_tk)
@@ -1195,18 +1233,55 @@ def run_settlement(target_date: date):
             except Exception:
                 pass
         existing_ids = {e.get("match_id") for e in existing}
-        existing_by_team = {(e.get("home_team"), e.get("away_team")): e for e in existing}
+
+        def _mid_rank(mid: str) -> int:
+            """match_id 身份规范度：竞彩编号+日期前缀 > 竞彩编号 > 其他(数字ID/队名拼接)"""
+            if not mid:
+                return 0
+            _no = mid.split("_", 1)[-1]
+            if "周" in _no and "_" in mid and mid[:4].isdigit():
+                return 3
+            if "周" in _no:
+                return 2
+            return 1
+
+        # 归一化去重：同场多条（译名不同 / match_id 格式不同，如数字ID vs 竞彩编号）
+        # 保留身份更规范的一条，删除其余 → 从根上清理 results.json 脏数据
+        _seen_idx: dict[tuple, int] = {}
+        _keep = []
+        for _e in existing:
+            _k = (_norm(_e.get("home_team")), _norm(_e.get("away_team")))
+            if _k not in _seen_idx:
+                _seen_idx[_k] = len(_keep)
+                _keep.append(_e)
+            else:
+                _cur = _keep[_seen_idx[_k]]
+                if _mid_rank(_e.get("match_id", "")) > _mid_rank(_cur.get("match_id", "")):
+                    _keep[_seen_idx[_k]] = _e
+        if len(_keep) < len(existing):
+            print(f"    ↻ 归一化去重: results.json {len(existing)} → {len(_keep)} 条 (同场译名/编号重复)")
+        if len(_keep) < len(existing):
+            print(f"    ↻ 归一化去重: results.json {len(existing)} → {len(_keep)} 条 (同场译名/编号重复)")
+        _dedup_changed = len(_keep) < len(existing)
+        existing = _keep
+        existing_ids = {e.get("match_id") for e in existing}
+        existing_by_team = {(_norm(e.get("home_team")), _norm(e.get("away_team"))): e for e in existing}
         added = 0
         fixed = 0
         for item in r_list:
-            _tkey = (item["home_team"], item["away_team"])
+            _tkey = (_norm(item["home_team"]), _norm(item["away_team"]))
             old = existing_by_team.get(_tkey)
             if old is not None:
+                # 同场已存在：统一身份（match_id 一律以本轮规范为准，如 周二002 → 2026-08-04_周二002）
+                if old.get("match_id") != item["match_id"]:
+                    old["match_id"] = item["match_id"]
+                    fixed += 1
                 # 同队名已存在：比分不同则覆盖（终场比分修正进行中误抓）
                 if (old.get("home_score"), old.get("away_score")) != (item["home_score"], item["away_score"]):
                     old["home_score"] = item["home_score"]
                     old["away_score"] = item["away_score"]
-                    old["match_id"] = item["match_id"] or old.get("match_id", "")
+                    old["home_team"] = item["home_team"]
+                    old["away_team"] = item["away_team"]
                     old["half_home_score"] = item.get("half_home_score", old.get("half_home_score", 0))
                     old["half_away_score"] = item.get("half_away_score", old.get("half_away_score", 0))
                     fixed += 1
@@ -1234,7 +1309,7 @@ def run_settlement(target_date: date):
             existing_by_team[_tkey] = item
             existing_ids.add(item["match_id"])
             added += 1
-        if added or fixed:
+        if added or fixed or _dedup_changed:
             r_file.write_text(json.dumps(existing, ensure_ascii=False, indent=2))
         stored_total += added + fixed
         print(f"  ✓ results.json 已保存到 {r_date} (+{added}, total={len(existing)})")
@@ -1432,8 +1507,9 @@ def run_settlement(target_date: date):
         except Exception as e:
             print(f"  ⚠️ 联赛自适应跳过: {e}")
 
-    # 8) 在线权重学习 + 组合挖掘 + 赛果回写（只处理新增）
-    if new_items:
+    # 8) 在线权重学习 + 组合挖掘（只处理新增）
+    # 8.5) 赛果回写（[3.5/5]）对全部赛果执行：无新赛果时也补写历史 actual_result（幂等）
+    if new_items or norm:
         # [2.5/5] 在线权重学习：已停用（2026-08-05 审计）
         # OnlineWeightLearner 只被 update("ensemble") 写入 performances，
         # 权重计算只认 dixon_coles/monte_carlo → current_weights 永远空；
@@ -1469,9 +1545,11 @@ def run_settlement(target_date: date):
         print(f"  ✓ 组合统计已更新")
 
         # 将赛果写回 predictions.json（自愈: 写回预测所在目录）
+        # 遍历 norm（全部赛果）而非 new_items：已结算场次也能补写 actual_result
+        # （如译名修复前结算过、actual_result 仍为 None 的历史场次）。写回幂等。
         print("\n[3.5/5] 更新预测赛果...")
         _touch: dict[str, list] = {}
-        for n in new_items:
+        for n in norm:
             r, pred = n["r"], n["pred"]
             if not pred:
                 continue

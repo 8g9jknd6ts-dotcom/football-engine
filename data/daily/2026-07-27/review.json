@@ -10,49 +10,49 @@
     "final": 0.6081
   },
   "by_league": {
-    "瑞典超": {
-      "n": 1,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.9161
-    },
     "挪超": {
       "n": 1,
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
       "avg_brier": 0.3
-    }
-  },
-  "by_confidence_tier": {
-    "mid": {
+    },
+    "瑞典超": {
       "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9161
-    },
+    }
+  },
+  "by_confidence_tier": {
     "high": {
       "n": 1,
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
       "avg_brier": 0.3
-    }
-  },
-  "by_odds_band": {
-    "1.5-2.0": {
+    },
+    "mid": {
       "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9161
-    },
+    }
+  },
+  "by_odds_band": {
     "1.0-1.5": {
       "n": 1,
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
       "avg_brier": 0.3
+    },
+    "1.5-2.0": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9161
     }
   },
   "biases": [],
   "total_pnl": 0,
-  "generated_at": "2026-08-03T03:20:39.918488",
-  "sha256": "64b4f6e55e5376d2568665c1968c8a73"
+  "generated_at": "2026-08-05T11:12:32.487620",
+  "sha256": "76185dd6c474d0ae91dfb9ec9fc85145"
 }

@@ -143,12 +143,15 @@ class CPPIStrategy:
         else:
             s.floor = new_floor
 
-        # 记录历史
-        s.history.append({
+        # 记录历史（仅在状态有变化时记录，避免定时结算空转刷屏）
+        _last = s.history[-1] if s.history else None
+        _snap = {
             "bankroll": round(new_bankroll, 2),
             "peak": round(s.peak_bankroll, 2),
             "floor": round(s.floor, 2),
-        })
+        }
+        if _last != _snap:
+            s.history.append(_snap)
         if len(s.history) > 365:
             s.history = s.history[-365:]
 

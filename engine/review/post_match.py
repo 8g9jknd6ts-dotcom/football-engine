@@ -8,10 +8,13 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
 from dataclasses import dataclass, field, asdict
 from datetime import datetime
 from pathlib import Path
 import re
+
+from engine.team_aliases import normalize_team, loose_normalize
 
 
 def _extract_fixture(match_id: str) -> str:
@@ -37,6 +40,13 @@ def _extract_pno(match_id: str) -> str:
     if re.match(r'^(周一|周二|周三|周四|周五|周六|周日)\d+$', suffix):
         return suffix
     return ""
+
+
+def _norm_match_no(match_id: str) -> str:
+    """归一化 match_id 为竞彩编号段（账本幂等键用）：'2026-07-20_周一201' → '周一201'"""
+    if not match_id:
+        return ""
+    return match_id.split("_", 1)[-1] if "_" in match_id else match_id
 
 
 @dataclass
@@ -109,19 +119,23 @@ class ReviewLedger:
         self.path.parent.mkdir(parents=True, exist_ok=True)
 
     def append(self, reviews: list[MatchReview]):
-        """追加复盘记录（按 (date, match_id) 去重，防止重复结算时账本膨胀）"""
+        """追加复盘记录（按 (date, 竞彩编号) 去重，防止重复结算时账本膨胀）
+
+        幂等 key 用归一化编号而非 match_id 原文：
+        "周一201" 与 "2026-07-20_周一201" 是同一场，不得重复记账。
+        """
         # 已存在的键（账本可能较大，只在有记录时构建一次）
         existing_keys = self._existing_keys()
         with open(self.path, "a", encoding="utf-8") as f:
             for r in reviews:
-                key = (r.date, r.match_id)
+                key = (r.date, _norm_match_no(r.match_id))
                 if key in existing_keys:
                     continue
                 f.write(json.dumps(asdict(r), ensure_ascii=False) + "\n")
                 existing_keys.add(key)
 
     def _existing_keys(self) -> set:
-        """账本中已有的 (date, match_id) 集合"""
+        """账本中已有的 (date, 竞彩编号) 集合"""
         keys = set()
         if not self.path.exists():
             return keys
@@ -130,7 +144,7 @@ class ReviewLedger:
                 continue
             try:
                 rec = json.loads(line)
-                keys.add((rec.get("date", ""), rec.get("match_id", "")))
+                keys.add((rec.get("date", ""), _norm_match_no(rec.get("match_id", ""))))
             except (json.JSONDecodeError, TypeError):
                 continue
         return keys
@@ -200,11 +214,13 @@ class PostMatchReviewer:
             pno = _extract_pno(mid)
             if pno:
                 pred_map[pno] = p
-            # 也用 "主队_vs_客队" 建索引
+            # 也用 "主队_vs_客队" 建索引（原文 + 归一化 + 宽松，译名变体兜底）
             hm = p.get("home_team", "")
             aw = p.get("away_team", "")
             if hm and aw:
                 pred_map[f"{hm}_vs_{aw}"] = p
+                pred_map[f"{normalize_team(hm)}_vs_{normalize_team(aw)}"] = p
+                pred_map[f"{loose_normalize(hm)}_vs_{loose_normalize(aw)}"] = p
 
         reviews = []
         seen_teams: set = set()
@@ -236,11 +252,13 @@ class PostMatchReviewer:
                 fixture = mid.split("_", 1)[-1] if "_" in mid else mid
                 pred = pred_map.get(fixture)
             if not pred:
-                # 用队伍名匹配
+                # 用队伍名匹配（原文 → 归一化 → 宽松，译名变体兜底）
                 hm = r.get("home_team", "")
                 aw = r.get("away_team", "")
                 if hm and aw:
-                    pred = pred_map.get(f"{hm}_vs_{aw}")
+                    pred = (pred_map.get(f"{hm}_vs_{aw}")
+                            or pred_map.get(f"{normalize_team(hm)}_vs_{normalize_team(aw)}")
+                            or pred_map.get(f"{loose_normalize(hm)}_vs_{loose_normalize(aw)}"))
             if not pred:
                 continue
 
@@ -297,7 +315,7 @@ class PostMatchReviewer:
             hit = best_sel == actual_idx
 
             review = MatchReview(
-                match_id=mid,
+                match_id=pred.get("match_id") or mid,  # 统一用预测完整 match_id（账本幂等键稳定）
                 date=date_str,
                 league=pred.get("competition", ""),
                 actual_idx=actual_idx,

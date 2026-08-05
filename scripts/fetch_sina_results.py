@@ -20,6 +20,9 @@ from pathlib import Path
 import requests
 
 ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(ROOT))
+from engine.team_aliases import normalize_team
+
 GATEWAY = "https://alpha.lottery.sina.com.cn/gateway/index/entry"
 SX = {
     "format": "json",
@@ -123,13 +126,14 @@ def save_results(date_str: str, results: list[dict], output_dir: Path | None = N
             pass
     
     # 队名去重（同队名但比分不同 → 用新比分覆盖，修正早期"进行中误当终场"的旧数据）
+    # 用归一化队名做 key：同一队译名不同（如 圣吉联合/圣吉罗斯）也视为同场
     existing_by_team = {}
     for r in existing:
-        existing_by_team[(r.get("home_team"), r.get("away_team"))] = r
+        existing_by_team[(normalize_team(r.get("home_team")), normalize_team(r.get("away_team")))] = r
     added = 0
     updated = 0
     for r in results:
-        tkey = (r.get("home_team"), r.get("away_team"))
+        tkey = (normalize_team(r.get("home_team")), normalize_team(r.get("away_team")))
         old = existing_by_team.get(tkey)
         if old is None:
             existing.append(r)

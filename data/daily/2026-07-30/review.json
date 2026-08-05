@@ -38,6 +38,12 @@
     }
   },
   "by_odds_band": {
+    "1.5-2.0": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.6013
+    },
     "2.0-3.0": {
       "n": 1,
       "hit_rate": 0.0,
@@ -49,12 +55,6 @@
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
       "avg_brier": 0.4049
-    },
-    "1.5-2.0": {
-      "n": 2,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.0945,
-      "avg_brier": 0.6013
     },
     "3.0+": {
       "n": 2,
@@ -77,6 +77,6 @@
     }
   ],
   "total_pnl": 0,
-  "generated_at": "2026-08-03T14:04:15.921482",
-  "sha256": "666b88b8da4c04414443b02ca6f8309c"
+  "generated_at": "2026-08-05T11:12:36.819702",
+  "sha256": "cf656bd05936bc068b3b908698be36b3"
 }
