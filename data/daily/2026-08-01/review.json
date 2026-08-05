@@ -87,6 +87,21 @@
       "avg_brier": 0.9367
     }
   },
+  "score_stats": {
+    "top1": 5,
+    "top3": 9,
+    "top5": 12,
+    "top8": 13,
+    "any": 13
+  },
+  "score_rank_hist": {
+    "4": 1,
+    "3": 2,
+    "1": 5,
+    "5": 2,
+    "6": 1,
+    "2": 2
+  },
   "biases": [
     {
       "dimension": "league",
@@ -112,6 +127,6 @@
     }
   ],
   "total_pnl": 0,
-  "generated_at": "2026-08-05T08:38:46.251421",
-  "sha256": "94b38cf2ddd3790e9e0a54431832a369"
+  "generated_at": "2026-08-05T08:55:00.938558",
+  "sha256": "3fccbfee12d4c01c65bfe7ae5c68c93b"
 }

@@ -57,6 +57,19 @@
       "avg_brier": 0.7936
     }
   },
+  "score_stats": {
+    "top1": 0,
+    "top3": 2,
+    "top5": 3,
+    "top8": 4,
+    "any": 4
+  },
+  "score_rank_hist": {
+    "3": 1,
+    "5": 1,
+    "6": 1,
+    "2": 1
+  },
   "biases": [
     {
       "dimension": "outcome",
@@ -71,6 +84,6 @@
     }
   ],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-05T08:38:31.970861",
-  "sha256": "2141386acecff7d801dbe7ca7585d704"
+  "generated_at": "2026-08-05T08:54:44.182626",
+  "sha256": "41363c42477ac7eb5796a31f607b8653"
 }
