@@ -887,15 +887,21 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     plan.date = target_date.isoformat()
 
     # 联赛分层报告：送钱区联赛禁止出注（老系统实证：瑞典超 -58%/欧罗巴 -51%/欧冠 -60% 全送钱）
+    # 2026-08-06 升级：回暖解禁——累计口径送钱区但最近5场命中≥60%的联赛自动解禁观察
     league_forbid: set[str] = set()
+    league_recovered: set[str] = set()
     try:
         from engine.review.league_report import build_league_report
         _lrep = build_league_report(ROOT / "data" / "daily", ROOT / "data" / "state" / "league_report.json")
         for _row in _lrep.get("leagues", []):
             if _row.get("verdict") == "送钱区" and _row.get("n", 0) >= 5:
                 league_forbid.add(_row["league"])
+            elif _row.get("verdict") == "回暖解禁":
+                league_recovered.add(_row["league"])
         if league_forbid:
             print(f"  🚫 送钱区联赛禁投: {sorted(league_forbid)}")
+        if league_recovered:
+            print(f"  ✅ 回暖解禁联赛（最近5场命中≥60%，解除禁投）: {sorted(league_recovered)}")
     except Exception as e:
         print(f"  ⚠ 联赛分层报告加载跳过: {e}")
 
@@ -954,9 +960,12 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         if _final_prob >= 0.60 and _hcr_league_risk.get(p.get("competition", ""), 0) >= 2:
             p["prob_band_60_risk"] = True  # 触发降档（稳胆→搏冷 / 搏冷→彩票 / 彩票减注30%）
         # 联赛分层禁投：送钱区联赛（历史 ROI<-5% 且 ≥5 场）不出任何注
+        # 2026-08-06：回暖解禁联赛（近期5场命中≥60%）不再禁投，打标供页面展示
         if p.get("competition") in league_forbid:
             p["league_forbidden"] = True
             continue
+        if p.get("competition") in league_recovered:
+            p["league_recovered"] = True
         is_synthetic = p.get("odds_synthetic", False)
         max_edge = -1.0  # 记录最大期望值 (prob * odds - 1)
         # 只押模型预测方向（8/3 教训：预测 home 押 away+draw 全输）

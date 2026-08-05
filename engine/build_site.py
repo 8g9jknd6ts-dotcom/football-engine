@@ -316,18 +316,20 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
                 f'<tr><td>{r["league"]}</td><td>{r["n"]}</td>'
                 f'<td>{r["hit_rate"]*100:.0f}%</td><td>{r["avg_odds"]:.2f}</td>'
                 f'<td style="color:{"var(--green)" if r["roi"] > 0 else "var(--red)"};font-weight:700">{r["roi"]*100:+.1f}%</td>'
-                f'<td>{"✅ 价值区" if r["verdict"] == "价值区" else ("🚫 送钱区" if r["verdict"] == "送钱区" else ("⚠️ 谨慎" if r["verdict"] == "谨慎" else "👀 观望"))}</td>'
+                f'<td>{_verdict_cell(r)}</td>'
+                f'<td>{_recent_cell(r)}</td>'
                 f'{_draw_cell(r["league"])}</tr>'
                 for r in _rows if r["n"] >= 3
             )
             if _rows_html:
                 league_html = f'''
-  <div class="section-title">联赛分层（送钱区禁投 · 判平强度自适应）</div>
+  <div class="section-title">联赛分层（送钱区禁投 · 回暖自动解禁 · 判平强度自适应）</div>
   <div style="overflow-x:auto">
   <table class="edge-table">
-    <tr><th>联赛</th><th>场数</th><th>命中率</th><th>均赔</th><th>ROI</th><th>判断</th><th>判平(命中/次数·强度)</th></tr>
+    <tr><th>联赛</th><th>场数</th><th>命中率</th><th>均赔</th><th>ROI</th><th>判断</th><th>近期窗口</th><th>判平(命中/次数·强度)</th></tr>
     {_rows_html}
   </table>
+  <div style="padding:6px 2px;font-size:0.62rem;color:var(--dim)">回暖解禁 = 累计口径送钱区，但最近5场命中≥60% → 自动解除禁投观察；再拉胯自动打回送钱区。</div>
   </div>'''
     except Exception as e:
         print(f"⚠ 联赛分层区块跳过: {e}")
@@ -1449,6 +1451,32 @@ def _pred_score(p):
     return ""
 
 
+def _recent_cell(r):
+    """近期窗口列：最近5场命中（2026-08-06）"""
+    n = r.get("recent_n", 0)
+    if not n:
+        return '<td style="color:var(--dim)">—</td>'
+    rate = r.get("recent_hit_rate", 0)
+    color = "var(--green)" if rate >= 0.6 else ("var(--amber)" if rate >= 0.4 else "var(--red)")
+    return (f'<td style="color:{color}">近{n}场 {r.get("recent_hits", 0)}中 ({rate*100:.0f}%)'
+            f'<br><span style="font-size:0.62rem;color:var(--dim)">近ROI {r.get("recent_roi", 0)*100:+.0f}%</span></td>')
+
+
+def _verdict_cell(r):
+    """联赛判断列渲染（2026-08-06 增加回暖解禁态）"""
+    v = r.get("verdict", "观望")
+    if v == "价值区":
+        return '<td style="color:var(--green);font-weight:700">✅ 价值区</td>'
+    if v == "送钱区":
+        return '<td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td>'
+    if v == "回暖解禁":
+        return ('<td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">'
+                '✅ 回暖解禁·观察</td>')
+    if v == "谨慎":
+        return '<td style="color:var(--amber)">⚠️ 谨慎</td>'
+    return '<td style="color:var(--dim)">👀 观望</td>'
+
+
 def _load_league_matrix(path):
     """加载 DJYY 联赛矩阵数据"""
     import json
@@ -1710,6 +1738,8 @@ def _match_card(p, value_matches, idx, results_map=None):
         <div class="match-meta">
           {'<span class="value-badge">价值精选</span>' if is_val else ''}
           {'<span class="draw-alert-badge" style="background:var(--purple);color:#fff;padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px">⚠平局预警</span>' if p.get('draw_alert') else ''}
+          {'<span style="background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.4);padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px" title="送钱区联赛（累计ROI<-5%），此场不出注">🚫禁投联赛</span>' if p.get('league_forbidden') else ''}
+          {'<span style="background:rgba(255,170,60,0.15);color:#ffaa3c;border:1px solid rgba(255,170,60,0.4);padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px" title="该联赛累计送钱但最近5场命中≥60%，已自动解禁">✅回暖解禁</span>' if p.get('league_recovered') else ''}
           {'<span class="hcr-warn-badge" title="该联赛高置信反向样本≥2场，60%+段已降档" style="background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.4);padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px">⚠高置信反向风险</span>' if p.get('prob_band_60_risk') else ''}
           {'<span class="hcr-warn-badge" title="50-60%概率段=平局盲点区，已降档" style="background:rgba(255,170,60,0.15);color:#ffaa3c;border:1px solid rgba(255,170,60,0.4);padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px">⚠平局盲点段</span>' if p.get('prob_band_5060') else ''}
           {'<span class="fresh-warn" style="background:rgba(255,170,60,0.12);color:#ffaa3c;padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px" title="数据新鲜度风险">⚠新鲜度</span>' if (p.get('freshness') or {}).get('risk') in ('watch','alert') else ''}

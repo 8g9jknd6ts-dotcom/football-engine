@@ -27,7 +27,7 @@ def build_league_report(
     # 联赛 → 统计
     stats: dict[str, dict] = defaultdict(lambda: {
         "n": 0, "hits": 0, "odds_sum": 0.0, "roi_sum": 0.0,
-        "confidence_sum": 0.0, "recent_n": 0, "recent_hits": 0,
+        "confidence_sum": 0.0, "history": [],  # [(date, hit)] 时间序，供近期窗口判定
     })
 
     for pf in sorted(daily_root.glob("*/predictions.json")):
@@ -35,6 +35,7 @@ def build_league_report(
             preds = json.loads(pf.read_text(encoding="utf-8"))
         except Exception:
             continue
+        _date = pf.parent.name  # YYYY-MM-DD 目录名 = 时间序
         for p in preds:
             lg = p.get("competition") or "未知"
             if p.get("actual_home_score") is None:
@@ -55,8 +56,8 @@ def build_league_report(
             # 每场押 1 单位 ROI（含抽水后实际盈亏）
             if odds > 0:
                 s["roi_sum"] += (odds - 1) if hit else -1.0
-            # 最近 7 天窗口
-            # (日期从 match_id 前缀取，简化用文件目录序)
+            # 近期窗口（2026-08-06 实现）：按日期目录序收集，末尾取最近 RECENT_WINDOW 场
+            s["history"].append((_date, hit, odds))
 
     # 外部历史样本注入（老系统 world-cup-predictor 的联赛复盘：
     # 世界杯积累的是另一预测域，不能搬参数；但同域联赛样本可合并，
@@ -86,6 +87,13 @@ def build_league_report(
         hit_rate = s["hits"] / s["n"]
         avg_odds = s["odds_sum"] / s["n"]
         roi = s["roi_sum"] / s["n"]
+        # 近期窗口（2026-08-06）：最近 RECENT_WINDOW 场，判定回暖解禁
+        RECENT_WINDOW = 5
+        recent = s["history"][-RECENT_WINDOW:]
+        recent_n = len(recent)
+        recent_hits = sum(1 for _d, _h, _o in recent if _h)
+        recent_roi = sum((_o - 1) if _h else -1.0 for _d, _h, _o in recent) / max(recent_n, 1)
+        recent_hit_rate = recent_hits / recent_n if recent_n else 0.0
         # 判断：命中率 < 45% → 送钱区；命中率 > 55% 且 ROI > 0 → 价值区
         if s["n"] < 3:
             verdict = "样本不足"
@@ -97,6 +105,10 @@ def build_league_report(
             verdict = "谨慎"
         else:
             verdict = "观望"
+        # 回暖解禁（2026-08-06，用户需求）：累计口径送钱区，但最近窗口命中率 ≥60%
+        # （且 ≥3 场）→ 解禁观察，不再禁投。再拉胯会自动打回送钱区（累计口径兜底）。
+        if verdict == "送钱区" and recent_n >= 3 and recent_hit_rate >= 0.6:
+            verdict = "回暖解禁"
         rows.append({
             "league": lg,
             "n": s["n"],
@@ -105,6 +117,11 @@ def build_league_report(
             "roi": round(roi, 4),
             "avg_confidence": round(s["confidence_sum"] / s["n"], 4),
             "verdict": verdict,
+            # 近期窗口明细（页面展示"最近5场 x/x"）
+            "recent_n": recent_n,
+            "recent_hits": recent_hits,
+            "recent_hit_rate": round(recent_hit_rate, 4),
+            "recent_roi": round(recent_roi, 4),
         })
 
     rows.sort(key=lambda r: (-r["n"], -r["roi"]))
