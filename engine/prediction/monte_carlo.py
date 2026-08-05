@@ -22,6 +22,12 @@ class MonteCarloConfig:
     time_decay_anchors: list = None
     # 让球平滑权重
     handicap_smoothing: float = 0.274
+    # xG 校准系数（2026-08-05 病灶修复：模型 xG 系统性高估 ~20%）
+    # 113 场账本实证：预测场均 3.17 球 vs 实际 2.63（+0.54）；中位数 3.08 vs 2.00
+    # 校准 ×0.75 后：总进球 MAE 1.383→1.247，大小球(2.5) 准确率 49.6%→53.1%，
+    #   比分 top3(MC) 25.7%→30.1%。作用于 MC 比分/总进球分布，方向概率经
+    #   ensemble(0.6DC+0.4MC) + fusion(market/djyy) 稀释，风险可控。
+    xg_calibration: float = 0.75
 
     def __post_init__(self):
         if self.time_decay_anchors is None:
@@ -222,6 +228,11 @@ class MonteCarloModel(PredictionModel):
         away_xg /= h2h_factor
         home_xg = max(0.15, min(3.5, home_xg))
         away_xg = max(0.15, min(3.5, away_xg))
+
+        # xG 校准（系统性高估修正，见 MonteCarloConfig.xg_calibration 注释）
+        if cfg.xg_calibration != 1.0:
+            home_xg = max(0.15, min(3.5, home_xg * cfg.xg_calibration))
+            away_xg = max(0.15, min(3.5, away_xg * cfg.xg_calibration))
 
         return home_xg, away_xg
 
