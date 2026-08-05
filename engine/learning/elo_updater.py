@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from ..prediction.base import TeamRating
+from ..team_aliases import normalize_team
 
 
 @dataclass
@@ -35,22 +36,38 @@ class EloUpdater:
         self._load()
 
     def _load(self):
-        """加载现有评级"""
+        """加载现有评级（归一化键，合并重复译名条目）"""
         if self.ratings_path.exists():
             data = json.loads(self.ratings_path.read_text())
             for name, r in data.items():
-                self.ratings[name] = TeamRating(
-                    name=name,
-                    elo=r.get("elo", self.cfg.default_elo),
-                    attack=r.get("attack", 1.0),
-                    defense=r.get("defense", 1.0),
-                    form=r.get("form", 0.0),
-                    injury=r.get("injury", 0.0),
-                    rest_days=r.get("rest_days", 3),
-                )
+                # 归一化键存储（2026-08-05 修复：同一队多译名条目分裂，
+                # 如"塞伊奈"/"塞那乔其"各自独立演进，Elo 差 200+ 分导致方向性错误）
+                key = normalize_team(name)
+                existing = self.ratings.get(key)
+                if existing is None:
+                    self.ratings[key] = TeamRating(
+                        name=key,
+                        elo=r.get("elo", self.cfg.default_elo),
+                        attack=r.get("attack", 1.0),
+                        defense=r.get("defense", 1.0),
+                        form=r.get("form", 0.0),
+                        injury=r.get("injury", 0.0),
+                        rest_days=r.get("rest_days", 3),
+                    )
+                else:
+                    # 重复条目：Elo 更高者胜（弱条目多为预测时创建的空壳或未更新值，
+                    # 结算侧数据更可信；真实强队 Elo 会随胜负自然上升）
+                    cand_elo = r.get("elo", self.cfg.default_elo)
+                    if cand_elo > existing.elo:
+                        existing.elo = cand_elo
+                        existing.attack = r.get("attack", existing.attack)
+                        existing.defense = r.get("defense", existing.defense)
+                        existing.form = r.get("form", existing.form)
+                        existing.injury = r.get("injury", existing.injury)
+                        existing.rest_days = r.get("rest_days", existing.rest_days)
 
     def save(self):
-        """持久化评级"""
+        """持久化评级（归一化键）"""
         data = {}
         for name, r in self.ratings.items():
             data[name] = {
@@ -65,10 +82,11 @@ class EloUpdater:
         self.ratings_path.write_text(json.dumps(data, ensure_ascii=False, indent=2))
 
     def get_rating(self, team_name: str) -> TeamRating:
-        """获取球队评级，不存在则创建默认"""
-        if team_name not in self.ratings:
-            self.ratings[team_name] = TeamRating(name=team_name, elo=self.cfg.default_elo)
-        return self.ratings[team_name]
+        """获取球队评级（归一化键），不存在则创建默认"""
+        key = normalize_team(team_name)
+        if key not in self.ratings:
+            self.ratings[key] = TeamRating(name=key, elo=self.cfg.default_elo)
+        return self.ratings[key]
 
     def update(
         self,
@@ -78,9 +96,9 @@ class EloUpdater:
         away_score: int,
         is_neutral: bool = False,
     ):
-        """根据比赛结果更新 Elo 和攻防"""
-        home = self.get_rating(home_team)
-        away = self.get_rating(away_team)
+        """根据比赛结果更新 Elo 和攻防（入口归一化，防条目分裂）"""
+        home = self.get_rating(normalize_team(home_team))
+        away = self.get_rating(normalize_team(away_team))
 
         # 期望得分
         home_adv = 0 if is_neutral else self.cfg.home_advantage
