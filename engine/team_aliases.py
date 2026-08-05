@@ -61,6 +61,7 @@ TEAM_ALIASES: dict[str, str] = {
     "帕梅拉斯": "帕尔梅拉斯",              # Palmeiras
     "弗鲁米嫩": "弗鲁米嫩塞",              # Fluminense
     "沙佩科": "沙佩科恩斯",                # Chapecoense
+    "里莫": "雷莫",                        # Remo (巴西) 异译：预测侧"里莫" vs 新浪侧"雷莫"
     "圣塔菲": "圣塔菲联合",                # Unión Santa Fe
     "维尔斯萨斯菲尔德": "萨斯菲尔德",      # Vélez Sarsfield
     "阿根廷独立": "阿根廷独立",
