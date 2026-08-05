@@ -642,15 +642,19 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                 djyy_data.get("top_scores") if djyy_data and djyy_data.get("top_scores")
                 else getattr(pred, "top_scores", None)
             ),
-            "total_goals": (
-                (lambda tg: tg if isinstance(tg, list) else (
-                    [[int(float(k)), v[1] if isinstance(v, list) and len(v)>1 else (v if isinstance(v,(int,float)) else 0)] 
-                     for k, v in tg.items()] if isinstance(tg, dict) else None
-                ))(
-                    djyy_data.get("totals") if djyy_data and djyy_data.get("totals")
-                    else getattr(pred, "top_total_goals", None)
-                )
+            # 总进球分布：只用模型真分布（top_total_goals）。
+            # DJYY totals 是大小球让球线独立概率(1.5大/2.5大/3.5大…)，不是总进球数分布，
+            # 混入会导致概率和>1的假分布（8/5 奥胡斯 total_goals 和=1.868 即此污染）。
+            "total_goals": getattr(pred, "top_total_goals", None),
+            # DJYY/新浪 大小球让球线独立概率（供大小球/总进球辅助判断）
+            "over_under_lines": (
+                djyy_data.get("totals") if djyy_data and djyy_data.get("totals")
+                else (_sina_data.get("totals") if _sina_data else None)
             ),
+            # 竞彩其余玩法官方赔率（sporttery 主源采集）
+            "ttg_odds": getattr(fixture, "_raw_ttg", None) or None,      # 总进球 {s0..s7}
+            "crs_odds": getattr(fixture, "_raw_crs", None) or None,      # 波胆 {s00s00:0:0...}
+            "hafu_odds": getattr(fixture, "_raw_hafu", None) or None,    # 半全场 {aa,ah,ad,ha,hh,hd,da,dh,dd}
             # 半全场概率
             "htft": _htft,
             "htft_top3": top_htft(_htft),
@@ -823,7 +827,32 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                 candidates = [c for c in candidates if c["match_id"] != p["match_id"]]
                 candidates.append(_hcap_cand)
                 p["handicap_kelly_edge"] = round(_hcap_cand["_hcap_edge"], 4)
-        
+
+        # 竞彩多玩法 EV：总进球(ttg)/波胆(crs)/半全场(hafu) 小注搏冷
+        # （老系统实证：深冷赔率区 ROI 最高；冷门玩法高赔率才覆盖得了水钱）
+        try:
+            from engine.strategy.multi_play_ev import evaluate_all_plays
+            for _pev in evaluate_all_plays(p):
+                if not _pev.recommended:
+                    continue
+                if _pev.play == "ttg":
+                    _sel_code = f"ttg_{_pev.best_sel}"
+                elif _pev.play == "crs":
+                    _sel_code = f"crs_{_pev.best_sel[0]}_{_pev.best_sel[1]}"
+                else:
+                    _sel_code = f"hafu_{_pev.best_sel}"
+                _odds = _pev.odds[_pev.best_sel]
+                candidates.append({
+                    "match_id": f"{p['match_id']}#{_pev.play}",  # 去重粒度=场次+玩法
+                    "selection": _sel_code,
+                    "odds": _odds,
+                    "prob": _pev.probs[_pev.best_sel],
+                    "kelly_fraction": 0.03,  # 冷门玩法小注（波胆/半全场赔率高）
+                })
+                p.setdefault("play_ev", {})[_pev.play] = round(_pev.best_edge, 4)
+        except Exception:
+            pass
+
         # 写回 kelly_edge 到预测字典，解决 Kelly=0 问题
         p["kelly_edge"] = round(max_edge, 4) if max_edge > -1.0 else 0.0
 
@@ -1289,7 +1318,9 @@ def run_settlement(target_date: date):
     ticket_map = {}
     for grp in ("stable", "value", "lottery"):
         for s in ticket_data.get(grp, []):
-            ticket_map[s.get("match")] = s
+            # 多玩法候选 match 形如 "T1#ttg"，拆出原始 match_id，同场多玩法共处
+            _mid = s.get("match", "").split("#")[0]
+            ticket_map.setdefault(_mid, []).append(s)
 
     total_pnl = 0.0
     wins = 0
@@ -1324,18 +1355,33 @@ def run_settlement(target_date: date):
             league_fed += 1
         except Exception:
             pass
-        # 计算PnL（基于Kelly plan）
+        # 计算PnL（基于Kelly plan，支持同场多玩法）
         pnl = 0.0
-        s = ticket_map.get(pred["match_id"])
-        if s:
-            # 让球候选 selection 带 hcap_ 前缀（如 hcap_home），剥离后与赛果方向比较
+        s_list = ticket_map.get(pred["match_id"], [])
+        for s in s_list:
             _sel = s.get("sel", "")
+            _stake = s.get("stake", 0.0)
+            _odds = s.get("odds", 0.0)
+            # 按玩法前缀判定命中
             if _sel.startswith("hcap_"):
-                _sel = _sel[len("hcap_"):]
-            if _sel == actual:
-                pnl += s["stake"] * (s["odds"] - 1)
+                _hit = _sel[len("hcap_"):] == actual
+            elif _sel.startswith("ttg_"):
+                _hit = int(_sel[4:]) == min(7, r.home_score + r.away_score)
+            elif _sel.startswith("crs_"):
+                _parts = _sel[4:].split("_")
+                _hit = len(_parts) == 2 and int(_parts[0]) == r.home_score and int(_parts[1]) == r.away_score
+            elif _sel.startswith("hafu_"):
+                _hsel = _sel[5:]
+                _hh, _ha = getattr(r, "half_home_score", 0), getattr(r, "half_away_score", 0)
+                _half_actual = "H" if _hh > _ha else ("D" if _hh == _ha else "A")
+                _full_actual = "H" if r.home_score > r.away_score else ("D" if r.home_score == r.away_score else "A")
+                _hit = _hsel == _half_actual + _full_actual
             else:
-                pnl -= s["stake"]
+                _hit = _sel == actual
+            if _hit:
+                pnl += _stake * (_odds - 1)
+            else:
+                pnl -= _stake
         pred["pnl"] = round(pnl, 2)  # 写回预测记录，review.json 才能统计真实盈亏
         total_pnl += pnl
         if won:

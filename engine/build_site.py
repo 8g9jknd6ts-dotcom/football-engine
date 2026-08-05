@@ -109,6 +109,12 @@ def build_site():
         build_handicap_report(daily_root, ROOT / "data" / "state" / "handicap_report.json")
     except Exception as e:
         print(f"[build_site] ⚠ 让球回测报告生成跳过: {e}")
+    # 多玩法回测报告（总进球/波胆/半全场 ROI 积累）
+    try:
+        from engine.strategy.multi_play_ev import build_plays_report
+        build_plays_report(daily_root, ROOT / "data" / "state" / "plays_report.json")
+    except Exception as e:
+        print(f"[build_site] ⚠ 多玩法回测报告生成跳过: {e}")
     print(f"[build_site] 仪表盘已生成: {len(all_dates)} 个日期页面")
 
 
@@ -1758,16 +1764,31 @@ def _ticket_section(ticket, predictions):
         if not items:
             return '<div class="ticket-empty">暂无选择</div>'
         html = ""
+        _hafu_name = {"HH": "胜胜", "HD": "胜平", "HA": "胜负", "DH": "平胜", "DD": "平平", "DA": "平负", "AH": "负胜", "AD": "负平", "AA": "负负"}
         for it in items:
             match_id = it.get("match", "")
+            _play = ""
+            if "#" in match_id:
+                match_id, _play = match_id.split("#", 1)
             teams = match_id.split("_", 1)[-1] if "_" in match_id else match_id
             for p in predictions:
                 if p.get("match_id") == match_id:
                     teams = f'{p["home_team"]} vs {p["away_team"]}'
                     break
             sel_map = {"home": "主胜", "draw": "平局", "away": "客胜"}
-            sel = sel_map.get(it.get("sel", ""), it.get("sel", ""))
-            html += f'<div class="ticket-item"><span class="ti-match">{teams} [{sel}]</span><span class="ti-odds">@{it.get("odds", 0):.2f} / &yen;{it.get("stake", 0):.0f}</span></div>'
+            sel = it.get("sel", "")
+            if sel.startswith("hcap_"):
+                sel_label = "让球·" + sel_map.get(sel[5:], sel[5:])
+            elif sel.startswith("ttg_"):
+                sel_label = "总进球" + (sel[4:] + "+" if int(sel[4:]) >= 7 else sel[4:]) + "球"
+            elif sel.startswith("crs_"):
+                _parts = sel[4:].split("_")
+                sel_label = f"比分{_parts[0]}:{_parts[1]}" if len(_parts) == 2 else sel
+            elif sel.startswith("hafu_"):
+                sel_label = "半全场·" + _hafu_name.get(sel[5:], sel[5:])
+            else:
+                sel_label = sel_map.get(sel, sel)
+            html += f'<div class="ticket-item"><span class="ti-match">{teams} [{sel_label}]</span><span class="ti-odds">@{it.get("odds", 0):.2f} / &yen;{it.get("stake", 0):.0f}</span></div>'
         return html
 
     return f"""

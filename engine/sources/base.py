@@ -36,6 +36,8 @@ class MatchResult:
     competition: str
     match_date: str
     match_no: str = ""  # 竞彩编号如"周六001"（用于跨数据源匹配）
+    half_home_score: int = 0  # 半场比分（新浪赛果源提供，供半全场玩法结算）
+    half_away_score: int = 0
 
 
 @dataclass

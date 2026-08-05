@@ -125,6 +125,8 @@ class SinaSource(DataSource):
                     away_team=m.get("team2", ""),
                     competition=m.get("league", ""),
                     match_date=target_date.isoformat(),
+                    half_home_score=int(m.get("halfScore1") or 0),
+                    half_away_score=int(m.get("halfScore2") or 0),
                 ))
             except (ValueError, TypeError):
                 continue
