@@ -1,5 +1,13 @@
 from __future__ import annotations
-"""推荐引擎 - 移植自 lottery-football 的核心推荐逻辑"""
+"""推荐引擎 - 移植自 lottery-football 的核心推荐逻辑
+
+⚠️ 已弃用（2026-08-05 死代码审计）：
+- 从未被 main.py / 任何 workflow 调用（RecommendationEngine 无引用方）
+- config/strategy.json 里对应的 recommendation 阈值配置已被移除（假配置）
+- 实际投注推荐走 engine/strategy/three_ticket.py（ThreeTicketAllocator 三票制）
+
+保留本文件仅作历史参考（lottery-football 移植来源）。
+"""
 from dataclasses import dataclass, field
 
 

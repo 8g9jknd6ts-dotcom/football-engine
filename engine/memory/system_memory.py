@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 ⚡ 系统记忆管理器 - 预测系统的大脑记忆中枢
-整合所有分散的记忆模块，提供统一查询接口
+
+⚠️ 已弃用（2026-08-05 死代码审计）：engine.memory 整体未被 main.py 或任何
+workflow 可达，SystemMemory 无引用方。历史记忆沉淀由 data/state/*.json 承担。
+
+保留本文件仅作历史参考。
 """
 import json
 import sqlite3

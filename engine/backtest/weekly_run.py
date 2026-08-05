@@ -53,7 +53,9 @@ def main() -> int:
         from engine.review.post_match import ReviewLedger
         from engine.learning.fusion_optimizer import FusionOptimizer
 
-        ledger = ReviewLedger(state_dir / "review_ledger.json")
+        # 2026-08-05 修复：账本实际文件名是 review_ledger.jsonl（append-only 滚动账本），
+        # 之前误写成 .json → 读到 0 键 → 融合优化基于空账本做假决策。
+        ledger = ReviewLedger(state_dir / "review_ledger.jsonl")
         opt = FusionOptimizer(state_dir / "fusion_weights.json", ledger)
         decision = opt.step()
         report["steps"]["fusion_optimizer"] = {
