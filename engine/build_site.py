@@ -2432,6 +2432,14 @@ def _build_daily_brief(
                 _hl = "**" if _label.startswith("主推 top5") else ""
                 lines.append(f"| {_label} | {_h}/{_n} | {_hl}{_h/_n*100:.0f}%{_hl} |\n")
 
+            # 盘口信号命中率（8/5 起累积验证，数据说话盘口信号是否有效）
+            _ms_items = [r for r in _recs if r.get("market_signal_hit") is not None]
+            if _ms_items:
+                _msh = sum(1 for r in _ms_items if r.get("market_signal_hit"))
+                lines.append("\n## 📊 盘口信号命中率（累积验证中）\n")
+                lines.append(f"- 欧赔压缩方向信号: **{_msh}/{len(_ms_items)} ({_msh/len(_ms_items)*100:.0f}%)**")
+                lines.append(f"- 模型方向基线: {sum(1 for r in _recs if r.get('hit'))}/{_n} ({sum(1 for r in _recs if r.get('hit'))/_n*100:.0f}%)\n")
+
     out = web_dir / f"daily-brief-{target_date}.md"
     out.write_text("".join(lines), encoding="utf-8")
     return out
