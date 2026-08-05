@@ -712,6 +712,9 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             # （修复：预测时 direction 为空，页面/复盘拿不到方向）
             "direction": _pick_direction(final_h, final_d, final_a, draw_alert),
             "direction_prob": max(final_h, final_d, final_a),
+            # 方向置信度差（最高概率 - 次高概率）：< 0.08 视为低置信度硬选（08-04 欧冠 4 连错全在此区间），
+            # 出票环节拦截、复盘统计分层（P0 止血，2026-08-05）
+            "direction_margin": round(max(final_h, final_d, final_a) - sorted([final_h, final_d, final_a])[-2], 4),
         })
 
     print(f"  ✓ 完成 {len(predictions)} 场预测（含增强分析）")
@@ -779,6 +782,12 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     for p in predictions:
         # 自适应置信阈值过滤（连败时收紧）
         if p.get("confidence", 0) < conf_threshold:
+            filtered_count += 1
+            continue
+        # P0 方向低置信度禁投：方向概率差 < 0.08 视为"掷硬币"级硬选
+        # （113 场账本实证：margin<0.08 命中率 33-43% 低于整体 45%+；08-04 欧冠 4 连错全在此区间）
+        if p.get("direction_margin", 1.0) < 0.08:
+            p["direction_low_confidence"] = True
             filtered_count += 1
             continue
         # 联赛分层禁投：送钱区联赛（历史 ROI<-5% 且 ≥5 场）不出任何注
