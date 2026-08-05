@@ -115,6 +115,31 @@ def build_site():
         build_plays_report(daily_root, ROOT / "data" / "state" / "plays_report.json")
     except Exception as e:
         print(f"[build_site] ⚠ 多玩法回测报告生成跳过: {e}")
+    # 联赛分层价值报告（送钱区禁投依据）
+    league_report = {}
+    try:
+        from engine.review.league_report import build_league_report
+        league_report = build_league_report(daily_root, ROOT / "data" / "state" / "league_report.json")
+    except Exception as e:
+        print(f"[build_site] ⚠ 联赛分层报告生成跳过: {e}")
+    # 串关回测报告（2串1 能不能玩的实证）
+    parlay_report = {}
+    try:
+        from engine.review.parlay_report import build_parlay_report
+        parlay_report = build_parlay_report(daily_root, ROOT / "data" / "state" / "parlay_report.json")
+    except Exception as e:
+        print(f"[build_site] ⚠ 串关回测报告生成跳过: {e}")
+    # 每日简报（最新日期）
+    try:
+        if all_dates:
+            _latest = all_dates[0]
+            _lp = _load_json(daily_root / _latest / "predictions.json", [])
+            _tp = _load_json(daily_root / _latest / "ticket_plan.json", {})
+            _rv = _load_json(daily_root / _latest / "review.json", None)
+            _brief = _build_daily_brief(web_dir, _latest, _lp, _tp, _rv, league_report, parlay_report)
+            print(f"[build_site] 📋 每日简报已生成: {_brief.name}")
+    except Exception as e:
+        print(f"[build_site] ⚠ 每日简报生成跳过: {e}")
     print(f"[build_site] 仪表盘已生成: {len(all_dates)} 个日期页面")
 
 
@@ -252,6 +277,32 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     # 联赛矩阵面板
     league_matrix = _load_league_matrix(ROOT / "data" / "league_matrix.json")
     league_matrix_html = _league_matrix_section(league_matrix, predictions)
+
+    # 联赛分层价值报告（送钱区/价值区一目了然）
+    league_html = ""
+    try:
+        _lrep_path = ROOT / "data" / "state" / "league_report.json"
+        _lrep = json.loads(_lrep_path.read_text(encoding="utf-8")) if _lrep_path.exists() else {}
+        _rows = _lrep.get("leagues", [])[:10]
+        if _rows:
+            _rows_html = "".join(
+                f'<tr><td>{r["league"]}</td><td>{r["n"]}</td>'
+                f'<td>{r["hit_rate"]*100:.0f}%</td><td>{r["avg_odds"]:.2f}</td>'
+                f'<td style="color:{"var(--green)" if r["roi"] > 0 else "var(--red)"};font-weight:700">{r["roi"]*100:+.1f}%</td>'
+                f'<td>{"✅ 价值区" if r["verdict"] == "价值区" else ("🚫 送钱区" if r["verdict"] == "送钱区" else ("⚠️ 谨慎" if r["verdict"] == "谨慎" else "👀 观望"))}</td></tr>'
+                for r in _rows if r["n"] >= 3
+            )
+            if _rows_html:
+                league_html = f'''
+  <div class="section-title">联赛分层（送钱区禁投）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>联赛</th><th>场数</th><th>命中率</th><th>均赔</th><th>ROI</th><th>判断</th></tr>
+    {_rows_html}
+  </table>
+  </div>'''
+    except Exception as e:
+        print(f"⚠ 联赛分层区块跳过: {e}")
 
     # 渲染比赛卡片（按联赛分组）
     cards = ""
@@ -993,6 +1044,9 @@ body {{
   <!-- EV VALUE REPORT -->
   {ev_html}
 
+  <!-- LEAGUE LAYERS -->
+  {league_html}
+
   <!-- RESULTS REVIEW -->
   {results_html}
 
@@ -1071,6 +1125,21 @@ def _odds_movement_chip(p):
     if not arrows:
         return ""
     return f'<span class="info-chip" style="color:var(--purple)">赔率变动 {" ".join(arrows)}</span>'
+
+
+def _divergence_chip(p):
+    """模型 vs 市场分歧信号：分歧大 = 模型独立判断（高信息量），分歧小 = 跟随市场"""
+    model = p.get("model_raw") or {}
+    market = p.get("market_fair")
+    if not model or not market or len(market) < 3:
+        return ""
+    _probs = [model.get("home", 0), model.get("draw", 0), model.get("away", 0)]
+    div = max(abs(_probs[i] - market[i]) for i in range(3))
+    if div > 0.15:
+        return f'<span class="info-chip" style="color:var(--red)">模型vs市场分歧 <b>{div:.0%}</b></span>'
+    if div > 0.08:
+        return f'<span class="info-chip" style="color:var(--amber)">分歧 <b>{div:.0%}</b></span>'
+    return f'<span class="info-chip" style="color:var(--dim)">与市场一致 <b>{div:.0%}</b></span>'
 
 
 def _pred_pick(p):
@@ -1383,6 +1452,7 @@ def _match_card(p, value_matches, idx, results_map=None):
         <span class="info-chip">xG <b>{xg_h:.2f} - {xg_a:.2f}</b></span>
         <span class="info-chip">Odds <b>{odds_h}/{odds_d}/{odds_a}</b></span>
         {_odds_movement_chip(p)}
+        {_divergence_chip(p)}
       </div>
     </div>
     <div class="match-detail">
@@ -2071,6 +2141,89 @@ def _breaker_tier(breaker):
         # 非连败触发的停注（日/周止损），显示实际tier
         return actual_tier, "周/日止损停注"
     return actual_tier, ""
+
+
+def _build_daily_brief(
+    web_dir: Path,
+    target_date: str,
+    predictions: list,
+    ticket: dict,
+    review: dict | None,
+    league_report: dict | None,
+    parlay_report: dict | None,
+) -> Path:
+    """生成每日简报 markdown（投注决策一目了然）"""
+    lines = [
+        f"# 竞彩投注简报 {target_date}\n",
+        f"> 生成时间：{datetime.now().strftime('%Y-%m-%d %H:%M')}（北京时间）\n",
+    ]
+
+    # 投注方案
+    bets = ticket.get("stable", []) + ticket.get("value", []) + ticket.get("lottery", [])
+    total = ticket.get("total_stake", 0)
+    if bets:
+        lines.append("## 💰 今日投注方案\n")
+        lines.append(f"总投入 **¥{total:.0f}**（资金池 ¥{ticket.get('bankroll', 0):.0f}）\n")
+        _hafu_name = {"HH": "胜胜", "HD": "胜平", "HA": "胜负", "DH": "平胜", "DD": "平平", "DA": "平负", "AH": "负胜", "AD": "负平", "AA": "负负"}
+        for it in bets:
+            mid = it.get("match", "")
+            if "#" in mid:
+                mid = mid.split("#", 1)[0]
+            sel = it.get("sel", "")
+            if sel.startswith("hcap_"):
+                label = {"home": "主让胜", "draw": "让平", "away": "让负"}.get(sel[5:], sel[5:])
+            elif sel.startswith("ttg_"):
+                label = f"总进球{sel[4:]}+球" if int(sel[4:]) >= 7 else f"总进球{sel[4:]}球"
+            elif sel.startswith("crs_"):
+                p = sel[4:].split("_")
+                label = f"比分{p[0]}:{p[1]}" if len(p) == 2 else sel
+            elif sel.startswith("hafu_"):
+                label = "半全场·" + _hafu_name.get(sel[5:], sel[5:])
+            else:
+                label = {"home": "主胜", "draw": "平局", "away": "客胜"}.get(sel, sel)
+            lines.append(f"- {mid} [{label}] @{it.get('odds', 0):.2f} × ¥{it.get('stake', 0):.0f}\n")
+    else:
+        lines.append("## 💰 今日投注\n")
+        lines.append("**空仓不出手**（无正 EV 价值注，避免送钱）\n")
+
+    # 预测清单
+    if predictions:
+        lines.append("\n## 🔮 今日预测\n")
+        lines.append("| 场次 | 联赛 | 预测 | 置信 | 主推赔率 | 冷门风险 |\n")
+        lines.append("|---|---|---|---|---|---|\n")
+        for p in predictions:
+            direction = p.get("direction", "?")
+            dlabel = {"home": "主胜", "draw": "平局", "away": "客胜"}.get(direction, direction)
+            odds = p.get(f"{direction}_odds", 0) or 0
+            lines.append(
+                f"| {p.get('match_id', '')} | {p.get('competition', '')} | {dlabel} "
+                f"| {p.get('confidence', 0):.0%} | {odds:.2f} | {p.get('reverse_upset_risk', 0):.0f}% |\n"
+            )
+
+    # 联赛状态
+    if league_report and league_report.get("leagues"):
+        lines.append("\n## 🏆 联赛分层（哪个联赛值得投）\n")
+        for row in league_report["leagues"]:
+            if row["n"] < 5:
+                continue
+            icon = {"价值区": "✅", "送钱区": "🚫", "谨慎": "⚠️", "观望": "👀"}.get(row["verdict"], "·")
+            lines.append(f"- {icon} **{row['league']}**：{row['n']}场 命中{row['hit_rate']*100:.0f}% 均赔{row['avg_odds']:.2f} ROI {row['roi']*100:+.1f}%\n")
+
+    # 串关结论
+    if parlay_report and parlay_report.get("verdict"):
+        lines.append(f"\n## 🎰 串关评估\n{parlay_report['verdict']}\n")
+
+    # 上期战绩（上一日期目录的 review）
+    if review and review.get("n_matches"):
+        lines.append(
+            f"\n## 📊 上期战绩\n"
+            f"命中 {review.get('hits', 0)}/{review.get('n_matches', 0)} "
+            f"({review.get('hit_rate', 0)*100:.0f}%)，盈亏 **¥{review.get('total_pnl', 0):+.0f}**\n"
+        )
+
+    out = web_dir / f"daily-brief-{target_date}.md"
+    out.write_text("".join(lines), encoding="utf-8")
+    return out
 
 
 if __name__ == "__main__":

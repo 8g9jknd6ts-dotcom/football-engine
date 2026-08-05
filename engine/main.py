@@ -744,6 +744,19 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     plan = strategy.evaluate_candidates(predictions)
     plan.date = target_date.isoformat()
 
+    # 联赛分层报告：送钱区联赛禁止出注（老系统实证：瑞典超 -58%/欧罗巴 -51%/欧冠 -60% 全送钱）
+    league_forbid: set[str] = set()
+    try:
+        from engine.review.league_report import build_league_report
+        _lrep = build_league_report(ROOT / "data" / "daily", ROOT / "data" / "state" / "league_report.json")
+        for _row in _lrep.get("leagues", []):
+            if _row.get("verdict") == "送钱区" and _row.get("n", 0) >= 5:
+                league_forbid.add(_row["league"])
+        if league_forbid:
+            print(f"  🚫 送钱区联赛禁投: {sorted(league_forbid)}")
+    except Exception as e:
+        print(f"  ⚠ 联赛分层报告加载跳过: {e}")
+
     # 三票制重分配
     effective_mult = 1.0  # 虚拟投注不降注
     allocator = ThreeTicketAllocator(
@@ -757,6 +770,10 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         # 自适应置信阈值过滤（连败时收紧）
         if p.get("confidence", 0) < conf_threshold:
             filtered_count += 1
+            continue
+        # 联赛分层禁投：送钱区联赛（历史 ROI<-5% 且 ≥5 场）不出任何注
+        if p.get("competition") in league_forbid:
+            p["league_forbidden"] = True
             continue
         is_synthetic = p.get("odds_synthetic", False)
         max_edge = -1.0  # 记录最大期望值 (prob * odds - 1)
@@ -1025,6 +1042,9 @@ def run_settlement(target_date: date):
                                 r.home_score = sr["home_score"]
                                 r.away_score = sr["away_score"]
                                 r.match_no = sr.get("match_no", r.match_no)
+                                # 半场比分同步（半全场玩法结算依赖）
+                                r.half_home_score = int(sr.get("half_home_score") or 0)
+                                r.half_away_score = int(sr.get("half_away_score") or 0)
                                 break
                         existing_teams[tkey] = (sr["home_score"], sr["away_score"])
                         sina_fixed += 1
@@ -1038,6 +1058,8 @@ def run_settlement(target_date: date):
                     match_date=target_date.isoformat(),
                     competition=sr.get("league", ""),
                     match_no=sr.get("match_no", ""),
+                    half_home_score=int(sr.get("half_home_score") or 0),
+                    half_away_score=int(sr.get("half_away_score") or 0),
                 ))
                 existing_teams[tkey] = (sr["home_score"], sr["away_score"])
                 sina_added += 1
@@ -1155,6 +1177,9 @@ def run_settlement(target_date: date):
             "away_score": r.away_score,
             "home_team": r.home_team,
             "away_team": r.away_team,
+            # 半场比分（半全场玩法结算依赖）
+            "half_home_score": int(getattr(r, "half_home_score", 0) or 0),
+            "half_away_score": int(getattr(r, "half_away_score", 0) or 0),
         })
     stored_total = 0
     for r_date, r_list in results_by_date.items():
@@ -1180,6 +1205,8 @@ def run_settlement(target_date: date):
                     old["home_score"] = item["home_score"]
                     old["away_score"] = item["away_score"]
                     old["match_id"] = item["match_id"] or old.get("match_id", "")
+                    old["half_home_score"] = item.get("half_home_score", old.get("half_home_score", 0))
+                    old["half_away_score"] = item.get("half_away_score", old.get("half_away_score", 0))
                     fixed += 1
                 continue
             if item["match_id"] in existing_ids:
@@ -1193,6 +1220,8 @@ def run_settlement(target_date: date):
                         e["away_score"] = item["away_score"]
                         e["home_team"] = item["home_team"]
                         e["away_team"] = item["away_team"]
+                        e["half_home_score"] = item.get("half_home_score", e.get("half_home_score", 0))
+                        e["half_away_score"] = item.get("half_away_score", e.get("half_away_score", 0))
                         fixed += 1
                         _hit = True
                         break
