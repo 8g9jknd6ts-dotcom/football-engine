@@ -28,6 +28,12 @@ class MonteCarloConfig:
     #   比分 top3(MC) 25.7%→30.1%。作用于 MC 比分/总进球分布，方向概率经
     #   ensemble(0.6DC+0.4MC) + fusion(market/djyy) 稀释，风险可控。
     xg_calibration: float = 0.75
+    # λ 不确定性（2026-08-05 比分分布科学化）：Gamma-Poisson 超额离散
+    # 泊松点估计(λ=均值, 方差=均值)把高比分概率压死 → top5 永远 1-0/1-1/2-0
+    # 实际 113 场 50.4% 打出 ≥3 球。λ~Gamma(shape=μ/κ, scale=κ) 后方差=μ+μ²/κ，
+    # 胖尾让 2-2/3-1/4-0 概率上升。walk-forward: top5 39.8%→46.0%（κ=0.25）
+    # κ=0 时退化为纯泊松（负二项→泊松极限）
+    lambda_overdispersion: float = 0.25
 
     def __post_init__(self):
         if self.time_decay_anchors is None:
@@ -92,8 +98,17 @@ class MonteCarloModel(PredictionModel):
 
         # 蒙特卡洛模拟
         n = self.cfg.simulations
-        home_goals = rng.poisson(home_xg, size=n)
-        away_goals = rng.poisson(away_xg, size=n)
+        # λ 不确定性（2026-08-05）：λ~Gamma(shape=μ/κ, scale=κ) 再泊松采样，
+        # 超额离散让高比分概率上升（2-2/3-1/4-0 不再被压死）。κ=0 退化纯泊松。
+        if self.cfg.lambda_overdispersion > 0:
+            _k = self.cfg.lambda_overdispersion
+            _hl = rng.gamma(shape=home_xg / _k, scale=_k, size=n)
+            _al = rng.gamma(shape=away_xg / _k, scale=_k, size=n)
+            home_goals = rng.poisson(_hl)
+            away_goals = rng.poisson(_al)
+        else:
+            home_goals = rng.poisson(home_xg, size=n)
+            away_goals = rng.poisson(away_xg, size=n)
 
         # 胜平负统计
         home_wins = np.sum(home_goals > away_goals)

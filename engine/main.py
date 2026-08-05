@@ -661,18 +661,22 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
 
         _djyy_norm = _norm_scores(_djyy_ts)
         _mc_norm = _norm_scores(_mc_ts)
-        if _djyy_norm and _mc_norm:
-            # 双源融合: 同一比分概率加权求和（DJYY 0.55 / MC 0.45，可调）
-            _merged = {}
-            for h, a, p in _djyy_norm:
-                _merged[(h, a)] = _merged.get((h, a), 0.0) + 0.55 * p
-            for h, a, p in _mc_norm:
-                _merged[(h, a)] = _merged.get((h, a), 0.0) + 0.45 * p
-            _fused = sorted(_merged.items(), key=lambda kv: -kv[1])[:8]
-            _fused = [(h, a, round(p, 4)) for (h, a), p in _fused]
-            _score_src = "djyy+mc"
-        elif _djyy_norm:
-            _fused = [(h, a, round(p, 4)) for h, a, p in _djyy_norm[:8]]
+        # 比分候选：DJYY 优先 + xG差温和重排（2026-08-05 实证，替代 0.55/0.45 双源融合）
+        # 发现：双源融合稀释命中率（top5 52.2%→48.7%），DJYY 纯源最优；
+        #       DJYY 分布对强弱不敏感（碾压局 xG差>1.5 实际 59% 高比分, top1 只给 12%）
+        # 温和重排（xG差≥0.8: 高比分×1.3、1-1/0-0×0.85）：
+        #   walk-forward 113 场: top1 9.7%→13.3%, top5 52.2%→54.9%, top1≥3球 7.1%→31.0%
+        _xdiff = abs(float(pred.home_xg) - float(pred.away_xg)) if pred.home_xg and pred.away_xg else 0.0
+        _reranked = None
+        if _djyy_norm:
+            _reranked = list(_djyy_norm)
+            if _xdiff >= 0.8:
+                _reranked = [
+                    (h, a, round(p * (1.3 if h + a >= 3 else (0.85 if (h, a) in ((1, 1), (0, 0)) else 1.0)), 6))
+                    for h, a, p in _reranked
+                ]
+                _reranked.sort(key=lambda x: -x[2])
+            _fused = [(h, a, round(p, 4)) for h, a, p in _reranked[:8]]
             _score_src = "djyy"
         elif _mc_norm:
             _fused = [(h, a, round(p, 4)) for h, a, p in _mc_norm[:8]]

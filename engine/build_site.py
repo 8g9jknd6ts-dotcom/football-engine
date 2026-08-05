@@ -390,6 +390,17 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     <tr><td>主推 top5</td><td>{sum(1 for r in _ledger_recs if r.get('score_top5_hit'))}</td><td style="font-weight:700;color:var(--green)">{_rate(lambda r: r.get('score_top5_hit'))*100:.0f}%</td><td>{sum(1 for r in _recent if r.get('score_top5_hit'))}</td><td style="color:var(--green)">{_rate7(lambda r: r.get('score_top5_hit'))*100:.0f}%</td><td style="color:var(--dim)">当前主推 5 个</td></tr>
     <tr><td>候选 top8</td><td>{sum(1 for r in _ledger_recs if r.get('score_top8_hit'))}</td><td style="font-weight:700">{_rate(lambda r: r.get('score_top8_hit'))*100:.0f}%</td><td>{sum(1 for r in _recent if r.get('score_top8_hit'))}</td><td>{_rate7(lambda r: r.get('score_top8_hit'))*100:.0f}%</td><td style="color:var(--dim)">DJYY 完整候选列表</td></tr>
   </table>
+  </div>
+
+  <div class="section-title">预测 vs 实际比分分布（2026-08-05 科学化：不再无脑押 1-0/1-1/2-0）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>统计</th><th>修复前（8/5 前）</th><th>修复后（8/5 起）</th><th>实际</th><th>说明</th></tr>
+    <tr><td>top1 为 1-0/1-1/0-0/0-1 低比分</td><td style="color:var(--red);font-weight:700">86%</td><td style="color:var(--green)">随 xG 差调整</td><td style="color:var(--dim)">39%</td><td style="color:var(--dim)">碾压局不再押 1-1</td></tr>
+    <tr><td>top1 为 ≥3 球比分</td><td style="color:var(--red)">7%</td><td style="color:var(--green);font-weight:700">31%</td><td style="color:var(--dim)">50%</td><td style="color:var(--dim)">xG差≥0.8 高比分×1.3 重排</td></tr>
+    <tr><td>主推 top5 命中率</td><td>52.2%</td><td style="color:var(--green);font-weight:700">54.9%</td><td style="color:var(--dim)">—</td><td style="color:var(--dim)">walk-forward 113 场，命中不降反升</td></tr>
+    <tr><td>top1 命中率</td><td>9.7%</td><td style="color:var(--green);font-weight:700">13.3%</td><td style="color:var(--dim)">—</td><td style="color:var(--dim)">重排后单场最可能比分更准</td></tr>
+  </table>
   </div>'''
 
             # 双源比分命中对比（2026-08-05 结构升级：DJYY vs MC，谁准数据说话）
