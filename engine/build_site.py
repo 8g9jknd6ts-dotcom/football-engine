@@ -452,6 +452,42 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     except Exception as e:
         print(f"⚠ 比分命中率区块跳过: {e}")
 
+    # 水位监控汇总（2026-08-05 盘口系统修复）：当天各场水位时间序列累积情况
+    # 由每次 fetch_sina_odds 追加快照形成；展示"哪场资金在动"，识别赛前资金流。
+    odds_series_html = ""
+    try:
+        _os_rows = []
+        for _p in predictions:
+            _so = _p.get("sina_odds") or {}
+            _ser = _so.get("series") or {}
+            if _ser.get("points", 0) < 2:
+                continue
+            _parts = []
+            for _side, _key in (("主", "recent_home"), ("客", "recent_away")):
+                _v = _ser.get(_key)
+                if _v is not None and abs(_v) >= 0.5:
+                    _parts.append(f"{_side}{'↓' if _v < 0 else '↑'}{abs(_v):.1f}%")
+            if not _parts:
+                continue
+            _os_rows.append(
+                f'<tr><td>{_p.get("match_id", "").split("_")[-1]}</td>'
+                f'<td>{_p.get("home_team", "")} vs {_p.get("away_team", "")}</td>'
+                f'<td>{_ser.get("points", 0)}次</td>'
+                f'<td>{" ".join(_parts)}</td>'
+                f'<td style="color:var(--dim)">{_ser.get("span_min", "") and f"跨{_ser.get("span_min"):.0f}min" or ""}</td></tr>'
+            )
+        if _os_rows:
+            odds_series_html = f'''
+  <div class="section-title">水位监控（时间序列累积中：每次抓取追加快照，赛前资金流可查）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>场次</th><th>对阵</th><th>快照数</th><th>近期水位变化</th><th>跨度</th></tr>
+    {''.join(_os_rows)}
+  </table>
+  </div>'''
+    except Exception as e:
+        print(f"⚠ 水位监控区块跳过: {e}")
+
     # 渲染比赛卡片（按联赛分组）
     cards = ""
     results_map = {}
@@ -1200,6 +1236,7 @@ body {{
 
   <!-- SCORE HIT RATE (2026-08-05) -->
   {score_trend_html}
+  {odds_series_html}
 
   <!-- RESULTS REVIEW -->
   {results_html}
@@ -1281,18 +1318,48 @@ def _odds_movement_chip(p):
     return f'<span class="info-chip" style="color:var(--purple)">赔率变动 {" ".join(arrows)}</span>'
 
 
+def _odds_series_chip(p):
+    """水位时间序列标签（2026-08-05 盘口系统修复）：展示累积快照与近期资金流"""
+    sina = p.get("sina_odds")
+    if not sina:
+        return ""
+    ser = sina.get("series") or {}
+    pts = ser.get("points", 0)
+    if pts < 2:
+        return ""
+    parts = [f"水位监控 {pts}次"]
+    for side, key in (("主", "recent_home"), ("客", "recent_away")):
+        v = ser.get(key)
+        if v is not None and abs(v) >= 0.5:
+            arrow = "↓" if v < 0 else "↑"
+            parts.append(f"{side}{arrow}{abs(v):.1f}%")
+    span = ser.get("span_min")
+    if span:
+        parts.append(f"跨{span:.0f}min")
+    return f'<span class="info-chip" style="color:var(--teal, #14b8a6)">{" · ".join(parts)}</span>'
+
+
 def _divergence_chip(p):
     """模型 vs 市场分歧信号：分歧大 = 模型独立判断（高信息量），分歧小 = 跟随市场"""
     model = p.get("model_raw") or {}
     market = p.get("market_fair")
+    # 市场分歧候选（2026-08-05）：非模型方向但有显著正 EV 的赔率，被方向纪律拦下
+    md = p.get("market_disagreement") or {}
+    md_chips = []
+    for sel, info in md.items():
+        md_chips.append(f'{sel[0].upper()}+EV <b>{info["ev"]:.0%}</b>')
+    md_html = ""
+    if md_chips:
+        md_html = f'<span class="info-chip" style="color:var(--amber)">市场分歧 {' '.join(md_chips)}（纪律拦下）</span>'
     if not model or not market or len(market) < 3:
-        return ""
+        return md_html
     _probs = [model.get("home", 0), model.get("draw", 0), model.get("away", 0)]
     div = max(abs(_probs[i] - market[i]) for i in range(3))
     if div > 0.15:
-        return f'<span class="info-chip" style="color:var(--red)">模型vs市场分歧 <b>{div:.0%}</b></span>'
+        return md_html + f'<span class="info-chip" style="color:var(--red)">模型vs市场分歧 <b>{div:.0%}</b></span>'
     if div > 0.08:
-        return f'<span class="info-chip" style="color:var(--amber)">分歧 <b>{div:.0%}</b></span>'
+        return md_html + f'<span class="info-chip" style="color:var(--amber)">分歧 <b>{div:.0%}</b></span>'
+    return md_html
     return f'<span class="info-chip" style="color:var(--dim)">与市场一致 <b>{div:.0%}</b></span>'
 
 
@@ -1628,6 +1695,7 @@ def _match_card(p, value_matches, idx, results_map=None):
         <span class="info-chip">xG <b>{xg_h:.2f} - {xg_a:.2f}</b></span>
         <span class="info-chip">Odds <b>{odds_h}/{odds_d}/{odds_a}</b></span>
         {_odds_movement_chip(p)}
+        {_odds_series_chip(p)}
         {_divergence_chip(p)}
       </div>
     </div>

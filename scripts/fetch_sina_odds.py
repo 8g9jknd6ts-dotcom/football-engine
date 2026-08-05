@@ -284,6 +284,47 @@ def main():
         output_file.write_text(json.dumps(all_odds, ensure_ascii=False, indent=2))
         print(f"  ✓ {date_str}: {len(all_odds)} matches with odds → {output_file}")
 
+        # 时间序列累积（2026-08-05 盘口系统修复）：每次抓取把当前快照追加到
+        # data/state/odds_series/<match_id>.jsonl，形成系统自己的水位时间序列。
+        # 此前 odds_history 只靠接口自带快照，系统没有累积 → realtime 监控是死代码。
+        # 30 分钟粒度 × 多次 run 累积后，可算"赛前资金流斜率"而非单次 initial→current。
+        _series_dir = ROOT / "data" / "state" / "odds_series"
+        _series_dir.mkdir(parents=True, exist_ok=True)
+        _now_ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        for snap in all_odds:
+            _mid = snap.get("match_id", "")
+            _cur = snap.get("euro", {}).get("current", {})
+            if not _mid or not _cur.get("home"):
+                continue
+            _rec = {
+                "ts": _now_ts,
+                "match_no": snap.get("match_no", ""),
+                "home_team": snap.get("home_team", ""),
+                "away_team": snap.get("away_team", ""),
+                "league": snap.get("league", ""),
+                "match_time": snap.get("match_time", ""),
+                "euro": {"home": _cur["home"], "draw": _cur.get("draw"), "away": _cur.get("away")},
+                "asia": snap.get("asia", {}).get("current"),
+                "totals": snap.get("totals", {}).get("current"),
+            }
+            _path = _series_dir / f"{_mid}.jsonl"
+            _lines = _path.read_text(encoding="utf-8").splitlines() if _path.exists() else []
+            if _lines:
+                try:
+                    _last = json.loads(_lines[-1])
+                    if (_last.get("euro", {}).get("home") == _rec["euro"]["home"]
+                            and _last.get("euro", {}).get("draw") == _rec["euro"]["draw"]
+                            and _last.get("euro", {}).get("away") == _rec["euro"]["away"]):
+                        # 水位未变：更新时间戳表示仍在监控，不重复追加
+                        _lines[-1] = json.dumps(_rec, ensure_ascii=False)
+                        _path.write_text("\n".join(_lines) + "\n", encoding="utf-8")
+                        continue
+                except Exception:
+                    pass
+            with open(_path, "a", encoding="utf-8") as _f:
+                _f.write(json.dumps(_rec, ensure_ascii=False) + "\n")
+        print(f"  ✓ 水位时间序列累积: {len(all_odds)} 场已追加 → {_series_dir}")
+
     print(f"\n  ✓ Total: {len(all_odds)} matches saved")
 
 

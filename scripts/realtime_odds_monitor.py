@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-盘口实时监控脚本
-- 高频抓取赔率变化
-- 智能阈值触发推送
-- 自动Git提交并推送到GitHub
+盘口实时监控脚本（已弃用 2026-08-05）
+
+此前从未被 GitHub Actions 调度（死代码），且 Actions 高频调度会被平台节流，
+实时推送在 CI 环境不现实。
+
+已由 fetch_sina_odds.py 的"快照时间序列累积"替代：
+- 每次 daily run 抓取时把当前水位 append 到 data/state/odds_series/<match_id>.jsonl
+- engine/odds_series.py 计算水位斜率/近期变化特征
+- 页面"水位监控"区块 + 预测卡片水位 chip 展示赛前资金流
+
+保留本文件仅作历史参考。
 """
 import json
 import hashlib

@@ -23,6 +23,7 @@ ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
 from engine.sources.manager import SourceManager
+from engine.odds_series import series_features
 from engine.sources.base import MatchResult
 from engine.sources.same_odds import SameOddsAnalyzer
 from engine.prediction.ensemble import EnsembleModel
@@ -367,6 +368,10 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                 "asia": _sina_match.get("asia"),
                 "totals": _sina_match.get("totals"),
                 "match_time": _sina_match.get("match_time"),
+                # 水位时间序列特征（2026-08-05 盘口系统修复）：
+                # 由 data/state/odds_series/ 累积快照计算，识别赛前资金流斜率/加速。
+                # 特征存 predictions 供结算验证命中率，不预设有效/无效。
+                "series": series_features(fixture.match_id),
             }
 
         market_odds = None
@@ -870,6 +875,27 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     candidates = []
     filtered_count = 0
     for p in predictions:
+        # 市场分歧检测（2026-08-05）：独立于候选/置信度过滤，任何场次都记录
+        # 非模型方向但有显著正 EV 的赔率（模型 vs 市场严重分歧信号）。
+        # 8/5 实证：周三002/003 客胜 EV +38%/+115% 被方向纪律拦下且无提示；
+        # 低置信度场次（margin<0.08）尤其容易发生——模型概率接近时市场赔率信息量大。
+        # 存 predictions 供复盘验证"市场分歧方向是否值得破纪律"（数据说话，不预设）。
+        _dir = p.get("direction")
+        if not _dir:
+            _probs0 = (p.get("home_win_prob", 0), p.get("draw_prob", 0), p.get("away_win_prob", 0))
+            _dir = ["home", "draw", "away"][_probs0.index(max(_probs0))]
+        for _sel0, _prob0, _ok0 in (
+            ("home", p.get("home_win_prob", 0), "home_odds"),
+            ("draw", p.get("draw_prob", 0), "draw_odds"),
+            ("away", p.get("away_win_prob", 0), "away_odds"),
+        ):
+            if _sel0 == _dir:
+                continue
+            _od0 = p.get(_ok0)
+            if _od0 and _prob0 * _od0 - 1 > 0.05:
+                p.setdefault("market_disagreement", {})[_sel0] = {
+                    "prob": round(_prob0, 3), "odds": _od0, "ev": round(_prob0 * _od0 - 1, 3)
+                }
         # 自适应置信阈值过滤（连败时收紧）
         if p.get("confidence", 0) < conf_threshold:
             filtered_count += 1

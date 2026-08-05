@@ -88,7 +88,10 @@ jobs:
             D=$(TZ=Asia/Shanghai date -d "$DAYS_BACK days ago" +%Y-%m-%d)
             echo "→ [结算] $D (${DAYS_BACK} 天前)"
             python scripts/fetch_sina_results.py --date "$D" || echo "  ⚠ 新浪赛果刷新失败: $D"
-            python -m engine.main --settle --date "$D" || echo "  ⚠ 结算异常: $D"
+            # 2026-08-05 修复：结算失败必须让 workflow 红色失败，绝不被 || echo 吞掉。
+            # 教训：8/5 09:41 结算 8/3/8/4 静默失败（_src_hit 缺参抛异常被兜底掩盖），
+            #       页面绿但数据没更新。fetch 失败可容忍（幂等下次补抓），结算失败=系统 bug 必须暴露。
+            python -m engine.main --settle --date "$D" || { echo "::error::结算失败: $D（系统 bug，必须修复）"; exit 1; }
           done
 
 
