@@ -3,6 +3,10 @@
 复盘入口 - 一键执行对账 + 归因分析 + Obsidian 沉淀
 
 用法:
+
+⚠️ 2026-08-05 死代码审计：本文件是手动复盘入口，但复盘流程已内嵌
+main.py 结算链路（--settle 自动对账+复盘+写账本），无 workflow/脚本调用此文件。
+保留作手动调试入口。
   python -m engine.review.review --date 2026-07-20          # 复盘指定日期
   python -m engine.review.review --date today --auto-save    # 自动保存到 Obsidian
 

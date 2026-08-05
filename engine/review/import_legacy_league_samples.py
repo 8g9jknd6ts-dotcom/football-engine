@@ -2,6 +2,10 @@
 
 背景：世界杯积累的是另一预测域（国家队杯赛），参数不能搬；
 但老系统 7/25 后预测的全是联赛（K1/瑞典超/挪超/芬超/巴甲），
+
+⚠️ 已弃用（2026-08-05 死代码审计）：一次性迁移工具，使命已完成
+（legacy_league_samples.json 已生成 29 条，见 data/state/），无 workflow 调用。
+保留作历史参考。
 与线上零重叠 → 同域样本合并，联赛分层判断更快收敛。
 
 用法: python3 engine/review/import_legacy_league_samples.py [老系统路径]
