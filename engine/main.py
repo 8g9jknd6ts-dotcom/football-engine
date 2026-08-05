@@ -159,7 +159,10 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     # 3.5 数据新鲜度护栏（2026-08-06 借鉴 MBS 概率系统）
     # 长时间无正式比赛（季前赛/杯赛间歇/跨联赛）→ 概率向均势收缩，避免旧状态当新状态
     from engine.learning.freshness import FreshnessTracker
-    freshness_tracker = FreshnessTracker(ROOT / "data" / "state" / "match_history.db")
+    freshness_tracker = FreshnessTracker(
+        ROOT / "data" / "state" / "match_history.db",
+        ROOT / "data" / "league_matrix.json",
+    )
     freshness_active = 0
 
     # 4. 初始化增强模块
@@ -605,12 +608,15 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         # 借鉴 MBS 概率系统：长时间无正式比赛 → 不确定性扩散（概率向均势收缩）
         _fresh = freshness_tracker.evaluate(fixture.home_team, fixture.away_team, target_date)
         if _fresh.shrink > 0:
-            _fh, _fd, _fa = freshness_tracker.apply([final_h, final_d, final_a], _fresh.shrink)
+            # 2026-08-06 升级：向联赛基线收缩（替代 1/3 均势，MBS 冷启动做法）
+            _baseline = freshness_tracker.league_baseline(fixture.competition)
+            _fh, _fd, _fa = freshness_tracker.apply([final_h, final_d, final_a], _fresh.shrink, _baseline)
             final_h, final_d, final_a = _fh, _fd, _fa
             freshness_active += 1
             if _fresh.risk == "alert":
                 print(f"  ⚠ 新鲜度预警 [{fixture.home_team} {_fresh.home_days}天 / "
-                      f"{fixture.away_team} {_fresh.away_days}天] 概率收缩 {_fresh.shrink:.0%} → 均势")
+                      f"{fixture.away_team} {_fresh.away_days}天] 概率收缩 {_fresh.shrink:.0%} "
+                      f"→ {'联赛基线' if _baseline else '均势'}")
 
         # --- 平局预警分类 ---
         # 冷门平局: 一方被市场看好但模型+市场证据显示存在平局风险
@@ -1839,6 +1845,21 @@ def run_settlement(target_date: date):
             print(f"    ⚠ 偏差: {bias['dimension']}:{bias['key']} {bias['outcome']} gap={bias['gap']:+.3f}")
     else:
         print(f"  - 无可复盘数据")
+
+    # 10.5) 高置信反向样本库（2026-08-06，借鉴 MBS 8/2 AIK 案例）
+    # 高置信 + 市场同向 + 结果反向 → 独立归档，不归因于模型-市场分歧
+    try:
+        from engine.review.high_conf_reversals import archive as hcr_archive
+        _hcr = hcr_archive(
+            ROOT / "data" / "state" / "review_ledger.jsonl",
+            ROOT / "data" / "state" / "high_conf_reversals.jsonl",
+            ROOT / "data" / "daily",
+        )
+        if _hcr["total_archived"]:
+            print(f"  ⚠ 高置信反向样本库: 累计 {_hcr['total_archived']} 场 "
+                  f"(本次新增 {_hcr['new_archived']})")
+    except Exception as _e:
+        print(f"  - 高置信反向样本库跳过: {_e}")
 
     # 11) 重型校准：仅在有新赛果时执行（避免每次定时任务都跑全套）
     if not new_items:

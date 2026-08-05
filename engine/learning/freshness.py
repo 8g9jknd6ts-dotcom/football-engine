@@ -24,8 +24,23 @@ from pathlib import Path
 WATCH_DAYS = 30   # ≥30天无正式比赛 → 观察级（概率向均势轻微收缩）
 ALERT_DAYS = 60   # ≥60天无正式比赛 → 预警级（概率明显收缩 + 页面警示）
 
-# 均势参考概率（收缩目标）
+# 均势参考概率（收缩目标，默认）
 EVEN_PROBS = (1 / 3, 1 / 3, 1 / 3)
+
+# 竞彩联赛名 → DJYY league_matrix.json 名称映射（缺失时按原名匹配）
+LEAGUE_NAME_MAP = {
+    "K1联赛": "韩K联", "韩K联": "韩K联",
+    "巴甲": "巴西甲", "巴西甲": "巴西甲",
+    "K联赛": "韩K联",
+    "美职联": "美职联", "美职": "美职联",
+    "瑞典超": "瑞典超", "瑞超": "瑞典超",
+    "挪超": "挪超", "挪威超": "挪超",
+    "丹麦超": "丹麦超", "丹超": "丹麦超",
+    "瑞士超": "瑞士超", "瑞甲": "瑞士超",
+    "奥甲": "奥甲", "奥地利甲": "奥甲",
+    "苏超": "苏超", "苏格兰超": "苏超",
+    "中超": "中超", "中国超级联赛": "中超",
+}
 
 
 @dataclass
@@ -48,9 +63,39 @@ class FreshnessInfo:
 class FreshnessTracker:
     """从 match_history.db 查询球队最后正式比赛日期"""
 
-    def __init__(self, db_path: Path):
+    def __init__(self, db_path: Path, league_matrix_path: Path | None = None):
         self.db_path = db_path
+        self.league_matrix_path = league_matrix_path
         self._cache: dict[str, str] | None = None  # team -> last date
+        self._baselines: dict[str, tuple[float, float, float]] | None = None
+
+    def league_baseline(self, competition: str | None) -> tuple[float, float, float] | None:
+        """联赛基线概率 (主胜, 平局, 客胜) —— 从 DJYY league_matrix.json 读取
+
+        冷启动收缩目标（借鉴 MBS：无近期缓存球队向"联赛中性值"收缩，而非 1/3 均势）：
+        - 联赛主胜/平局比例是更合理的"中性值"——瑞典超主胜 40.8% 的队伍
+          收缩后应趋近 40.8%/25.2%/34.0%，而不是 33.3%/33.3%/33.3%
+        - 无矩阵数据或联赛不在矩阵 → 返回 None（调用方回退 1/3 均势）
+        """
+        if not competition:
+            return None
+        if self._baselines is None:
+            self._baselines = {}
+            if self.league_matrix_path and self.league_matrix_path.exists():
+                try:
+                    import json
+                    data = json.loads(self.league_matrix_path.read_text(encoding="utf-8"))
+                    for lg in data.get("leagues", []):
+                        name = lg.get("name_zh", "")
+                        h = lg.get("home_win_pct")
+                        d = lg.get("draw_pct")
+                        if name and h is not None and d is not None:
+                            h, d = float(h) / 100.0, float(d) / 100.0
+                            self._baselines[name] = (h, d, max(0.0, 1.0 - h - d))
+                except Exception:
+                    pass
+        name = LEAGUE_NAME_MAP.get(competition, competition)
+        return self._baselines.get(name)
 
     def _load(self) -> dict[str, list[str]]:
         """team(归一化) -> 该队所有比赛日期 ISO 列表（升序）"""
@@ -139,12 +184,17 @@ class FreshnessTracker:
 
         return FreshnessInfo(home_days=hd, away_days=ad, risk="ok", shrink=0.0)
 
-    def apply(self, probs: list[float], shrink: float) -> list[float]:
-        """按收缩强度把概率向均势拉（不确定性扩散）"""
+    def apply(self, probs: list[float], shrink: float, baseline: tuple | None = None) -> list[float]:
+        """按收缩强度把概率向基线（默认 1/3 均势）拉（不确定性扩散）
+
+        baseline: 联赛基线 (主, 平, 客)。无基线 → 均势 1/3（2026-08-06 升级：
+        有联赛矩阵数据时向联赛中性值收缩，更符合联赛自身主客分布）
+        """
         if shrink <= 0 or len(probs) != 3:
             return probs
+        target = baseline if baseline and len(baseline) == 3 else EVEN_PROBS
         out = [
-            probs[i] * (1 - shrink) + EVEN_PROBS[i] * shrink
+            probs[i] * (1 - shrink) + target[i] * shrink
             for i in range(3)
         ]
         s = sum(out) or 1.0

@@ -332,6 +332,42 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     except Exception as e:
         print(f"⚠ 联赛分层区块跳过: {e}")
 
+    # 高置信反向样本库（2026-08-06，借鉴 MBS 8/2 AIK 案例）
+    hcr_html = ""
+    try:
+        _hcr_path = ROOT / "data" / "state" / "high_conf_reversals.jsonl"
+        if _hcr_path.exists():
+            _hcr_items = []
+            for _line in _hcr_path.read_text(encoding="utf-8").splitlines():
+                _line = _line.strip()
+                if not _line:
+                    continue
+                try:
+                    _hcr_items.append(json.loads(_line))
+                except Exception:
+                    continue
+            if _hcr_items:
+                _hcr_rows = ""
+                for _s in _hcr_items[-8:][::-1]:  # 最近 8 条，新的在前
+                    _hcr_rows += (
+                        f'<tr><td>{_s.get("date","")}</td><td>{_s.get("league","")}</td>'
+                        f'<td>{_s.get("teams","")}</td>'
+                        f'<td>预测{_s.get("direction","")} <b>{_s.get("conf",0)*100:.0f}%</b></td>'
+                        f'<td style="color:var(--red)">实际{_s.get("actual_dir","")}</td></tr>'
+                    )
+                hcr_html = f'''
+  <div class="section-title">高置信反向样本库（{len(_hcr_items)} 场 · 预测≥60% + 市场同向却翻车）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>日期</th><th>联赛</th><th>对阵</th><th>预测</th><th>实际</th></tr>
+    {_hcr_rows}
+  </table>
+  <div style="padding:6px 2px;font-size:0.62rem;color:var(--dim)">独立归档复核（借鉴 MBS AIK 案例），
+  不归因于模型-市场分歧；与 50-60% 段降档互补：60%+ 段虽整体命中最好，但反向样本单独跟踪。</div>
+  </div>'''
+    except Exception as e:
+        print(f"⚠ 高置信反向样本库区块跳过: {e}")
+
     # 准确率趋势（诚实回答"是否每天在提升"）
     trend_html = ""
     try:
@@ -1231,6 +1267,7 @@ body {{
 
   <!-- LEAGUE LAYERS -->
   {league_html}
+  {hcr_html}
 
   <!-- ACCURACY TREND -->
   {trend_html}
