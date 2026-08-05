@@ -27,6 +27,12 @@ class LeagueParam:
     # 平局基线（该联赛实际平局率，账本实证）
     #   美职联 55% / 巴甲 60% / 瑞典超 43% vs 模型判平几乎为 0 → 平局盲点主战场
     draw_baseline: float = 0.25
+    # 判平反馈（2026-08-05 结构升级：判平不是 0/1 开关，而是连续强度，随反馈学习）
+    #   draw_predictions: 该联赛被判平的场次数（含基线抬升导致）
+    #   draw_hits:        其中实际打平的场次数
+    #   强度由 draw_strength() 计算：反馈足且准 → 强抬升；样本少/不准 → 温和试探（不清零）
+    draw_predictions: int = 0
+    draw_hits: int = 0
     # 自适应统计
     total_predictions: int = 0
     total_hits: int = 0
@@ -38,6 +44,28 @@ class LeagueParam:
         if self.total_predictions == 0:
             return 0.0
         return self.total_hits / self.total_predictions
+
+    @property
+    def draw_precision(self) -> float:
+        """判平精度（命中/判平次数）"""
+        if self.draw_predictions == 0:
+            return 0.0
+        return self.draw_hits / self.draw_predictions
+
+    def draw_strength(self) -> float:
+        """判平抬升强度（连续自适应，永不硬关闭）
+
+        原则：判平错了不是"关掉"，而是降强度继续试探，等反馈累积再上调。
+        - 有可靠正反馈（判平>=4 且命中>=3，如巴甲 6/10、美职联 6/11）→ 强抬升 0.85
+        - 有反馈但样本/精度不足（如瑞典超 0/2、巴西杯 0/1）→ 温和试探 0.35
+          （基线×0.35 通常低于模型平局概率，不会硬翻盘，但保留继续积累反馈的机会）
+        - 无判平反馈 → 温和 0.40 先试探
+        """
+        if self.draw_predictions >= 4 and self.draw_hits >= 3:
+            return 0.85
+        if self.draw_predictions >= 2:
+            return 0.35
+        return 0.40
 
 
 @dataclass
@@ -109,7 +137,7 @@ class LeagueParamsManager:
         self._load()
 
     def _load(self):
-        """加载持久化状态（旧文件缺 xg_calibration/draw_baseline 时用账本先验补）"""
+        """加载持久化状态（旧文件缺新字段时用先验补齐，含判平反馈字段）"""
         if self.state_path.exists():
             try:
                 raw = json.loads(self.state_path.read_text())
@@ -119,6 +147,9 @@ class LeagueParamsManager:
                         calib = LEAGUE_CALIBRATION_PRIORS.get(league, {})
                         data.setdefault("xg_calibration", calib.get("xg_calibration", 1.0))
                         data.setdefault("draw_baseline", calib.get("draw_baseline", 0.25))
+                    # 判平反馈字段（结构升级：判平强度自适应，不硬关闭）
+                    data.setdefault("draw_predictions", 0)
+                    data.setdefault("draw_hits", 0)
                     self._params[league] = LeagueParam(**data)
             except Exception:
                 pass
@@ -134,6 +165,8 @@ class LeagueParamsManager:
                 "market_blend_weight": param.market_blend_weight,
                 "xg_calibration": param.xg_calibration,
                 "draw_baseline": param.draw_baseline,
+                "draw_predictions": param.draw_predictions,
+                "draw_hits": param.draw_hits,
                 "total_predictions": param.total_predictions,
                 "total_hits": param.total_hits,
                 "avg_overround": param.avg_overround,
@@ -178,6 +211,20 @@ class LeagueParamsManager:
     def get_draw_baseline(self, league: str) -> float:
         """获取联赛平局基线（账本实证：美职联 55% / 巴甲 60% / 瑞典超 43%）"""
         return self.get_params(league).draw_baseline
+
+    def get_draw_strength(self, league: str) -> float:
+        """获取判平抬升强度（连续自适应，由该联赛判平反馈驱动，不硬关闭）"""
+        return self.get_params(league).draw_strength()
+
+    def record_draw_result(self, league: str, was_draw: bool, hit: bool):
+        """记录判平反馈：was_draw=该场最终是否判平, hit=判平且实际打平"""
+        if not was_draw:
+            return
+        param = self.get_params(league)
+        param.draw_predictions += 1
+        if hit:
+            param.draw_hits += 1
+        self.save()
 
     def record_result(self, league: str, hit: bool, overround: float = 0.0):
         """记录一场预测结果"""

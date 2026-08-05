@@ -46,11 +46,12 @@ from engine.learning.elo_updater import EloUpdater
 from engine.learning.wilson_trust import TrustSystem
 from engine.learning.combo_miner import ComboMiner
 
-# 判平白名单（2026-08-05 账本 113 场 precision 实证）：
-#   巴甲 6/10=60%、美职联 6/11=55% → 判平可用
-#   瑞典超 0/2、巴西杯 0/1 → 判平全错，关闭（基线≥35% 也不判）
-#   新联赛接入判平前须先积累 precision 样本，否则维持保守（不判）
-DRAW_ACTIVE_LEAGUES = {"巴甲", "美职联"}
+# 判平强度由数据驱动（2026-08-05 结构升级）：不硬编码联赛白名单，
+# 而是每个联赛维护判平反馈(draw_predictions/draw_hits)，draw_strength() 输出连续强度：
+#   反馈足且准(巴甲 6/10、美职联 6/11) → 强抬升 0.85
+#   样本少/不准(瑞典超 0/2、巴西杯 0/1) → 温和试探 0.35（不清零，继续积累反馈）
+#   无反馈 → 温和 0.40
+# 判平错误 → 强度自动下降，等反馈证明后再升，而不是关闭联赛
 from engine.learning.online_weights import OnlineWeightLearner
 from engine.prediction.lgbm_model import LGBMModel, LGBMConfig, build_features
 from engine.prediction.isotonic_cal import IsotonicCalibrator, CalibrationConfig
@@ -544,14 +545,14 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
 
         # 联赛平局基线修正（2026-08-05 账本 113 场实证 + walk-forward 验证）
         # 美职联 55% / 巴甲 60% / 瑞典超 43% 平局率 vs 模型判平几乎为 0 → 平局盲点主战场
-        # walk-forward 回测: 高平局率联赛(基线≥0.35)平局概率向基线抬升(85%折)，
-        #   113 场方向命中 43.4%→46.0% (+3场)，低平局率联赛不受影响（gap≈0）
-        # 2026-08-05 精准度修正: 判平 precision 分联赛差异巨大——巴甲 60% / 美职联 55%
-        #   （可用），瑞典超 0% / 巴西杯 0%（判平全错，关闭）。DRAW_ACTIVE_LEAGUES 是
-        #   判平 history precision 有数据支撑的联赛白名单。
+        # 强度连续自适应（不硬关闭）：draw_strength() 由该联赛判平反馈驱动
+        #   - 反馈足且准(巴甲 6/10、美职联 6/11) → 0.85 强抬升
+        #   - 样本少/不准(瑞典超 0/2、巴西杯 0/1) → 0.35 温和试探（保留反馈机会）
+        #   - 无反馈 → 0.40 先试探；判平错误会经 record_draw_result 反馈自动降权
         _league_db = league_mgr.get_draw_baseline(fixture.competition) if league_mgr else 0.25
-        if _league_db >= 0.35 and fixture.competition in DRAW_ACTIVE_LEAGUES:
-            _target_d = max(final_d, _league_db * 0.85)
+        _draw_str = league_mgr.get_draw_strength(fixture.competition) if league_mgr else 0.0
+        if _league_db >= 0.35 and _draw_str >= 0.3:
+            _target_d = max(final_d, _league_db * _draw_str)
             _gap = _target_d - final_d
             if _gap > 0.01:
                 final_d += _gap
@@ -1491,6 +1492,12 @@ def run_settlement(target_date: date):
         lg_name = pred.get("competition") or r.competition or "未知"
         try:
             league_mgr.record_result(league=lg_name, hit=won)
+            # 判平反馈（结构升级：判平强度随反馈自适应，判错自动降权而非关闭）
+            league_mgr.record_draw_result(
+                league=lg_name,
+                was_draw=(best_sel[0] == "draw"),
+                hit=(actual == "draw"),
+            )
             league_fed += 1
         except Exception:
             pass
