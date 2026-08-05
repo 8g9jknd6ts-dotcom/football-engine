@@ -75,7 +75,7 @@ def evaluate_handicap_ev(
         "draw": pred.get("handicap_draw_odds"),
         "away": pred.get("handicap_away_odds"),
     }
-    if handicap is None or any(o is None or o <= 1.0 for o in odds.values()):
+    if handicap is None or not any(o is not None and o > 1.0 for o in odds.values()):
         return None
 
     # 优先模型完整概率（和应≈1）；缺失/异常时用 top_scores 推导
@@ -101,12 +101,17 @@ def evaluate_handicap_ev(
     )
     best_sel, best_edge = "", -1.0
     for sel in ("home", "draw", "away"):
-        edge = probs[sel] * odds[sel] - 1.0
+        o = odds[sel]
+        if o is None or o <= 1.0:
+            continue  # 只评估有赔率的方向
+        edge = probs[sel] * o - 1.0
         ev.edges[sel] = edge
         if edge > best_edge:
             best_edge, best_sel = edge, sel
     ev.best_sel, ev.best_edge, ev.ev = best_sel, best_edge, best_edge
-    ev.recommended = best_edge >= min_edge
+    # sanity check: 模型概率与赔率隐含概率严重背离(>30% edge) 多为脏数据,
+    # 不直接推荐重注，标记 recommended=False（回测积累后再放开）
+    ev.recommended = best_edge >= min_edge and best_edge <= 0.30
     return ev
 
 

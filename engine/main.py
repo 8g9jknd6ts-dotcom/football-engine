@@ -767,7 +767,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         try:
             from engine.strategy.handicap_ev import evaluate_handicap_ev
             _hev = evaluate_handicap_ev(p)
-            if _hev and _hev.best_edge > 0:
+            if _hev and _hev.recommended:
                 _odds = _hev.odds[_hev.best_sel]
                 _hcap_cand = {
                     "match_id": p["match_id"],
