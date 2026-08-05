@@ -1,46 +1,46 @@
 {
-  "total_matches": 111,
+  "total_matches": 112,
   "date_range": [
     "2026-07-19",
     "2026-08-04"
   ],
   "metrics": {
-    "brier": 0.6678,
-    "weighted_brier": 0.6686,
-    "rps": 0.225,
-    "weighted_rps": 0.2253,
-    "log_loss": 1.1034,
-    "hit_rate": 0.4414,
-    "ece": 0.2696
+    "brier": 0.6677,
+    "weighted_brier": 0.6685,
+    "rps": 0.2256,
+    "weighted_rps": 0.2259,
+    "log_loss": 1.1033,
+    "hit_rate": 0.4375,
+    "ece": 0.2737
   },
   "draw_analysis": {
     "actual_draws": 33,
-    "actual_draw_rate": 0.2973,
+    "actual_draw_rate": 0.2946,
     "predicted_draws": 2,
-    "predicted_draw_rate": 0.018,
+    "predicted_draw_rate": 0.0179,
     "max_draw_prob": 0.3914,
-    "avg_draw_prob": 0.2372,
-    "avg_market_draw": 0.2348,
+    "avg_draw_prob": 0.2377,
+    "avg_market_draw": 0.2355,
     "market_high_draw_n": 9,
     "market_high_draw_actual": 4,
     "market_high_draw_rate": 0.4444
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4414,
-      "n": 111
+      "hit_rate": 0.4375,
+      "n": 112
     },
     "market": {
-      "hit_rate": 0.4833,
-      "n": 60
+      "hit_rate": 0.4754,
+      "n": 61
     },
     "hybrid_v2": {
-      "hit_rate": 0.4167,
-      "n": 60
+      "hit_rate": 0.4098,
+      "n": 61
     },
     "market_d28": {
-      "hit_rate": 0.4667,
-      "n": 60
+      "hit_rate": 0.459,
+      "n": 61
     }
   },
   "by_league": {
@@ -68,17 +68,17 @@
       "brier": 0.8003,
       "rps": 0.2491
     },
+    "欧冠": {
+      "n": 11,
+      "hit_rate": 0.2727,
+      "brier": 0.6278,
+      "rps": 0.2616
+    },
     "美职联": {
       "n": 11,
       "hit_rate": 0.4545,
       "brier": 0.689,
       "rps": 0.1721
-    },
-    "欧冠": {
-      "n": 10,
-      "hit_rate": 0.3,
-      "brier": 0.6245,
-      "rps": 0.2591
     },
     "巴甲": {
       "n": 10,
