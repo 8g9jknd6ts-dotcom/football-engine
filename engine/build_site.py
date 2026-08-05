@@ -391,6 +391,53 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     <tr><td>候选 top8</td><td>{sum(1 for r in _ledger_recs if r.get('score_top8_hit'))}</td><td style="font-weight:700">{_rate(lambda r: r.get('score_top8_hit'))*100:.0f}%</td><td>{sum(1 for r in _recent if r.get('score_top8_hit'))}</td><td>{_rate7(lambda r: r.get('score_top8_hit'))*100:.0f}%</td><td style="color:var(--dim)">DJYY 完整候选列表</td></tr>
   </table>
   </div>'''
+
+            # 双源比分命中对比（2026-08-05 结构升级：DJYY vs MC，谁准数据说话）
+            _dj_items = [r for r in _ledger_recs if r.get('score_djyy_rank', -1) >= 0]
+            _mc_items = [r for r in _ledger_recs if r.get('score_mc_rank', -1) >= 0]
+            _src_rows = ""
+            if _dj_items:
+                _dh = sum(1 for r in _dj_items if 1 <= r.get('score_djyy_rank', 0) <= 5)
+                _src_rows += f'<tr><td>DJYY 分析源</td><td>{_dh}/{len(_dj_items)}</td><td style="font-weight:700">{_dh/len(_dj_items)*100:.0f}%</td><td style="color:var(--dim)">分析文本提取的比分候选（8/5 起记录）</td></tr>'
+            if _mc_items:
+                _mh = sum(1 for r in _mc_items if 1 <= r.get('score_mc_rank', 0) <= 5)
+                _src_rows += f'<tr><td>MC 模拟源</td><td>{_mh}/{len(_mc_items)}</td><td style="font-weight:700">{_mh/len(_mc_items)*100:.0f}%</td><td style="color:var(--dim)">泊松蒙特卡洛模拟（8/5 起记录）</td></tr>'
+            if _src_rows:
+                score_trend_html += f'''
+  <div class="section-title">比分候选来源对比（DJYY vs MC，8/5 起累积 · 主推前5命中率）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>来源</th><th>命中/场次</th><th>命中率</th><th>说明</th></tr>
+    {_src_rows}
+  </table>
+  </div>'''
+            else:
+                score_trend_html += '''
+  <div class="section-title">比分候选来源对比（DJYY vs MC · 8/5 起记录，样本累积中）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>来源</th><th>命中/场次</th><th>命中率</th><th>说明</th></tr>
+    <tr><td>DJYY 分析源</td><td colspan="3" style="color:var(--dim)">自 8/5 双源融合上线后的场次开始记录，结算几场后自动填充</td></tr>
+    <tr><td>MC 模拟源</td><td colspan="3" style="color:var(--dim)">自 8/5 双源融合上线后的场次开始记录，结算几场后自动填充</td></tr>
+  </table>
+  </div>'''
+
+            # 盘口信号命中率（2026-08-05 结构化验证：压缩比方向信号是否有效，累积说话）
+            _ms_items = [r for r in _ledger_recs if r.get('market_signal_hit') is not None]
+            if _ms_items:
+                _msh = sum(1 for r in _ms_items if r.get('market_signal_hit'))
+                _msr = _msh / len(_ms_items)
+                _ms_color = "var(--green)" if _msr >= 0.45 else ("var(--red)" if _msr <= 0.35 else "var(--amber)")
+                _ms_verdict = ("≥基线(44%)，信号有预测力" if _msr >= 0.45
+                               else ("显著低于基线，信号待观察" if _msr <= 0.35 else "与基线接近，继续累积样本"))
+                score_trend_html += f'''
+  <div class="section-title">盘口信号命中率（压缩比资金流向，样本累积验证中）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>信号</th><th>命中/场次</th><th>命中率</th><th>模型方向基线</th><th>判断</th></tr>
+    <tr><td>欧赔压缩方向</td><td>{_msh}/{len(_ms_items)}</td><td style="font-weight:700;color:{_ms_color}">{_msr*100:.0f}%</td><td>{sum(1 for r in _ledger_recs if r.get('hit'))}/{len(_ledger_recs)} ({sum(1 for r in _ledger_recs if r.get('hit'))/len(_ledger_recs)*100:.0f}%)</td><td style="color:{_ms_color}">{_ms_verdict}</td></tr>
+  </table>
+  </div>'''
     except Exception as e:
         print(f"⚠ 比分命中率区块跳过: {e}")
 
@@ -1528,7 +1575,10 @@ def _match_card(p, value_matches, idx, results_map=None):
                 if isinstance(item, (list, tuple)) and len(item) >= 2:
                     _pred_scores.append(f"{item[0]}-{item[1]}")
             if _pred_scores:
-                score_hit_html = f' <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 {" / ".join(_pred_scores)}</span>'
+                # 标注比分来源（8/5 起双源融合：DJYY+MC / DJYY / MC）
+                _src_tag = p.get("score_sources") or ""
+                _src_html = f' <span style="font-size:0.6rem;color:var(--purple)">[{_src_tag}]</span>' if _src_tag else ""
+                score_hit_html = f' <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 {" / ".join(_pred_scores)}{_src_html}</span>'
             result_html = f'<div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">{hs}-{as_}</span> <span class="ar-outcome {actual_cls}">{actual_label}</span> <span class="ar-hit {hit_cls}">{hit_icon}</span>{score_rank_html}{score_hit_html}</div>'
 
     # Build detail tabs

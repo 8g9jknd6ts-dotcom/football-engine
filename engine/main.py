@@ -634,6 +634,66 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             )
             _odds_synthetic = True
 
+            # 概率分布：双源比分融合（2026-08-05 结构升级）
+            #   DJYY 是分析参考不是权威概率 → 与 MC 泊松模拟按权重融合，
+            #   每源原始候选保留(djyy_top_scores/mc_top_scores)，结算记录各源命中率，数据说话调权重
+            _djyy_ts = (djyy_data.get("top_scores") if djyy_data and djyy_data.get("top_scores") else None)
+            _mc_ts = getattr(pred, "top_scores", None)
+
+            def _norm_scores(ts):
+                """归一化比分候选: [(h,a,p),...] → [(h,a,p_norm),...]; 无概率则按排名衰减"""
+                if not ts:
+                    return []
+                out = []
+                for i, it in enumerate(ts):
+                    if isinstance(it, (list, tuple)) and len(it) >= 3:
+                        try:
+                            p = float(it[2])
+                        except (TypeError, ValueError):
+                            p = 0.0
+                        if p <= 0:
+                            p = 1.0 / (i + 1)
+                        out.append((int(it[0]), int(it[1]), p))
+                    elif isinstance(it, (list, tuple)) and len(it) >= 2:
+                        out.append((int(it[0]), int(it[1]), 1.0 / (i + 1)))
+                s = sum(x[2] for x in out) or 1.0
+                return [(h, a, p / s) for h, a, p in out]
+
+            _djyy_norm = _norm_scores(_djyy_ts)
+            _mc_norm = _norm_scores(_mc_ts)
+            if _djyy_norm and _mc_norm:
+                # 双源融合: 同一比分概率加权求和（DJYY 0.55 / MC 0.45，可调）
+                _merged = {}
+                for h, a, p in _djyy_norm:
+                    _merged[(h, a)] = _merged.get((h, a), 0.0) + 0.55 * p
+                for h, a, p in _mc_norm:
+                    _merged[(h, a)] = _merged.get((h, a), 0.0) + 0.45 * p
+                _fused = sorted(_merged.items(), key=lambda kv: -kv[1])[:8]
+                _fused = [(h, a, round(p, 4)) for (h, a), p in _fused]
+                _score_src = "djyy+mc"
+            elif _djyy_norm:
+                _fused = [(h, a, round(p, 4)) for h, a, p in _djyy_norm[:8]]
+                _score_src = "djyy"
+            elif _mc_norm:
+                _fused = [(h, a, round(p, 4)) for h, a, p in _mc_norm[:8]]
+                _score_src = "mc"
+            else:
+                _fused = None
+                _score_src = None
+
+            # 盘口信号（2026-08-05 结构化，替代装饰性 ±0.02）：
+            #   sina 欧赔压缩比 → 方向分: 压缩(资金流入)=+, 抬升=-
+            #   (1.0 - compression) * 2: c=0.95 → +0.10, c=1.05 → -0.10
+            #   存 predictions 供结算验证"盘口信号命中率"（累积后数据说话盘口信号是否有效）
+            _market_signal = None
+            if _sina_data:
+                _comp = _sina_data.get("compression") or {}
+                _sig = {}
+                for _k in ("home", "draw", "away"):
+                    _c = _comp.get(_k, 1.0)
+                    _sig[_k] = round((1.0 - _c) * 2.0, 4)
+                _market_signal = _sig
+
         predictions.append({
             "match_id": pred.match_id,
             "competition": pred.competition,
@@ -672,11 +732,12 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             "market_fair": (
                 [round(x, 4) for x in calibrated_probs] if calibrated_probs else None
             ),
-            # 概率分布（优先DJYY模型，fallback到MC模拟）
-            "top_scores": (
-                djyy_data.get("top_scores") if djyy_data and djyy_data.get("top_scores")
-                else getattr(pred, "top_scores", None)
-            ),
+            # 双源融合比分候选（DJYY+MC）+ 盘口信号（2026-08-05）
+            "top_scores": _fused,
+            "score_sources": _score_src,
+            "djyy_top_scores": _djyy_norm[:8] if _djyy_norm else None,
+            "mc_top_scores": _mc_norm[:8] if _mc_norm else None,
+            "market_signal": _market_signal,
             # 总进球分布：只用模型真分布（top_total_goals）。
             # DJYY totals 是大小球让球线独立概率(1.5大/2.5大/3.5大…)，不是总进球数分布，
             # 混入会导致概率和>1的假分布（8/5 奥胡斯 total_goals 和=1.868 即此污染）。
@@ -1634,6 +1695,28 @@ def run_settlement(target_date: date):
                 pred["score_top3_hit"] = 1 <= _rank <= 3
                 pred["score_top5_hit"] = 1 <= _rank <= 5
                 pred["score_top8_hit"] = 1 <= _rank <= 8
+                # 双源比分命中（2026-08-05）：记录实际比分在 DJYY 源 / MC 源的各自排名，
+                # 账本累积后比较两源命中率 → 数据决定融合权重
+                for _src_key, _src_ts in (("djyy_score_rank", pred.get("djyy_top_scores")),
+                                          ("mc_score_rank", pred.get("mc_top_scores"))):
+                    _srank = 0
+                    if _src_ts:
+                        for _i, _it in enumerate(_src_ts):
+                            if (isinstance(_it, (list, tuple)) and len(_it) >= 2
+                                    and int(_it[0]) == r.home_score and int(_it[1]) == r.away_score):
+                                _srank = _i + 1
+                                break
+                    pred[_src_key] = _srank
+                # 盘口信号命中（2026-08-05）：market_signal 最强方向 == 实际方向？
+                # 累积验证"盘口信号到底有没有用"，网页展示命中率
+                _msig = pred.get("market_signal") or {}
+                if _msig:
+                    _sig_dir = max(_msig, key=lambda k: _msig.get(k, 0))
+                    pred["market_signal_dir"] = _sig_dir
+                    pred["market_signal_hit"] = _sig_dir == actual
+                else:
+                    pred["market_signal_dir"] = None
+                    pred["market_signal_hit"] = None
             _touch.setdefault(n["date"], []).append(pred["match_id"])
         _updated = 0
         for _d, _mids in _touch.items():

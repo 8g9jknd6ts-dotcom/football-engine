@@ -84,6 +84,12 @@ class MatchReview:
     score_top3_hit: bool = False     # 命中主推前3（38% 基准）
     score_top5_hit: bool = False     # 命中主推前5（52% 基准）
     score_top8_hit: bool = False     # 命中候选前8（66% 基准）
+    # 双源比分命中（2026-08-05 结构升级）：DJYY vs MC 各自命中位置，累积比较调权重
+    #   -1 = 该源无候选数据, 0 = 有候选但未命中, N = 命中第N位
+    score_djyy_rank: int = -1
+    score_mc_rank: int = -1
+    # 盘口信号（2026-08-05 结构化验证）：market_signal 最强方向是否命中
+    market_signal_hit: bool | None = None
 
 
 @dataclass
@@ -362,6 +368,10 @@ class PostMatchReviewer:
                 score_top3_hit=score_top3_hit,
                 score_top5_hit=score_top5_hit,
                 score_top8_hit=score_top8_hit,
+                # 双源比分 + 盘口信号（2026-08-05 结构升级）
+                score_djyy_rank=int(pred.get("djyy_score_rank", -1) or -1),
+                score_mc_rank=int(pred.get("mc_score_rank", -1) or -1),
+                market_signal_hit=pred.get("market_signal_hit"),
             )
             reviews.append(review)
 
@@ -416,6 +426,22 @@ class PostMatchReviewer:
             if r.score_rank > 0:
                 score_rank_hist[r.score_rank] = score_rank_hist.get(r.score_rank, 0) + 1
 
+        # 双源比分命中（2026-08-05）：DJYY vs MC 谁更准 → 数据决定融合权重
+        def _src_hit(attr, valid):
+            items = [r for r in reviews if getattr(r, attr, -1) >= 0]
+            return {"n": len(items), "hits": sum(1 for r in items if 1 <= getattr(r, attr) <= 5)}
+
+        score_source_stats = {
+            "djyy": _src_hit("score_djyy_rank"),
+            "mc": _src_hit("score_mc_rank"),
+        }
+        # 盘口信号命中（累积验证盘口信号有效性）
+        msig_items = [r for r in reviews if r.market_signal_hit is not None]
+        market_signal_stats = {
+            "n": len(msig_items),
+            "hits": sum(1 for r in msig_items if r.market_signal_hit),
+        }
+
         # 偏差检测
         biases = self._detect_biases(reviews)
 
@@ -430,6 +456,8 @@ class PostMatchReviewer:
             "by_odds_band": by_band,
             "score_stats": score_stats,
             "score_rank_hist": score_rank_hist,
+            "score_source_stats": score_source_stats,
+            "market_signal_stats": market_signal_stats,
             "biases": [asdict(b) for b in biases],
             "total_pnl": round(sum(r.pnl for r in reviews), 2),
             "generated_at": datetime.now().isoformat(),
