@@ -165,6 +165,15 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     )
     freshness_active = 0
 
+    # 3.6 E 规则（2026-08-06）：高置信反向样本 ≥2 场的联赛 → 60%+ 段降一档
+    try:
+        from engine.review.high_conf_reversals import league_risk
+        _hcr_league_risk = league_risk(ROOT / "data" / "state" / "high_conf_reversals.jsonl", min_samples=2)
+        if _hcr_league_risk:
+            print(f"  ⚠ 高置信反向风险联赛: {_hcr_league_risk} → 60%+ 段降一档")
+    except Exception:
+        _hcr_league_risk = {}
+
     # 4. 初始化增强模块
     print("\n[3/8] 初始化增强分析模块...")
     trust_system = TrustSystem()
@@ -939,6 +948,11 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         _final_prob = max(p.get("home_win_prob", 0), p.get("draw_prob", 0), p.get("away_win_prob", 0))
         if 0.50 <= _final_prob < 0.60:
             p["prob_band_5060"] = True  # 触发降档
+        # E 规则（2026-08-06）：高置信反向样本 ≥2 场的联赛 → 该联赛 60%+ 段降一档
+        # （借鉴 MBS AIK 案例；巴甲 2 场 71%/74% 主胜→平局即触发）
+        # 60%+ 段整体命中 52.2% 是最好段，但风险联赛的高置信更易翻车 → 保守降档
+        if _final_prob >= 0.60 and _hcr_league_risk.get(p.get("competition", ""), 0) >= 2:
+            p["prob_band_60_risk"] = True  # 触发降档（稳胆→搏冷 / 搏冷→彩票 / 彩票减注30%）
         # 联赛分层禁投：送钱区联赛（历史 ROI<-5% 且 ≥5 场）不出任何注
         if p.get("competition") in league_forbid:
             p["league_forbidden"] = True
@@ -994,6 +1008,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                         "prob": prob,
                         "kelly_fraction": 0.05,  # 保守固定仓位
                         "prob_band_5060": p.get("prob_band_5060", False),
+                        "prob_band_60_risk": p.get("prob_band_60_risk", False),
                         "prob_max": _final_prob,
                     })
             elif edge > 0:  # 真实赔率: 正期望
@@ -1005,6 +1020,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                     "prob": prob,
                     "kelly_fraction": kelly_f,
                     "prob_band_5060": p.get("prob_band_5060", False),
+                    "prob_band_60_risk": p.get("prob_band_60_risk", False),
                     "prob_max": _final_prob,
                 })
 

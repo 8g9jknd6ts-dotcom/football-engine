@@ -2140,9 +2140,14 @@ def _ticket_section(ticket, predictions):
                 sel_label = "半全场·" + _hafu_name.get(sel[5:], sel[5:])
             else:
                 sel_label = sel_map.get(sel, sel)
-            # 降档角标（2026-08-06）：50-60% 概率段 = 平局盲点区，被降档或减注
+            # 降档角标（2026-08-06）：50-60% 概率段 / E 规则高置信反向风险联赛
             _downgrade = ""
-            if it.get("downgraded") == "stake_half":
+            _reason = it.get("downgrade_reason", "")
+            if _reason == "prob_5060":
+                _downgrade = ' <span class="tag-warn" title="50-60% 概率段（平局盲点区）已降档">降档·平局盲点</span>'
+            elif _reason == "league_60_risk":
+                _downgrade = ' <span class="tag-warn" title="联赛高置信反向样本≥2场，60%+段降一档">降档·联赛风险</span>'
+            elif it.get("downgraded") == "stake_half":
                 _downgrade = ' <span class="tag-warn" title="50-60% 概率段（平局盲点区）减注50%">减注</span>'
             elif it.get("prob") and 0.50 <= it.get("prob", 0) < 0.60:
                 _downgrade = ' <span class="tag-warn" title="50-60% 概率段（平局盲点区）已降档">降档</span>'

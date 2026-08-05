@@ -53,6 +53,7 @@ class TicketPick:
     ticket_type: str = ""   # "stable" / "value" / "lottery"
     stake: float = 0.0      # 实际注额
     stake_reduction: float = 1.0  # 注额缩减系数（50-60% 概率段彩票降半，2026-08-06）
+    downgrade_reason: str = ""    # "prob_5060" / "league_60_risk"（E 规则，2026-08-06）
 
 
 @dataclass
@@ -130,6 +131,7 @@ class ThreeTicketAllocator:
             # 此段命中率 37.1%（整体 43.4%），35 场实际平局 16 场（45.7%）模型 0 场判平
             # = 平局盲点集中爆发区。处理：稳胆→搏冷、搏冷→彩票、彩票→减注 50%
             if c.get("prob_band_5060") and pick.ticket_type:
+                pick.downgrade_reason = "prob_5060"
                 if pick.ticket_type == "stable":
                     pick.ticket_type = "value"
                     stable = [s for s in stable if s is not pick]
@@ -140,6 +142,22 @@ class ThreeTicketAllocator:
                     lottery.append(pick)
                 else:  # lottery: 减注 50%
                     pick.stake_reduction = 0.5
+
+            # E 规则（2026-08-06）：高置信反向样本 ≥2 场的联赛 → 60%+ 段降一档
+            # 60%+ 段整体命中 52.2% 是最好段，但风险联赛（如巴甲 2 场 71%/74% 主胜→平）
+            # 的高置信更易翻车。处理：稳胆→搏冷、搏冷→彩票、彩票→减注 30%（弱于 50-60% 段）
+            if c.get("prob_band_60_risk") and pick.ticket_type and not c.get("prob_band_5060"):
+                pick.downgrade_reason = "league_60_risk"
+                if pick.ticket_type == "stable":
+                    pick.ticket_type = "value"
+                    stable = [s for s in stable if s is not pick]
+                    value.append(pick)
+                elif pick.ticket_type == "value":
+                    pick.ticket_type = "lottery"
+                    value = [s for s in value if s is not pick]
+                    lottery.append(pick)
+                else:  # lottery: 减注 30%
+                    pick.stake_reduction = 0.7
 
         # 按 edge = prob*odds - 1 排序，取前N
         stable.sort(key=lambda p: p.prob * p.odds - 1, reverse=True)
@@ -211,6 +229,8 @@ class ThreeTicketAllocator:
             # 降档标记（2026-08-06）：原搏冷降彩票 / 彩票减注 50%
             if p.stake_reduction < 1.0:
                 d["downgraded"] = "stake_half"
+            if p.downgrade_reason:
+                d["downgrade_reason"] = p.downgrade_reason
             return d
         return {
             "stable": [_pick(p) for p in plan.stable_picks],

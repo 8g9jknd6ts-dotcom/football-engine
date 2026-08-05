@@ -157,6 +157,32 @@ def _by_league(items: list[dict]) -> dict:
     return out
 
 
+def league_risk(archive_path: Path, min_samples: int = 2) -> dict[str, int]:
+    """从归档统计"高置信反向样本≥min_samples"的联赛 → 该联赛 60%+ 段降档依据
+
+    E 规则（2026-08-06）：同联赛出现 ≥min_samples 场高置信+市场同向+反向样本，
+    说明该联赛存在系统性高估风险，其 60%+ 段（整体命中最好但也最自信）
+    降一档处理。当前 min_samples=2（巴甲 2 场 71%/74% 主胜→平局即触发）。
+    """
+    counts: dict[str, int] = {}
+    if not archive_path.exists():
+        return counts
+    try:
+        for line in archive_path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                lg = json.loads(line).get("league")
+            except Exception:
+                continue
+            if lg:
+                counts[lg] = counts.get(lg, 0) + 1
+    except Exception:
+        pass
+    return {lg: n for lg, n in counts.items() if n >= min_samples}
+
+
 if __name__ == "__main__":
     import sys
     root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(".")
