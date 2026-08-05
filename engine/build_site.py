@@ -1710,6 +1710,9 @@ def _match_card(p, value_matches, idx, results_map=None):
         <div class="match-meta">
           {'<span class="value-badge">价值精选</span>' if is_val else ''}
           {'<span class="draw-alert-badge" style="background:var(--purple);color:#fff;padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px">⚠平局预警</span>' if p.get('draw_alert') else ''}
+          {'<span class="hcr-warn-badge" title="该联赛高置信反向样本≥2场，60%+段已降档" style="background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.4);padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px">⚠高置信反向风险</span>' if p.get('prob_band_60_risk') else ''}
+          {'<span class="hcr-warn-badge" title="50-60%概率段=平局盲点区，已降档" style="background:rgba(255,170,60,0.15);color:#ffaa3c;border:1px solid rgba(255,170,60,0.4);padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px">⚠平局盲点段</span>' if p.get('prob_band_5060') else ''}
+          {'<span class="fresh-warn" style="background:rgba(255,170,60,0.12);color:#ffaa3c;padding:2px 6px;border-radius:4px;font-size:0.65rem;margin-right:4px" title="数据新鲜度风险">⚠新鲜度</span>' if (p.get('freshness') or {}).get('risk') in ('watch','alert') else ''}
           <span class="match-id">{match_id.split('_', 1)[-1] if '_' in match_id else match_id}</span>
           {f'<span class="match-id" style="color:var(--amber)">{p.get("kickoff","")}</span>' if p.get('kickoff') else ''}
           <span class="expand-icon">详情 &#9660;</span>
