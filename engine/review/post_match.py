@@ -76,6 +76,14 @@ class MatchReview:
     home_xg: float = 0.0
     away_xg: float = 0.0
     total_goals_actual: int = 0
+    # 比分命中闭环（2026-08-05 新增）：实际比分在 top_scores 中的命中位置
+    #   score_rank=1 → top1 命中, 2 → top2, ..., 0 → 未进候选列表
+    #   旧账本(8/5前)无此字段 → 默认 0，回填脚本负责补历史
+    score_rank: int = 0
+    score_hit: bool = False          # 实际比分在 top_scores 任意位置
+    score_top3_hit: bool = False     # 命中主推前3（38% 基准）
+    score_top5_hit: bool = False     # 命中主推前5（52% 基准）
+    score_top8_hit: bool = False     # 命中候选前8（66% 基准）
 
 
 @dataclass
@@ -314,6 +322,20 @@ class PostMatchReviewer:
             # 命中
             hit = best_sel == actual_idx
 
+            # 比分命中位置（闭环核心）：实际比分在 top_scores 中的排名
+            # 1=最可能, 2=次可能, ..., 0=未进候选列表
+            top_scores = pred.get("top_scores") or []
+            score_rank = 0
+            if hs is not None and as_ is not None:
+                for _i, _it in enumerate(top_scores):
+                    if (isinstance(_it, (list, tuple)) and len(_it) >= 2
+                            and int(_it[0]) == hs and int(_it[1]) == as_):
+                        score_rank = _i + 1
+                        break
+            score_top3_hit = 1 <= score_rank <= 3
+            score_top5_hit = 1 <= score_rank <= 5
+            score_top8_hit = 1 <= score_rank <= 8
+
             review = MatchReview(
                 match_id=pred.get("match_id") or mid,  # 统一用预测完整 match_id（账本幂等键稳定）
                 date=date_str,
@@ -335,6 +357,11 @@ class PostMatchReviewer:
                 home_xg=pred.get("home_xg", 0),
                 away_xg=pred.get("away_xg", 0),
                 total_goals_actual=hs + as_,
+                score_rank=score_rank,
+                score_hit=score_rank > 0,
+                score_top3_hit=score_top3_hit,
+                score_top5_hit=score_top5_hit,
+                score_top8_hit=score_top8_hit,
             )
             reviews.append(review)
 
@@ -375,6 +402,20 @@ class PostMatchReviewer:
         by_tier = self._group_stats(reviews, "confidence_tier")
         by_band = self._group_stats(reviews, "odds_band")
 
+        # 比分命中分层（2026-08-05 闭环：推荐前三→前5的实证依据）
+        # 注意 top1/3/5/8 是嵌套包含关系，命中 top1 也同时命中 top3/5/8
+        score_stats = {
+            "top1": sum(1 for r in reviews if r.score_rank == 1),
+            "top3": sum(1 for r in reviews if r.score_top3_hit),
+            "top5": sum(1 for r in reviews if r.score_top5_hit),
+            "top8": sum(1 for r in reviews if r.score_top8_hit),
+            "any": sum(1 for r in reviews if r.score_hit),
+        }
+        score_rank_hist = {}  # 命中位置分布: {1: n, 2: n, ...}
+        for r in reviews:
+            if r.score_rank > 0:
+                score_rank_hist[r.score_rank] = score_rank_hist.get(r.score_rank, 0) + 1
+
         # 偏差检测
         biases = self._detect_biases(reviews)
 
@@ -387,6 +428,8 @@ class PostMatchReviewer:
             "by_league": by_league,
             "by_confidence_tier": by_tier,
             "by_odds_band": by_band,
+            "score_stats": score_stats,
+            "score_rank_hist": score_rank_hist,
             "biases": [asdict(b) for b in biases],
             "total_pnl": round(sum(r.pnl for r in reviews), 2),
             "generated_at": datetime.now().isoformat(),

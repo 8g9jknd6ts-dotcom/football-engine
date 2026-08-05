@@ -345,6 +345,41 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     except Exception as e:
         print(f"⚠ 准确率趋势区块跳过: {e}")
 
+    # 比分命中率分层（2026-08-05 闭环：主推前三不靠谱→前5的实证，账本可核查）
+    score_trend_html = ""
+    try:
+        _ledger_recs = []
+        _lp = ROOT / "data" / "state" / "review_ledger.jsonl"
+        if _lp.exists():
+            for _line in _lp.read_text(encoding="utf-8").strip().split("\n"):
+                if _line.strip():
+                    try:
+                        _ledger_recs.append(json.loads(_line))
+                    except Exception:
+                        continue
+        if _ledger_recs:
+            _n = len(_ledger_recs)
+            def _rate(cond):
+                return sum(1 for r in _ledger_recs if cond(r)) / _n
+            # 近7天
+            _recent = [r for r in _ledger_recs if r.get("date", "") >= "2026-07-30"]
+            _rn = len(_recent)
+            def _rate7(cond):
+                return sum(1 for r in _recent if cond(r)) / _rn if _rn else 0
+            score_trend_html = f'''
+  <div class="section-title">比分命中率（全量 {_n} 场 · 近7天 {_rn} 场）</div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>推荐档</th><th>全量命中</th><th>全量命中率</th><th>近7天命中</th><th>近7天命中率</th><th>说明</th></tr>
+    <tr><td>主推 top1</td><td>{sum(1 for r in _ledger_recs if r.get('score_rank')==1)}</td><td style="font-weight:700">{_rate(lambda r: r.get('score_rank')==1)*100:.0f}%</td><td>{sum(1 for r in _recent if r.get('score_rank')==1)}</td><td>{_rate7(lambda r: r.get('score_rank')==1)*100:.0f}%</td><td style="color:var(--dim)">只押最可能比分（太难）</td></tr>
+    <tr><td>主推 top3</td><td>{sum(1 for r in _ledger_recs if r.get('score_top3_hit'))}</td><td style="font-weight:700">{_rate(lambda r: r.get('score_top3_hit'))*100:.0f}%</td><td>{sum(1 for r in _recent if r.get('score_top3_hit'))}</td><td>{_rate7(lambda r: r.get('score_top3_hit'))*100:.0f}%</td><td style="color:var(--dim)">原主推 3 个（8/5 起改 5 个）</td></tr>
+    <tr><td>主推 top5</td><td>{sum(1 for r in _ledger_recs if r.get('score_top5_hit'))}</td><td style="font-weight:700;color:var(--green)">{_rate(lambda r: r.get('score_top5_hit'))*100:.0f}%</td><td>{sum(1 for r in _recent if r.get('score_top5_hit'))}</td><td style="color:var(--green)">{_rate7(lambda r: r.get('score_top5_hit'))*100:.0f}%</td><td style="color:var(--dim)">当前主推 5 个</td></tr>
+    <tr><td>候选 top8</td><td>{sum(1 for r in _ledger_recs if r.get('score_top8_hit'))}</td><td style="font-weight:700">{_rate(lambda r: r.get('score_top8_hit'))*100:.0f}%</td><td>{sum(1 for r in _recent if r.get('score_top8_hit'))}</td><td>{_rate7(lambda r: r.get('score_top8_hit'))*100:.0f}%</td><td style="color:var(--dim)">DJYY 完整候选列表</td></tr>
+  </table>
+  </div>'''
+    except Exception as e:
+        print(f"⚠ 比分命中率区块跳过: {e}")
+
     # 渲染比赛卡片（按联赛分组）
     cards = ""
     results_map = {}
@@ -1091,6 +1126,9 @@ body {{
   <!-- ACCURACY TREND -->
   {trend_html}
 
+  <!-- SCORE HIT RATE (2026-08-05) -->
+  {score_trend_html}
+
   <!-- RESULTS REVIEW -->
   {results_html}
 
@@ -1454,14 +1492,30 @@ def _match_card(p, value_matches, idx, results_map=None):
             hit = pred_outcome == ("home" if hs > as_ else "draw" if hs == as_ else "away")
             hit_icon = "✓" if hit else "✗"
             hit_cls = "hit" if hit else "miss"
-            # 比分命中检查
+            # 比分命中闭环展示（2026-08-05）：
+            #   预测比分主推5个 + 实际比分 + 命中位置徽标（🎯1=top1命中 ... 🎯5=主推前5命中, 未进=✗）
+            #   让"比分预测准但主推前三不靠谱"直观可见、可核查
             score_hit_html = ""
+            score_rank_html = ""
             top_scores = p.get("top_scores") or []
-            for item in top_scores:
+            _rank = 0
+            for _i, item in enumerate(top_scores):
                 if isinstance(item, (list, tuple)) and len(item) >= 2 and int(item[0]) == hs and int(item[1]) == as_:
-                    score_hit_html = ' <span class="ar-hit hit" title="比分命中">比✓</span>'
+                    _rank = _i + 1
                     break
-            result_html = f'<div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">{hs}-{as_}</span> <span class="ar-outcome {actual_cls}">{actual_label}</span> <span class="ar-hit {hit_cls}">{hit_icon}</span>{score_hit_html}</div>'
+            if _rank > 0:
+                _badge_cls = "hit" if _rank <= 5 else ""
+                score_rank_html = f' <span class="ar-hit {_badge_cls}" title="比分命中候选第{_rank}位">🎯{_rank}</span>'
+            else:
+                score_rank_html = ' <span class="ar-hit miss" title="比分未进候选列表">比分✗</span>'
+            # 预测比分主推（前5个）→ 实际比分对照，可核查
+            _pred_scores = []
+            for item in top_scores[:5]:
+                if isinstance(item, (list, tuple)) and len(item) >= 2:
+                    _pred_scores.append(f"{item[0]}-{item[1]}")
+            if _pred_scores:
+                score_hit_html = f' <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 {" / ".join(_pred_scores)}</span>'
+            result_html = f'<div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">{hs}-{as_}</span> <span class="ar-outcome {actual_cls}">{actual_label}</span> <span class="ar-hit {hit_cls}">{hit_icon}</span>{score_rank_html}{score_hit_html}</div>'
 
     # Build detail tabs
     model_tab = _tab_model(p, uid)
@@ -2288,6 +2342,31 @@ def _build_daily_brief(
         lines.append("|---|---|---|---|---|\n")
         for d in trend_report["daily"][-7:]:
             lines.append(f"| {d['date']} | {d['n']} | {d['hits']}/{d['n']} | {d['hit_rate']*100:.0f}% | {d['cum_hit_rate']*100:.0f}% |\n")
+
+    # 比分命中率（2026-08-05 闭环：主推前三不靠谱→前5，账本可核查）
+    _slp = web_dir.parent / "data" / "state" / "review_ledger.jsonl"
+    if _slp.exists():
+        _recs = []
+        for _line in _slp.read_text(encoding="utf-8").strip().split("\n"):
+            if _line.strip():
+                try:
+                    _recs.append(json.loads(_line))
+                except Exception:
+                    continue
+        if _recs:
+            _n = len(_recs)
+            lines.append("\n## 🎯 比分命中率（历史可核查）\n")
+            lines.append("| 推荐档 | 命中 | 命中率 |\n")
+            lines.append("|---|---|---|\n")
+            for _label, _cond in [
+                ("主推 top1", lambda r: r.get("score_rank") == 1),
+                ("主推 top3", lambda r: r.get("score_top3_hit")),
+                ("主推 top5（当前）", lambda r: r.get("score_top5_hit")),
+                ("候选 top8", lambda r: r.get("score_top8_hit")),
+            ]:
+                _h = sum(1 for r in _recs if _cond(r))
+                _hl = "**" if _label.startswith("主推 top5") else ""
+                lines.append(f"| {_label} | {_h}/{_n} | {_hl}{_h/_n*100:.0f}%{_hl} |\n")
 
     out = web_dir / f"daily-brief-{target_date}.md"
     out.write_text("".join(lines), encoding="utf-8")

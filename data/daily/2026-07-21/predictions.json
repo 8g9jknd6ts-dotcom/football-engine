@@ -133,7 +133,11 @@
     "direction": "away",
     "direction_correct": false,
     "predicted_score": "1-1",
-    "score_correct": true
+    "score_correct": true,
+    "score_rank": 1,
+    "score_top3_hit": true,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   },
   {
     "match_id": "2026-07-21_周二205",
@@ -269,7 +273,11 @@
     "direction": "home",
     "direction_correct": true,
     "predicted_score": "1-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 3,
+    "score_top3_hit": true,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   },
   {
     "match_id": "2026-07-21_周二206",
@@ -411,7 +419,11 @@
     "direction": "home",
     "direction_correct": false,
     "predicted_score": "1-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-07-21_周二207",
@@ -547,7 +559,11 @@
     "direction": "home",
     "direction_correct": true,
     "predicted_score": "1-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-07-21_周二201",
@@ -689,7 +705,11 @@
     "direction": "home",
     "direction_correct": false,
     "predicted_score": "1-1",
-    "score_correct": true
+    "score_correct": true,
+    "score_rank": 1,
+    "score_top3_hit": true,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   },
   {
     "match_id": "2026-07-21_周二202",
@@ -831,7 +851,11 @@
     "direction": "home",
     "direction_correct": false,
     "predicted_score": "1-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 5,
+    "score_top3_hit": false,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   },
   {
     "match_id": "2026-07-21_周二203",
@@ -967,6 +991,10 @@
     "direction": "away",
     "direction_correct": true,
     "predicted_score": "0-2",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 3,
+    "score_top3_hit": true,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   }
 ]

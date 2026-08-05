@@ -1615,6 +1615,18 @@ def run_settlement(target_date: date):
                 ps = f"{top_scores[0][0]}-{top_scores[0][1]}"
                 pred["predicted_score"] = ps
                 pred["score_correct"] = ps == f"{r.home_score}-{r.away_score}"
+                # 比分命中位置闭环（2026-08-05）：完整记录实际比分在候选列表中的排名
+                # 1=top1命中 ... 0=未进候选；top3/top5/top8 是"推荐档"命中标记
+                _rank = 0
+                for _i, _it in enumerate(top_scores):
+                    if (isinstance(_it, (list, tuple)) and len(_it) >= 2
+                            and int(_it[0]) == r.home_score and int(_it[1]) == r.away_score):
+                        _rank = _i + 1
+                        break
+                pred["score_rank"] = _rank
+                pred["score_top3_hit"] = 1 <= _rank <= 3
+                pred["score_top5_hit"] = 1 <= _rank <= 5
+                pred["score_top8_hit"] = 1 <= _rank <= 8
             _touch.setdefault(n["date"], []).append(pred["match_id"])
         _updated = 0
         for _d, _mids in _touch.items():

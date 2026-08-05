@@ -149,7 +149,11 @@
     "direction": "home",
     "direction_correct": false,
     "predicted_score": "1-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 9,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-07-30_周四002",
@@ -295,7 +299,11 @@
     "direction": "away",
     "direction_correct": false,
     "predicted_score": "0-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-07-30_周四003",
@@ -447,7 +455,11 @@
     "direction": "home",
     "direction_correct": true,
     "predicted_score": "1-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-07-30_周四004",
@@ -599,7 +611,11 @@
     "direction": "home",
     "direction_correct": false,
     "predicted_score": "1-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 8,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": true
   },
   {
     "match_id": "2026-07-30_周四005",
@@ -751,7 +767,11 @@
     "direction": "home",
     "direction_correct": true,
     "predicted_score": "1-0",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-07-30_周四006",
@@ -897,6 +917,10 @@
     "direction": "away",
     "direction_correct": false,
     "predicted_score": "0-0",
-    "score_correct": true
+    "score_correct": true,
+    "score_rank": 1,
+    "score_top3_hit": true,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   }
 ]

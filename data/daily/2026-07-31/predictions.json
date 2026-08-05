@@ -200,7 +200,11 @@
     "direction": "home",
     "direction_correct": false,
     "predicted_score": "1-0",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-07-31_周五002",
@@ -403,7 +407,11 @@
     "direction": "home",
     "direction_correct": true,
     "predicted_score": "2-1",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-07-31_周五003",
@@ -606,6 +614,10 @@
     "direction": "home",
     "direction_correct": false,
     "predicted_score": "1-0",
-    "score_correct": false
+    "score_correct": false,
+    "score_rank": 2,
+    "score_top3_hit": true,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   }
 ]

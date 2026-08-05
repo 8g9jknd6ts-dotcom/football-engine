@@ -196,7 +196,11 @@
     "direction_correct": false,
     "predicted_score": "0-1",
     "score_correct": false,
-    "pnl": 0.0
+    "pnl": 0.0,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-08-03_周一002",
@@ -401,7 +405,11 @@
     "direction_correct": true,
     "predicted_score": "1-1",
     "score_correct": false,
-    "pnl": 0.0
+    "pnl": 0.0,
+    "score_rank": 4,
+    "score_top3_hit": false,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   },
   {
     "match_id": "2026-08-03_周一003",
@@ -600,7 +608,11 @@
     "direction_correct": true,
     "predicted_score": "0-0",
     "score_correct": false,
-    "pnl": -8548.81
+    "pnl": -8548.81,
+    "score_rank": 0,
+    "score_top3_hit": false,
+    "score_top5_hit": false,
+    "score_top8_hit": false
   },
   {
     "match_id": "2026-08-03_周一004",
@@ -799,6 +811,10 @@
     "direction_correct": true,
     "predicted_score": "1-0",
     "score_correct": false,
-    "pnl": 0.0
+    "pnl": 0.0,
+    "score_rank": 2,
+    "score_top3_hit": true,
+    "score_top5_hit": true,
+    "score_top8_hit": true
   }
 ]

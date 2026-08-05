@@ -34,6 +34,10 @@ class ReconciliationItem:
     # 对账结果
     direction_correct: bool
     score_correct: bool
+    score_rank: int = 0          # 实际比分在 top_scores 中排名 (1=top1, 0=未进)
+    score_top3_hit: bool = False
+    score_top5_hit: bool = False
+    score_top8_hit: bool = False
     error_reason: str = ""  # 偏差原因（手动标注或自动分析）
 
 
@@ -111,6 +115,15 @@ class MatchReconciler:
             actual_score_str = f"{hs}-{as_}" if hs is not None and as_ is not None else ""
             score_correct = (pred_top_score == actual_score_str) if pred_top_score and actual_score_str else False
 
+            # 比分命中位置（闭环：实际比分在完整候选列表中的排名）
+            score_rank = 0
+            if hs is not None and as_ is not None:
+                for _i, _it in enumerate(top_scores):
+                    if (isinstance(_it, (list, tuple)) and len(_it) >= 2
+                            and int(_it[0]) == hs and int(_it[1]) == as_):
+                        score_rank = _i + 1
+                        break
+
             items.append(ReconciliationItem(
                 match_id=match_id,
                 home_team=p.get("home_team", ""),
@@ -125,6 +138,10 @@ class MatchReconciler:
                 actual_result=actual_result,
                 direction_correct=direction_correct,
                 score_correct=score_correct,
+                score_rank=score_rank,
+                score_top3_hit=1 <= score_rank <= 3,
+                score_top5_hit=1 <= score_rank <= 5,
+                score_top8_hit=1 <= score_rank <= 8,
             ))
 
         # 统计
@@ -140,6 +157,11 @@ class MatchReconciler:
             "score_accuracy": score_correct_count / total_with_result if total_with_result > 0 else 0,
             "direction_correct": direction_correct_count,
             "score_correct": score_correct_count,
+            # 比分命中分层（2026-08-05）
+            "score_top1_accuracy": sum(1 for i in items if i.score_rank == 1) / total_with_result if total_with_result > 0 else 0,
+            "score_top3_accuracy": sum(1 for i in items if i.score_top3_hit) / total_with_result if total_with_result > 0 else 0,
+            "score_top5_accuracy": sum(1 for i in items if i.score_top5_hit) / total_with_result if total_with_result > 0 else 0,
+            "score_top8_accuracy": sum(1 for i in items if i.score_top8_hit) / total_with_result if total_with_result > 0 else 0,
         }
 
         return items, stats
