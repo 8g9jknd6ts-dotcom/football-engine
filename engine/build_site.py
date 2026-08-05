@@ -119,7 +119,14 @@ def build_site():
     league_report = {}
     try:
         from engine.review.league_report import build_league_report
-        league_report = build_league_report(daily_root, ROOT / "data" / "state" / "league_report.json")
+        # 老系统联赛复盘样本（世界杯积累的另一预测域不能搬参数，但同域联赛样本可合并）
+        _legacy = []
+        _legacy_path = ROOT / "data" / "state" / "legacy_league_samples.json"
+        if _legacy_path.exists():
+            _legacy = json.loads(_legacy_path.read_text(encoding="utf-8"))
+        league_report = build_league_report(daily_root, ROOT / "data" / "state" / "league_report.json", _legacy)
+        if _legacy:
+            print(f"[build_site] 🧬 联赛分层已合并 {len(_legacy)} 场老系统历史复盘")
     except Exception as e:
         print(f"[build_site] ⚠ 联赛分层报告生成跳过: {e}")
     # 串关回测报告（2串1 能不能玩的实证）

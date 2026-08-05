@@ -19,6 +19,7 @@ from pathlib import Path
 def build_league_report(
     daily_root: Path | None = None,
     out_path: Path | None = None,
+    external_samples: list[dict] | None = None,
 ) -> dict:
     daily_root = daily_root or Path("data/daily")
     out_path = out_path or Path("data/state/league_report.json")
@@ -57,6 +58,26 @@ def build_league_report(
             # 最近 7 天窗口
             # (日期从 match_id 前缀取，简化用文件目录序)
 
+    # 外部历史样本注入（老系统 world-cup-predictor 的联赛复盘：
+    # 世界杯积累的是另一预测域，不能搬参数；但同域联赛样本可合并，
+    # 让联赛分层判断更快收敛）
+    external_added = 0
+    for ex in external_samples or []:
+        lg = ex.get("competition") or "未知"
+        direction = ex.get("direction")
+        actual = ex.get("actual")
+        odds = ex.get("odds") or 0
+        if not direction or not actual:
+            continue
+        s = stats[lg]
+        s["n"] += 1
+        s["hits"] += 1 if direction == actual else 0
+        s["odds_sum"] += odds or 2.0
+        s["confidence_sum"] += ex.get("confidence", 0.0)
+        if odds > 0:
+            s["roi_sum"] += (odds - 1) if direction == actual else -1.0
+        external_added += 1
+
     # 组装报告
     rows = []
     for lg, s in stats.items():
@@ -90,6 +111,7 @@ def build_league_report(
     report = {
         "n_leagues": len(rows),
         "n_matches": sum(r["n"] for r in rows),
+        "external_added": external_added,
         "generated_at": __import__("datetime").datetime.now().isoformat(),
         "leagues": rows,
     }
