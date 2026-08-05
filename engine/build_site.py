@@ -1518,9 +1518,9 @@ def _league_matrix_section(league_matrix, predictions):
     return (
         '<div class="section-title" onclick="document.getElementById(\'league-matrix\').classList.toggle(\'collapsed\')" style="cursor:pointer">'
         + '联赛矩阵 &middot; ' + str(len(leagues) + len(missing_comps)) + ' 联赛/杯赛 &middot; ' + gen_time
-        + ' <span style="font-size:0.65rem;color:var(--dim)">&#9660; 点击折叠</span></div>'
+        + ' <span style="font-size:0.65rem;color:var(--dim)">&#9654; 点击展开</span></div>'
         + alert_html
-        + '<div id="league-matrix"><div class="lm-wrap"><table class="lm-table">'
+        + '<div id="league-matrix" class="collapsed"><div class="lm-wrap"><table class="lm-table">'
         + '<thead><tr><th>级别</th><th>联赛</th><th>场次</th><th>场均进球</th><th>场均xG</th>'
         + '<th>BTTS</th><th>主胜</th><th>平局</th><th>客胜</th><th>零封</th>'
         + '<th>角球</th><th>黄牌</th></tr></thead>'
