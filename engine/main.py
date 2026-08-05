@@ -634,65 +634,65 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             )
             _odds_synthetic = True
 
-            # 概率分布：双源比分融合（2026-08-05 结构升级）
-            #   DJYY 是分析参考不是权威概率 → 与 MC 泊松模拟按权重融合，
-            #   每源原始候选保留(djyy_top_scores/mc_top_scores)，结算记录各源命中率，数据说话调权重
-            _djyy_ts = (djyy_data.get("top_scores") if djyy_data and djyy_data.get("top_scores") else None)
-            _mc_ts = getattr(pred, "top_scores", None)
+        # 概率分布：双源比分融合（2026-08-05 结构升级）
+        #   DJYY 是分析参考不是权威概率 → 与 MC 泊松模拟按权重融合，
+        #   每源原始候选保留(djyy_top_scores/mc_top_scores)，结算记录各源命中率，数据说话调权重
+        _djyy_ts = (djyy_data.get("top_scores") if djyy_data and djyy_data.get("top_scores") else None)
+        _mc_ts = getattr(pred, "top_scores", None)
 
-            def _norm_scores(ts):
-                """归一化比分候选: [(h,a,p),...] → [(h,a,p_norm),...]; 无概率则按排名衰减"""
-                if not ts:
-                    return []
-                out = []
-                for i, it in enumerate(ts):
-                    if isinstance(it, (list, tuple)) and len(it) >= 3:
-                        try:
-                            p = float(it[2])
-                        except (TypeError, ValueError):
-                            p = 0.0
-                        if p <= 0:
-                            p = 1.0 / (i + 1)
-                        out.append((int(it[0]), int(it[1]), p))
-                    elif isinstance(it, (list, tuple)) and len(it) >= 2:
-                        out.append((int(it[0]), int(it[1]), 1.0 / (i + 1)))
-                s = sum(x[2] for x in out) or 1.0
-                return [(h, a, p / s) for h, a, p in out]
+        def _norm_scores(ts):
+            """归一化比分候选: [(h,a,p),...] → [(h,a,p_norm),...]; 无概率则按排名衰减"""
+            if not ts:
+                return []
+            out = []
+            for i, it in enumerate(ts):
+                if isinstance(it, (list, tuple)) and len(it) >= 3:
+                    try:
+                        p = float(it[2])
+                    except (TypeError, ValueError):
+                        p = 0.0
+                    if p <= 0:
+                        p = 1.0 / (i + 1)
+                    out.append((int(it[0]), int(it[1]), p))
+                elif isinstance(it, (list, tuple)) and len(it) >= 2:
+                    out.append((int(it[0]), int(it[1]), 1.0 / (i + 1)))
+            s = sum(x[2] for x in out) or 1.0
+            return [(h, a, p / s) for h, a, p in out]
 
-            _djyy_norm = _norm_scores(_djyy_ts)
-            _mc_norm = _norm_scores(_mc_ts)
-            if _djyy_norm and _mc_norm:
-                # 双源融合: 同一比分概率加权求和（DJYY 0.55 / MC 0.45，可调）
-                _merged = {}
-                for h, a, p in _djyy_norm:
-                    _merged[(h, a)] = _merged.get((h, a), 0.0) + 0.55 * p
-                for h, a, p in _mc_norm:
-                    _merged[(h, a)] = _merged.get((h, a), 0.0) + 0.45 * p
-                _fused = sorted(_merged.items(), key=lambda kv: -kv[1])[:8]
-                _fused = [(h, a, round(p, 4)) for (h, a), p in _fused]
-                _score_src = "djyy+mc"
-            elif _djyy_norm:
-                _fused = [(h, a, round(p, 4)) for h, a, p in _djyy_norm[:8]]
-                _score_src = "djyy"
-            elif _mc_norm:
-                _fused = [(h, a, round(p, 4)) for h, a, p in _mc_norm[:8]]
-                _score_src = "mc"
-            else:
-                _fused = None
-                _score_src = None
+        _djyy_norm = _norm_scores(_djyy_ts)
+        _mc_norm = _norm_scores(_mc_ts)
+        if _djyy_norm and _mc_norm:
+            # 双源融合: 同一比分概率加权求和（DJYY 0.55 / MC 0.45，可调）
+            _merged = {}
+            for h, a, p in _djyy_norm:
+                _merged[(h, a)] = _merged.get((h, a), 0.0) + 0.55 * p
+            for h, a, p in _mc_norm:
+                _merged[(h, a)] = _merged.get((h, a), 0.0) + 0.45 * p
+            _fused = sorted(_merged.items(), key=lambda kv: -kv[1])[:8]
+            _fused = [(h, a, round(p, 4)) for (h, a), p in _fused]
+            _score_src = "djyy+mc"
+        elif _djyy_norm:
+            _fused = [(h, a, round(p, 4)) for h, a, p in _djyy_norm[:8]]
+            _score_src = "djyy"
+        elif _mc_norm:
+            _fused = [(h, a, round(p, 4)) for h, a, p in _mc_norm[:8]]
+            _score_src = "mc"
+        else:
+            _fused = None
+            _score_src = None
 
-            # 盘口信号（2026-08-05 结构化，替代装饰性 ±0.02）：
-            #   sina 欧赔压缩比 → 方向分: 压缩(资金流入)=+, 抬升=-
-            #   (1.0 - compression) * 2: c=0.95 → +0.10, c=1.05 → -0.10
-            #   存 predictions 供结算验证"盘口信号命中率"（累积后数据说话盘口信号是否有效）
-            _market_signal = None
-            if _sina_data:
-                _comp = _sina_data.get("compression") or {}
-                _sig = {}
-                for _k in ("home", "draw", "away"):
-                    _c = _comp.get(_k, 1.0)
-                    _sig[_k] = round((1.0 - _c) * 2.0, 4)
-                _market_signal = _sig
+        # 盘口信号（2026-08-05 结构化，替代装饰性 ±0.02）：
+        #   sina 欧赔压缩比 → 方向分: 压缩(资金流入)=+, 抬升=-
+        #   (1.0 - compression) * 2: c=0.95 → +0.10, c=1.05 → -0.10
+        #   存 predictions 供结算验证"盘口信号命中率"（累积后数据说话盘口信号是否有效）
+        _market_signal = None
+        if _sina_data:
+            _comp = _sina_data.get("compression") or {}
+            _sig = {}
+            for _k in ("home", "draw", "away"):
+                _c = _comp.get(_k, 1.0)
+                _sig[_k] = round((1.0 - _c) * 2.0, 4)
+            _market_signal = _sig
 
         predictions.append({
             "match_id": pred.match_id,
