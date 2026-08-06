@@ -83,16 +83,16 @@
   },
   "optimizer": {
     "min_samples": 30,
-    "max_weight_shift_per_day": 0.05,
+    "max_weight_shift_per_day": 0.08,
     "learning_rate": 0.3,
     "min_brier_improvement": 0.002,
     "rollback_degradation": 0.03,
-    "temperature": 2.0,
+    "temperature": 1.5,
     "decay_factor": 0.95,
     "val_matches": 20,
     "weight_bounds": {
       "model": [
-        0.2,
+        0.15,
         0.6
       ],
       "market": [

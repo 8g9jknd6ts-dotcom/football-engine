@@ -15,7 +15,7 @@ import argparse
 import json
 import sys
 import numpy as np
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 # 项目根目录
@@ -1149,6 +1149,117 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     return predictions, plan
 
 
+def _backfill_sina_results(
+    daily_root: Path,
+    source_mgr: "SourceManager",
+    target_date: date,
+    days: int = 2,
+) -> int:
+    """补结算：向前 N 天补查新浪已开奖赛果，幂等合并进对应日期 results.json
+
+    问题（2026-08-06 审计发现）：新浪赛果接口 isPrized=1 只取"当日已开奖"。
+    巴西杯等北京凌晨开球的比赛，当日 12/19 点结算时尚未开奖 → 漏结算，
+    次日也不回头补 → 复盘盲区 + 命中率统计失真（8/5 弗鲁米嫩塞 vs 达伽马即案例）。
+
+    方案：结算目标日时，对 target-1/target-2 天各调一次新浪 fetch_results(back_date)，
+    现在这些比赛应已开奖 → 幂等合并进 back_date/results.json，并回写 predictions.json
+    actual 字段（direction_correct 等，供复盘统计）。返回新增场次数。
+    """
+    _norm = normalize_team
+    added_total = 0
+    for i in range(1, days + 1):
+        back_date = target_date - timedelta(days=i)
+        bdir = daily_root / back_date.isoformat()
+        if not bdir.exists():
+            continue
+        rj = bdir / "results.json"
+        pj = bdir / "predictions.json"
+        try:
+            back_results = source_mgr.fetch_results(back_date)
+        except Exception as e:
+            print(f"  ⚠ 补结算 {back_date} 抓取失败: {e}")
+            continue
+        if not back_results:
+            continue
+        # 读现有 results.json（幂等基准）
+        existing: list[dict] = []
+        if rj.exists():
+            try:
+                _raw = json.loads(rj.read_text(encoding="utf-8"))
+                existing = _raw if isinstance(_raw, list) else list(_raw.values())
+            except Exception:
+                existing = []
+        existing_keys = {
+            (_norm(x.get("home_team", "")), _norm(x.get("away_team", ""))): x
+            for x in existing
+        }
+        # 读 predictions.json（回写 actual）
+        preds: list[dict] = []
+        if pj.exists():
+            try:
+                preds = json.loads(pj.read_text(encoding="utf-8"))
+            except Exception:
+                preds = []
+        pred_by_key = {
+            (_norm(p.get("home_team", "")), _norm(p.get("away_team", ""))): p
+            for p in preds
+        }
+        changed = False
+        for r in back_results:
+            k = (_norm(r.home_team), _norm(r.away_team))
+            rec = {
+                "match_id": getattr(r, "match_id", ""),
+                "home_team": r.home_team,
+                "away_team": r.away_team,
+                "home_score": r.home_score,
+                "away_score": r.away_score,
+                "competition": getattr(r, "competition", ""),
+                "match_date": back_date.isoformat(),
+                "match_no": getattr(r, "match_no", ""),
+                "status": "完赛",
+            }
+            if k in existing_keys:
+                # 已存在：比分不同 → 用新浪终场修正（幂等保护）
+                x = existing_keys[k]
+                if (x.get("home_score"), x.get("away_score")) != (r.home_score, r.away_score):
+                    print(f"  ↻ 补结算修正 {back_date}: {r.home_team} vs {r.away_team} "
+                          f"{x.get('home_score')}-{x.get('away_score')} → {r.home_score}-{r.away_score}")
+                    x.update(rec)
+                    changed = True
+                continue
+            existing.append(rec)
+            existing_keys[k] = rec
+            changed = True
+            added_total += 1
+            # 回写 predictions actual（幂等：仅未结算场次）
+            p = pred_by_key.get(k)
+            if p and p.get("actual_home_score") is None:
+                hs, as_ = r.home_score, r.away_score
+                actual = "home" if hs > as_ else ("draw" if hs == as_ else "away")
+                p["actual_result"] = f"{hs}-{as_}"
+                p["actual_home_score"] = hs
+                p["actual_away_score"] = as_
+                best_sel = max(
+                    [("home", p.get("home_win_prob", 0)),
+                     ("draw", p.get("draw_prob", 0)),
+                     ("away", p.get("away_win_prob", 0))],
+                    key=lambda x: x[1],
+                )
+                if p.get("draw_alert") and best_sel[0] != "draw":
+                    _bp, _dp = best_sel[1], p.get("draw_prob", 0)
+                    if _bp - _dp < 0.08 and _dp >= 0.26:
+                        best_sel = ("draw", _dp)
+                p["direction"] = best_sel[0]
+                p["direction_correct"] = best_sel[0] == actual
+                print(f"  ✓ 补结算回写 {back_date}: {r.home_team} {hs}-{as_} {r.away_team} "
+                      f"预测{best_sel[0]} {'✅' if best_sel[0] == actual else '❌'}")
+        if changed:
+            rj.write_text(json.dumps(existing, ensure_ascii=False, indent=2))
+        if preds:
+            pj.write_text(json.dumps(preds, ensure_ascii=False, indent=2))
+    return added_total
+
+
 def run_settlement(target_date: date):
     """执行结算 + Elo 更新 + 熔断记录 + 组合挖掘更新（幂等）
 
@@ -1224,6 +1335,15 @@ def run_settlement(target_date: date):
 
     source_mgr = SourceManager(ROOT / "data")
     results = source_mgr.fetch_results(target_date)
+
+    # 补结算（2026-08-06）：向前 2 天补查新浪已开奖赛果（凌晨开球场次当日漏结算）
+    # 巴西杯等凌晨开球 → 当日结算时未开奖漏掉，这里补录回 results.json + predictions.json
+    try:
+        _backfilled = _backfill_sina_results(daily_root, source_mgr, target_date, days=2)
+        if _backfilled:
+            print(f"  ✓ 补结算新增 {_backfilled} 场（凌晨场次跨日补录）")
+    except Exception as _e:
+        print(f"  ⚠ 补结算跳过: {_e}")
 
     # 合并新浪赛果（互补数据源，同队名比分不同 → 覆盖修正）
     sina_file = ROOT / "data" / "daily" / target_date.isoformat() / "results_sina.json"

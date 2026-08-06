@@ -1,13 +1,14 @@
 {
   "champion": {
-    "model": 0.3513,
-    "market": 0.3196,
-    "djyy": 0.329
+    "model": 0.26,
+    "market": 0.4,
+    "djyy": 0.34
   },
   "previous": {
-    "model": 0.3513,
-    "market": 0.3196,
-    "djyy": 0.329
+    "model": 0.26,
+    "market": 0.4,
+    "djyy": 0.34
   },
-  "updated_at": "2026-08-05T20:40:41.493554"
+  "updated_at": "2026-08-06T10:35:00+08:00",
+  "reset_reason": "P0审计：全量115场账本各源加权Brier model=0.766/market=0.578/djyy=0.639，权重与实证完全反向（最差的model权重最高）。T=1 softmax(1/Brier) → 0.26/0.40/0.34。放宽bounds+降温度+加快收敛后由优化器在此基础上微调。"
 }
