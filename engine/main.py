@@ -936,6 +936,25 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                 p.setdefault("market_disagreement", {})[_sel0] = {
                     "prob": round(_prob0, 3), "odds": _od0, "ev": round(_prob0 * _od0 - 1, 3)
                 }
+        # 让球 EV 全量落盘（2026-08-06）：独立于置信/禁投过滤，任何有让球盘的场次都记录
+        # 三方向 edges 都存——argmax 只显示概率最高方向，但让球平/让球主常有正 EV
+        # 藏在窄区间+高赔率里（让球平赔率 3.5-4.5，概率 15% 就可能 +EV）。
+        # 必须在所有 continue 之前：禁投区联赛（巴西杯/欧冠等）不出注但仍要记录 EV 供复盘。
+        try:
+            from engine.strategy.handicap_ev import evaluate_handicap_ev
+            _hev0 = evaluate_handicap_ev(p)
+            if _hev0:
+                p["handicap_ev"] = {
+                    "handicap": _hev0.handicap,
+                    "probs": {k: round(v, 4) for k, v in _hev0.probs.items()},
+                    "edges": {k: round(v, 4) for k, v in _hev0.edges.items()},
+                    "odds": {k: v for k, v in _hev0.odds.items()},
+                    "best_sel": _hev0.best_sel,
+                    "best_edge": round(_hev0.best_edge, 4),
+                    "recommended": _hev0.recommended,
+                }
+        except Exception:
+            pass
         # 自适应置信阈值过滤（连败时收紧）
         if p.get("confidence", 0) < conf_threshold:
             filtered_count += 1
@@ -975,6 +994,8 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             _direction = ["home", "draw", "away"][_probs.index(max(_probs))]
 
         # 竞彩让球玩法 EV：同一场让球 vs 胜平负只取更高 EV（避免同场重复押）
+        # 三方向 EV 已在循环开头全量落盘 p["handicap_ev"]（不受过滤影响），
+        # 这里只用 recommended 结果生成出票候选。
         _hcap_cand = None
         try:
             from engine.strategy.handicap_ev import evaluate_handicap_ev

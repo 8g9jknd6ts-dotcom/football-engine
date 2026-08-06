@@ -166,6 +166,9 @@ class SourceManager:
                     away_odds=final_a,
                     handicap=final_handicap,
                     handicap_home_odds=sf.handicap_home_odds or wancai._safe_float(_safe_lt(b_as, 0)),
+                    # 2026-08-06 修复：合并层漏传让球平赔率（sporttery 采到的 hhad.d 被丢弃），
+                    # 导致历史所有 predictions 的 handicap_draw_odds=None，让球平 EV 永远算不了。
+                    handicap_draw_odds=sf.handicap_draw_odds or wancai._safe_float(_safe_lt(b_eu, 1)),
                     handicap_away_odds=sf.handicap_away_odds or wancai._safe_float(_safe_lt(b_as, 2)),
                     source="merged",
                 )
@@ -173,7 +176,8 @@ class SourceManager:
                 fixture._fid = fid
                 fixture._sporttery_had = {"h": sf.home_odds, "d": sf.draw_odds, "a": sf.away_odds}
                 fixture._sporttery_hhad = {"goalLine": sf.handicap,
-                                           "h": sf.handicap_home_odds, "a": sf.handicap_away_odds}
+                                           "h": sf.handicap_home_odds, "d": sf.handicap_draw_odds,
+                                           "a": sf.handicap_away_odds}
                 fixture._sporttery_ttg = getattr(sf, "_raw_ttg", {})
                 fixture._sporttery_crs = getattr(sf, "_raw_crs", {})
                 fixture._sporttery_hafu = getattr(sf, "_raw_hafu", {})

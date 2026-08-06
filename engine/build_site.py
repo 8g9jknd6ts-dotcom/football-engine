@@ -1437,10 +1437,26 @@ def _handicap_pick(p):
     edge_html = f' <span class="pick-val {cls}" style="font-size:.85em">让球EV {edge:+.0%}</span>' if edge is not None else ""
     sign = "+" if hcap > 0 else ""
     # 2026-08-06 UI 修复：让球盘明显化——独立标签+背景色+tooltip，与"预测（模型观点）"区分
+    # 2026-08-06 v2：三方向 EV 全量展示——argmax 只显示概率最高方向，
+    # 但让球平/让球主常有正 EV 藏在窄区间+高赔率里，逐个方向标出正 EV
+    ev_html = ""
+    _hev = p.get("handicap_ev") or {}
+    _edges = _hev.get("edges") or {}
+    if _edges:
+        _ev_labels = {"home": "让球主", "draw": "让球平", "away": "让球客"}
+        for _dir in ("home", "draw", "away"):
+            _e = _edges.get(_dir)
+            if _e is not None and _e > 0.005:  # 正 EV 才展示
+                _ev_cls = "draw" if _dir == "draw" else _dir
+                _star = " ⭐" if _dir == "draw" else ""  # 让球平正EV是隐藏价值，高亮
+                ev_html += (f' <span class="pick-val {_ev_cls}" style="font-size:.78em;'
+                            f'border-color:{"var(--purple)" if _dir=="draw" else {"home":"var(--green)","away":"var(--red)"}[_dir]};'
+                            f'background:rgba(147,51,234,0.08)">'
+                            f'{_ev_labels[_dir]} +EV {_e:+.0%}{_star}</span>')
     return (f'<span class="pick-label hcap-label" title="让球玩法（市场盘口观点）：主队让{hcap:g}球后的胜平负概率，与上方模型预测不同源">'
             f'让球盘 {sign}{hcap:g}</span> '
             f'<span class="pick-val {cls}" style="border-color:{ {"home":"var(--green)","draw":"var(--purple)","away":"var(--red)"}[cls] }">'
-            f'{label} {prob:.0%}</span>{edge_html}')
+            f'{label} {prob:.0%}</span>{edge_html}{ev_html}')
 
 
 def _pred_score(p):
