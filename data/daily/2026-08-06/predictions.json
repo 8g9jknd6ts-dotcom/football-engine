@@ -5,8 +5,8 @@
     "home_team": "维多利亚",
     "away_team": "巴拉纳竞技",
     "home_win_prob": 0.3083,
-    "draw_prob": 0.2953,
-    "away_win_prob": 0.3964,
+    "draw_prob": 0.2955,
+    "away_win_prob": 0.3963,
     "home_xg": 0.995,
     "away_xg": 2.341,
     "home_odds": 2.1,
@@ -17,15 +17,15 @@
     "handicap_home_odds": 4.85,
     "handicap_draw_odds": null,
     "handicap_away_odds": 1.56,
-    "handicap_home_prob": 0.0517,
-    "handicap_draw_prob": 0.1022,
-    "handicap_away_prob": 0.846,
-    "confidence": 0.1944,
+    "handicap_home_prob": 0.0516,
+    "handicap_draw_prob": 0.1023,
+    "handicap_away_prob": 0.8461,
+    "confidence": 0.1942,
     "wilson_trust": 0.3286,
     "model_raw": {
-      "home": 0.1617,
-      "draw": 0.2468,
-      "away": 0.5915
+      "home": 0.1615,
+      "draw": 0.2474,
+      "away": 0.5911
     },
     "market_fair": [
       0.4223,
@@ -36,42 +36,42 @@
       [
         0,
         0,
-        0.3016
+        0.3046
       ],
       [
         0,
         1,
-        0.301
+        0.2989
       ],
       [
         0,
         2,
-        0.1796
+        0.1804
       ],
       [
         0,
         3,
-        0.086
-      ],
-      [
-        1,
-        1,
-        0.0386
+        0.0866
       ],
       [
         1,
         0,
-        0.0363
+        0.0362
+      ],
+      [
+        1,
+        1,
+        0.036
       ],
       [
         0,
         4,
-        0.0346
+        0.0357
       ],
       [
         1,
         2,
-        0.0222
+        0.0215
       ]
     ],
     "score_sources": "mc",
@@ -80,45 +80,49 @@
       [
         0,
         0,
-        0.30163101037915696
+        0.30464625131995776
       ],
       [
         0,
         1,
-        0.300995551789875
+        0.2989440337909187
       ],
       [
         0,
         2,
-        0.17962296123702604
+        0.18035902851108765
       ],
       [
         0,
         3,
-        0.08599872908282143
-      ],
-      [
-        1,
-        1,
-        0.038551154416437194
+        0.08658922914466738
       ],
       [
         1,
         0,
-        0.03632704935395043
+        0.036219640971488914
+      ],
+      [
+        1,
+        1,
+        0.03600844772967265
       ],
       [
         0,
         4,
-        0.03463249311586528
+        0.03569165786694826
       ],
       [
         1,
         2,
-        0.022241050624867614
+        0.021541710665258715
       ]
     ],
-    "market_signal": null,
+    "market_signal": {
+      "home": 0.0,
+      "draw": 0.0,
+      "away": 0.0
+    },
     "freshness": {
       "home_days": 3,
       "away_days": 3,
@@ -128,30 +132,42 @@
     "total_goals": [
       [
         1,
-        0.3186
+        0.3174
       ],
       [
         0,
-        0.2848
+        0.2885
       ],
       [
         2,
-        0.2117
+        0.2105
       ],
       [
         3,
-        0.1089
+        0.1091
       ],
       [
         4,
-        0.0476
+        0.0472
       ],
       [
         5,
-        0.0184
+        0.0178
       ]
     ],
-    "over_under_lines": null,
+    "over_under_lines": {
+      "company": "威*",
+      "initial": {
+        "over": 2.2,
+        "line": "2.5",
+        "under": 1.62
+      },
+      "current": {
+        "over": 2.25,
+        "line": "2.5",
+        "under": 1.57
+      }
+    },
     "ttg_odds": null,
     "crs_odds": null,
     "hafu_odds": null,
@@ -199,10 +215,62 @@
     "draw_alert": "balanced_draw",
     "kickoff": "2026-08-07 07:00:00",
     "match_no": "周四001",
-    "sina_odds": null,
+    "sina_odds": {
+      "initial_odds": {
+        "home": 2.41,
+        "draw": 2.85,
+        "away": 2.78
+      },
+      "current_odds": {
+        "home": 2.41,
+        "draw": 2.85,
+        "away": 2.78
+      },
+      "movement": {
+        "home": "flat",
+        "draw": "flat",
+        "away": "flat"
+      },
+      "compression": {
+        "home": 1.0,
+        "draw": 1.0,
+        "away": 1.0
+      },
+      "odds_history_count": 2,
+      "asia": {
+        "company": "威*",
+        "initial": {
+          "home": 2.45,
+          "handicap": "-0.5",
+          "away": 1.5
+        },
+        "current": {
+          "home": 1.97,
+          "handicap": "-0/0.5",
+          "away": 1.68
+        }
+      },
+      "totals": {
+        "company": "威*",
+        "initial": {
+          "over": 2.2,
+          "line": "2.5",
+          "under": 1.62
+        },
+        "current": {
+          "over": 2.25,
+          "line": "2.5",
+          "under": 1.57
+        }
+      },
+      "match_time": "2026-08-07 07:00:00",
+      "series": {
+        "points": 0
+      }
+    },
     "direction": "away",
-    "direction_prob": 0.39636936480332324,
-    "direction_margin": 0.0881,
+    "direction_prob": 0.3962736960063144,
+    "direction_margin": 0.088,
     "league_forbidden": true
   }
 ]
