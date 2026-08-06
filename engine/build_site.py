@@ -891,6 +891,11 @@ body {{
   font-size: 0.65rem; color: var(--dim); font-weight: 600;
   text-transform: uppercase; letter-spacing: 1px; margin-right: 6px;
 }}
+.hcap-label {{
+  background: rgba(147,51,234,0.15); color: var(--purple);
+  padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(147,51,234,0.35);
+  margin-left: 6px; text-transform: none; letter-spacing: 0;
+}}
 .pick-val {{
   font-weight: 800; font-size: 0.88rem; padding: 2px 10px;
   border-radius: 6px;
@@ -1431,7 +1436,11 @@ def _handicap_pick(p):
     cls = "home" if hhp >= hdp and hhp >= hap else ("draw" if hdp >= hhp and hdp >= hap else "away")
     edge_html = f' <span class="pick-val {cls}" style="font-size:.85em">让球EV {edge:+.0%}</span>' if edge is not None else ""
     sign = "+" if hcap > 0 else ""
-    return f'<span class="pick-label">让球{sign}{hcap:g}</span> <span class="pick-val {cls}">{label} {prob:.0%}</span>{edge_html}'
+    # 2026-08-06 UI 修复：让球盘明显化——独立标签+背景色+tooltip，与"预测（模型观点）"区分
+    return (f'<span class="pick-label hcap-label" title="让球玩法（市场盘口观点）：主队让{hcap:g}球后的胜平负概率，与上方模型预测不同源">'
+            f'让球盘 {sign}{hcap:g}</span> '
+            f'<span class="pick-val {cls}" style="border-color:{ {"home":"var(--green)","draw":"var(--purple)","away":"var(--red)"}[cls] }">'
+            f'{label} {prob:.0%}</span>{edge_html}')
 
 
 def _pred_score(p):
@@ -1447,7 +1456,8 @@ def _pred_score(p):
         if isinstance(item, (list, tuple)) and len(item) >= 3:
             scores.append(f"{item[0]}-{item[1]}")
     if scores:
-        return f' <span class="pred-score">比分 {" / ".join(scores)}</span>'
+        # 2026-08-06 UI 修复：明确"预测比分"（模型观点），避免与赛果混淆
+        return f' <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">{" / ".join(scores)}</span>'
     return ""
 
 
