@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-07",
-  "total_matches": 121,
+  "total_matches": 123,
   "date_range": [
     "2026-07-20",
-    "2026-08-06"
+    "2026-08-07"
   ],
   "overall": {
-    "hit_rate": 0.4298,
-    "brier_final": 0.6667,
-    "brier_model": 0.7159,
-    "brier_market": 0.3773,
-    "brier_djyy": 0.3278
+    "hit_rate": 0.439,
+    "brier_final": 0.6652,
+    "brier_model": 0.7127,
+    "brier_market": 0.3797,
+    "brier_djyy": 0.3269
   },
   "daily": [
     {
@@ -228,21 +228,33 @@
       "brier_market": 0.8124,
       "brier_djyy": 0.555,
       "pnl": 0.0
+    },
+    {
+      "date": "2026-08-07",
+      "n": 2,
+      "hits": 2,
+      "hit_rate": 1.0,
+      "cum_hit_rate": 0.439,
+      "brier_final": 0.5738,
+      "brier_model": 0.5249,
+      "brier_market": 0.5212,
+      "brier_djyy": 0.5543,
+      "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 50,
-    "hit_rate": 0.38,
-    "brier_final": 0.6687,
+    "n": 49,
+    "hit_rate": 0.4082,
+    "brier_final": 0.6466,
     "pnl": 0.0
   },
   "prev7": {
-    "n": 43,
-    "hit_rate": 0.4419,
-    "brier_final": 0.646,
+    "n": 44,
+    "hit_rate": 0.4091,
+    "brier_final": 0.6924,
     "pnl": 0.0
   },
-  "verdict": "命中率下降 -6pt",
+  "verdict": "持平（±3pt 内）",
   "by_league": [
     {
       "layer": "K1联赛",
@@ -303,6 +315,12 @@
       "n": 2,
       "hit_rate": 1.0,
       "brier_final": 0.3708
+    },
+    {
+      "layer": "日职",
+      "n": 2,
+      "hit_rate": 1.0,
+      "brier_final": 0.5738
     }
   ],
   "by_odds_band": [
@@ -314,9 +332,9 @@
     },
     {
       "layer": "2.0-3.0",
-      "n": 32,
-      "hit_rate": 0.3438,
-      "brier_final": 0.6754
+      "n": 34,
+      "hit_rate": 0.3824,
+      "brier_final": 0.6695
     },
     {
       "layer": "1.0-1.5",
@@ -346,9 +364,9 @@
     },
     {
       "layer": "low",
-      "n": 21,
-      "hit_rate": 0.2857,
-      "brier_final": 0.6744
+      "n": 23,
+      "hit_rate": 0.3478,
+      "brier_final": 0.6656
     }
   ]
 }

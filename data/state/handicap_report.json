@@ -1,8 +1,8 @@
 {
-  "n_matches": 8,
+  "n_matches": 10,
   "hits": 3,
-  "hit_rate": 0.375,
-  "roi": -0.3013,
+  "hit_rate": 0.3,
+  "roi": -0.441,
   "rows": [
     {
       "date": "2026-08-05",
@@ -98,6 +98,30 @@
       "actual": "home",
       "hit": false,
       "odds": 3.3,
+      "pnl": -1.0
+    },
+    {
+      "date": "2026-08-07",
+      "match_id": "2026-08-07_周五001",
+      "league": "日职",
+      "handicap": 1.0,
+      "best_sel": "home",
+      "best_edge": 0.096,
+      "actual": "draw",
+      "hit": false,
+      "odds": 1.51,
+      "pnl": -1.0
+    },
+    {
+      "date": "2026-08-07",
+      "match_id": "2026-08-07_周五002",
+      "league": "日职",
+      "handicap": -1.0,
+      "best_sel": "home",
+      "best_edge": 1.0679,
+      "actual": "draw",
+      "hit": false,
+      "odds": 4.65,
       "pnl": -1.0
     }
   ]
