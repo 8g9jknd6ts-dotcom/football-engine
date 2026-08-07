@@ -1449,10 +1449,14 @@ def _handicap_pick(p):
             if _e is not None and _e > 0.005:  # 正 EV 才展示
                 _ev_cls = "draw" if _dir == "draw" else _dir
                 _star = " ⭐" if _dir == "draw" else ""  # 让球平正EV是隐藏价值，高亮
+                # 2026-08-07：>30% edge 多为脏数据/赔率错位，sanity check 已设
+                # recommended=False 不出注——页面需标注"超限"避免误读为强信号
+                _over = " ⚠超限" if _e > 0.30 else ""
                 ev_html += (f' <span class="pick-val {_ev_cls}" style="font-size:.78em;'
                             f'border-color:{"var(--purple)" if _dir=="draw" else {"home":"var(--green)","away":"var(--red)"}[_dir]};'
-                            f'background:rgba(147,51,234,0.08)">'
-                            f'{_ev_labels[_dir]} +EV {_e:+.0%}{_star}</span>')
+                            f'background:rgba(147,51,234,0.08)" '
+                            f'title="模型概率×市场赔率-1。edge>30% 超出可信区间，系统不据此出注">'
+                            f'{_ev_labels[_dir]} +EV {_e:+.0%}{_star}{_over}</span>')
     return (f'<span class="pick-label hcap-label" title="让球玩法（市场盘口观点）：主队让{hcap:g}球后的胜平负概率，与上方模型预测不同源">'
             f'让球盘 {sign}{hcap:g}</span> '
             f'<span class="pick-val {cls}" style="border-color:{ {"home":"var(--green)","draw":"var(--purple)","away":"var(--red)"}[cls] }">'
