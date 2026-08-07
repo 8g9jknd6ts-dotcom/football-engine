@@ -44,6 +44,19 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt --quiet
 
+      - name: Sync with remote (avoid build-time conflicts)
+        # 2026-08-07 修复：build 前先同步远端。否则 build 产物与远端
+        # 提交在 commit 后 pull --rebase 时冲突，冲突标记会写进 web/*.html
+        # （8/7 Pages 页面出现 <<<<<<< HEAD 的根因）。
+        run: |
+          git pull --rebase origin main || echo "⚠ 同步失败（继续，commit 步骤有冲突检测兜底）"
+          # 防御：若上一步 rebase 失败残留冲突标记，立即清理重建
+          if grep -rl '<<<<<<< HEAD' web/ data/ 2>/dev/null | grep -q .; then
+            echo "⚠ 检测到冲突标记残留，强制恢复远端版本"
+            git checkout --theirs -- web/ data/ 2>/dev/null || true
+            git checkout -- web/ data/ 2>/dev/null || true
+          fi
+
       - name: Fetch DJYY SSR odds
         run: |
           python scripts/fetch_djyy_ssr.py || echo "⚠ DJYY SSR 抓取失败（辅助数据源，继续）"
@@ -102,12 +115,25 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # 2026-08-07 修复：commit 前强制检测冲突标记——任何数据/网页文件
+          # 含 <<<<<<< HEAD 一律中止提交（宁可这次不推送，绝不污染线上）。
+          # 根因：pull --rebase 冲突会把冲突标记写进构建产物，曾被 push 到
+          # Pages 展示（8/7 六张卡片出现 <<<<<<< HEAD）。
+          if grep -rl '<<<<<<< HEAD' web/ data/ 2>/dev/null | grep -q .; then
+            echo "::error::检测到冲突标记残留（web/ 或 data/），中止提交，避免污染线上"
+            exit 1
+          fi
           git add data/ web/
           git diff --cached --quiet || git commit -m "daily: forecast $(date +%Y-%m-%d)"
           for i in 1 2 3; do
             git pull --rebase --autostash origin main && git push && break
             sleep 5
           done
+          # 兜底：rebase 若产生冲突标记（理论已由上面检测拦截），再次检测
+          if grep -rl '<<<<<<< HEAD' web/ data/ 2>/dev/null | grep -q .; then
+            echo "::error::push 后仍检测到冲突标记残留，请人工检查"
+            exit 1
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
