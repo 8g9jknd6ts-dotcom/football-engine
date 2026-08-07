@@ -1100,6 +1100,34 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
           f"彩票{len(ticket_plan.lottery_picks)}场, "
           f"总投入={ticket_plan.total_stake}元")
 
+    # 6.5 场次并集保护（2026-08-07 修复）：Actions 每半小时重跑当天预测，
+    # 某次数据源不完整（sporttery WAF 拦截/场次停售）会用少场次覆盖多场次，
+    # git 三方合并还会静默吃掉旧场次（8/6 库奥皮奥因此丢失）。
+    # 落盘前按 match_id 合并：本次缺失但历史已有的场次保留旧条目，
+    # 保证网页永远显示当天全部竞彩场次（决策包与 predictions.json 一致）。
+    _prev_pred_path = ROOT / "data" / "daily" / target_date.isoformat() / "predictions.json"
+    if _prev_pred_path.exists():
+        try:
+            _prev_preds = json.loads(_prev_pred_path.read_text(encoding="utf-8"))
+            if isinstance(_prev_preds, dict):
+                _prev_preds = _prev_preds.get("predictions", [])
+            _new_mids = {p.get("match_id") for p in predictions}
+            _kept = 0
+            for _pp in _prev_preds:
+                if _pp.get("match_id") not in _new_mids:
+                    predictions.append(_pp)
+                    _kept += 1
+                    print(f"  ⚠ 保留旧场次（本次采集缺失）: {_pp.get('match_id')} {_pp.get('home_team')} vs {_pp.get('away_team')}")
+            if _kept:
+                # 恢复编号顺序（match_no 排序）
+                def _no_key(_p):
+                    _no = _p.get("match_no", "")
+                    return (_no[:2], int(_no[2:])) if len(_no) >= 3 and _no[2:].isdigit() else (_no, 0)
+                predictions.sort(key=_no_key)
+                print(f"  ✓ 场次并集完成: {len(predictions)} 场（保留 {_kept} 场）")
+        except Exception as _e:
+            print(f"  ⚠ 场次并集合并跳过: {_e}")
+
     # 7. 创建决策包 + 锁定
     print("\n[6/8] 创建不可变决策包...")
     bundle_mgr = DecisionBundle(ROOT / "data" / "daily" / target_date.isoformat())
