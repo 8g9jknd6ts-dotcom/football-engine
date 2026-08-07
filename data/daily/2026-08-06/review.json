@@ -1,0 +1,103 @@
+{
+  "date": "2026-08-06",
+  "n_matches": 3,
+  "hit_rate": 0.3333,
+  "hits": 1,
+  "source_brier": {
+    "model": 0.4705,
+    "market": 0.9238,
+    "djyy": 0.4149,
+    "final": 0.6038
+  },
+  "by_league": {
+    "欧罗巴": {
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.6038
+    }
+  },
+  "by_confidence_tier": {
+    "mid": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.5577
+    },
+    "low": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6959
+    }
+  },
+  "by_odds_band": {
+    "1.0-1.5": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.5577
+    },
+    "2.0-3.0": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6959
+    }
+  },
+  "score_stats": {
+    "top1": 0,
+    "top3": 2,
+    "top5": 2,
+    "top8": 2,
+    "any": 2
+  },
+  "score_rank_hist": {
+    "2": 2
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 1,
+      "hits": 1
+    },
+    "mc": {
+      "n": 2,
+      "hits": 1
+    }
+  },
+  "market_signal_stats": {
+    "n": 3,
+    "hits": 0
+  },
+  "layered": {
+    "log_loss_final": 1.0121,
+    "goal_framework": {
+      "n": 3,
+      "hits": 1
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 2,
+        "hit_rate": 0.5
+      },
+      "<40%": {
+        "n": 1,
+        "hit_rate": 0.0
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 1,
+        "hit_rate": 1.0
+      },
+      "watch": {
+        "n": 2,
+        "hit_rate": 0.0
+      }
+    }
+  },
+  "biases": [],
+  "total_pnl": 0.0,
+  "generated_at": "2026-08-07T00:34:01.717594",
+  "sha256": "3dfdfcfb01c5f59df8a315a18e398d7c"
+}
