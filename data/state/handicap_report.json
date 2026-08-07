@@ -1,8 +1,8 @@
 {
-  "n_matches": 12,
-  "hits": 4,
+  "n_matches": 15,
+  "hits": 5,
   "hit_rate": 0.3333,
-  "roi": -0.3842,
+  "roi": -0.412,
   "rows": [
     {
       "date": "2026-08-05",
@@ -147,6 +147,42 @@
       "hit": true,
       "odds": 1.8,
       "pnl": 0.8
+    },
+    {
+      "date": "2026-08-07",
+      "match_id": "2026-08-07_周五005",
+      "league": "荷甲",
+      "handicap": -1.0,
+      "best_sel": "away",
+      "best_edge": 0.2252,
+      "actual": "away",
+      "hit": true,
+      "odds": 1.43,
+      "pnl": 0.43
+    },
+    {
+      "date": "2026-08-07",
+      "match_id": "2026-08-07_周五006",
+      "league": "荷乙",
+      "handicap": 1.0,
+      "best_sel": "home",
+      "best_edge": 0.5128,
+      "actual": "draw",
+      "hit": false,
+      "odds": 2.23,
+      "pnl": -1.0
+    },
+    {
+      "date": "2026-08-07",
+      "match_id": "2026-08-07_周五007",
+      "league": "荷乙",
+      "handicap": -1.0,
+      "best_sel": "away",
+      "best_edge": 0.0569,
+      "actual": "draw",
+      "hit": false,
+      "odds": 1.43,
+      "pnl": -1.0
     }
   ]
 }
