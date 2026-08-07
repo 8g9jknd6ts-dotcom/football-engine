@@ -1,8 +1,8 @@
 {
-  "n_leagues": 13,
-  "n_matches": 157,
+  "n_leagues": 15,
+  "n_matches": 159,
   "external_added": 29,
-  "generated_at": "2026-08-07T20:05:33.655212",
+  "generated_at": "2026-08-07T21:02:25.805223",
   "leagues": [
     {
       "league": "挪超",
@@ -172,6 +172,32 @@
       "recent_hits": 1,
       "recent_hit_rate": 1.0,
       "recent_roi": 1.38
+    },
+    {
+      "league": "英联赛杯",
+      "n": 1,
+      "hit_rate": 1.0,
+      "avg_odds": 1.5,
+      "roi": 0.5,
+      "avg_confidence": 0.0867,
+      "verdict": "样本不足",
+      "recent_n": 1,
+      "recent_hits": 1,
+      "recent_hit_rate": 1.0,
+      "recent_roi": 0.5
+    },
+    {
+      "league": "德乙",
+      "n": 1,
+      "hit_rate": 0.0,
+      "avg_odds": 2.05,
+      "roi": -1.0,
+      "avg_confidence": 0.1218,
+      "verdict": "样本不足",
+      "recent_n": 1,
+      "recent_hits": 0,
+      "recent_hit_rate": 0.0,
+      "recent_roi": -1.0
     }
   ]
 }
