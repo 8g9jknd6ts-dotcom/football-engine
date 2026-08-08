@@ -1,46 +1,181 @@
 {
-  "stable": [],
-  "value": [
-    {
-      "match": "2026-08-08_周六018",
-      "sel": "hcap_away",
-      "odds": 2.57,
-      "stake": 58.04,
-      "prob": 0.505
-    },
-    {
-      "match": "2026-08-08_周六021",
-      "sel": "hcap_away",
-      "odds": 1.88,
-      "stake": 68.46,
-      "prob": 0.637
-    },
-    {
-      "match": "2026-08-08_周六016",
-      "sel": "hcap_away",
-      "odds": 2.25,
-      "stake": 23.5,
-      "prob": 0.487
-    }
-  ],
-  "lottery": [],
-  "total_stake": 150.0,
-  "expected_roi": 0.2211,
-  "bankroll": 5000.0,
-  "breaker_multiplier": 1.0,
-  "parlay": [],
-  "parlay_calibration": {
-    "overall": 0.4351,
-    "n": 131,
-    "table": {
-      "0.35": 0.3214,
-      "0.4": 0.4583,
-      "0.45": 0.6,
-      "0.5": 0.4375,
-      "0.55": 0.3158,
-      "0.6": 0.5,
-      "0.7": 0.5
-    },
-    "note": "串关 EV 用账本校准命中率"
+ "stable": [],
+ "value": [
+  {
+   "match": "2026-08-08_周六018",
+   "sel": "hcap_away",
+   "odds": 2.57,
+   "stake": 58.04,
+   "prob": 0.505
+  },
+  {
+   "match": "2026-08-08_周六021",
+   "sel": "hcap_away",
+   "odds": 1.88,
+   "stake": 68.46,
+   "prob": 0.637
+  },
+  {
+   "match": "2026-08-08_周六016",
+   "sel": "hcap_away",
+   "odds": 2.25,
+   "stake": 23.5,
+   "prob": 0.487
   }
+ ],
+ "lottery": [],
+ "total_stake": 150.0,
+ "expected_roi": 0.2211,
+ "bankroll": 5000.0,
+ "breaker_multiplier": 1.0,
+ "parlay": [
+  {
+   "type": "2串1",
+   "legs": [
+    {
+     "match": "2026-08-08_周六011",
+     "home": "维京",
+     "away": "萨普斯堡08",
+     "league": "挪超",
+     "sel": "home",
+     "odds": 1.25,
+     "prob": 0.501,
+     "cal_prob": 0.438,
+     "market_prob": 0.709,
+     "source": "market",
+     "hit_prob": 0.615
+    },
+    {
+     "match": "2026-08-08_周六022",
+     "home": "阿尔克马",
+     "away": "海牙",
+     "league": "荷甲",
+     "sel": "home",
+     "odds": 1.3,
+     "prob": 0.474,
+     "cal_prob": 0.6,
+     "market_prob": 0.681,
+     "source": "market",
+     "hit_prob": 0.615
+    }
+   ],
+   "total_odds": 1.62,
+   "model_ev": -1.23,
+   "cal_ev": -0.77,
+   "cal_roi": -0.3854,
+   "market_ev": -0.43,
+   "market_roi": -0.2154,
+   "hit_prob_cal": 0.378,
+   "recommended": false,
+   "stake": 2.0,
+   "n_bets": 1,
+   "potential": 3.25,
+   "worst_win": 0.0,
+   "note": "两场全中才赢",
+   "source": "market"
+  },
+  {
+   "type": "2串1",
+   "legs": [
+    {
+     "match": "2026-08-08_周六018",
+     "home": "埃因霍温",
+     "away": "福图纳",
+     "league": "荷甲",
+     "sel": "home",
+     "odds": 1.17,
+     "prob": 0.487,
+     "cal_prob": 0.6,
+     "market_prob": 0.813,
+     "source": "market",
+     "hit_prob": 0.615
+    },
+    {
+     "match": "2026-08-08_周六022",
+     "home": "阿尔克马",
+     "away": "海牙",
+     "league": "荷甲",
+     "sel": "home",
+     "odds": 1.3,
+     "prob": 0.474,
+     "cal_prob": 0.6,
+     "market_prob": 0.681,
+     "source": "market",
+     "hit_prob": 0.615
+    }
+   ],
+   "total_odds": 1.52,
+   "model_ev": -1.3,
+   "cal_ev": -0.85,
+   "cal_roi": -0.4247,
+   "market_ev": -0.32,
+   "market_roi": -0.1579,
+   "hit_prob_cal": 0.378,
+   "recommended": false,
+   "stake": 2.0,
+   "n_bets": 1,
+   "potential": 3.04,
+   "worst_win": 0.0,
+   "note": "两场全中才赢",
+   "source": "market"
+  },
+  {
+   "type": "2串1",
+   "legs": [
+    {
+     "match": "2026-08-08_周六018",
+     "home": "埃因霍温",
+     "away": "福图纳",
+     "league": "荷甲",
+     "sel": "home",
+     "odds": 1.17,
+     "prob": 0.487,
+     "cal_prob": 0.6,
+     "market_prob": 0.813,
+     "source": "market",
+     "hit_prob": 0.615
+    },
+    {
+     "match": "2026-08-08_周六011",
+     "home": "维京",
+     "away": "萨普斯堡08",
+     "league": "挪超",
+     "sel": "home",
+     "odds": 1.25,
+     "prob": 0.501,
+     "cal_prob": 0.438,
+     "market_prob": 0.709,
+     "source": "market",
+     "hit_prob": 0.615
+    }
+   ],
+   "total_odds": 1.46,
+   "model_ev": -1.29,
+   "cal_ev": -0.89,
+   "cal_roi": -0.4468,
+   "market_ev": -0.32,
+   "market_roi": -0.1578,
+   "hit_prob_cal": 0.378,
+   "recommended": false,
+   "stake": 2.0,
+   "n_bets": 1,
+   "potential": 2.92,
+   "worst_win": 0.0,
+   "note": "两场全中才赢",
+   "source": "market"
+  }
+ ],
+ "parlay_calibration": {
+  "overall": 0.4351,
+  "n": 131,
+  "table": {
+   "0.35": 0.3214,
+   "0.4": 0.4583,
+   "0.45": 0.6,
+   "0.5": 0.4375,
+   "0.55": 0.3158,
+   "0.6": 0.5,
+   "0.7": 0.5
+  }
+ }
 }

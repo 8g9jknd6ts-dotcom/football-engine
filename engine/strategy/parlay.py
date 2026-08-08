@@ -33,7 +33,7 @@ STAKE_UNIT = 2.0
 
 @dataclass
 class ParlayConfig:
-    min_prob: float = 0.60          # 腿最低方向概率（0.55-0.60 塌陷区禁入）
+    min_prob: float = 0.60          # 腿最低融合方向概率（0.55-0.60 塌陷区禁入）
     max_odds: float = 3.00          # 单腿赔率上限（串关要低赔率腿）
     max_legs: int = 3               # 最高串数（受 strategy.json max_parlay_legs 约束）
     max_parlay_stake: float = 30.0  # 串关日总投入上限（strategy.json）
@@ -42,6 +42,18 @@ class ParlayConfig:
     cal_min_samples: int = 8        # 校准段最小样本（不足回退整体）
     cal_overall: float = 0.433      # 整体方向命中率（账本 120 场实测）
     cal_table: dict | None = None   # {下限: 命中率} 由账本自动计算
+    # 市场腿（2026-08-08 新增）：融合概率被平局修正层层压低（8/4 后无腿可串），
+    # 但账本实证"市场比模型准"（模型>市场命中 27.8% vs 模型<市场 52.3%）。
+    # 市场公平概率 ≥ market_min_prob 的场次也入池（source='market'），
+    # 用市场段实际命中率算期望，标注娱乐串（期望≈-15%~-40%，水钱）。
+    market_min_prob: float = 0.55    # 市场腿最低市场公平概率（去水后）
+    market_table: dict | None = None  # {下限: 市场段实际命中率} 账本实测
+
+
+# 市场公平概率段 → 实际命中率（review_ledger 131 场实测，2026-08-08）
+# [0.55,0.65): 47.1% (17场8中) | [0.65,0.75): 54.5% (11场6中) | [0.75+): 100% (2场2中，样本小)
+# 合并 0.65+ = 61.5% (13场8中)
+DEFAULT_MARKET_TABLE = {0.65: 0.615, 0.55: 0.471}
 
 
 @dataclass
@@ -54,6 +66,9 @@ class ParlayLeg:
     odds: float
     prob: float         # 融合方向概率（模型口径）
     cal_prob: float = 0.0   # 账本校准命中率（2026-08-08：模型概率系统性高估）
+    market_prob: float = 0.0  # 市场公平概率（三方向赔率去水）
+    source: str = "fusion"    # "fusion"（融合池）/ "market"（市场池）
+    hit_prob: float = 0.0   # 该腿"实际命中率"：fusion=账本校准 / market=市场段实测
 
 
 @dataclass
@@ -62,12 +77,15 @@ class ParlayTicket:
     legs: list[ParlayLeg] = field(default_factory=list)
     total_odds: float = 0.0     # 全中总赔率
     model_ev: float = 0.0       # 模型口径期望盈利（元）
-    cal_ev: float = 0.0         # 校准口径期望盈利（元）——决策依据
-    cal_roi: float = 0.0        # 校准 ROI
-    hit_prob_cal: float = 0.0   # 校准全中概率
+    cal_ev: float = 0.0         # 实际口径期望盈利（元）——决策依据
+    cal_roi: float = 0.0        # 实际 ROI
+    hit_prob_cal: float = 0.0   # 实际全中概率
     recommended: bool = False   # cal_ev>0 才推荐
     stake: float = 0.0          # 投入（元）
     n_bets: int = 0             # 注数
+    source: str = "calibrated"  # "calibrated"（校准正EV ⭐）/ "market"（娱乐串 🎯）
+    market_ev: float = 0.0      # 市场口径期望盈利（元，展示用）
+    market_roi: float = 0.0     # 市场口径 ROI
     potential: float = 0.0      # 理论最高奖金（元）
     worst_win: float = 0.0      # 最差命中回报（2串1/3串1=0；3串4=错1场中2串1）
     note: str = ""              # 容错/说明
@@ -80,11 +98,16 @@ class ParlayTicket:
                 "league": l.competition, "sel": l.selection,
                 "odds": round(l.odds, 2), "prob": round(l.prob, 3),
                 "cal_prob": round(l.cal_prob, 3),
+                "market_prob": round(l.market_prob, 3),
+                "source": l.source,
+                "hit_prob": round(l.hit_prob, 3) if l.hit_prob else None,
             } for l in self.legs],
             "total_odds": round(self.total_odds, 2),
-            "model_ev": round(self.model_ev, 2),
+            "model_ev": round(self.model_ev, 2) if self.model_ev is not None else None,
             "cal_ev": round(self.cal_ev, 2),
             "cal_roi": round(self.cal_roi, 4),
+            "market_ev": round(self.market_ev, 2) if self.market_ev is not None else None,
+            "market_roi": round(self.market_roi, 4) if self.market_roi is not None else None,
             "hit_prob_cal": round(self.hit_prob_cal, 3),
             "recommended": self.recommended,
             "stake": round(self.stake, 2),
@@ -92,6 +115,7 @@ class ParlayTicket:
             "potential": round(self.potential, 2),
             "worst_win": round(self.worst_win, 2),
             "note": self.note,
+            "source": self.source,
         }
 
 
@@ -182,10 +206,39 @@ class ParlayBuilder:
         return self.cal_table[lo]
 
     # ---------- 胆池 ----------
+    def _market_prob(self, pred: dict, sel: str) -> float:
+        """三方向赔率去水算市场公平概率（竞彩赔率含约 5-8% 水钱）"""
+        key = f"{sel}_odds"
+        odds = pred.get(key) or 0
+        if not odds or odds <= 1.0:
+            return 0.0
+        inv = {"home": 1.0 / (pred.get("home_odds") or 0) if pred.get("home_odds") else 0.0,
+               "draw": 1.0 / (pred.get("draw_odds") or 0) if pred.get("draw_odds") else 0.0,
+               "away": 1.0 / (pred.get("away_odds") or 0) if pred.get("away_odds") else 0.0}
+        total_inv = sum(inv.values())
+        if total_inv <= 0:
+            return 0.0
+        return (1.0 / odds) / total_inv
+
+    def _leg_hit_prob(self, leg: ParlayLeg) -> float:
+        """腿的'实际命中率'：fusion 腿用账本校准表，market 腿用市场段实测表"""
+        if leg.hit_prob:
+            return leg.hit_prob
+        if leg.source == "market":
+            mtab = self.cfg.market_table or DEFAULT_MARKET_TABLE
+            for lo in sorted(mtab, reverse=True):
+                if leg.market_prob >= lo:
+                    return mtab[lo]
+            return self.cfg.cal_overall
+        return leg.cal_prob or self.cfg.cal_overall
+
     def _build_pool(
         self, candidates: list[dict], predictions: list[dict] | None = None
     ) -> list[ParlayLeg]:
-        """可串腿：纯胜平负 + 概率≥min_prob（避开 0.55-0.60 塌陷区）+ 赔率限制
+        """可串腿：纯胜平负。
+        - fusion 腿：融合方向概率 ≥ min_prob（避开 0.55-0.60 塌陷区）
+        - market 腿：市场公平概率 ≥ market_min_prob（2026-08-08 新增，
+          融合概率被平局修正层层压低后无腿可串，但账本实证市场比模型准）
 
         队名优先取 candidates（main.py 构造时若带），否则用 match_id 反查
         predictions（2026-08-08 修复：main.py candidates 未带队名，串票腿曾显示空队名）。
@@ -198,41 +251,62 @@ class ParlayBuilder:
                 continue
             odds = c.get("odds", 0) or 0
             prob = c.get("prob", 0) or 0
-            if prob < self.cfg.min_prob:
-                continue
             if odds > self.cfg.max_odds:
                 continue
             if odds < 1.10:
                 continue
             match_id = c.get("match_id", "")
             pred = pred_map.get(match_id, {})
-            pool.append(ParlayLeg(
-                match_id=match_id,
-                home_team=c.get("home_team") or pred.get("home_team", ""),
-                away_team=c.get("away_team") or pred.get("away_team", ""),
-                competition=c.get("competition") or pred.get("competition", ""),
-                selection=sel,
-                odds=odds,
-                prob=prob,
-                cal_prob=self._cal_prob(prob),
-            ))
-        pool.sort(key=lambda l: l.prob, reverse=True)
+            market_prob = self._market_prob(pred, sel)
+            # 融合腿（模型口径门槛）
+            if prob >= self.cfg.min_prob:
+                leg = ParlayLeg(
+                    match_id=match_id,
+                    home_team=c.get("home_team") or pred.get("home_team", ""),
+                    away_team=c.get("away_team") or pred.get("away_team", ""),
+                    competition=c.get("competition") or pred.get("competition", ""),
+                    selection=sel, odds=odds, prob=prob,
+                    cal_prob=self._cal_prob(prob),
+                    market_prob=market_prob, source="fusion",
+                )
+                leg.hit_prob = leg.cal_prob
+                pool.append(leg)
+            # 市场腿（市场口径门槛；账本实证市场比模型准）
+            elif market_prob >= self.cfg.market_min_prob:
+                leg = ParlayLeg(
+                    match_id=match_id,
+                    home_team=c.get("home_team") or pred.get("home_team", ""),
+                    away_team=c.get("away_team") or pred.get("away_team", ""),
+                    competition=c.get("competition") or pred.get("competition", ""),
+                    selection=sel, odds=odds, prob=prob,
+                    cal_prob=self._cal_prob(prob),
+                    market_prob=market_prob, source="market",
+                )
+                leg.hit_prob = self._leg_hit_prob(leg)  # 市场段实测命中率
+                pool.append(leg)
+        pool.sort(key=lambda l: max(l.prob, l.market_prob), reverse=True)
         return pool
 
     # ---------- 串票构造 ----------
     def _finish(self, t: ParlayTicket) -> ParlayTicket:
-        """按腿校准概率填 EV 口径"""
+        """按腿实际命中率（fusion→账本校准 / market→市场段实测）填 EV 口径"""
         p_cal = 1.0
         p_mod = 1.0
+        p_mkt = 1.0
         for l in t.legs:
-            p_cal *= self._cal_prob(l.prob)
+            p_cal *= self._leg_hit_prob(l)
             p_mod *= l.prob
+            p_mkt *= (l.market_prob or l.prob)
         o = t.total_odds
         t.hit_prob_cal = p_cal
         t.model_ev = t.potential * p_mod - t.stake
         t.cal_ev = t.potential * p_cal - t.stake
         t.cal_roi = o * p_cal - 1.0
+        t.market_ev = t.potential * p_mkt - t.stake
+        t.market_roi = o * p_mkt - 1.0
+        # 推荐 = 实际 EV > 0；市场腿串票默认娱乐（几乎必然负 EV，标注即可）
         t.recommended = t.cal_ev > 0
+        t.source = "calibrated" if all(l.source == "fusion" for l in t.legs) else "market"
         return t
 
     def _make_2in1(self, l1: ParlayLeg, l2: ParlayLeg) -> ParlayTicket:
@@ -261,15 +335,22 @@ class ParlayBuilder:
         """3串4 容错：3 注 2串1 + 1 注 3串1 = 4 注，投入 8 元。错 1 场仍回血。"""
         l1, l2, l3 = legs
         o1, o2, o3 = l1.odds, l2.odds, l3.odds
-        p1c, p2c, p3c = self._cal_prob(l1.prob), self._cal_prob(l2.prob), self._cal_prob(l3.prob)
+        p1c, p2c, p3c = self._leg_hit_prob(l1), self._leg_hit_prob(l2), self._leg_hit_prob(l3)
+        p1m, p2m, p3m = (l1.market_prob or l1.prob), (l2.market_prob or l2.prob), (l3.market_prob or l3.prob)
         n_bets = 4
         stake = STAKE_UNIT * n_bets
-        # 每注期望回报（校准口径）
+        # 每注期望回报（实际命中率口径）
         e12 = STAKE_UNIT * o1 * o2 * p1c * p2c
         e13 = STAKE_UNIT * o1 * o3 * p1c * p3c
         e23 = STAKE_UNIT * o2 * o3 * p2c * p3c
         e123 = STAKE_UNIT * o1 * o2 * o3 * p1c * p2c * p3c
         exp_return = e12 + e13 + e23 + e123
+        # 市场口径（展示用）
+        m12 = STAKE_UNIT * o1 * o2 * p1m * p2m
+        m13 = STAKE_UNIT * o1 * o3 * p1m * p3m
+        m23 = STAKE_UNIT * o2 * o3 * p2m * p3m
+        m123 = STAKE_UNIT * o1 * o2 * o3 * p1m * p2m * p3m
+        market_return = m12 + m13 + m23 + m123
         potential = STAKE_UNIT * (o1 * o2 + o1 * o3 + o2 * o3 + o1 * o2 * o3)
         worst = STAKE_UNIT * min(o1 * o2, o1 * o3, o2 * o3)
         t = ParlayTicket(
@@ -279,10 +360,13 @@ class ParlayBuilder:
         )
         # 3串4 的期望/ROI 按全注口径单独算
         t.hit_prob_cal = p1c * p2c * p3c
-        t.model_ev = None  # 3串4 模型口径不展示（用校准）
+        t.model_ev = None  # 3串4 模型口径不展示（用实际口径）
         t.cal_ev = exp_return - stake
         t.cal_roi = exp_return / stake - 1.0
+        t.market_ev = market_return - stake
+        t.market_roi = market_return / stake - 1.0
         t.recommended = t.cal_ev > 0
+        t.source = "calibrated" if all(l.source == "fusion" for l in t.legs) else "market"
         return t
 
     # ---------- 主入口 ----------
@@ -314,12 +398,16 @@ class ParlayBuilder:
         tickets.sort(key=lambda t: (t.recommended, t.cal_ev), reverse=True)
         tickets = tickets[: self.cfg.max_tickets]
 
-        # 注额：只给推荐串分配（串关池 = min(0.006×bankroll, max_parlay_stake)）
+        # 注额：推荐串分配串关池（min(0.006×bankroll, max_parlay_stake)）
         pool_cap = min(self.bankroll * 0.006, self.cfg.max_parlay_stake)
         recs = [t for t in tickets if t.recommended]
         for t in tickets:
             if not t.recommended:
-                t.stake = 0.0  # ⚠ 负 EV 不出注（页面展示但不分配资金）
+                # 娱乐串：1 注小注（2026-08-08：用户要看到实际可打的串；
+                # 期望为负但小注参与，页面明确标注）
+                t.stake = STAKE_UNIT
+                t.potential = round(t.total_odds * t.stake, 2)
+                t.cal_ev = round(t.stake * t.cal_roi, 2)
         if recs:
             weights = []
             for t in recs:
@@ -369,8 +457,8 @@ if __name__ == "__main__":
         })
     b = ParlayBuilder(bankroll=5000, limits={"max_parlay_legs": 3, "max_parlay_stake": 30},
                       calibration=cal)
-    tickets = b.build(cands)
-    pool = b._build_pool(cands)
+    tickets = b.build(cands, None, preds)
+    pool = b._build_pool(cands, preds)
     print(f"{day}: 候选 {len(cands)} 场, 可串 {len(pool)} 腿, 出 {len(tickets)} 张串票")
     for t in tickets:
         legs = " + ".join(f"{l.home_team[:4]}({l.selection[:1]})@{l.odds:.2f}" for l in t.legs)

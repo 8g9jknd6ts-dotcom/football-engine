@@ -2261,10 +2261,19 @@ def _parlay_section(ticket, predictions):
         html = ""
         for lg in t.get("legs", []):
             sel = lg.get("sel", "")
-            _prob = lg.get("prob", 0)
-            _calp = lg.get("cal_prob")
-            _prob_label = f"{_prob*100:.0f}%" if _calp is None else f"{_prob*100:.0f}%→{_calp*100:.0f}%"
-            html += (f'<div class="ticket-item"><span class="ti-match">{lg.get("home", "")} vs '
+            _hp = lg.get("hit_prob")
+            _cp = lg.get("cal_prob")
+            _mp = lg.get("market_prob")
+            _src = lg.get("source", "fusion")
+            # 概率标注：融合腿显示 模型→校准；市场腿显示 市场公平→市场段实测
+            if _src == "market":
+                _prob_label = f"市场{(_mp or 0)*100:.0f}%→实际{(_hp or 0)*100:.0f}%"
+                _src_badge = '<span class="pick-val away" style="font-size:.7em;margin-right:4px">市场</span>'
+            else:
+                _prob_label = (f"{lg.get('prob', 0)*100:.0f}%→{(_hp or _cp or 0)*100:.0f}%"
+                               if _hp or _cp else f"{lg.get('prob', 0)*100:.0f}%")
+                _src_badge = '<span class="pick-val home" style="font-size:.7em;margin-right:4px">模型</span>'
+            html += (f'<div class="ticket-item"><span class="ti-match">{_src_badge}{lg.get("home", "")} vs '
                      f'{lg.get("away", "")} <span style="opacity:.6">[{lg.get("league", "")}]</span> '
                      f'<span class="pick-val {"home" if sel=="home" else ("draw" if sel=="draw" else "away")}" '
                      f'style="font-size:.8em">{sel_map.get(sel, sel)} {_prob_label}</span></span>'
@@ -2273,19 +2282,33 @@ def _parlay_section(ticket, predictions):
 
     def _ticket_html(t):
         rec = t.get("recommended", False)
+        src = t.get("source", "calibrated")
         ptype = t.get("type", "")
-        badge = ('<span class="pick-val home" style="font-size:.75em">⭐ 推荐</span>' if rec else
-                 '<span class="pick-val draw" style="font-size:.75em" title="校准后负EV，系统不据此出注">⚠ 负EV</span>')
+        if rec:
+            badge = '<span class="pick-val home" style="font-size:.75em">⭐ 正EV 推荐</span>'
+        elif src == "market":
+            badge = ('<span class="pick-val draw" style="font-size:.75em" '
+                     'title="市场热门腿串关，期望为负（水钱），小注娱乐，勿重注">🎯 娱乐串</span>')
+        else:
+            badge = ('<span class="pick-val draw" style="font-size:.75em" '
+                     'title="校准后负EV，系统不据此出注">⚠ 负EV</span>')
+        # 市场腿串票用市场口径 ROI 标注（诚实），推荐串用校准口径
         ev = t.get("cal_ev", 0)
-        roi = t.get("cal_roi", 0)
-        ev_html = (f'<span class="ts-chip"><div class="ts-label">校准EV</div>'
+        if src == "market" and not rec:
+            roi = t.get("market_roi", t.get("cal_roi", 0))
+            ev = t.get("market_ev", ev)
+            roi_label = "市场ROI"
+        else:
+            roi = t.get("cal_roi", 0)
+            roi_label = "校准ROI"
+        ev_html = (f'<span class="ts-chip"><div class="ts-label">{roi_label}</div>'
                    f'<div class="ts-val" style="color:{("var(--green)" if ev > 0 else "var(--red)")}">'
                    f'{"+" if ev > 0 else ""}{ev:.1f}元 ({roi:+.0%})</div></span>')
         return f"""
-    <div class="ticket-card" style="{'border-color:var(--green)' if rec else 'border-color:var(--red);opacity:.75'}">
+    <div class="ticket-card" style="{'border-color:var(--green)' if rec else 'border-color:var(--red);opacity:.85'}">
       <h4 class="{'stable' if rec else 'lottery'}" style="display:flex;justify-content:space-between;align-items:center">
         <span>{ptype} {badge}</span>
-        <span style="font-size:.7rem;opacity:.7">全中@{t.get('total_odds', 0):.2f} · 校准命中率 {t.get('hit_prob_cal', 0)*100:.0f}%</span>
+        <span style="font-size:.7rem;opacity:.7">全中@{t.get('total_odds', 0):.2f} · 实际命中率 {t.get('hit_prob_cal', 0)*100:.0f}%</span>
       </h4>
       {_legs_html(t)}
       <div class="ticket-summary" style="margin-top:6px">
@@ -2313,19 +2336,21 @@ def _parlay_section(ticket, predictions):
       <tr><th style="padding:2px 8px;text-align:left">模型概率段</th><th style="padding:2px 8px">实际命中率</th></tr>
       {rows}
       <tr><td style="padding:2px 8px">整体</td><td style="padding:2px 8px;text-align:center">{overall*100:.0f}%</td></tr>
+      <tr><td style="padding:2px 8px">市场公平 ≥0.65</td><td style="padding:2px 8px;text-align:center">61.5%</td></tr>
+      <tr><td style="padding:2px 8px">市场公平 0.55-0.65</td><td style="padding:2px 8px;text-align:center">47.1%</td></tr>
     </table>
     <div style="margin-top:4px">串关 = 各腿命中率连乘 × 赔率连乘，天然吃双重抽水。模型概率系统性高估
-    （0.70+ 段实际仅 50% 命中）→ 按模型概率串关 = 送钱。系统只推荐校准后正 EV 的串票。</div>
+    （0.70+ 段实际仅 50% 命中）；市场腿实际命中率也低于赔率隐含 → 绝大多数串票期望为负，
+    标 🎯 娱乐串的小注参与即可，⭐ 正EV串才值得重注。</div>
   </details>"""
 
     if not parlay:
         return f"""
   <div class="section-title">串关方案（过关玩法）</div>
   <div class="ticket-card" style="border-color:var(--amber);opacity:.9">
-    <h4 class="lottery">🎯 今日无正 EV 串关 <span class="pick-val draw" style="font-size:.75em">空仓</span></h4>
+    <h4 class="lottery">🎯 今日无串关 <span class="pick-val draw" style="font-size:.75em">空仓</span></h4>
     <div style="font-size:.8rem;opacity:.8;padding:4px 0">
-      {'缺 ≥60% 置信场次（可串腿 0 场）' if not parlay else '校准后全部负 EV，不推荐出串（数据纪律）'}
-      —— 竞彩串关吃双重抽水，宁可不串，不送钱。
+      缺可串腿（模型 ≥60% 或 市场 ≥55% 置信场次 0 场）—— 竞彩串关吃双重抽水，宁可不串，不送钱。
     </div>
     {cal_html}
   </div>"""
