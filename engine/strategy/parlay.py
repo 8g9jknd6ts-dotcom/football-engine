@@ -244,8 +244,32 @@ class ParlayBuilder:
         predictions（2026-08-08 修复：main.py candidates 未带队名，串票腿曾显示空队名）。
         """
         pred_map = {p.get("match_id"): p for p in (predictions or [])}
-        pool: list[ParlayLeg] = []
+        # parlay 胆材池 = 全部场次方向（2026-08-08 修复：main.py 的 candidates
+        # 只含正 EV 价值场次，8/4 后融合概率被压低 edge 几乎全负 → candidates
+        # 缺热门场 → 串关无腿。parlay 独立构建候选，不受单关价值过滤限制）
+        seen = set()
+        entries: list[dict] = []
         for c in candidates:
+            mid = c.get("match_id", "")
+            if mid in seen:
+                continue
+            seen.add(mid)
+            entries.append(c)
+        for p in (predictions or []):
+            mid = p.get("match_id", "")
+            if mid in seen:
+                continue
+            d = p.get("direction")
+            if not d:
+                continue
+            o = p.get(f"{d}_odds") or 0
+            prob = p.get("direction_prob") or p.get(f"{d}_win_prob", 0)
+            if not o or o <= 1.0 or not prob:
+                continue
+            seen.add(mid)
+            entries.append({"match_id": mid, "selection": d, "odds": o, "prob": prob})
+        pool: list[ParlayLeg] = []
+        for c in entries:
             sel = c.get("selection", "")
             if sel not in ("home", "draw", "away"):
                 continue
