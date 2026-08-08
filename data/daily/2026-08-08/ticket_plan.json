@@ -2,49 +2,36 @@
   "stable": [],
   "value": [
     {
+      "match": "2026-08-08_周六009",
+      "sel": "hcap_away",
+      "odds": 3.05,
+      "stake": 36.7,
+      "prob": 0.409
+    },
+    {
       "match": "2026-08-08_周六021",
       "sel": "hcap_away",
       "odds": 1.92,
-      "stake": 65.93,
-      "prob": 0.638
+      "stake": 73.45,
+      "prob": 0.637
     },
     {
       "match": "2026-08-08_周六016",
       "sel": "hcap_away",
       "odds": 2.45,
-      "stake": 35.79,
-      "prob": 0.487
-    },
-    {
-      "match": "2026-08-08_周六020",
-      "sel": "hcap_away",
-      "odds": 1.88,
-      "stake": 48.28,
-      "prob": 0.616
+      "stake": 39.85,
+      "prob": 0.486
     }
   ],
   "lottery": [],
   "total_stake": 150.0,
-  "expected_roi": 0.1957,
+  "expected_roi": 0.2212,
   "bankroll": 5000.0,
   "breaker_multiplier": 1.0,
   "parlay": [
     {
       "type": "2串1",
       "legs": [
-        {
-          "match": "2026-08-08_周六011",
-          "home": "维京",
-          "away": "萨普斯堡08",
-          "league": "挪超",
-          "sel": "home",
-          "odds": 1.27,
-          "prob": 0.497,
-          "cal_prob": 0.6,
-          "market_prob": 0.697,
-          "source": "market",
-          "hit_prob": 0.615
-        },
         {
           "match": "2026-08-08_周六022",
           "home": "阿尔克马",
@@ -57,19 +44,32 @@
           "market_prob": 0.692,
           "source": "market",
           "hit_prob": 0.615
+        },
+        {
+          "match": "2026-08-08_周六011",
+          "home": "维京",
+          "away": "萨普斯堡08",
+          "league": "挪超",
+          "sel": "home",
+          "odds": 1.29,
+          "prob": 0.495,
+          "cal_prob": 0.6,
+          "market_prob": 0.687,
+          "source": "market",
+          "hit_prob": 0.615
         }
       ],
-      "total_odds": 1.63,
-      "model_ev": -1.23,
-      "cal_ev": -0.77,
-      "cal_roi": -0.3852,
+      "total_odds": 1.65,
+      "model_ev": -1.22,
+      "cal_ev": -0.75,
+      "cal_roi": -0.3755,
       "market_ev": -0.43,
-      "market_roi": -0.2163,
+      "market_roi": -0.2155,
       "hit_prob_cal": 0.378,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 3.25,
+      "potential": 3.3,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -84,9 +84,54 @@
           "league": "荷甲",
           "sel": "home",
           "odds": 1.17,
-          "prob": 0.487,
+          "prob": 0.486,
           "cal_prob": 0.6,
-          "market_prob": 0.817,
+          "market_prob": 0.819,
+          "source": "market",
+          "hit_prob": 0.615
+        },
+        {
+          "match": "2026-08-08_周六011",
+          "home": "维京",
+          "away": "萨普斯堡08",
+          "league": "挪超",
+          "sel": "home",
+          "odds": 1.29,
+          "prob": 0.495,
+          "cal_prob": 0.6,
+          "market_prob": 0.687,
+          "source": "market",
+          "hit_prob": 0.615
+        }
+      ],
+      "total_odds": 1.51,
+      "model_ev": -1.27,
+      "cal_ev": -0.86,
+      "cal_roi": -0.4291,
+      "market_ev": -0.3,
+      "market_roi": -0.1516,
+      "hit_prob_cal": 0.378,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 3.02,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-08_周六018",
+          "home": "埃因霍温",
+          "away": "福图纳",
+          "league": "荷甲",
+          "sel": "home",
+          "odds": 1.17,
+          "prob": 0.486,
+          "cal_prob": 0.6,
+          "market_prob": 0.819,
           "source": "market",
           "hit_prob": 0.615
         },
@@ -108,58 +153,13 @@
       "model_ev": -1.31,
       "cal_ev": -0.87,
       "cal_roi": -0.4336,
-      "market_ev": -0.31,
-      "market_roi": -0.1535,
+      "market_ev": -0.3,
+      "market_roi": -0.1519,
       "hit_prob_cal": 0.378,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
       "potential": 3.0,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "market"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-08-08_周六018",
-          "home": "埃因霍温",
-          "away": "福图纳",
-          "league": "荷甲",
-          "sel": "home",
-          "odds": 1.17,
-          "prob": 0.487,
-          "cal_prob": 0.6,
-          "market_prob": 0.817,
-          "source": "market",
-          "hit_prob": 0.615
-        },
-        {
-          "match": "2026-08-08_周六011",
-          "home": "维京",
-          "away": "萨普斯堡08",
-          "league": "挪超",
-          "sel": "home",
-          "odds": 1.27,
-          "prob": 0.497,
-          "cal_prob": 0.6,
-          "market_prob": 0.697,
-          "source": "market",
-          "hit_prob": 0.615
-        }
-      ],
-      "total_odds": 1.49,
-      "model_ev": -1.28,
-      "cal_ev": -0.88,
-      "cal_roi": -0.438,
-      "market_ev": -0.31,
-      "market_roi": -0.154,
-      "hit_prob_cal": 0.378,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 2.97,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -170,41 +170,12 @@
       "type": "比分2串1",
       "legs": [
         {
-          "match": "2026-08-08_周六008",
-          "home": "奥尔格里特",
-          "away": "索尔纳",
-          "league": "瑞超",
-          "score": "1-0",
-          "prob": 0.374,
-          "odds": 7.0
-        },
-        {
           "match": "2026-08-08_周六015",
           "home": "雅罗",
           "away": "瓦萨",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.364,
-          "odds": 7.0
-        }
-      ],
-      "total_odds": 49.0,
-      "hit_prob": 0.1364,
-      "stake": 2.0,
-      "potential": 98.0,
-      "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 37% × 36%）"
-    },
-    {
-      "type": "比分2串1",
-      "legs": [
-        {
-          "match": "2026-08-08_周六008",
-          "home": "奥尔格里特",
-          "away": "索尔纳",
-          "league": "瑞超",
-          "score": "1-0",
-          "prob": 0.374,
+          "prob": 0.365,
           "odds": 7.0
         },
         {
@@ -213,12 +184,12 @@
           "away": "埃尔夫斯堡",
           "league": "瑞超",
           "score": "0-1",
-          "prob": 0.299,
+          "prob": 0.3,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.112,
+      "hit_prob": 0.1097,
       "stake": 2.0,
       "potential": 98.0,
       "odds_source": "simulated",
@@ -233,25 +204,54 @@
           "away": "瓦萨",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.364,
+          "prob": 0.365,
           "odds": 7.0
         },
         {
-          "match": "2026-08-08_周六014",
-          "home": "米亚尔比",
-          "away": "埃尔夫斯堡",
-          "league": "瑞超",
+          "match": "2026-08-08_周六024",
+          "home": "阿马多拉",
+          "away": "里斯本",
+          "league": "葡超",
           "score": "0-1",
-          "prob": 0.299,
+          "prob": 0.22,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.109,
+      "hit_prob": 0.0802,
       "stake": 2.0,
       "potential": 98.0,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 36% × 30%）"
+      "note": "两场比分都中才赢（单场命中率约 37% × 22%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-08_周六015",
+          "home": "雅罗",
+          "away": "瓦萨",
+          "league": "芬超",
+          "score": "1-0",
+          "prob": 0.365,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-08_周六021",
+          "home": "南特",
+          "away": "圣旺红星",
+          "league": "法乙",
+          "score": "0-1",
+          "prob": 0.205,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.075,
+      "stake": 2.0,
+      "potential": 98.0,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 37% × 21%）"
     }
   ],
   "parlay_calibration": {
