@@ -598,6 +598,8 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     ticket_html = _ticket_section(ticket, predictions)
     # 串关方案（2026-08-08 新增：竞彩实际玩法，校准 EV 驱动）
     parlay_html = _parlay_section(ticket, predictions)
+    # 比分串（波胆过关）— 彩票票定位：小注搏大奖（2026-08-08）
+    score_parlay_html = _score_parlay_section(ticket)
 
     # 赛果复盘（优先用 results.json，fallback review_ledger）
     results_html = _results_section(results, results_preds or predictions, review_ledger)
@@ -1273,6 +1275,9 @@ body {{
 
   <!-- PARLAY (2026-08-08) -->
   {parlay_html}
+
+  <!-- SCORE PARLAY (2026-08-08) -->
+  {score_parlay_html}
 
   <!-- EV VALUE REPORT -->
   {ev_html}
@@ -2361,6 +2366,56 @@ def _parlay_section(ticket, predictions):
   <div class="section-title">串关方案（过关玩法）{'· ' + str(n_rec) + ' 张推荐' if n_rec else ''}</div>
   <div class="ticket-grid">{cards}</div>
   {cal_html}"""
+
+
+def _score_parlay_section(ticket):
+    """比分串（波胆过关）— 彩票票定位：小注搏大奖（2026-08-08 新增）。
+
+    竞彩比分赔率高（6-10 倍），比分 2串1 常见 40-80 倍。数据现实：
+    top_scores 来自 DJYY 未校准（0-0 系统性高估，模块内封顶修正），
+    无官方波胆赔率时用基准赔率表模拟 → 全部定位娱乐串（🎯），
+    页面明确标注概率未校准、赔率为模拟（或官方）来源。
+    """
+    if not ticket:
+        return ""
+    sp = ticket.get("score_parlay", [])
+    if not sp:
+        return ""
+    sel_odds_src = {"official": "官方赔率", "simulated": "模拟赔率"}
+
+    def _leg_html(lg):
+        return (f'<div class="ticket-item"><span class="ti-match">{lg.get("home", "")} vs '
+                f'{lg.get("away", "")} <span style="opacity:.6">[{lg.get("league", "")}]</span> '
+                f'<span class="pick-val draw" style="font-size:.8em">比分 {lg.get("score", "")} '
+                f'{lg.get("prob", 0)*100:.0f}%</span></span>'
+                f'<span class="ti-odds">@{lg.get("odds", 0):.2f}</span></div>')
+
+    def _ticket_html(t):
+        ptype = t.get("type", "")
+        src = sel_odds_src.get(t.get("odds_source", "simulated"), "模拟赔率")
+        legs = "".join(_leg_html(lg) for lg in t.get("legs", []))
+        hit = t.get("hit_prob", 0)
+        return (f'<div class="ticket-card" style="border-color:var(--amber)">'
+                f'<h4 class="lottery">{ptype} <span class="pick-val draw" style="font-size:.75em">🎯 娱乐串</span>'
+                f'<span style="opacity:.6;font-size:.7em"> {src}</span></h4>'
+                f'{legs}'
+                f'<div class="ts-row" style="margin-top:4px">'
+                f'<span class="ts-chip"><div class="ts-label">全中赔率</div><div class="ts-val">@{t.get("total_odds", 0):.1f}</div></span>'
+                f'<span class="ts-chip"><div class="ts-label">模型概率</div><div class="ts-val">{hit*100:.1f}%</div></span>'
+                f'<span class="ts-chip"><div class="ts-label">投入</div><div class="ts-val">¥{t.get("stake", 2):.0f}</div></span>'
+                f'<span class="ts-chip"><div class="ts-label">最高奖金</div><div class="ts-val" style="color:var(--green)">¥{t.get("potential", 0):.0f}</div></span>'
+                f'</div>'
+                f'<div style="font-size:.72rem;opacity:.65;margin-top:4px">{t.get("note", "")} · 模型比分概率未校准，命中率远低于显示值，小注娱乐</div>'
+                f'</div>')
+
+    tickets = "".join(_ticket_html(t) for t in sp)
+    return f"""
+  <div class="section-title">比分串（波胆过关）🎯 彩票票 · 小注搏大奖</div>
+  <div style="font-size:.75rem;opacity:.65;padding:2px 0 6px">
+    比分 2串1 常见 40-80 倍赔率；系统取每场最可能比分（DJYY 概率已做 0-0 封顶修正）。
+    比分命中率极低，定位娱乐小注，不推荐重注。
+  </div>
+  {tickets}"""
 
 
 def _ev_section(ev_report):

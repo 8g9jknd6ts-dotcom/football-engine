@@ -1130,6 +1130,22 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
         _cal = {}
         print(f"  ⚠ 串关方案生成跳过: {_e}")
 
+    # 6.4b 比分串（波胆过关）— 彩票票定位：小注搏大奖（2026-08-08）
+    # 竞彩比分赔率高（6-10倍），2串1 常见 40-80 倍。top_scores 来自 DJYY
+    # 未校准（0-0 系统性高估，模块内已封顶修正），无官方波胆赔率时用
+    # 基准赔率表模拟 → 定位娱乐串，页面标注概率未校准。
+    try:
+        from engine.strategy.score_parlay import ScoreParlayBuilder
+        score_plan = ScoreParlayBuilder().build(predictions)
+        if score_plan:
+            _sp_desc = "、".join(t.parlay_type for t in score_plan)
+            print(f"  ✓ 比分串方案: {len(score_plan)} 张票: {_sp_desc}")
+        else:
+            print(f"  ⚠ 比分串方案: 无比分胆材（top1 概率 <12%），空仓")
+    except Exception as _e:
+        score_plan = []
+        print(f"  ⚠ 比分串方案生成跳过: {_e}")
+
     # 6.5 场次并集保护（2026-08-07 修复）：Actions 每半小时重跑当天预测，
     # 某次数据源不完整（sporttery WAF 拦截/场次停售）会用少场次覆盖多场次，
     # git 三方合并还会静默吃掉旧场次（8/6 库奥皮奥因此丢失）。
@@ -1170,6 +1186,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
                          "stake": s.stake, "odds": s.odds} for s in plan.singles],
             "three_ticket": allocator.summary(ticket_plan),
             "parlay": [t.to_dict() for t in parlay_plan],
+            "score_parlay": [t.to_dict() for t in score_plan],
             "breaker_status": breaker_status,
             "cppi_budget": risk_budget,
             "total_stake": plan.total_stake,
@@ -1215,6 +1232,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     )
     _tp_summary = allocator.summary(ticket_plan)
     _tp_summary["parlay"] = [t.to_dict() for t in parlay_plan]
+    _tp_summary["score_parlay"] = [t.to_dict() for t in score_plan]
     _tp_summary["parlay_calibration"] = {
         "overall": _cal.get("overall", 0.433),
         "n": _cal.get("n", 0),
