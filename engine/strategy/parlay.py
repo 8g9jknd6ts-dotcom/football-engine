@@ -180,8 +180,15 @@ class ParlayBuilder:
         return self.cal_table[lo]
 
     # ---------- 胆池 ----------
-    def _build_pool(self, candidates: list[dict]) -> list[ParlayLeg]:
-        """可串腿：纯胜平负 + 概率≥min_prob（避开 0.55-0.60 塌陷区）+ 赔率限制"""
+    def _build_pool(
+        self, candidates: list[dict], predictions: list[dict] | None = None
+    ) -> list[ParlayLeg]:
+        """可串腿：纯胜平负 + 概率≥min_prob（避开 0.55-0.60 塌陷区）+ 赔率限制
+
+        队名优先取 candidates（main.py 构造时若带），否则用 match_id 反查
+        predictions（2026-08-08 修复：main.py candidates 未带队名，串票腿曾显示空队名）。
+        """
+        pred_map = {p.get("match_id"): p for p in (predictions or [])}
         pool: list[ParlayLeg] = []
         for c in candidates:
             sel = c.get("selection", "")
@@ -196,11 +203,12 @@ class ParlayBuilder:
             if odds < 1.10:
                 continue
             match_id = c.get("match_id", "")
+            pred = pred_map.get(match_id, {})
             pool.append(ParlayLeg(
                 match_id=match_id,
-                home_team=c.get("home_team", ""),
-                away_team=c.get("away_team", ""),
-                competition=c.get("competition", ""),
+                home_team=c.get("home_team") or pred.get("home_team", ""),
+                away_team=c.get("away_team") or pred.get("away_team", ""),
+                competition=c.get("competition") or pred.get("competition", ""),
                 selection=sel,
                 odds=odds,
                 prob=prob,
@@ -279,8 +287,9 @@ class ParlayBuilder:
         self,
         candidates: list[dict],
         ticket_plan=None,
+        predictions: list[dict] | None = None,
     ) -> list[ParlayTicket]:
-        pool = self._build_pool(candidates)
+        pool = self._build_pool(candidates, predictions)
         if not pool:
             return []
         n = min(len(pool), self.cfg.max_legs)

@@ -1116,7 +1116,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             limits=strat_cfg.get("limits", {}),
             calibration=_cal,
         )
-        parlay_plan = parlay_builder.build(candidates, ticket_plan)
+        parlay_plan = parlay_builder.build(candidates, ticket_plan, predictions)
         _n_rec = sum(1 for t in parlay_plan if t.recommended)
         if parlay_plan:
             _pl_desc = "、".join(f"{t.parlay_type}{'⭐' if t.recommended else '⚠'}" for t in parlay_plan)
@@ -1216,7 +1216,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     _tp_summary = allocator.summary(ticket_plan)
     _tp_summary["parlay"] = [t.to_dict() for t in parlay_plan]
     _tp_summary["parlay_calibration"] = {
-        "overall": _cal.get("overall", 0.433) if parlay_plan or True else 0.433,
+        "overall": _cal.get("overall", 0.433),
         "n": _cal.get("n", 0),
         "table": _cal.get("table", {}),
         "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0",

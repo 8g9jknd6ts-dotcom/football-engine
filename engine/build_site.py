@@ -2246,6 +2246,10 @@ def _parlay_section(ticket, predictions):
     """
     if not ticket:
         return ""
+    # 旧格式 ticket（无 parlay key，2026-08-08 之前生成）不显示串关区，
+    # 避免把"未计算过串关"误显示成"空仓"
+    if "parlay" not in ticket:
+        return ""
     parlay = ticket.get("parlay", [])
     cal = ticket.get("parlay_calibration", {})
     if not parlay and not cal:
