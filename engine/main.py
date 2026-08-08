@@ -1100,6 +1100,36 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
           f"彩票{len(ticket_plan.lottery_picks)}场, "
           f"总投入={ticket_plan.total_stake}元")
 
+    # 6.4 串关方案（2026-08-08 新增）：竞彩玩家实际玩法都是串关（2串1/3串1/3串4）。
+    # 数学纪律：串关吃双重抽水，按模型概率选腿 = 送钱（账本校准 0.55-0.60 段命中率
+    # 仅 31.6%）。因此用账本校准命中率算真实 EV，只推荐 cal_ev>0 的串票；
+    # 负 EV 串票落盘标注 ⚠（页面展示但不出注），无腿/全负则空仓。
+    try:
+        from engine.strategy.parlay import ParlayBuilder, load_calibration
+        _cal = load_calibration(
+            ROOT / "data" / "state" / "review_ledger.jsonl",
+            overall=0.433,
+            min_samples=8,
+        )
+        parlay_builder = ParlayBuilder(
+            bankroll=actual_bankroll,
+            limits=strat_cfg.get("limits", {}),
+            calibration=_cal,
+        )
+        parlay_plan = parlay_builder.build(candidates, ticket_plan)
+        _n_rec = sum(1 for t in parlay_plan if t.recommended)
+        if parlay_plan:
+            _pl_desc = "、".join(f"{t.parlay_type}{'⭐' if t.recommended else '⚠'}" for t in parlay_plan)
+            print(f"  ✓ 串关方案: {len(parlay_plan)} 张票（推荐{_n_rec}张）: {_pl_desc}")
+            if _n_rec == 0:
+                print(f"  ⚠ 校准后全部负 EV：串关吃双重抽水，模型概率高估——不推荐出串（数据纪律）")
+        else:
+            print(f"  ⚠ 串关方案: 无正 EV 串关（缺 ≥{parlay_builder.cfg.min_prob:.0%} 置信腿），空仓")
+    except Exception as _e:
+        parlay_plan = []
+        _cal = {}
+        print(f"  ⚠ 串关方案生成跳过: {_e}")
+
     # 6.5 场次并集保护（2026-08-07 修复）：Actions 每半小时重跑当天预测，
     # 某次数据源不完整（sporttery WAF 拦截/场次停售）会用少场次覆盖多场次，
     # git 三方合并还会静默吃掉旧场次（8/6 库奥皮奥因此丢失）。
@@ -1139,6 +1169,7 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
             "singles": [{"match_id": s.match_id, "selection": s.selection,
                          "stake": s.stake, "odds": s.odds} for s in plan.singles],
             "three_ticket": allocator.summary(ticket_plan),
+            "parlay": [t.to_dict() for t in parlay_plan],
             "breaker_status": breaker_status,
             "cppi_budget": risk_budget,
             "total_stake": plan.total_stake,
@@ -1182,8 +1213,16 @@ def run_daily_pipeline(target_date: date, predict_only: bool = False):
     (output_dir / "predictions.json").write_text(
         json.dumps(predictions, indent=2, ensure_ascii=False)
     )
+    _tp_summary = allocator.summary(ticket_plan)
+    _tp_summary["parlay"] = [t.to_dict() for t in parlay_plan]
+    _tp_summary["parlay_calibration"] = {
+        "overall": _cal.get("overall", 0.433) if parlay_plan or True else 0.433,
+        "n": _cal.get("n", 0),
+        "table": _cal.get("table", {}),
+        "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0",
+    }
     (output_dir / "ticket_plan.json").write_text(
-        json.dumps(allocator.summary(ticket_plan), indent=2, ensure_ascii=False)
+        json.dumps(_tp_summary, indent=2, ensure_ascii=False)
     )
 
     print(f"\n{'='*60}")

@@ -596,6 +596,8 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
 
     # 三票方案
     ticket_html = _ticket_section(ticket, predictions)
+    # 串关方案（2026-08-08 新增：竞彩实际玩法，校准 EV 驱动）
+    parlay_html = _parlay_section(ticket, predictions)
 
     # 赛果复盘（优先用 results.json，fallback review_ledger）
     results_html = _results_section(results, results_preds or predictions, review_ledger)
@@ -1268,6 +1270,9 @@ body {{
 
   <!-- BETTING PLAN -->
   {ticket_html}
+
+  <!-- PARLAY (2026-08-08) -->
+  {parlay_html}
 
   <!-- EV VALUE REPORT -->
   {ev_html}
@@ -2230,6 +2235,100 @@ def _ticket_section(ticket, predictions):
     <div class="ts-chip"><div class="ts-label">资金池</div><div class="ts-val">&yen;{bankroll:.0f}</div></div>
     <div class="ts-chip"><div class="ts-label">熔断系数</div><div class="ts-val" style="color:{'var(--green)' if breaker_mult >= 1 else 'var(--red)'}">x{breaker_mult:.2f}</div></div>
   </div>"""
+
+
+def _parlay_section(ticket, predictions):
+    """串关方案（2026-08-08 新增）— 竞彩实际玩法。
+
+    数学纪律：串关吃双重抽水，模型概率高估（账本校准 0.55-0.60 段命中率仅 31.6%）。
+    串票 EV 用账本校准命中率计算，只推荐 cal_ev>0 的；负 EV 串票 ⚠ 展示不出注；
+    无腿/全负 → 空仓并展示校准表（为什么不该串）。
+    """
+    if not ticket:
+        return ""
+    parlay = ticket.get("parlay", [])
+    cal = ticket.get("parlay_calibration", {})
+    if not parlay and not cal:
+        return ""
+
+    sel_map = {"home": "主胜", "draw": "平局", "away": "客胜"}
+
+    def _legs_html(t):
+        html = ""
+        for lg in t.get("legs", []):
+            sel = lg.get("sel", "")
+            html += (f'<div class="ticket-item"><span class="ti-match">{lg.get("home", "")} vs '
+                     f'{lg.get("away", "")} <span style="opacity:.6">[{lg.get("league", "")}]</span> '
+                     f'<span class="pick-val {"home" if sel=="home" else ("draw" if sel=="draw" else "away")}" '
+                     f'style="font-size:.8em">{sel_map.get(sel, sel)} {lg.get("prob", 0)*100:.0f}%</span></span>'
+                     f'<span class="ti-odds">@{lg.get("odds", 0):.2f}</span></div>')
+        return html
+
+    def _ticket_html(t):
+        rec = t.get("recommended", False)
+        ptype = t.get("type", "")
+        badge = ('<span class="pick-val home" style="font-size:.75em">⭐ 推荐</span>' if rec else
+                 '<span class="pick-val draw" style="font-size:.75em" title="校准后负EV，系统不据此出注">⚠ 负EV</span>')
+        ev = t.get("cal_ev", 0)
+        roi = t.get("cal_roi", 0)
+        ev_html = (f'<span class="ts-chip"><div class="ts-label">校准EV</div>'
+                   f'<div class="ts-val" style="color:{("var(--green)" if ev > 0 else "var(--red)")}">'
+                   f'{"+" if ev > 0 else ""}{ev:.1f}元 ({roi:+.0%})</div></span>')
+        return f"""
+    <div class="ticket-card" style="{'border-color:var(--green)' if rec else 'border-color:var(--red);opacity:.75'}">
+      <h4 class="{'stable' if rec else 'lottery'}" style="display:flex;justify-content:space-between;align-items:center">
+        <span>{ptype} {badge}</span>
+        <span style="font-size:.7rem;opacity:.7">全中@{t.get('total_odds', 0):.2f} · 校准命中率 {t.get('hit_prob_cal', 0)*100:.0f}%</span>
+      </h4>
+      {_legs_html(t)}
+      <div class="ticket-summary" style="margin-top:6px">
+        <div class="ts-chip"><div class="ts-label">投入</div><div class="ts-val">&yen;{t.get('stake', 0):.0f}</div></div>
+        {ev_html}
+        <div class="ts-chip"><div class="ts-label">最高奖金</div><div class="ts-val" style="color:var(--amber)">&yen;{t.get('potential', 0):.0f}</div></div>
+        {f'<div class="ts-chip"><div class="ts-label">容错</div><div class="ts-val" style="color:var(--purple);font-size:.72rem">{t.get("worst_win", 0):.0f}元</div></div>' if t.get("worst_win") else ''}
+      </div>
+      <div style="font-size:.7rem;opacity:.65;margin-top:4px">{t.get('note', '')}</div>
+    </div>"""
+
+    cal_html = ""
+    if cal:
+        table = cal.get("table", {})
+        overall = cal.get("overall", 0.433)
+        n = cal.get("n", 0)
+        rows = "".join(
+            f"<tr><td>≥{k:.2f}</td><td>{v*100:.0f}%</td></tr>"
+            for k, v in sorted(table.items())
+        )
+        cal_html = f"""
+  <details style="margin-top:8px;font-size:.75rem;color:var(--text-secondary)">
+    <summary>串关为什么难赚钱？账本校准表（{n} 场，整体命中 {overall*100:.0f}%）</summary>
+    <table style="margin-top:6px;border-collapse:collapse">
+      <tr><th style="padding:2px 8px;text-align:left">模型概率段</th><th style="padding:2px 8px">实际命中率</th></tr>
+      {rows}
+      <tr><td style="padding:2px 8px">整体</td><td style="padding:2px 8px;text-align:center">{overall*100:.0f}%</td></tr>
+    </table>
+    <div style="margin-top:4px">串关 = 各腿命中率连乘 × 赔率连乘，天然吃双重抽水。模型概率系统性高估
+    （0.70+ 段实际仅 50% 命中）→ 按模型概率串关 = 送钱。系统只推荐校准后正 EV 的串票。</div>
+  </details>"""
+
+    if not parlay:
+        return f"""
+  <div class="section-title">串关方案（过关玩法）</div>
+  <div class="ticket-card" style="border-color:var(--amber);opacity:.9">
+    <h4 class="lottery">🎯 今日无正 EV 串关 <span class="pick-val draw" style="font-size:.75em">空仓</span></h4>
+    <div style="font-size:.8rem;opacity:.8;padding:4px 0">
+      {'缺 ≥60% 置信场次（可串腿 0 场）' if not parlay else '校准后全部负 EV，不推荐出串（数据纪律）'}
+      —— 竞彩串关吃双重抽水，宁可不串，不送钱。
+    </div>
+    {cal_html}
+  </div>"""
+
+    cards = "".join(_ticket_html(t) for t in parlay)
+    n_rec = sum(1 for t in parlay if t.get("recommended"))
+    return f"""
+  <div class="section-title">串关方案（过关玩法）{'· ' + str(n_rec) + ' 张推荐' if n_rec else ''}</div>
+  <div class="ticket-grid">{cards}</div>
+  {cal_html}"""
 
 
 def _ev_section(ev_report):
