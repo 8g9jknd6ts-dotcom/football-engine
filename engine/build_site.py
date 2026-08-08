@@ -2261,10 +2261,13 @@ def _parlay_section(ticket, predictions):
         html = ""
         for lg in t.get("legs", []):
             sel = lg.get("sel", "")
+            _prob = lg.get("prob", 0)
+            _calp = lg.get("cal_prob")
+            _prob_label = f"{_prob*100:.0f}%" if _calp is None else f"{_prob*100:.0f}%→{_calp*100:.0f}%"
             html += (f'<div class="ticket-item"><span class="ti-match">{lg.get("home", "")} vs '
                      f'{lg.get("away", "")} <span style="opacity:.6">[{lg.get("league", "")}]</span> '
                      f'<span class="pick-val {"home" if sel=="home" else ("draw" if sel=="draw" else "away")}" '
-                     f'style="font-size:.8em">{sel_map.get(sel, sel)} {lg.get("prob", 0)*100:.0f}%</span></span>'
+                     f'style="font-size:.8em">{sel_map.get(sel, sel)} {_prob_label}</span></span>'
                      f'<span class="ti-odds">@{lg.get("odds", 0):.2f}</span></div>')
         return html
 

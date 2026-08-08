@@ -53,6 +53,7 @@ class ParlayLeg:
     selection: str      # home / draw / away
     odds: float
     prob: float         # 融合方向概率（模型口径）
+    cal_prob: float = 0.0   # 账本校准命中率（2026-08-08：模型概率系统性高估）
 
 
 @dataclass
@@ -78,6 +79,7 @@ class ParlayTicket:
                 "match": l.match_id, "home": l.home_team, "away": l.away_team,
                 "league": l.competition, "sel": l.selection,
                 "odds": round(l.odds, 2), "prob": round(l.prob, 3),
+                "cal_prob": round(l.cal_prob, 3),
             } for l in self.legs],
             "total_odds": round(self.total_odds, 2),
             "model_ev": round(self.model_ev, 2),
@@ -212,6 +214,7 @@ class ParlayBuilder:
                 selection=sel,
                 odds=odds,
                 prob=prob,
+                cal_prob=self._cal_prob(prob),
             ))
         pool.sort(key=lambda l: l.prob, reverse=True)
         return pool
@@ -330,6 +333,11 @@ class ParlayBuilder:
             for t, w in zip(recs, weights):
                 raw = pool_cap * w / wsum
                 t.stake = round(max(min(raw, pool_cap * 0.6), STAKE_UNIT), 2)
+                # 重算注额口径 EV（2026-08-08 修复：potential/cal_ev 此前
+                # 仍按 2 元口径，与实际 stake 不符；cal_roi 为每元回报率，
+                # 三种串票统一 cal_ev = stake × cal_roi）
+                t.potential = round(t.total_odds * t.stake, 2)
+                t.cal_ev = round(t.stake * t.cal_roi, 2)
         return tickets
 
 
