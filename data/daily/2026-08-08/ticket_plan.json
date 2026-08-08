@@ -27,5 +27,20 @@
   "total_stake": 150.0,
   "expected_roi": 0.2211,
   "bankroll": 5000.0,
-  "breaker_multiplier": 1.0
+  "breaker_multiplier": 1.0,
+  "parlay": [],
+  "parlay_calibration": {
+    "overall": 0.4351,
+    "n": 131,
+    "table": {
+      "0.35": 0.3214,
+      "0.4": 0.4583,
+      "0.45": 0.6,
+      "0.5": 0.4375,
+      "0.55": 0.3158,
+      "0.6": 0.5,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率"
+  }
 }

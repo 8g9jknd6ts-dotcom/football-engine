@@ -2296,8 +2296,8 @@ def _parlay_section(ticket, predictions):
         overall = cal.get("overall", 0.433)
         n = cal.get("n", 0)
         rows = "".join(
-            f"<tr><td>≥{k:.2f}</td><td>{v*100:.0f}%</td></tr>"
-            for k, v in sorted(table.items())
+            f"<tr><td>≥{float(k):.2f}</td><td>{v*100:.0f}%</td></tr>"
+            for k, v in sorted(table.items(), key=lambda kv: float(kv[0]))
         )
         cal_html = f"""
   <details style="margin-top:8px;font-size:.75rem;color:var(--text-secondary)">
@@ -2681,9 +2681,11 @@ def _build_daily_brief(
             direction = p.get("direction", "?")
             dlabel = {"home": "主胜", "draw": "平局", "away": "客胜"}.get(direction, direction)
             odds = p.get(f"{direction}_odds", 0) or 0
+            _conf = p.get("confidence") or 0
+            _risk = p.get("reverse_upset_risk") or 0
             lines.append(
                 f"| {p.get('match_id', '')} | {p.get('competition', '')} | {dlabel} "
-                f"| {p.get('confidence', 0):.0%} | {odds:.2f} | {p.get('reverse_upset_risk', 0):.0f}% |\n"
+                f"| {_conf:.0%} | {odds:.2f} | {_risk:.0f}% |\n"
             )
 
     # 联赛状态
