@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-09",
-  "total_matches": 155,
+  "total_matches": 156,
   "date_range": [
     "2026-07-20",
     "2026-08-08"
   ],
   "overall": {
-    "hit_rate": 0.4516,
-    "brier_final": 0.6569,
-    "brier_model": 0.6891,
-    "brier_market": 0.4127,
-    "brier_djyy": 0.3174
+    "hit_rate": 0.4551,
+    "brier_final": 0.6559,
+    "brier_model": 0.6882,
+    "brier_market": 0.4149,
+    "brier_djyy": 0.3202
   },
   "daily": [
     {
@@ -243,21 +243,21 @@
     },
     {
       "date": "2026-08-08",
-      "n": 24,
-      "hits": 13,
-      "hit_rate": 0.5417,
-      "cum_hit_rate": 0.4516,
-      "brier_final": 0.6223,
-      "brier_model": 0.6002,
-      "brier_market": 0.5626,
-      "brier_djyy": 0.6364,
+      "n": 25,
+      "hits": 14,
+      "hit_rate": 0.56,
+      "cum_hit_rate": 0.4551,
+      "brier_final": 0.6175,
+      "brier_model": 0.5982,
+      "brier_market": 0.5707,
+      "brier_djyy": 0.6461,
       "pnl": -13.6
     }
   ],
   "rolling7": {
-    "n": 65,
-    "hit_rate": 0.4615,
-    "brier_final": 0.6342,
+    "n": 66,
+    "hit_rate": 0.4697,
+    "brier_final": 0.6335,
     "pnl": -13.6
   },
   "prev7": {
@@ -266,7 +266,7 @@
     "brier_final": 0.6988,
     "pnl": 0.0
   },
-  "verdict": "命中率提升 +5pt",
+  "verdict": "命中率提升 +6pt",
   "by_league": [
     {
       "layer": "挪超",
@@ -306,9 +306,9 @@
     },
     {
       "layer": "巴甲",
-      "n": 11,
-      "hit_rate": 0.3636,
-      "brier_final": 0.6984
+      "n": 12,
+      "hit_rate": 0.4167,
+      "brier_final": 0.6821
     },
     {
       "layer": "美职联",
@@ -404,17 +404,17 @@
     },
     {
       "layer": "3.0+",
-      "n": 15,
-      "hit_rate": 0.4,
-      "brier_final": 0.6253
+      "n": 16,
+      "hit_rate": 0.4375,
+      "brier_final": 0.6176
     }
   ],
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 69,
-      "hit_rate": 0.5072,
-      "brier_final": 0.6247
+      "n": 70,
+      "hit_rate": 0.5143,
+      "brier_final": 0.6229
     },
     {
       "layer": "low",
