@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-09",
-  "total_matches": 156,
+  "total_matches": 171,
   "date_range": [
     "2026-07-20",
-    "2026-08-08"
+    "2026-08-09"
   ],
   "overall": {
-    "hit_rate": 0.4551,
-    "brier_final": 0.6559,
-    "brier_model": 0.6882,
-    "brier_market": 0.4149,
-    "brier_djyy": 0.3202
+    "hit_rate": 0.4503,
+    "brier_final": 0.6516,
+    "brier_model": 0.6837,
+    "brier_market": 0.4291,
+    "brier_djyy": 0.3221
   },
   "daily": [
     {
@@ -252,39 +252,51 @@
       "brier_market": 0.5707,
       "brier_djyy": 0.6461,
       "pnl": -13.6
+    },
+    {
+      "date": "2026-08-09",
+      "n": 15,
+      "hits": 6,
+      "hit_rate": 0.4,
+      "cum_hit_rate": 0.4503,
+      "brier_final": 0.6064,
+      "brier_model": 0.6369,
+      "brier_market": 0.577,
+      "brier_djyy": 0.5686,
+      "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 66,
-    "hit_rate": 0.4697,
-    "brier_final": 0.6335,
+    "n": 67,
+    "hit_rate": 0.4776,
+    "brier_final": 0.6146,
     "pnl": -13.6
   },
   "prev7": {
-    "n": 49,
-    "hit_rate": 0.4082,
-    "brier_final": 0.6988,
+    "n": 45,
+    "hit_rate": 0.3556,
+    "brier_final": 0.713,
     "pnl": 0.0
   },
-  "verdict": "命中率提升 +6pt",
+  "verdict": "命中率提升 +12pt",
   "by_league": [
     {
       "layer": "挪超",
-      "n": 20,
-      "hit_rate": 0.6,
-      "brier_final": 0.522
+      "n": 21,
+      "hit_rate": 0.5714,
+      "brier_final": 0.5285
+    },
+    {
+      "layer": "芬超",
+      "n": 18,
+      "hit_rate": 0.3889,
+      "brier_final": 0.7251
     },
     {
       "layer": "K1联赛",
       "n": 18,
       "hit_rate": 0.6111,
       "brier_final": 0.6031
-    },
-    {
-      "layer": "芬超",
-      "n": 16,
-      "hit_rate": 0.4375,
-      "brier_final": 0.7215
     },
     {
       "layer": "瑞典超",
@@ -317,22 +329,28 @@
       "brier_final": 0.689
     },
     {
+      "layer": "荷甲",
+      "n": 9,
+      "hit_rate": 0.5556,
+      "brier_final": 0.575
+    },
+    {
       "layer": "巴西杯",
       "n": 7,
       "hit_rate": 0.2857,
       "brier_final": 0.6825
     },
     {
-      "layer": "荷甲",
-      "n": 5,
-      "hit_rate": 0.6,
-      "brier_final": 0.618
+      "layer": "瑞超",
+      "n": 7,
+      "hit_rate": 0.7143,
+      "brier_final": 0.5023
     },
     {
-      "layer": "瑞超",
-      "n": 4,
-      "hit_rate": 0.75,
-      "brier_final": 0.4974
+      "layer": "日职",
+      "n": 5,
+      "hit_rate": 0.6,
+      "brier_final": 0.612
     },
     {
       "layer": "英联赛杯",
@@ -347,10 +365,10 @@
       "brier_final": 0.693
     },
     {
-      "layer": "日职",
+      "layer": "德乙",
       "n": 3,
-      "hit_rate": 1.0,
-      "brier_final": 0.5535
+      "hit_rate": 0.3333,
+      "brier_final": 0.6548
     },
     {
       "layer": "韩职",
@@ -371,36 +389,30 @@
       "brier_final": 0.6013
     },
     {
-      "layer": "德乙",
-      "n": 1,
-      "hit_rate": 0.0,
-      "brier_final": 0.6313
-    },
-    {
       "layer": "日乙",
-      "n": 1,
+      "n": 2,
       "hit_rate": 1.0,
-      "brier_final": 0.5526
+      "brier_final": 0.5692
     }
   ],
   "by_odds_band": [
     {
       "layer": "1.5-2.0",
-      "n": 55,
-      "hit_rate": 0.4,
+      "n": 57,
+      "hit_rate": 0.386,
       "brier_final": 0.7002
     },
     {
       "layer": "2.0-3.0",
-      "n": 45,
-      "hit_rate": 0.4,
-      "brier_final": 0.6637
+      "n": 53,
+      "hit_rate": 0.3774,
+      "brier_final": 0.661
     },
     {
       "layer": "1.0-1.5",
-      "n": 40,
-      "hit_rate": 0.6,
-      "brier_final": 0.6017
+      "n": 45,
+      "hit_rate": 0.6222,
+      "brier_final": 0.591
     },
     {
       "layer": "3.0+",
@@ -412,15 +424,15 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 70,
-      "hit_rate": 0.5143,
-      "brier_final": 0.6229
+      "n": 77,
+      "hit_rate": 0.5195,
+      "brier_final": 0.6183
     },
     {
       "layer": "low",
-      "n": 44,
-      "hit_rate": 0.3864,
-      "brier_final": 0.6593
+      "n": 52,
+      "hit_rate": 0.3654,
+      "brier_final": 0.6557
     },
     {
       "layer": "high",
