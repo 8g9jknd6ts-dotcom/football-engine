@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-09",
-  "total_matches": 171,
+  "total_matches": 172,
   "date_range": [
     "2026-07-20",
     "2026-08-09"
   ],
   "overall": {
-    "hit_rate": 0.4503,
-    "brier_final": 0.6516,
-    "brier_model": 0.6837,
-    "brier_market": 0.4291,
-    "brier_djyy": 0.3221
+    "hit_rate": 0.4477,
+    "brier_final": 0.6521,
+    "brier_model": 0.6826,
+    "brier_market": 0.4318,
+    "brier_djyy": 0.3252
   },
   "daily": [
     {
@@ -255,21 +255,21 @@
     },
     {
       "date": "2026-08-09",
-      "n": 15,
+      "n": 16,
       "hits": 6,
-      "hit_rate": 0.4,
-      "cum_hit_rate": 0.4503,
-      "brier_final": 0.6064,
-      "brier_model": 0.6369,
-      "brier_market": 0.577,
-      "brier_djyy": 0.5686,
+      "hit_rate": 0.375,
+      "cum_hit_rate": 0.4477,
+      "brier_final": 0.6142,
+      "brier_model": 0.6286,
+      "brier_market": 0.5964,
+      "brier_djyy": 0.5968,
       "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 67,
-    "hit_rate": 0.4776,
-    "brier_final": 0.6146,
+    "n": 68,
+    "hit_rate": 0.4706,
+    "brier_final": 0.6157,
     "pnl": -13.6
   },
   "prev7": {
@@ -282,9 +282,9 @@
   "by_league": [
     {
       "layer": "挪超",
-      "n": 21,
-      "hit_rate": 0.5714,
-      "brier_final": 0.5285
+      "n": 22,
+      "hit_rate": 0.5455,
+      "brier_final": 0.5377
     },
     {
       "layer": "芬超",
@@ -398,9 +398,9 @@
   "by_odds_band": [
     {
       "layer": "1.5-2.0",
-      "n": 57,
-      "hit_rate": 0.386,
-      "brier_final": 0.7002
+      "n": 58,
+      "hit_rate": 0.3793,
+      "brier_final": 0.7007
     },
     {
       "layer": "2.0-3.0",
@@ -430,9 +430,9 @@
     },
     {
       "layer": "low",
-      "n": 52,
-      "hit_rate": 0.3654,
-      "brier_final": 0.6557
+      "n": 53,
+      "hit_rate": 0.3585,
+      "brier_final": 0.6571
     },
     {
       "layer": "high",
