@@ -5,27 +5,27 @@
       "match": "2026-08-09_周日020",
       "sel": "hcap_away",
       "odds": 3.05,
-      "stake": 51.44,
-      "prob": 0.424
+      "stake": 51.02,
+      "prob": 0.422
     },
     {
       "match": "2026-08-09_周日023",
       "sel": "draw",
       "odds": 2.9,
-      "stake": 51.2,
+      "stake": 51.64,
       "prob": 0.438
     },
     {
       "match": "2026-08-09_周日019",
       "sel": "hcap_away",
       "odds": 2.57,
-      "stake": 47.36,
+      "stake": 47.34,
       "prob": 0.469
     }
   ],
   "lottery": [],
   "total_stake": 150.0,
-  "expected_roi": 0.2571,
+  "expected_roi": 0.2548,
   "bankroll": 4986.400600000001,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -41,7 +41,7 @@
           "odds": 1.21,
           "prob": 0.545,
           "cal_prob": 0.438,
-          "market_prob": 0.788,
+          "market_prob": 0.787,
           "source": "market",
           "hit_prob": 0.615
         },
@@ -64,102 +64,12 @@
       "cal_ev": -0.96,
       "cal_roi": -0.4813,
       "market_ev": -0.31,
-      "market_roi": -0.1557,
+      "market_roi": -0.1573,
       "hit_prob_cal": 0.29,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
       "potential": 3.58,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "market"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-08-09_周日018",
-          "home": "波尔图",
-          "away": "阿尔维卡",
-          "league": "葡超",
-          "sel": "home",
-          "odds": 1.21,
-          "prob": 0.545,
-          "cal_prob": 0.438,
-          "market_prob": 0.788,
-          "source": "market",
-          "hit_prob": 0.615
-        },
-        {
-          "match": "2026-08-09_周日013",
-          "home": "哈尔姆斯塔德",
-          "away": "盖斯",
-          "league": "瑞超",
-          "sel": "away",
-          "odds": 1.47,
-          "prob": 0.466,
-          "cal_prob": 0.593,
-          "market_prob": 0.603,
-          "source": "market",
-          "hit_prob": 0.471
-        }
-      ],
-      "total_odds": 1.78,
-      "model_ev": -1.1,
-      "cal_ev": -0.97,
-      "cal_roi": -0.4848,
-      "market_ev": -0.31,
-      "market_roi": -0.1554,
-      "hit_prob_cal": 0.29,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 3.56,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "market"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-08-09_周日013",
-          "home": "哈尔姆斯塔德",
-          "away": "盖斯",
-          "league": "瑞超",
-          "sel": "away",
-          "odds": 1.47,
-          "prob": 0.466,
-          "cal_prob": 0.593,
-          "market_prob": 0.603,
-          "source": "market",
-          "hit_prob": 0.471
-        },
-        {
-          "match": "2026-08-09_周日022",
-          "home": "摩雷伦斯",
-          "away": "布拉加",
-          "league": "葡超",
-          "sel": "away",
-          "odds": 1.48,
-          "prob": 0.476,
-          "cal_prob": 0.593,
-          "market_prob": 0.598,
-          "source": "market",
-          "hit_prob": 0.471
-        }
-      ],
-      "total_odds": 2.18,
-      "model_ev": -1.03,
-      "cal_ev": -1.03,
-      "cal_roi": -0.5174,
-      "market_ev": -0.43,
-      "market_roi": -0.2158,
-      "hit_prob_cal": 0.222,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.35,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -175,25 +85,25 @@
           "away": "赫尔辛基",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.289,
+          "prob": 0.286,
           "odds": 7.0
         },
         {
-          "match": "2026-08-09_周日013",
-          "home": "哈尔姆斯塔德",
-          "away": "盖斯",
-          "league": "瑞超",
+          "match": "2026-08-09_周日022",
+          "home": "摩雷伦斯",
+          "away": "布拉加",
+          "league": "葡超",
           "score": "0-1",
-          "prob": 0.275,
+          "prob": 0.262,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0795,
+      "hit_prob": 0.075,
       "stake": 2.0,
       "potential": 98.0,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 29% × 27%）"
+      "note": "两场比分都中才赢（单场命中率约 29% × 26%）"
     },
     {
       "type": "比分2串1",
@@ -204,54 +114,54 @@
           "away": "赫尔辛基",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.289,
+          "prob": 0.286,
           "odds": 7.0
         },
         {
-          "match": "2026-08-09_周日022",
-          "home": "摩雷伦斯",
-          "away": "布拉加",
+          "match": "2026-08-09_周日021",
+          "home": "吉维森特",
+          "away": "里奥阿维",
           "league": "葡超",
-          "score": "0-1",
-          "prob": 0.259,
+          "score": "1-0",
+          "prob": 0.236,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0751,
+      "hit_prob": 0.0676,
       "stake": 2.0,
       "potential": 98.0,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 29% × 26%）"
+      "note": "两场比分都中才赢（单场命中率约 29% × 24%）"
     },
     {
       "type": "比分2串1",
       "legs": [
         {
-          "match": "2026-08-09_周日013",
-          "home": "哈尔姆斯塔德",
-          "away": "盖斯",
-          "league": "瑞超",
-          "score": "0-1",
-          "prob": 0.275,
-          "odds": 7.0
-        },
-        {
           "match": "2026-08-09_周日022",
           "home": "摩雷伦斯",
           "away": "布拉加",
           "league": "葡超",
           "score": "0-1",
-          "prob": 0.259,
+          "prob": 0.262,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-09_周日021",
+          "home": "吉维森特",
+          "away": "里奥阿维",
+          "league": "葡超",
+          "score": "1-0",
+          "prob": 0.236,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0713,
+      "hit_prob": 0.062,
       "stake": 2.0,
       "potential": 98.0,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 27% × 26%）"
+      "note": "两场比分都中才赢（单场命中率约 26% × 24%）"
     }
   ],
   "parlay_calibration": {
