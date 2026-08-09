@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-09",
-  "total_matches": 174,
+  "total_matches": 175,
   "date_range": [
     "2026-07-20",
     "2026-08-09"
   ],
   "overall": {
-    "hit_rate": 0.4483,
-    "brier_final": 0.6501,
-    "brier_model": 0.681,
-    "brier_market": 0.4294,
-    "brier_djyy": 0.3223
+    "hit_rate": 0.4457,
+    "brier_final": 0.6512,
+    "brier_model": 0.6835,
+    "brier_market": 0.4327,
+    "brier_djyy": 0.3253
   },
   "daily": [
     {
@@ -255,22 +255,22 @@
     },
     {
       "date": "2026-08-09",
-      "n": 18,
+      "n": 19,
       "hits": 7,
-      "hit_rate": 0.3889,
-      "cum_hit_rate": 0.4483,
-      "brier_final": 0.5999,
-      "brier_model": 0.6184,
-      "brier_market": 0.5883,
-      "brier_djyy": 0.556,
-      "pnl": 0.0
+      "hit_rate": 0.3684,
+      "cum_hit_rate": 0.4457,
+      "brier_final": 0.6121,
+      "brier_model": 0.6452,
+      "brier_market": 0.6117,
+      "brier_djyy": 0.5805,
+      "pnl": -47.3
     }
   ],
   "rolling7": {
-    "n": 70,
-    "hit_rate": 0.4714,
-    "brier_final": 0.6136,
-    "pnl": -13.6
+    "n": 71,
+    "hit_rate": 0.4648,
+    "brier_final": 0.6154,
+    "pnl": -60.9
   },
   "prev7": {
     "n": 45,
@@ -278,13 +278,13 @@
     "brier_final": 0.713,
     "pnl": 0.0
   },
-  "verdict": "命中率提升 +12pt",
+  "verdict": "命中率提升 +11pt",
   "by_league": [
     {
       "layer": "挪超",
-      "n": 22,
-      "hit_rate": 0.5455,
-      "brier_final": 0.5377
+      "n": 23,
+      "hit_rate": 0.5217,
+      "brier_final": 0.5505
     },
     {
       "layer": "芬超",
@@ -398,9 +398,9 @@
   "by_odds_band": [
     {
       "layer": "1.5-2.0",
-      "n": 58,
-      "hit_rate": 0.3793,
-      "brier_final": 0.7007
+      "n": 59,
+      "hit_rate": 0.3729,
+      "brier_final": 0.703
     },
     {
       "layer": "2.0-3.0",
@@ -424,9 +424,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 78,
-      "hit_rate": 0.5256,
-      "brier_final": 0.6144
+      "n": 79,
+      "hit_rate": 0.519,
+      "brier_final": 0.6172
     },
     {
       "layer": "low",
