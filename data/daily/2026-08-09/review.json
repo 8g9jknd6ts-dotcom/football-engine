@@ -1,13 +1,13 @@
 {
   "date": "2026-08-09",
-  "n_matches": 22,
-  "hit_rate": 0.3636,
+  "n_matches": 23,
+  "hit_rate": 0.3478,
   "hits": 8,
   "source_brier": {
-    "model": 0.6911,
-    "market": 0.6199,
-    "djyy": 0.6287,
-    "final": 0.6317
+    "model": 0.6961,
+    "market": 0.6306,
+    "djyy": 0.6593,
+    "final": 0.644
   },
   "by_league": {
     "日职": {
@@ -57,6 +57,12 @@
       "hit_rate": 0.5,
       "wilson_lower": 0.15,
       "avg_brier": 0.6456
+    },
+    "巴甲": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9136
     }
   },
   "by_confidence_tier": {
@@ -67,18 +73,18 @@
       "avg_brier": 0.6477
     },
     "mid": {
-      "n": 12,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.2538,
-      "avg_brier": 0.6184
+      "n": 13,
+      "hit_rate": 0.4615,
+      "wilson_lower": 0.2321,
+      "avg_brier": 0.6411
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 8,
-      "hit_rate": 0.25,
-      "wilson_lower": 0.0715,
-      "avg_brier": 0.646
+      "n": 9,
+      "hit_rate": 0.2222,
+      "wilson_lower": 0.0632,
+      "avg_brier": 0.6757
     },
     "1.0-1.5": {
       "n": 8,
@@ -121,24 +127,24 @@
       "hits": 8
     },
     "mc": {
-      "n": 16,
-      "hits": 14
+      "n": 17,
+      "hits": 15
     }
   },
   "market_signal_stats": {
-    "n": 22,
+    "n": 23,
     "hits": 9
   },
   "layered": {
-    "log_loss_final": 1.0455,
+    "log_loss_final": 1.0656,
     "goal_framework": {
-      "n": 22,
-      "hits": 14
+      "n": 23,
+      "hits": 15
     },
     "prob_bands": {
       "40-50%": {
-        "n": 10,
-        "hit_rate": 0.5
+        "n": 11,
+        "hit_rate": 0.4545
       },
       "50-60%": {
         "n": 2,
@@ -151,8 +157,8 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 9,
-        "hit_rate": 0.2222
+        "n": 10,
+        "hit_rate": 0.2
       },
       "watch": {
         "n": 13,
@@ -161,7 +167,7 @@
     }
   },
   "biases": [],
-  "total_pnl": -98.54,
-  "generated_at": "2026-08-09T22:51:41.775057",
-  "sha256": "70d9d19069a2e932dc37ff5faab8da3a"
+  "total_pnl": -150.01,
+  "generated_at": "2026-08-09T23:48:00.983796",
+  "sha256": "b492dc40e492d0de666f3e10b762ca69"
 }
