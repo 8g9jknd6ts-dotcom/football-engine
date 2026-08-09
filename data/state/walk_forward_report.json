@@ -1,46 +1,46 @@
 {
-  "total_matches": 175,
+  "total_matches": 178,
   "date_range": [
     "2026-07-20",
     "2026-08-09"
   ],
   "metrics": {
-    "brier": 0.6512,
-    "weighted_brier": 0.6512,
-    "rps": 0.2236,
-    "weighted_rps": 0.2237,
-    "log_loss": 1.0781,
-    "hit_rate": 0.4457,
-    "ece": 0.1897
+    "brier": 0.6529,
+    "weighted_brier": 0.653,
+    "rps": 0.2228,
+    "weighted_rps": 0.2229,
+    "log_loss": 1.0803,
+    "hit_rate": 0.4438,
+    "ece": 0.2017
   },
   "draw_analysis": {
-    "actual_draws": 48,
-    "actual_draw_rate": 0.2743,
+    "actual_draws": 50,
+    "actual_draw_rate": 0.2809,
     "predicted_draws": 4,
-    "predicted_draw_rate": 0.0229,
+    "predicted_draw_rate": 0.0225,
     "max_draw_prob": 0.4229,
-    "avg_draw_prob": 0.2587,
-    "avg_market_draw": 0.2436,
-    "market_high_draw_n": 26,
+    "avg_draw_prob": 0.2589,
+    "avg_market_draw": 0.244,
+    "market_high_draw_n": 27,
     "market_high_draw_actual": 9,
-    "market_high_draw_rate": 0.3462
+    "market_high_draw_rate": 0.3333
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4457,
-      "n": 175
+      "hit_rate": 0.4438,
+      "n": 178
     },
     "market": {
-      "hit_rate": 0.5124,
-      "n": 121
+      "hit_rate": 0.5122,
+      "n": 123
     },
     "hybrid_v2": {
-      "hit_rate": 0.438,
-      "n": 121
+      "hit_rate": 0.4309,
+      "n": 123
     },
     "market_d28": {
-      "hit_rate": 0.438,
-      "n": 121
+      "hit_rate": 0.4309,
+      "n": 123
     }
   },
   "by_league": {
@@ -98,6 +98,12 @@
       "brier": 0.575,
       "rps": 0.2257
     },
+    "葡超": {
+      "n": 8,
+      "hit_rate": 0.375,
+      "brier": 0.6693,
+      "rps": 0.1813
+    },
     "巴西杯": {
       "n": 7,
       "hit_rate": 0.2857,
@@ -115,12 +121,6 @@
       "hit_rate": 0.6,
       "brier": 0.612,
       "rps": 0.2223
-    },
-    "葡超": {
-      "n": 5,
-      "hit_rate": 0.4,
-      "brier": 0.6172,
-      "rps": 0.1835
     },
     "英联赛杯": {
       "n": 4,
