@@ -613,7 +613,7 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
         _ps = json.loads(_ps_path.read_text(encoding="utf-8")) if _ps_path.exists() else {}
     except Exception:
         _ps = {}
-    parlay_settle_html = _parlay_settle_section(_ps)
+    parlay_settle_html = _parlay_settle_section(_ps, today)
 
     # 赛果复盘（优先用 results.json，fallback review_ledger）
     results_html = _results_section(results, results_preds or predictions, review_ledger)
@@ -2445,15 +2445,21 @@ def _score_parlay_section(ticket):
   {tickets}"""
 
 
-def _parlay_settle_section(settle: dict | None) -> str:
+def _parlay_settle_section(settle: dict | None, target_date: str = "") -> str:
     """串关/波胆真实复盘（2026-08-10 新增）：真实出票的结算结果。
 
     与 parlay_report（历史回测模拟）不同，这里是 ticket_plan 里真实
     出过的串票用当日赛果逐腿结算的命中率/ROI。诚实展示：
     - 胜平负串：整票命中率 + ROI
     - 波胆串：整票命中率 + 单腿命中率（精确比分极难，腿级信息量更大）
+
+    2026-08-10 改：按出票日渲染——复盘归属当天页面，当天无票不显示
+    区块（不再把全部历史串票堆在每个页面）。
     """
     if not settle:
+        return ""
+    day = (settle.get("by_date") or {}).get(target_date or "")
+    if not day:
         return ""
 
     def _fmt_roi(v):
@@ -2485,8 +2491,9 @@ def _parlay_settle_section(settle: dict | None) -> str:
         </div>"""
 
     def _ticket_rows(kind):
+        tickets = (day.get(kind) or {}).get("tickets") or []
         out = []
-        for t in (settle.get("tickets") or {}).get(kind, []):
+        for t in tickets:
             mark = "✅" if t["won"] else ("⏳" if t["pending"] else "❌")
             legs = " + ".join(
                 f"{l['home'][:6]}({l['sel'] or l['score']})" for l in t["legs"]
@@ -2496,39 +2503,41 @@ def _parlay_settle_section(settle: dict | None) -> str:
                 for l in t["legs"]
             )
             out.append(
-                f"<div class='ts-row'><span>{t['date']} {t['type']} {mark}</span>"
+                f"<div class='ts-row'><span>{t['type']} {mark}</span>"
                 f"<span>{legs} {leg_marks}</span>"
                 f"<span>¥{t['stake']:.0f}→{t['return']:.2f}</span></div>"
             )
         return "".join(out)
 
-    p = settle.get("parlay") or {}
-    sp = settle.get("score_parlay") or {}
-    if not p.get("n_tickets") and not sp.get("n_tickets"):
+    p = (day.get("parlay") or {}).get("stats")
+    sp = (day.get("score_parlay") or {}).get("stats")
+    p_tickets = (day.get("parlay") or {}).get("tickets") or []
+    sp_tickets = (day.get("score_parlay") or {}).get("tickets") or []
+    if not p_tickets and not sp_tickets:
         return ""
 
     sp_extra = ""
-    if sp.get("leg_hit_rate") is not None:
+    if sp and sp.get("leg_hit_rate") is not None:
         sp_extra = (
             f"<tr><td>单腿命中率</td><td>{sp['leg_hit_rate']:.1%}（{sp['n_legs_settled']} 腿）</td></tr>"
         )
 
     verdict = ""
-    p_roi, sp_roi = p.get("roi"), sp.get("roi")
-    if p.get("n_settled") or sp.get("n_settled"):
+    if (p and p.get("n_settled")) or (sp and sp.get("n_settled")):
         verdict = "<div class='ts-note'>"
-        if p_roi is not None and p_roi > 0:
-            verdict += "胜平负串实证 ROI 为正，但样本极少（1张），不足以下结论。"
-        elif p_roi is not None:
-            verdict += f"胜平负串实证 ROI {p_roi:+.0%}，串关吃双重抽水。"
-        if sp.get("n_settled"):
+        if p and p.get("roi") is not None:
+            if p["roi"] > 0:
+                verdict += f"胜平负串实证 ROI 为正（+{p['roi']:.0%}），但样本极少（{p['n_won']}张），不足以下结论。"
+            else:
+                verdict += f"胜平负串实证 ROI {p['roi']:+.0%}，串关吃双重抽水。"
+        if sp and sp.get("n_settled"):
             verdict += f"波胆整票命中率 {sp['hit_rate']:.0%}（{sp['n_won']}/{sp['n_settled']}），单腿 {sp['leg_hit_rate']:.0%}——两腿都中太难，纯彩票定位。"
         verdict += "</div>"
 
     return f"""
     <div class="ts-section" id="parlay-settle">
-      <h2>📊 串关/波胆复盘 <span class="badge">真实出票结算</span></h2>
-      <p class="ts-sub">ticket_plan 实际出过的串票，用当日赛果逐腿结算（2026-08-10 起闭环）。</p>
+      <h2>📊 串关/波胆复盘 <span class="badge">当日真实出票结算</span></h2>
+      <p class="ts-sub">当天 ticket_plan 出的串票，用当日赛果逐腿结算（2026-08-10 起闭环）。</p>
       <div class="ts-grid">
         {_stat_card("胜平负串（过关）", p)}
         {_stat_card("比分串（波胆）", sp, sp_extra)}

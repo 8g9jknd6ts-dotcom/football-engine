@@ -80,6 +80,7 @@ def build_settle_report(
     out_path = out_path or Path("data/state/parlay_settle.json")
 
     by_kind = {"parlay": [], "score_parlay": []}
+    by_date: dict[str, dict] = defaultdict(lambda: {"parlay": [], "score_parlay": []})
     for tp_path in sorted(daily_root.glob("*/ticket_plan.json")):
         day = tp_path.parent.name
         try:
@@ -90,7 +91,7 @@ def build_settle_report(
         for kind in ("parlay", "score_parlay"):
             for t in tp.get(kind) or []:
                 st = settle_ticket(t, res_map)
-                by_kind[kind].append({
+                rec = {
                     "date": day,
                     "type": t.get("type", kind),
                     "stake": t.get("stake", 0),
@@ -111,7 +112,9 @@ def build_settle_report(
                         }
                         for l, rr in zip(t.get("legs") or [], st["leg_results"])
                     ],
-                })
+                }
+                by_kind[kind].append(rec)
+                by_date[day][kind].append(rec)
 
     def _stats(rows: list[dict]) -> dict:
         settled = [r for r in rows if not r["pending"]]
@@ -145,6 +148,25 @@ def build_settle_report(
     leg_hits = [r for t in sp_rows for r in t["leg_results"] if r is not None]
     leg_wins = sum(1 for x in leg_hits if x)
 
+    def _day_group(day: str) -> dict:
+        """按出票日分组的复盘（当天页面只显示当天出的串票）。"""
+        g = by_date.get(day)
+        if not g:
+            return {}
+        out = {}
+        for kind in ("parlay", "score_parlay"):
+            rows = g[kind]
+            if not rows:
+                out[kind] = {"stats": None, "tickets": []}
+                continue
+            s = _stats(rows)
+            if kind == "score_parlay":
+                lh = [r for t in rows for r in t["leg_results"] if r is not None]
+                s["leg_hit_rate"] = round(sum(1 for x in lh if x) / len(lh), 4) if lh else None
+                s["n_legs_settled"] = len(lh)
+            out[kind] = {"stats": s, "tickets": rows}
+        return out
+
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "parlay": _stats(by_kind["parlay"]),
@@ -157,6 +179,8 @@ def build_settle_report(
             "parlay": by_kind["parlay"],
             "score_parlay": sp_rows,
         },
+        # 2026-08-10：按出票日分组，页面按当天渲染（复盘归属出票当天，不堆在最新页）
+        "by_date": {d: _day_group(d) for d in sorted(by_date)},
     }
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
