@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-10T08:05:33.138852+00:00",
+  "generated_at": "2026-08-10T09:07:14.767570+00:00",
   "parlay": {
-    "n_tickets": 7,
+    "n_tickets": 6,
     "n_settled": 6,
     "n_won": 1,
     "hit_rate": 0.1667,
@@ -261,42 +261,6 @@
             "score": null,
             "odds": 1.48,
             "hit": false
-          }
-        ]
-      },
-      {
-        "date": "2026-08-10",
-        "type": "2串1",
-        "stake": 2.0,
-        "potential": 3.86,
-        "total_odds": 1.93,
-        "odds_source": null,
-        "note": "待赛",
-        "won": false,
-        "pending": true,
-        "leg_results": [
-          null,
-          null
-        ],
-        "return": 0.0,
-        "legs": [
-          {
-            "match": "2026-08-10_周一001",
-            "home": "天狼星",
-            "away": "布鲁马波",
-            "sel": "home",
-            "score": null,
-            "odds": 1.2,
-            "hit": null
-          },
-          {
-            "match": "2026-08-10_周一002",
-            "home": "韦斯特罗斯",
-            "away": "佐加顿斯",
-            "sel": "away",
-            "score": null,
-            "odds": 1.61,
-            "hit": null
           }
         ]
       }
@@ -2863,18 +2827,18 @@
         "return": 0.0,
         "legs": [
           {
-            "match": "2026-08-10_周一001",
-            "home": "天狼星",
-            "away": "布鲁马波",
+            "match": "2026-08-10_周一002",
+            "home": "韦斯特罗斯",
+            "away": "佐加顿斯",
             "sel": null,
-            "score": "1-0",
+            "score": "0-1",
             "odds": 7.0,
             "hit": null
           },
           {
-            "match": "2026-08-10_周一003",
-            "home": "圣克拉拉",
-            "away": "葡国民",
+            "match": "2026-08-10_周一001",
+            "home": "天狼星",
+            "away": "布鲁马波",
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
@@ -2886,8 +2850,44 @@
         "date": "2026-08-10",
         "type": "比分2串1",
         "stake": 2.0,
-        "potential": 133.0,
-        "total_odds": 66.5,
+        "potential": 98.0,
+        "total_odds": 49.0,
+        "odds_source": "simulated",
+        "note": "待赛",
+        "won": false,
+        "pending": true,
+        "leg_results": [
+          null,
+          null
+        ],
+        "return": 0.0,
+        "legs": [
+          {
+            "match": "2026-08-10_周一002",
+            "home": "韦斯特罗斯",
+            "away": "佐加顿斯",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          },
+          {
+            "match": "2026-08-10_周一003",
+            "home": "圣克拉拉",
+            "away": "葡国民",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          }
+        ]
+      },
+      {
+        "date": "2026-08-10",
+        "type": "比分2串1",
+        "stake": 2.0,
+        "potential": 98.0,
+        "total_odds": 49.0,
         "odds_source": "simulated",
         "note": "待赛",
         "won": false,
@@ -2908,48 +2908,12 @@
             "hit": null
           },
           {
-            "match": "2026-08-10_周一002",
-            "home": "韦斯特罗斯",
-            "away": "佐加顿斯",
-            "sel": null,
-            "score": "1-2",
-            "odds": 9.5,
-            "hit": null
-          }
-        ]
-      },
-      {
-        "date": "2026-08-10",
-        "type": "比分2串1",
-        "stake": 2.0,
-        "potential": 133.0,
-        "total_odds": 66.5,
-        "odds_source": "simulated",
-        "note": "待赛",
-        "won": false,
-        "pending": true,
-        "leg_results": [
-          null,
-          null
-        ],
-        "return": 0.0,
-        "legs": [
-          {
             "match": "2026-08-10_周一003",
             "home": "圣克拉拉",
             "away": "葡国民",
             "sel": null,
-            "score": "1-0",
+            "score": "0-1",
             "odds": 7.0,
-            "hit": null
-          },
-          {
-            "match": "2026-08-10_周一002",
-            "home": "韦斯特罗斯",
-            "away": "佐加顿斯",
-            "sel": null,
-            "score": "1-2",
-            "odds": 9.5,
             "hit": null
           }
         ]
@@ -2958,8 +2922,8 @@
         "date": "2026-08-10",
         "type": "比分3串1",
         "stake": 2.0,
-        "potential": 931.0,
-        "total_odds": 465.5,
+        "potential": 686.0,
+        "total_odds": 343.0,
         "odds_source": "simulated",
         "note": "待赛",
         "won": false,
@@ -2971,6 +2935,15 @@
         ],
         "return": 0.0,
         "legs": [
+          {
+            "match": "2026-08-10_周一002",
+            "home": "韦斯特罗斯",
+            "away": "佐加顿斯",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          },
           {
             "match": "2026-08-10_周一001",
             "home": "天狼星",
@@ -2985,17 +2958,8 @@
             "home": "圣克拉拉",
             "away": "葡国民",
             "sel": null,
-            "score": "1-0",
+            "score": "0-1",
             "odds": 7.0,
-            "hit": null
-          },
-          {
-            "match": "2026-08-10_周一002",
-            "home": "韦斯特罗斯",
-            "away": "佐加顿斯",
-            "sel": null,
-            "score": "1-2",
-            "odds": 9.5,
             "hit": null
           }
         ]
@@ -3004,8 +2968,8 @@
         "date": "2026-08-10",
         "type": "比分3串4(容错)",
         "stake": 8.0,
-        "potential": 1295.0,
-        "total_odds": 465.5,
+        "potential": 980.0,
+        "total_odds": 343.0,
         "odds_source": "simulated",
         "note": "待赛",
         "won": false,
@@ -3017,6 +2981,15 @@
         ],
         "return": 0.0,
         "legs": [
+          {
+            "match": "2026-08-10_周一002",
+            "home": "韦斯特罗斯",
+            "away": "佐加顿斯",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          },
           {
             "match": "2026-08-10_周一001",
             "home": "天狼星",
@@ -3031,17 +3004,8 @@
             "home": "圣克拉拉",
             "away": "葡国民",
             "sel": null,
-            "score": "1-0",
+            "score": "0-1",
             "odds": 7.0,
-            "hit": null
-          },
-          {
-            "match": "2026-08-10_周一002",
-            "home": "韦斯特罗斯",
-            "away": "佐加顿斯",
-            "sel": null,
-            "score": "1-2",
-            "odds": 9.5,
             "hit": null
           }
         ]
@@ -6463,55 +6427,8 @@
     },
     "2026-08-10": {
       "parlay": {
-        "stats": {
-          "n_tickets": 1,
-          "n_settled": 0,
-          "n_won": 0,
-          "hit_rate": null,
-          "stake": 0,
-          "return": 0,
-          "roi": null,
-          "avg_odds": null,
-          "by_type": {}
-        },
-        "tickets": [
-          {
-            "date": "2026-08-10",
-            "type": "2串1",
-            "stake": 2.0,
-            "potential": 3.86,
-            "total_odds": 1.93,
-            "odds_source": null,
-            "note": "待赛",
-            "won": false,
-            "pending": true,
-            "leg_results": [
-              null,
-              null
-            ],
-            "return": 0.0,
-            "legs": [
-              {
-                "match": "2026-08-10_周一001",
-                "home": "天狼星",
-                "away": "布鲁马波",
-                "sel": "home",
-                "score": null,
-                "odds": 1.2,
-                "hit": null
-              },
-              {
-                "match": "2026-08-10_周一002",
-                "home": "韦斯特罗斯",
-                "away": "佐加顿斯",
-                "sel": "away",
-                "score": null,
-                "odds": 1.61,
-                "hit": null
-              }
-            ]
-          }
-        ]
+        "stats": null,
+        "tickets": []
       },
       "score_parlay": {
         "stats": {
@@ -6545,18 +6462,18 @@
             "return": 0.0,
             "legs": [
               {
-                "match": "2026-08-10_周一001",
-                "home": "天狼星",
-                "away": "布鲁马波",
+                "match": "2026-08-10_周一002",
+                "home": "韦斯特罗斯",
+                "away": "佐加顿斯",
                 "sel": null,
-                "score": "1-0",
+                "score": "0-1",
                 "odds": 7.0,
                 "hit": null
               },
               {
-                "match": "2026-08-10_周一003",
-                "home": "圣克拉拉",
-                "away": "葡国民",
+                "match": "2026-08-10_周一001",
+                "home": "天狼星",
+                "away": "布鲁马波",
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
@@ -6568,8 +6485,44 @@
             "date": "2026-08-10",
             "type": "比分2串1",
             "stake": 2.0,
-            "potential": 133.0,
-            "total_odds": 66.5,
+            "potential": 98.0,
+            "total_odds": 49.0,
+            "odds_source": "simulated",
+            "note": "待赛",
+            "won": false,
+            "pending": true,
+            "leg_results": [
+              null,
+              null
+            ],
+            "return": 0.0,
+            "legs": [
+              {
+                "match": "2026-08-10_周一002",
+                "home": "韦斯特罗斯",
+                "away": "佐加顿斯",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              },
+              {
+                "match": "2026-08-10_周一003",
+                "home": "圣克拉拉",
+                "away": "葡国民",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              }
+            ]
+          },
+          {
+            "date": "2026-08-10",
+            "type": "比分2串1",
+            "stake": 2.0,
+            "potential": 98.0,
+            "total_odds": 49.0,
             "odds_source": "simulated",
             "note": "待赛",
             "won": false,
@@ -6590,48 +6543,12 @@
                 "hit": null
               },
               {
-                "match": "2026-08-10_周一002",
-                "home": "韦斯特罗斯",
-                "away": "佐加顿斯",
-                "sel": null,
-                "score": "1-2",
-                "odds": 9.5,
-                "hit": null
-              }
-            ]
-          },
-          {
-            "date": "2026-08-10",
-            "type": "比分2串1",
-            "stake": 2.0,
-            "potential": 133.0,
-            "total_odds": 66.5,
-            "odds_source": "simulated",
-            "note": "待赛",
-            "won": false,
-            "pending": true,
-            "leg_results": [
-              null,
-              null
-            ],
-            "return": 0.0,
-            "legs": [
-              {
                 "match": "2026-08-10_周一003",
                 "home": "圣克拉拉",
                 "away": "葡国民",
                 "sel": null,
-                "score": "1-0",
+                "score": "0-1",
                 "odds": 7.0,
-                "hit": null
-              },
-              {
-                "match": "2026-08-10_周一002",
-                "home": "韦斯特罗斯",
-                "away": "佐加顿斯",
-                "sel": null,
-                "score": "1-2",
-                "odds": 9.5,
                 "hit": null
               }
             ]
@@ -6640,8 +6557,8 @@
             "date": "2026-08-10",
             "type": "比分3串1",
             "stake": 2.0,
-            "potential": 931.0,
-            "total_odds": 465.5,
+            "potential": 686.0,
+            "total_odds": 343.0,
             "odds_source": "simulated",
             "note": "待赛",
             "won": false,
@@ -6653,6 +6570,15 @@
             ],
             "return": 0.0,
             "legs": [
+              {
+                "match": "2026-08-10_周一002",
+                "home": "韦斯特罗斯",
+                "away": "佐加顿斯",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              },
               {
                 "match": "2026-08-10_周一001",
                 "home": "天狼星",
@@ -6667,17 +6593,8 @@
                 "home": "圣克拉拉",
                 "away": "葡国民",
                 "sel": null,
-                "score": "1-0",
+                "score": "0-1",
                 "odds": 7.0,
-                "hit": null
-              },
-              {
-                "match": "2026-08-10_周一002",
-                "home": "韦斯特罗斯",
-                "away": "佐加顿斯",
-                "sel": null,
-                "score": "1-2",
-                "odds": 9.5,
                 "hit": null
               }
             ]
@@ -6686,8 +6603,8 @@
             "date": "2026-08-10",
             "type": "比分3串4(容错)",
             "stake": 8.0,
-            "potential": 1295.0,
-            "total_odds": 465.5,
+            "potential": 980.0,
+            "total_odds": 343.0,
             "odds_source": "simulated",
             "note": "待赛",
             "won": false,
@@ -6699,6 +6616,15 @@
             ],
             "return": 0.0,
             "legs": [
+              {
+                "match": "2026-08-10_周一002",
+                "home": "韦斯特罗斯",
+                "away": "佐加顿斯",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              },
               {
                 "match": "2026-08-10_周一001",
                 "home": "天狼星",
@@ -6713,17 +6639,8 @@
                 "home": "圣克拉拉",
                 "away": "葡国民",
                 "sel": null,
-                "score": "1-0",
+                "score": "0-1",
                 "odds": 7.0,
-                "hit": null
-              },
-              {
-                "match": "2026-08-10_周一002",
-                "home": "韦斯特罗斯",
-                "away": "佐加顿斯",
-                "sel": null,
-                "score": "1-2",
-                "odds": 9.5,
                 "hit": null
               }
             ]
