@@ -738,6 +738,44 @@ body {{
 .stat .value.red {{ color: var(--red); }}
 .stat .value.blue {{ color: var(--blue); }}
 
+/* ===== PAGE TABS (2026-08-10 页面重构) ===== */
+.page-tabs {{
+  display: flex; gap: 8px; margin-bottom: 8px; padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}}
+.page-tab-btn {{
+  padding: 8px 20px; border-radius: 10px 10px 0 0;
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px;
+  color: var(--dim); background: transparent; border: none;
+  border-bottom: 2px solid transparent; cursor: pointer;
+  transition: var(--transition); font-family: inherit;
+}}
+.page-tab-btn:hover {{ color: var(--text-secondary); }}
+.page-tab-btn.active {{
+  color: var(--blue); border-bottom-color: var(--blue);
+  background: rgba(59,130,246,0.06);
+}}
+.page-tab-panel {{ display: none; }}
+.page-tab-panel.active {{ display: block; }}
+
+/* ===== SCORE PARLAY COMPACT (2026-08-10) ===== */
+.sp-leg {{ white-space: nowrap; margin-right: 6px; }}
+.sp-leg b {{ color: var(--amber); }}
+.sp-detail summary {{
+  cursor: pointer; color: var(--blue); font-size: 0.72rem;
+  padding: 2px 0; user-select: none;
+}}
+.sp-detail .ts-row {{
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 3px 8px; font-size: 0.75rem; color: var(--text-secondary);
+  border-bottom: 1px dashed var(--border);
+}}
+.ts-statline {{
+  font-size: 0.8rem; padding: 7px 2px; color: var(--text-secondary);
+  border-bottom: 1px dashed var(--border);
+}}
+.ts-statline b {{ color: var(--text); }}
+
 /* ===== SECTION TITLES ===== */
 .section-title {{
   font-size: 0.85rem; font-weight: 700; margin: 32px 0 14px;
@@ -1280,41 +1318,53 @@ body {{
   <!-- LEAGUE MATRIX -->
   {league_matrix_html}
 
-  <!-- MATCH PREDICTIONS -->
-  <div class="section-title">比赛预测</div>
-  {cards if cards else '<p style="color:var(--dim);padding:48px;text-align:center;font-size:0.85rem;">等待每日流水线运行...</p>'}
+  <!-- ===== TAB NAV (2026-08-10 页面重构) ===== -->
+  <div class="page-tabs">
+    <button class="page-tab-btn active" data-panel="tab-decision">🎯 今日决策</button>
+    <button class="page-tab-btn" data-panel="tab-review">📊 复盘与数据</button>
+  </div>
 
-  <!-- BETTING PLAN -->
-  {ticket_html}
+  <!-- TAB: 今日决策 -->
+  <div class="page-tab-panel active" id="tab-decision">
+    <!-- MATCH PREDICTIONS -->
+    <div class="section-title">比赛预测</div>
+    {cards if cards else '<p style="color:var(--dim);padding:48px;text-align:center;font-size:0.85rem;">等待每日流水线运行...</p>'}
 
-  <!-- PARLAY (2026-08-08) -->
-  {parlay_html}
+    <!-- BETTING PLAN -->
+    {ticket_html}
 
-  <!-- SCORE PARLAY (2026-08-08) -->
-  {score_parlay_html}
+    <!-- PARLAY (2026-08-08) -->
+    {parlay_html}
 
-  <!-- PARLAY SETTLE (2026-08-10) -->
-  {parlay_settle_html}
+    <!-- SCORE PARLAY (2026-08-08) -->
+    {score_parlay_html}
+  </div>
 
-  <!-- EV VALUE REPORT -->
-  {ev_html}
+  <!-- TAB: 复盘与数据 -->
+  <div class="page-tab-panel" id="tab-review">
+    <!-- PARLAY SETTLE (2026-08-10) -->
+    {parlay_settle_html}
 
-  <!-- LEAGUE LAYERS -->
-  {league_html}
-  {hcr_html}
+    <!-- RESULTS REVIEW -->
+    {results_html}
 
-  <!-- ACCURACY TREND -->
-  {trend_html}
+    <!-- EV VALUE REPORT -->
+    {ev_html}
 
-  <!-- SCORE HIT RATE (2026-08-05) -->
-  {score_trend_html}
-  {odds_series_html}
+    <!-- LEAGUE LAYERS -->
+    {league_html}
+    {hcr_html}
 
-  <!-- RESULTS REVIEW -->
-  {results_html}
+    <!-- ACCURACY TREND -->
+    {trend_html}
 
-  <!-- SYSTEM STATUS -->
-  {system_html}
+    <!-- SCORE HIT RATE (2026-08-05) -->
+    {score_trend_html}
+    {odds_series_html}
+
+    <!-- SYSTEM STATUS -->
+    {system_html}
+  </div>
 
   <!-- FOOTER -->
   <div class="footer">
@@ -1325,6 +1375,20 @@ body {{
 </div>
 
 <script>
+// ===== PAGE TABS (2026-08-10 页面重构) =====
+document.querySelectorAll('.page-tab-btn').forEach(function(btn) {{
+  btn.addEventListener('click', function() {{
+    var panelId = this.getAttribute('data-panel');
+    document.querySelectorAll('.page-tab-btn').forEach(function(b) {{ b.classList.remove('active'); }});
+    this.classList.add('active');
+    document.querySelectorAll('.page-tab-panel').forEach(function(p) {{ p.classList.remove('active'); }});
+    var panel = document.getElementById(panelId);
+    if (panel) panel.classList.add('active');
+    // 切换后回到页首（复盘数据在下方，避免停留在空白区）
+    window.scrollTo({{ top: 0, behavior: 'smooth' }});
+  }});
+}});
+
 // ===== MATCH CARD EXPAND/COLLAPSE =====
 document.querySelectorAll('.match-header').forEach(function(header) {{
   header.addEventListener('click', function() {{
@@ -2392,57 +2456,70 @@ def _score_parlay_section(ticket):
     top_scores 来自 DJYY 未校准（0-0 系统性高估，模块内封顶修正），
     无官方波胆赔率时用基准赔率表模拟 → 全部定位娱乐串（🎯），
     页面明确标注概率未校准、赔率为模拟（或官方）来源。
+
+    2026-08-10 改：5 张大卡 → 紧凑表格（一行一张票），明细折叠，
+    不再占据大半屏。
     """
     if not ticket:
         return ""
     sp = ticket.get("score_parlay", [])
     if not sp:
         return ""
-    sel_odds_src = {"official": "官方赔率", "simulated": "模拟赔率"}
+    sel_odds_src = {"official": "官方", "simulated": "模拟"}
 
-    def _leg_html(lg):
-        return (f'<div class="ticket-item"><span class="ti-match">{lg.get("home", "")} vs '
-                f'{lg.get("away", "")} <span style="opacity:.6">[{lg.get("league", "")}]</span> '
-                f'<span class="pick-val draw" style="font-size:.8em">比分 {lg.get("score", "")} '
-                f'{lg.get("prob", 0)*100:.0f}%</span></span>'
-                f'<span class="ti-odds">@{lg.get("odds", 0):.2f}</span></div>')
+    def _leg_short(lg):
+        return (f'<span class="sp-leg">{lg.get("home", "")[:6]}'
+                f'<b>{lg.get("score", "")}</b>@{lg.get("odds", 0):.1f}</span>')
 
-    def _ticket_html(t):
+    rows = []
+    for t in sp:
         ptype = t.get("type", "")
-        src = sel_odds_src.get(t.get("odds_source", "simulated"), "模拟赔率")
-        legs = "".join(_leg_html(lg) for lg in t.get("legs", []))
+        legs = " + ".join(_leg_short(lg) for lg in t.get("legs", []))
         hit = t.get("hit_prob", 0)
         n_bets = t.get("n_bets", 1)
         worst = t.get("worst_win", 0)
-        # 容错票（3串4）额外显示"错1场仍中"；注数 >1 显示注数
-        chips = [
-            (f'<span class="ts-chip"><div class="ts-label">全中赔率</div><div class="ts-val">@{t.get("total_odds", 0):.1f}</div></span>'),
-            (f'<span class="ts-chip"><div class="ts-label">模型概率</div><div class="ts-val">{hit*100:.1f}%</div></span>'),
-        ]
-        if n_bets > 1:
-            chips.append(f'<span class="ts-chip"><div class="ts-label">注数</div><div class="ts-val">{n_bets}注</div></span>')
-        chips.append(f'<span class="ts-chip"><div class="ts-label">投入</div><div class="ts-val">¥{t.get("stake", 2):.0f}</div></span>')
-        chips.append(f'<span class="ts-chip"><div class="ts-label">最高奖金</div><div class="ts-val" style="color:var(--green)">¥{t.get("potential", 0):.0f}</div></span>')
-        if worst > 0:
-            chips.append(f'<span class="ts-chip"><div class="ts-label">错1场仍中</div><div class="ts-val" style="color:var(--amber)">¥{worst:.0f}</div></span>')
-        return (f'<div class="ticket-card" style="border-color:var(--amber)">'
-                f'<h4 class="lottery">{ptype} <span class="pick-val draw" style="font-size:.75em">🎯 娱乐串</span>'
-                f'<span style="opacity:.6;font-size:.7em"> {src}</span></h4>'
-                f'{legs}'
-                f'<div class="ts-row" style="margin-top:4px">'
-                f'{"".join(chips)}'
-                f'</div>'
-                f'<div style="font-size:.72rem;opacity:.65;margin-top:4px">{t.get("note", "")} · 模型比分概率未校准，命中率远低于显示值，小注娱乐</div>'
-                f'</div>')
+        src = sel_odds_src.get(t.get("odds_source", "simulated"), "模拟")
+        worst_cell = (f'<span style="color:var(--amber);font-weight:700">错1场¥{worst:.0f}</span>'
+                      if worst > 0 else '<span style="color:var(--dim)">—</span>')
+        rows.append(
+            f'<tr>'
+            f'<td><b>{ptype}</b><br><span style="font-size:.62rem;color:var(--dim)">{n_bets}注 · {src}赔率</span></td>'
+            f'<td>{legs}</td>'
+            f'<td style="text-align:right;color:var(--dim)">{hit*100:.1f}%</td>'
+            f'<td style="text-align:right">¥{t.get("stake", 0):.0f}</td>'
+            f'<td style="text-align:right;color:var(--green);font-weight:700">¥{t.get("potential", 0):.0f}</td>'
+            f'<td>{worst_cell}</td>'
+            f'</tr>'
+        )
 
-    tickets = "".join(_ticket_html(t) for t in sp)
+    details = []
+    for t in sp:
+        ptype = t.get("type", "")
+        note = t.get("note", "")
+        leg_lines = "".join(
+            f'<div class="ts-row"><span>{lg.get("home","")} vs {lg.get("away","")} '
+            f'<span style="opacity:.6">[{lg.get("league","")}]</span></span>'
+            f'<span>比分 {lg.get("score","")} · {lg.get("prob",0)*100:.0f}% · @{lg.get("odds",0):.1f}</span></div>'
+            for lg in t.get("legs", [])
+        )
+        details.append(
+            f'<details class="sp-detail"><summary>{ptype} · {note[:36]}</summary>{leg_lines}</details>'
+        )
+
     return f"""
-  <div class="section-title">比分串（波胆过关）🎯 彩票票 · 小注搏大奖</div>
-  <div style="font-size:.75rem;opacity:.65;padding:2px 0 6px">
-    比分 2串1 常见 40-80 倍赔率；系统取每场最可能比分（DJYY 概率已做 0-0 封顶修正）。
-    比分命中率极低，定位娱乐小注，不推荐重注。
+  <div class="section-title">比分串（波胆过关）🎯 彩票票 · 小注搏大奖
+    <span style="float:right;font-weight:500;text-transform:none;letter-spacing:0;color:var(--dim)">{len(sp)} 张</span>
   </div>
-  {tickets}"""
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>玩法</th><th>比分组合（单腿 @赔率）</th><th style="text-align:right">模型概率</th><th style="text-align:right">投入</th><th style="text-align:right">最高奖金</th><th>容错</th></tr>
+    {''.join(rows)}
+  </table>
+  </div>
+  <div style="font-size:.68rem;color:var(--dim);padding:4px 2px">
+    比分命中率极低（top1 约 10-13%），串票概率未校准、赔率{'官方' if any(t.get('odds_source')=='official' for t in sp) else '模拟'}，定位娱乐小注，不推荐重注。
+    <details style="display:inline"><summary style="cursor:pointer;display:inline;color:var(--blue)"> 腿明细</summary>{''.join(details)}</details>
+  </div>"""
 
 
 def _parlay_settle_section(settle: dict | None, target_date: str = "") -> str:
@@ -2502,12 +2579,33 @@ def _parlay_settle_section(settle: dict | None, target_date: str = "") -> str:
                 "✓" if l["hit"] is True else ("·" if l["hit"] is None else "✗")
                 for l in t["legs"]
             )
+            ret = "—" if t["pending"] else f"¥{t['return']:.2f}"
             out.append(
-                f"<div class='ts-row'><span>{t['type']} {mark}</span>"
-                f"<span>{legs} {leg_marks}</span>"
-                f"<span>¥{t['stake']:.0f}→{t['return']:.2f}</span></div>"
+                f'<tr><td>{t["type"]} {mark}</td>'
+                f'<td>{legs} <span style="color:var(--dim);font-size:.7rem">{leg_marks}</span></td>'
+                f'<td style="text-align:right">¥{t["stake"]:.0f} → {ret}</td></tr>'
             )
         return "".join(out)
+
+    def _stat_line(title, s, extra=None):
+        if not s or not s.get("n_tickets"):
+            return ""
+        hr = f"{s['hit_rate']:.0%}" if s.get("hit_rate") is not None else "—"
+        roi = s.get("roi")
+        roi_html = ("—" if roi is None else
+                    f'<b style="color:{"var(--green)" if roi > 0 else "var(--red)"}">{roi:+.0%}</b>')
+        parts = [f"出票{s['n_tickets']}/{s['n_settled']}结算", f"中{s['n_won']}张({hr})", f"投入¥{s['stake']:.0f}",
+                 f"回报¥{s['return']:.2f}", f"ROI {roi_html}"]
+        if extra:
+            parts.append(extra)
+        by_type = ""
+        if s.get("by_type"):
+            by_type = " · ".join(
+                f"{k}: {v['n']}张中{v['won']} ROI {_fmt_roi(v.get('roi'))}"
+                for k, v in s["by_type"].items()
+            )
+        return (f'<div class="ts-statline"><b>{title}</b> · '
+                + " · ".join(parts) + (f'<br><span style="color:var(--dim);font-size:.68rem">{by_type}</span>' if by_type else "") + "</div>")
 
     p = (day.get("parlay") or {}).get("stats")
     sp = (day.get("score_parlay") or {}).get("stats")
@@ -2535,16 +2633,17 @@ def _parlay_settle_section(settle: dict | None, target_date: str = "") -> str:
         verdict += "</div>"
 
     return f"""
-    <div class="ts-section" id="parlay-settle">
-      <h2>📊 串关/波胆复盘 <span class="badge">当日真实出票结算</span></h2>
-      <p class="ts-sub">当天 ticket_plan 出的串票，用当日赛果逐腿结算（2026-08-10 起闭环）。</p>
-      <div class="ts-grid">
-        {_stat_card("胜平负串（过关）", p)}
-        {_stat_card("比分串（波胆）", sp, sp_extra)}
-      </div>
-      <h4>📋 明细</h4>
-      {_ticket_rows('parlay')}
-      {_ticket_rows('score_parlay')}
+    <div id="parlay-settle">
+      <div class="section-title">串关/波胆复盘 <span style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--dim)">当日真实出票结算</span></div>
+      {_stat_line("🎰 胜平负串", p)}
+      {_stat_line("🎰 比分串（波胆）", sp, (f"单腿命中 {sp['leg_hit_rate']:.0%}（{sp['n_legs_settled']}腿）" if sp and sp.get('leg_hit_rate') is not None else None))}
+      <details class="sp-detail" style="margin-top:6px"><summary>📋 逐票明细（{len(p_tickets)+len(sp_tickets)} 张）</summary>
+      <table class="edge-table" style="margin-top:6px">
+        <tr><th>玩法</th><th>组合（腿 ✓/✗/·）</th><th style="text-align:right">投入 → 回报</th></tr>
+        {_ticket_rows('parlay')}
+        {_ticket_rows('score_parlay')}
+      </table>
+      </details>
       {verdict}
     </div>"""
 
