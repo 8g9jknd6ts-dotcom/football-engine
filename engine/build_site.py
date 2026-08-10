@@ -136,6 +136,13 @@ def build_site():
         parlay_report = build_parlay_report(daily_root, ROOT / "data" / "state" / "parlay_report.json")
     except Exception as e:
         print(f"[build_site] ⚠ 串关回测报告生成跳过: {e}")
+    # 串关/波胆真实复盘（2026-08-10 新增：真实出票的结算，非回测）
+    parlay_settle = {}
+    try:
+        from engine.review.settle_parlays import build_settle_report
+        parlay_settle = build_settle_report(daily_root, ROOT / "data" / "state" / "parlay_settle.json")
+    except Exception as e:
+        print(f"[build_site] ⚠ 串关真实复盘生成跳过: {e}")
     # 准确率趋势报告（回答"是否每天在提升"）
     try:
         from engine.review.accuracy_trend import build_accuracy_trend
@@ -600,6 +607,13 @@ def _render_html(today, predictions, bundle, ticket, breaker, health, results=No
     parlay_html = _parlay_section(ticket, predictions)
     # 比分串（波胆过关）— 彩票票定位：小注搏大奖（2026-08-08）
     score_parlay_html = _score_parlay_section(ticket)
+    # 串关/波胆真实复盘（2026-08-10：真实出票结算）
+    try:
+        _ps_path = ROOT / "data" / "state" / "parlay_settle.json"
+        _ps = json.loads(_ps_path.read_text(encoding="utf-8")) if _ps_path.exists() else {}
+    except Exception:
+        _ps = {}
+    parlay_settle_html = _parlay_settle_section(_ps)
 
     # 赛果复盘（优先用 results.json，fallback review_ledger）
     results_html = _results_section(results, results_preds or predictions, review_ledger)
@@ -1278,6 +1292,9 @@ body {{
 
   <!-- SCORE PARLAY (2026-08-08) -->
   {score_parlay_html}
+
+  <!-- PARLAY SETTLE (2026-08-10) -->
+  {parlay_settle_html}
 
   <!-- EV VALUE REPORT -->
   {ev_html}
@@ -2416,6 +2433,101 @@ def _score_parlay_section(ticket):
     比分命中率极低，定位娱乐小注，不推荐重注。
   </div>
   {tickets}"""
+
+
+def _parlay_settle_section(settle: dict | None) -> str:
+    """串关/波胆真实复盘（2026-08-10 新增）：真实出票的结算结果。
+
+    与 parlay_report（历史回测模拟）不同，这里是 ticket_plan 里真实
+    出过的串票用当日赛果逐腿结算的命中率/ROI。诚实展示：
+    - 胜平负串：整票命中率 + ROI
+    - 波胆串：整票命中率 + 单腿命中率（精确比分极难，腿级信息量更大）
+    """
+    if not settle:
+        return ""
+
+    def _fmt_roi(v):
+        return "—" if v is None else f"{v:+.1%}"
+
+    def _stat_card(title, s, extra=None):
+        if not s or not s.get("n_tickets"):
+            return ""
+        hr = f"{s['hit_rate']:.1%}" if s.get("hit_rate") is not None else "—"
+        rows = f"""
+        <tr><td>出票/已结算</td><td>{s['n_tickets']} / {s['n_settled']}</td></tr>
+        <tr><td>命中</td><td>{s['n_won']} 张（命中率 {hr}）</td></tr>
+        <tr><td>投入</td><td>¥{s['stake']:.0f}</td></tr>
+        <tr><td>回报</td><td>¥{s['return']:.2f}</td></tr>
+        <tr><td>ROI</td><td><b class="{'ts-pos' if (s.get('roi') or 0) > 0 else 'ts-neg'}">{_fmt_roi(s.get('roi'))}</b></td></tr>"""
+        if extra:
+            rows += extra
+        by_type = ""
+        if s.get("by_type"):
+            by_type = "".join(
+                f"<div class='ts-row'><span>{k}</span><span>{v['n']}张·中{v['won']}·ROI {_fmt_roi(v.get('roi'))}</span></div>"
+                for k, v in s["by_type"].items()
+            )
+        return f"""
+        <div class="ts-card">
+          <h3>🎰 {title}</h3>
+          <table class="ts-table">{rows}</table>
+          {by_type}
+        </div>"""
+
+    def _ticket_rows(kind):
+        out = []
+        for t in (settle.get("tickets") or {}).get(kind, []):
+            mark = "✅" if t["won"] else ("⏳" if t["pending"] else "❌")
+            legs = " + ".join(
+                f"{l['home'][:6]}({l['sel'] or l['score']})" for l in t["legs"]
+            )
+            leg_marks = " ".join(
+                "✓" if l["hit"] is True else ("·" if l["hit"] is None else "✗")
+                for l in t["legs"]
+            )
+            out.append(
+                f"<div class='ts-row'><span>{t['date']} {t['type']} {mark}</span>"
+                f"<span>{legs} {leg_marks}</span>"
+                f"<span>¥{t['stake']:.0f}→{t['return']:.2f}</span></div>"
+            )
+        return "".join(out)
+
+    p = settle.get("parlay") or {}
+    sp = settle.get("score_parlay") or {}
+    if not p.get("n_tickets") and not sp.get("n_tickets"):
+        return ""
+
+    sp_extra = ""
+    if sp.get("leg_hit_rate") is not None:
+        sp_extra = (
+            f"<tr><td>单腿命中率</td><td>{sp['leg_hit_rate']:.1%}（{sp['n_legs_settled']} 腿）</td></tr>"
+        )
+
+    verdict = ""
+    p_roi, sp_roi = p.get("roi"), sp.get("roi")
+    if p.get("n_settled") or sp.get("n_settled"):
+        verdict = "<div class='ts-note'>"
+        if p_roi is not None and p_roi > 0:
+            verdict += "胜平负串实证 ROI 为正，但样本极少（1张），不足以下结论。"
+        elif p_roi is not None:
+            verdict += f"胜平负串实证 ROI {p_roi:+.0%}，串关吃双重抽水。"
+        if sp.get("n_settled"):
+            verdict += f"波胆整票命中率 {sp['hit_rate']:.0%}（{sp['n_won']}/{sp['n_settled']}），单腿 {sp['leg_hit_rate']:.0%}——两腿都中太难，纯彩票定位。"
+        verdict += "</div>"
+
+    return f"""
+    <div class="ts-section" id="parlay-settle">
+      <h2>📊 串关/波胆复盘 <span class="badge">真实出票结算</span></h2>
+      <p class="ts-sub">ticket_plan 实际出过的串票，用当日赛果逐腿结算（2026-08-10 起闭环）。</p>
+      <div class="ts-grid">
+        {_stat_card("胜平负串（过关）", p)}
+        {_stat_card("比分串（波胆）", sp, sp_extra)}
+      </div>
+      <h4>📋 明细</h4>
+      {_ticket_rows('parlay')}
+      {_ticket_rows('score_parlay')}
+      {verdict}
+    </div>"""
 
 
 def _ev_section(ev_report):
