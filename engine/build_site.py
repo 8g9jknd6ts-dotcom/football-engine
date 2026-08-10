@@ -2535,23 +2535,19 @@ def _score_parlay_section(ticket):
     src_all = "官方" if any(t.get("odds_source") == "official" for t in sp) else "模拟"
 
     return f"""
-  <details class="sp-collapse">
-    <summary>
-      <span class="sp-summary-title">🎯 比分串（波胆过关）</span>
-      <span class="sp-summary-meta">{n}张 · 投入¥{total_stake:.0f} · 最高¥{max_pot:.0f} · {src_all}赔率</span>
-      <span class="sp-summary-hint">点击展开明细</span>
-    </summary>
-    <div style="overflow-x:auto;margin-top:8px">
-    <table class="edge-table">
-      <tr><th>玩法</th><th>比分组合（单腿 @赔率）</th><th style="text-align:right">模型概率</th><th style="text-align:right">投入</th><th style="text-align:right">最高奖金</th><th>容错</th></tr>
-      {''.join(rows)}
-    </table>
-    </div>
-    <div style="font-size:.68rem;color:var(--dim);padding:4px 2px">
-      比分命中率极低（top1 约 10-13%），串票概率未校准、赔率{src_all}，定位娱乐小注，不推荐重注。
-      <details style="display:inline"><summary style="cursor:pointer;display:inline;color:var(--blue)"> 腿明细</summary>{''.join(details)}</details>
-    </div>
-  </details>"""
+  <div class="section-title">🎯 比分串（波胆过关）
+    <span style="float:right;font-weight:500;text-transform:none;letter-spacing:0;color:var(--dim)">{n}张 · 投入¥{total_stake:.0f} · 最高¥{max_pot:.0f}</span>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="edge-table">
+    <tr><th>玩法</th><th>比分组合（单腿 @赔率）</th><th style="text-align:right">模型概率</th><th style="text-align:right">投入</th><th style="text-align:right">最高奖金</th><th>容错</th></tr>
+    {''.join(rows)}
+  </table>
+  </div>
+  <div style="font-size:.68rem;color:var(--dim);padding:4px 2px">
+    比分命中率极低（top1 约 10-13%），串票概率未校准、赔率{src_all}，定位娱乐小注，不推荐重注。
+    <details style="display:inline"><summary style="cursor:pointer;display:inline;color:var(--blue)"> 腿明细</summary>{''.join(details)}</details>
+  </div>"""
 
 
 def _parlay_settle_section(settle: dict | None, target_date: str = "") -> str:
