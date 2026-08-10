@@ -1,29 +1,62 @@
 {
-  "stable": [],
-  "value": [
+ "stable": [],
+ "value": [
+  {
+   "match": "2026-07-23_周四205",
+   "sel": "away",
+   "odds": 3.1,
+   "stake": 800.0
+  }
+ ],
+ "lottery": [
+  {
+   "match": "2026-07-23_周四206",
+   "sel": "away",
+   "odds": 6.25,
+   "stake": 360.27
+  },
+  {
+   "match": "2026-07-23_周四207",
+   "sel": "away",
+   "odds": 3.85,
+   "stake": 639.73
+  }
+ ],
+ "total_stake": 1800.0,
+ "expected_roi": 0.3511,
+ "bankroll": 10000,
+ "breaker_multiplier": 1.0,
+ "score_parlay": [
+  {
+   "type": "比分2串1",
+   "legs": [
     {
-      "match": "2026-07-23_周四205",
-      "sel": "away",
-      "odds": 3.1,
-      "stake": 800.0
-    }
-  ],
-  "lottery": [
-    {
-      "match": "2026-07-23_周四206",
-      "sel": "away",
-      "odds": 6.25,
-      "stake": 360.27
+     "match": "2026-07-23_周四202",
+     "home": "博塔弗戈",
+     "away": "维多利亚",
+     "league": "巴甲",
+     "score": "1-0",
+     "prob": 0.134,
+     "odds": 7.0
     },
     {
-      "match": "2026-07-23_周四207",
-      "sel": "away",
-      "odds": 3.85,
-      "stake": 639.73
+     "match": "2026-07-23_周四207",
+     "home": "斯海杜克",
+     "away": "帕福斯",
+     "league": "欧罗巴",
+     "score": "1-1",
+     "prob": 0.132,
+     "odds": 7.5
     }
-  ],
-  "total_stake": 1800.0,
-  "expected_roi": 0.3511,
-  "bankroll": 10000,
-  "breaker_multiplier": 1.0
+   ],
+   "total_odds": 52.5,
+   "hit_prob": 0.0177,
+   "stake": 2.0,
+   "potential": 105.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 13% × 13%）"
+  }
+ ]
 }

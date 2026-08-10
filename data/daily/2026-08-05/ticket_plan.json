@@ -1,9 +1,184 @@
 {
-  "stable": [],
-  "value": [],
-  "lottery": [],
-  "total_stake": 0,
-  "expected_roi": 0.0,
-  "bankroll": 5000.0,
-  "breaker_multiplier": 1.0
+ "stable": [],
+ "value": [],
+ "lottery": [],
+ "total_stake": 0,
+ "expected_roi": 0.0,
+ "bankroll": 5000.0,
+ "breaker_multiplier": 1.0,
+ "score_parlay": [
+  {
+   "type": "比分2串1",
+   "legs": [
+    {
+     "match": "2026-08-05_周三001",
+     "home": "弗鲁米嫩塞",
+     "away": "达伽马",
+     "league": "巴西杯",
+     "score": "1-0",
+     "prob": 0.298,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-05_周三003",
+     "home": "费内巴切",
+     "away": "格拉茨风暴",
+     "league": "欧冠",
+     "score": "1-0",
+     "prob": 0.274,
+     "odds": 7.0
+    }
+   ],
+   "total_odds": 49.0,
+   "hit_prob": 0.0817,
+   "stake": 2.0,
+   "potential": 98.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 30% × 27%）"
+  },
+  {
+   "type": "比分2串1",
+   "legs": [
+    {
+     "match": "2026-08-05_周三001",
+     "home": "弗鲁米嫩塞",
+     "away": "达伽马",
+     "league": "巴西杯",
+     "score": "1-0",
+     "prob": 0.298,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-05_周三002",
+     "home": "奥胡斯",
+     "away": "萨巴赫",
+     "league": "欧冠",
+     "score": "2-1",
+     "prob": 0.161,
+     "odds": 9.5
+    }
+   ],
+   "total_odds": 66.5,
+   "hit_prob": 0.0479,
+   "stake": 2.0,
+   "potential": 133.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 30% × 16%）"
+  },
+  {
+   "type": "比分2串1",
+   "legs": [
+    {
+     "match": "2026-08-05_周三003",
+     "home": "费内巴切",
+     "away": "格拉茨风暴",
+     "league": "欧冠",
+     "score": "1-0",
+     "prob": 0.274,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-05_周三002",
+     "home": "奥胡斯",
+     "away": "萨巴赫",
+     "league": "欧冠",
+     "score": "2-1",
+     "prob": 0.161,
+     "odds": 9.5
+    }
+   ],
+   "total_odds": 66.5,
+   "hit_prob": 0.044,
+   "stake": 2.0,
+   "potential": 133.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 27% × 16%）"
+  },
+  {
+   "type": "比分3串1",
+   "legs": [
+    {
+     "match": "2026-08-05_周三001",
+     "home": "弗鲁米嫩塞",
+     "away": "达伽马",
+     "league": "巴西杯",
+     "score": "1-0",
+     "prob": 0.298,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-05_周三003",
+     "home": "费内巴切",
+     "away": "格拉茨风暴",
+     "league": "欧冠",
+     "score": "1-0",
+     "prob": 0.274,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-05_周三002",
+     "home": "奥胡斯",
+     "away": "萨巴赫",
+     "league": "欧冠",
+     "score": "2-1",
+     "prob": 0.161,
+     "odds": 9.5
+    }
+   ],
+   "total_odds": 465.5,
+   "hit_prob": 0.0131,
+   "stake": 2.0,
+   "potential": 931.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "三场比分全中才赢（赔率 466 倍）"
+  },
+  {
+   "type": "比分3串4(容错)",
+   "legs": [
+    {
+     "match": "2026-08-05_周三001",
+     "home": "弗鲁米嫩塞",
+     "away": "达伽马",
+     "league": "巴西杯",
+     "score": "1-0",
+     "prob": 0.298,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-05_周三003",
+     "home": "费内巴切",
+     "away": "格拉茨风暴",
+     "league": "欧冠",
+     "score": "1-0",
+     "prob": 0.274,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-05_周三002",
+     "home": "奥胡斯",
+     "away": "萨巴赫",
+     "league": "欧冠",
+     "score": "2-1",
+     "prob": 0.161,
+     "odds": 9.5
+    }
+   ],
+   "total_odds": 465.5,
+   "hit_prob": 0.0131,
+   "stake": 8.0,
+   "potential": 1295.0,
+   "worst_win": 133.0,
+   "n_bets": 4,
+   "odds_source": "simulated",
+   "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥133，全中≈¥1295"
+  }
+ ]
 }

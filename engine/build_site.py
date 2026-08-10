@@ -2412,15 +2412,25 @@ def _score_parlay_section(ticket):
         src = sel_odds_src.get(t.get("odds_source", "simulated"), "模拟赔率")
         legs = "".join(_leg_html(lg) for lg in t.get("legs", []))
         hit = t.get("hit_prob", 0)
+        n_bets = t.get("n_bets", 1)
+        worst = t.get("worst_win", 0)
+        # 容错票（3串4）额外显示"错1场仍中"；注数 >1 显示注数
+        chips = [
+            (f'<span class="ts-chip"><div class="ts-label">全中赔率</div><div class="ts-val">@{t.get("total_odds", 0):.1f}</div></span>'),
+            (f'<span class="ts-chip"><div class="ts-label">模型概率</div><div class="ts-val">{hit*100:.1f}%</div></span>'),
+        ]
+        if n_bets > 1:
+            chips.append(f'<span class="ts-chip"><div class="ts-label">注数</div><div class="ts-val">{n_bets}注</div></span>')
+        chips.append(f'<span class="ts-chip"><div class="ts-label">投入</div><div class="ts-val">¥{t.get("stake", 2):.0f}</div></span>')
+        chips.append(f'<span class="ts-chip"><div class="ts-label">最高奖金</div><div class="ts-val" style="color:var(--green)">¥{t.get("potential", 0):.0f}</div></span>')
+        if worst > 0:
+            chips.append(f'<span class="ts-chip"><div class="ts-label">错1场仍中</div><div class="ts-val" style="color:var(--amber)">¥{worst:.0f}</div></span>')
         return (f'<div class="ticket-card" style="border-color:var(--amber)">'
                 f'<h4 class="lottery">{ptype} <span class="pick-val draw" style="font-size:.75em">🎯 娱乐串</span>'
                 f'<span style="opacity:.6;font-size:.7em"> {src}</span></h4>'
                 f'{legs}'
                 f'<div class="ts-row" style="margin-top:4px">'
-                f'<span class="ts-chip"><div class="ts-label">全中赔率</div><div class="ts-val">@{t.get("total_odds", 0):.1f}</div></span>'
-                f'<span class="ts-chip"><div class="ts-label">模型概率</div><div class="ts-val">{hit*100:.1f}%</div></span>'
-                f'<span class="ts-chip"><div class="ts-label">投入</div><div class="ts-val">¥{t.get("stake", 2):.0f}</div></span>'
-                f'<span class="ts-chip"><div class="ts-label">最高奖金</div><div class="ts-val" style="color:var(--green)">¥{t.get("potential", 0):.0f}</div></span>'
+                f'{"".join(chips)}'
                 f'</div>'
                 f'<div style="font-size:.72rem;opacity:.65;margin-top:4px">{t.get("note", "")} · 模型比分概率未校准，命中率远低于显示值，小注娱乐</div>'
                 f'</div>')

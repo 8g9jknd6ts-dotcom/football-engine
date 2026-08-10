@@ -1,54 +1,229 @@
 {
-  "stable": [
+ "stable": [
+  {
+   "match": "2026-08-01_周六007",
+   "sel": "away",
+   "odds": 1.48,
+   "stake": 10379.36
+  },
+  {
+   "match": "2026-08-01_周六002",
+   "sel": "home",
+   "odds": 1.32,
+   "stake": 10379.36
+  }
+ ],
+ "value": [
+  {
+   "match": "2026-08-02_周日012",
+   "sel": "away",
+   "odds": 3.35,
+   "stake": 10379.36
+  },
+  {
+   "match": "2026-08-02_周日004",
+   "sel": "home",
+   "odds": 2.81,
+   "stake": 10379.36
+  },
+  {
+   "match": "2026-08-01_周六011",
+   "sel": "away",
+   "odds": 3.02,
+   "stake": 9740.71
+  }
+ ],
+ "lottery": [
+  {
+   "match": "2026-08-01_周六013",
+   "sel": "away",
+   "odds": 5.65,
+   "stake": 7242.58
+  },
+  {
+   "match": "2026-08-01_周六008",
+   "sel": "home",
+   "odds": 5.65,
+   "stake": 5731.62
+  }
+ ],
+ "total_stake": 64232.35,
+ "expected_roi": 0.2952,
+ "bankroll": 129742.02270000012,
+ "breaker_multiplier": 1.0,
+ "score_parlay": [
+  {
+   "type": "比分2串1",
+   "legs": [
     {
-      "match": "2026-08-01_周六007",
-      "sel": "away",
-      "odds": 1.48,
-      "stake": 10379.36
+     "match": "2026-08-01_周六015",
+     "home": "洛城银河",
+     "away": "达拉斯",
+     "league": "美职联",
+     "score": "1-0",
+     "prob": 0.37,
+     "odds": 7.0
     },
     {
-      "match": "2026-08-01_周六002",
-      "sel": "home",
-      "odds": 1.32,
-      "stake": 10379.36
+     "match": "2026-08-01_周六007",
+     "home": "拉赫蒂",
+     "away": "雅罗",
+     "league": "芬超",
+     "score": "0-1",
+     "prob": 0.366,
+     "odds": 7.0
     }
-  ],
-  "value": [
+   ],
+   "total_odds": 49.0,
+   "hit_prob": 0.1354,
+   "stake": 2.0,
+   "potential": 98.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 37% × 37%）"
+  },
+  {
+   "type": "比分2串1",
+   "legs": [
     {
-      "match": "2026-08-02_周日012",
-      "sel": "away",
-      "odds": 3.35,
-      "stake": 10379.36
+     "match": "2026-08-01_周六015",
+     "home": "洛城银河",
+     "away": "达拉斯",
+     "league": "美职联",
+     "score": "1-0",
+     "prob": 0.37,
+     "odds": 7.0
     },
     {
-      "match": "2026-08-02_周日004",
-      "sel": "home",
-      "odds": 2.81,
-      "stake": 10379.36
-    },
-    {
-      "match": "2026-08-01_周六011",
-      "sel": "away",
-      "odds": 3.02,
-      "stake": 9740.71
+     "match": "2026-08-01_周六002",
+     "home": "全北现代",
+     "away": "首尔FC",
+     "league": "K1联赛",
+     "score": "2-0",
+     "prob": 0.236,
+     "odds": 10.0
     }
-  ],
-  "lottery": [
+   ],
+   "total_odds": 70.0,
+   "hit_prob": 0.0873,
+   "stake": 2.0,
+   "potential": 140.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 37% × 24%）"
+  },
+  {
+   "type": "比分2串1",
+   "legs": [
     {
-      "match": "2026-08-01_周六013",
-      "sel": "away",
-      "odds": 5.65,
-      "stake": 7242.58
+     "match": "2026-08-01_周六007",
+     "home": "拉赫蒂",
+     "away": "雅罗",
+     "league": "芬超",
+     "score": "0-1",
+     "prob": 0.366,
+     "odds": 7.0
     },
     {
-      "match": "2026-08-01_周六008",
-      "sel": "home",
-      "odds": 5.65,
-      "stake": 5731.62
+     "match": "2026-08-01_周六002",
+     "home": "全北现代",
+     "away": "首尔FC",
+     "league": "K1联赛",
+     "score": "2-0",
+     "prob": 0.236,
+     "odds": 10.0
     }
-  ],
-  "total_stake": 64232.35,
-  "expected_roi": 0.2952,
-  "bankroll": 129742.02270000012,
-  "breaker_multiplier": 1.0
+   ],
+   "total_odds": 70.0,
+   "hit_prob": 0.0865,
+   "stake": 2.0,
+   "potential": 140.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 37% × 24%）"
+  },
+  {
+   "type": "比分3串1",
+   "legs": [
+    {
+     "match": "2026-08-01_周六015",
+     "home": "洛城银河",
+     "away": "达拉斯",
+     "league": "美职联",
+     "score": "1-0",
+     "prob": 0.37,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-01_周六007",
+     "home": "拉赫蒂",
+     "away": "雅罗",
+     "league": "芬超",
+     "score": "0-1",
+     "prob": 0.366,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-01_周六002",
+     "home": "全北现代",
+     "away": "首尔FC",
+     "league": "K1联赛",
+     "score": "2-0",
+     "prob": 0.236,
+     "odds": 10.0
+    }
+   ],
+   "total_odds": 490.0,
+   "hit_prob": 0.032,
+   "stake": 2.0,
+   "potential": 980.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "三场比分全中才赢（赔率 490 倍）"
+  },
+  {
+   "type": "比分3串4(容错)",
+   "legs": [
+    {
+     "match": "2026-08-01_周六015",
+     "home": "洛城银河",
+     "away": "达拉斯",
+     "league": "美职联",
+     "score": "1-0",
+     "prob": 0.37,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-01_周六007",
+     "home": "拉赫蒂",
+     "away": "雅罗",
+     "league": "芬超",
+     "score": "0-1",
+     "prob": 0.366,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-08-01_周六002",
+     "home": "全北现代",
+     "away": "首尔FC",
+     "league": "K1联赛",
+     "score": "2-0",
+     "prob": 0.236,
+     "odds": 10.0
+    }
+   ],
+   "total_odds": 490.0,
+   "hit_prob": 0.032,
+   "stake": 8.0,
+   "potential": 1358.0,
+   "worst_win": 140.0,
+   "n_bets": 4,
+   "odds_source": "simulated",
+   "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥140，全中≈¥1358"
+  }
+ ]
 }

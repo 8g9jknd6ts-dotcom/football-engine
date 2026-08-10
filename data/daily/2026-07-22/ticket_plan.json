@@ -1,42 +1,217 @@
 {
-  "stable": [
+ "stable": [
+  {
+   "match": "2026-07-22_周三204",
+   "sel": "home",
+   "odds": 1.24,
+   "stake": 800.0
+  }
+ ],
+ "value": [
+  {
+   "match": "2026-07-22_周三205",
+   "sel": "home",
+   "odds": 3.0,
+   "stake": 800.0
+  },
+  {
+   "match": "2026-07-22_周三206",
+   "sel": "home",
+   "odds": 2.0,
+   "stake": 645.73
+  }
+ ],
+ "lottery": [
+  {
+   "match": "2026-07-22_周三210",
+   "sel": "away",
+   "odds": 4.75,
+   "stake": 540.84
+  },
+  {
+   "match": "2026-07-22_周三208",
+   "sel": "away",
+   "odds": 4.15,
+   "stake": 359.16
+  }
+ ],
+ "total_stake": 3145.73,
+ "expected_roi": 0.2491,
+ "bankroll": 10000,
+ "breaker_multiplier": 0.8999999999999999,
+ "score_parlay": [
+  {
+   "type": "比分2串1",
+   "legs": [
     {
-      "match": "2026-07-22_周三204",
-      "sel": "home",
-      "odds": 1.24,
-      "stake": 800.0
-    }
-  ],
-  "value": [
-    {
-      "match": "2026-07-22_周三205",
-      "sel": "home",
-      "odds": 3.0,
-      "stake": 800.0
+     "match": "2026-07-22_周三208",
+     "home": "圣保罗",
+     "away": "巴竞技",
+     "league": "巴甲",
+     "score": "0-1",
+     "prob": 0.157,
+     "odds": 7.0
     },
     {
-      "match": "2026-07-22_周三206",
-      "sel": "home",
-      "odds": 2.0,
-      "stake": 645.73
+     "match": "2026-07-22_周三207",
+     "home": "沙佩科",
+     "away": "弗拉门戈",
+     "league": "巴甲",
+     "score": "1-1",
+     "prob": 0.133,
+     "odds": 7.5
     }
-  ],
-  "lottery": [
+   ],
+   "total_odds": 52.5,
+   "hit_prob": 0.0208,
+   "stake": 2.0,
+   "potential": 105.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 16% × 13%）"
+  },
+  {
+   "type": "比分2串1",
+   "legs": [
     {
-      "match": "2026-07-22_周三210",
-      "sel": "away",
-      "odds": 4.75,
-      "stake": 540.84
+     "match": "2026-07-22_周三208",
+     "home": "圣保罗",
+     "away": "巴竞技",
+     "league": "巴甲",
+     "score": "0-1",
+     "prob": 0.157,
+     "odds": 7.0
     },
     {
-      "match": "2026-07-22_周三208",
-      "sel": "away",
-      "odds": 4.15,
-      "stake": 359.16
+     "match": "2026-07-22_周三203",
+     "home": "光州FC",
+     "away": "金泉尚武",
+     "league": "K1联赛",
+     "score": "0-1",
+     "prob": 0.132,
+     "odds": 7.0
     }
-  ],
-  "total_stake": 3145.73,
-  "expected_roi": 0.2491,
-  "bankroll": 10000,
-  "breaker_multiplier": 0.8999999999999999
+   ],
+   "total_odds": 49.0,
+   "hit_prob": 0.0207,
+   "stake": 2.0,
+   "potential": 98.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 16% × 13%）"
+  },
+  {
+   "type": "比分2串1",
+   "legs": [
+    {
+     "match": "2026-07-22_周三208",
+     "home": "圣保罗",
+     "away": "巴竞技",
+     "league": "巴甲",
+     "score": "0-1",
+     "prob": 0.157,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-07-22_周三209",
+     "home": "洛杉矶FC",
+     "away": "盐湖城",
+     "league": "美职联",
+     "score": "1-0",
+     "prob": 0.127,
+     "odds": 7.0
+    }
+   ],
+   "total_odds": 49.0,
+   "hit_prob": 0.02,
+   "stake": 2.0,
+   "potential": 98.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "两场比分都中才赢（单场命中率约 16% × 13%）"
+  },
+  {
+   "type": "比分3串1",
+   "legs": [
+    {
+     "match": "2026-07-22_周三208",
+     "home": "圣保罗",
+     "away": "巴竞技",
+     "league": "巴甲",
+     "score": "0-1",
+     "prob": 0.157,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-07-22_周三207",
+     "home": "沙佩科",
+     "away": "弗拉门戈",
+     "league": "巴甲",
+     "score": "1-1",
+     "prob": 0.133,
+     "odds": 7.5
+    },
+    {
+     "match": "2026-07-22_周三203",
+     "home": "光州FC",
+     "away": "金泉尚武",
+     "league": "K1联赛",
+     "score": "0-1",
+     "prob": 0.132,
+     "odds": 7.0
+    }
+   ],
+   "total_odds": 367.5,
+   "hit_prob": 0.0027,
+   "stake": 2.0,
+   "potential": 735.0,
+   "worst_win": 0.0,
+   "n_bets": 1,
+   "odds_source": "simulated",
+   "note": "三场比分全中才赢（赔率 368 倍）"
+  },
+  {
+   "type": "比分3串4(容错)",
+   "legs": [
+    {
+     "match": "2026-07-22_周三208",
+     "home": "圣保罗",
+     "away": "巴竞技",
+     "league": "巴甲",
+     "score": "0-1",
+     "prob": 0.157,
+     "odds": 7.0
+    },
+    {
+     "match": "2026-07-22_周三207",
+     "home": "沙佩科",
+     "away": "弗拉门戈",
+     "league": "巴甲",
+     "score": "1-1",
+     "prob": 0.133,
+     "odds": 7.5
+    },
+    {
+     "match": "2026-07-22_周三203",
+     "home": "光州FC",
+     "away": "金泉尚武",
+     "league": "K1联赛",
+     "score": "0-1",
+     "prob": 0.132,
+     "odds": 7.0
+    }
+   ],
+   "total_odds": 367.5,
+   "hit_prob": 0.0027,
+   "stake": 8.0,
+   "potential": 1043.0,
+   "worst_win": 105.0,
+   "n_bets": 4,
+   "odds_source": "simulated",
+   "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥105，全中≈¥1043"
+  }
+ ]
 }
