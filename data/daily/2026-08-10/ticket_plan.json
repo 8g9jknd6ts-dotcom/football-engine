@@ -1,12 +1,66 @@
 {
   "stable": [],
-  "value": [],
+  "value": [
+    {
+      "match": "2026-08-10_周一003",
+      "sel": "hcap_away",
+      "odds": 1.94,
+      "stake": 150.0,
+      "prob": 0.596
+    }
+  ],
   "lottery": [],
-  "total_stake": 0,
-  "expected_roi": 0.0,
+  "total_stake": 150.0,
+  "expected_roi": 0.1562,
   "bankroll": 4836.390600000001,
   "breaker_multiplier": 1.0,
-  "parlay": [],
+  "parlay": [
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-10_周一001",
+          "home": "天狼星",
+          "away": "布鲁马波",
+          "league": "瑞超",
+          "sel": "home",
+          "odds": 1.2,
+          "prob": 0.595,
+          "cal_prob": 0.316,
+          "market_prob": 0.738,
+          "source": "market",
+          "hit_prob": 0.615
+        },
+        {
+          "match": "2026-08-10_周一002",
+          "home": "韦斯特罗斯",
+          "away": "佐加顿斯",
+          "league": "瑞超",
+          "sel": "away",
+          "odds": 1.61,
+          "prob": 0.455,
+          "cal_prob": 0.559,
+          "market_prob": 0.551,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 1.93,
+      "model_ev": -0.95,
+      "cal_ev": -0.88,
+      "cal_roi": -0.4404,
+      "market_ev": -0.43,
+      "market_roi": -0.2152,
+      "hit_prob_cal": 0.29,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 3.86,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    }
+  ],
   "score_parlay": [
     {
       "type": "比分2串1",
@@ -17,7 +71,7 @@
           "away": "布鲁马波",
           "league": "瑞超",
           "score": "1-0",
-          "prob": 0.253,
+          "prob": 0.251,
           "odds": 7.0
         },
         {
@@ -26,12 +80,12 @@
           "away": "葡国民",
           "league": "葡超",
           "score": "1-0",
-          "prob": 0.191,
+          "prob": 0.195,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0484,
+      "hit_prob": 0.0489,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -48,7 +102,7 @@
           "away": "布鲁马波",
           "league": "瑞超",
           "score": "1-0",
-          "prob": 0.253,
+          "prob": 0.251,
           "odds": 7.0
         },
         {
@@ -62,7 +116,7 @@
         }
       ],
       "total_odds": 66.5,
-      "hit_prob": 0.0439,
+      "hit_prob": 0.0435,
       "stake": 2.0,
       "potential": 133.0,
       "worst_win": 0.0,
@@ -79,7 +133,7 @@
           "away": "葡国民",
           "league": "葡超",
           "score": "1-0",
-          "prob": 0.191,
+          "prob": 0.195,
           "odds": 7.0
         },
         {
@@ -93,7 +147,7 @@
         }
       ],
       "total_odds": 66.5,
-      "hit_prob": 0.0331,
+      "hit_prob": 0.0338,
       "stake": 2.0,
       "potential": 133.0,
       "worst_win": 0.0,
@@ -110,7 +164,7 @@
           "away": "布鲁马波",
           "league": "瑞超",
           "score": "1-0",
-          "prob": 0.253,
+          "prob": 0.251,
           "odds": 7.0
         },
         {
@@ -119,7 +173,7 @@
           "away": "葡国民",
           "league": "葡超",
           "score": "1-0",
-          "prob": 0.191,
+          "prob": 0.195,
           "odds": 7.0
         },
         {
@@ -133,7 +187,7 @@
         }
       ],
       "total_odds": 465.5,
-      "hit_prob": 0.0084,
+      "hit_prob": 0.0085,
       "stake": 2.0,
       "potential": 931.0,
       "worst_win": 0.0,
@@ -150,7 +204,7 @@
           "away": "布鲁马波",
           "league": "瑞超",
           "score": "1-0",
-          "prob": 0.253,
+          "prob": 0.251,
           "odds": 7.0
         },
         {
@@ -159,7 +213,7 @@
           "away": "葡国民",
           "league": "葡超",
           "score": "1-0",
-          "prob": 0.191,
+          "prob": 0.195,
           "odds": 7.0
         },
         {
@@ -173,7 +227,7 @@
         }
       ],
       "total_odds": 465.5,
-      "hit_prob": 0.0084,
+      "hit_prob": 0.0085,
       "stake": 8.0,
       "potential": 1295.0,
       "worst_win": 133.0,
