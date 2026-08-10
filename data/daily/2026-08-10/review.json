@@ -1,0 +1,107 @@
+{
+  "date": "2026-08-10",
+  "n_matches": 2,
+  "hit_rate": 0.0,
+  "hits": 0,
+  "source_brier": {
+    "model": 0.9803,
+    "market": null,
+    "djyy": null,
+    "final": 0.8085
+  },
+  "by_league": {
+    "瑞典超": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9573
+    },
+    "葡超": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6596
+    }
+  },
+  "by_confidence_tier": {
+    "high": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9573
+    },
+    "low": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6596
+    }
+  },
+  "by_odds_band": {
+    "1.5-2.0": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9573
+    },
+    "2.0-3.0": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6596
+    }
+  },
+  "score_stats": {
+    "top1": 0,
+    "top3": 0,
+    "top5": 0,
+    "top8": 0,
+    "any": 0
+  },
+  "score_rank_hist": {},
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 0,
+      "hits": 0
+    }
+  },
+  "market_signal_stats": {
+    "n": 2,
+    "hits": 0
+  },
+  "layered": {
+    "log_loss_final": 1.2628,
+    "goal_framework": {
+      "n": 2,
+      "hits": 0
+    },
+    "prob_bands": {
+      "50-60%": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "<40%": {
+        "n": 1,
+        "hit_rate": 0.0
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "watch": {
+        "n": 1,
+        "hit_rate": 0.0
+      }
+    }
+  },
+  "biases": [],
+  "total_pnl": 0.0,
+  "generated_at": "2026-08-10T21:25:19.889386",
+  "sha256": "043663864d6266914ab293ad20fdee3f"
+}
