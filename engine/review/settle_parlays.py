@@ -59,14 +59,44 @@ def settle_leg(leg: dict, res_map: dict) -> bool | None:
 
 
 def settle_ticket(t: dict, res_map: dict) -> dict:
-    """整票结算 → {won, pending, leg_results, return, note}"""
+    """整票结算 → {won, pending, leg_results, return, note}
+
+    2026-08-10 升级：支持 3串4 容错票（4注 = 3×2串1 + 1×3串1）。
+    容错票错 1 场仍中 1 注 2串1，不能按"全中才赢"判输。
+    """
     legs = t.get("legs") or []
     res = [settle_leg(l, res_map) for l in legs]
     pending = any(x is None for x in res)
-    won = (not pending) and all(x is True for x in res)
+    ttype = t.get("type", "")
+    if pending:
+        return {"won": False, "pending": True, "leg_results": res, "return": 0.0, "note": "待赛"}
+
+    # 3串4 容错：4注 = C(3,2) 个 2串1 + 1 个 3串1
+    if "3串4" in ttype and len(legs) == 3:
+        from itertools import combinations
+        odds = [l.get("odds") or 1.0 for l in legs]
+        stake_per_bet = (t.get("stake") or 0) / (t.get("n_bets") or 4)
+        win_return = 0.0
+        n_won_bets = 0
+        for i, j in combinations(range(3), 2):  # 3 注 2串1
+            if res[i] is True and res[j] is True:
+                n_won_bets += 1
+                win_return += stake_per_bet * odds[i] * odds[j]
+        if all(x is True for x in res):          # 1 注 3串1
+            n_won_bets += 1
+            win_return += stake_per_bet * odds[0] * odds[1] * odds[2]
+        won = n_won_bets > 0
+        n_hit = sum(1 for x in res if x)
+        return {
+            "won": won, "pending": False, "leg_results": res,
+            "return": round(win_return, 2),
+            "note": f"{n_won_bets}/4注中" if won else f"0/4注中（命中{n_hit}场）",
+        }
+
+    won = all(res)
     return {
         "won": won,
-        "pending": pending,
+        "pending": False,
         "leg_results": res,
         "return": (t.get("potential", 0) or 0) if won else 0.0,
     }
