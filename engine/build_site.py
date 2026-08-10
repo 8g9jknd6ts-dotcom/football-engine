@@ -759,6 +759,29 @@ body {{
 .page-tab-panel.active {{ display: block; }}
 
 /* ===== SCORE PARLAY COMPACT (2026-08-10) ===== */
+.sp-collapse {{
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--card); padding: 0; margin: 10px 0;
+}}
+.sp-collapse > summary {{
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 10px 14px;
+}}
+.sp-collapse > summary::-webkit-details-marker {{ display: none; }}
+.sp-collapse > summary::before {{
+  content: '▸'; color: var(--blue); font-size: .8rem;
+  transition: transform .2s;
+}}
+.sp-collapse[open] > summary::before {{ transform: rotate(90deg); }}
+.sp-collapse > summary:hover {{ background: rgba(59,130,246,0.05); }}
+.sp-summary-title {{ font-weight: 800; font-size: .86rem; letter-spacing: .3px; }}
+.sp-summary-meta {{ font-size: .76rem; color: var(--dim); }}
+.sp-summary-hint {{
+  margin-left: auto; font-size: .66rem; color: var(--blue);
+  opacity: .75; font-weight: 600;
+}}
+.sp-collapse[open] .sp-summary-hint {{ display: none; }}
 .sp-leg {{ white-space: nowrap; margin-right: 6px; }}
 .sp-leg b {{ color: var(--amber); }}
 .sp-detail summary {{
@@ -2506,20 +2529,29 @@ def _score_parlay_section(ticket):
             f'<details class="sp-detail"><summary>{ptype} · {note[:36]}</summary>{leg_lines}</details>'
         )
 
+    n = len(sp)
+    total_stake = sum(t.get("stake", 0) for t in sp)
+    max_pot = max((t.get("potential", 0) for t in sp), default=0)
+    src_all = "官方" if any(t.get("odds_source") == "official" for t in sp) else "模拟"
+
     return f"""
-  <div class="section-title">比分串（波胆过关）🎯 彩票票 · 小注搏大奖
-    <span style="float:right;font-weight:500;text-transform:none;letter-spacing:0;color:var(--dim)">{len(sp)} 张</span>
-  </div>
-  <div style="overflow-x:auto">
-  <table class="edge-table">
-    <tr><th>玩法</th><th>比分组合（单腿 @赔率）</th><th style="text-align:right">模型概率</th><th style="text-align:right">投入</th><th style="text-align:right">最高奖金</th><th>容错</th></tr>
-    {''.join(rows)}
-  </table>
-  </div>
-  <div style="font-size:.68rem;color:var(--dim);padding:4px 2px">
-    比分命中率极低（top1 约 10-13%），串票概率未校准、赔率{'官方' if any(t.get('odds_source')=='official' for t in sp) else '模拟'}，定位娱乐小注，不推荐重注。
-    <details style="display:inline"><summary style="cursor:pointer;display:inline;color:var(--blue)"> 腿明细</summary>{''.join(details)}</details>
-  </div>"""
+  <details class="sp-collapse">
+    <summary>
+      <span class="sp-summary-title">🎯 比分串（波胆过关）</span>
+      <span class="sp-summary-meta">{n}张 · 投入¥{total_stake:.0f} · 最高¥{max_pot:.0f} · {src_all}赔率</span>
+      <span class="sp-summary-hint">点击展开明细</span>
+    </summary>
+    <div style="overflow-x:auto;margin-top:8px">
+    <table class="edge-table">
+      <tr><th>玩法</th><th>比分组合（单腿 @赔率）</th><th style="text-align:right">模型概率</th><th style="text-align:right">投入</th><th style="text-align:right">最高奖金</th><th>容错</th></tr>
+      {''.join(rows)}
+    </table>
+    </div>
+    <div style="font-size:.68rem;color:var(--dim);padding:4px 2px">
+      比分命中率极低（top1 约 10-13%），串票概率未校准、赔率{src_all}，定位娱乐小注，不推荐重注。
+      <details style="display:inline"><summary style="cursor:pointer;display:inline;color:var(--blue)"> 腿明细</summary>{''.join(details)}</details>
+    </div>
+  </details>"""
 
 
 def _parlay_settle_section(settle: dict | None, target_date: str = "") -> str:

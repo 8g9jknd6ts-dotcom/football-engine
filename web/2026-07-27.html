@@ -134,6 +134,29 @@ body {
 .page-tab-panel.active { display: block; }
 
 /* ===== SCORE PARLAY COMPACT (2026-08-10) ===== */
+.sp-collapse {
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--card); padding: 0; margin: 10px 0;
+}
+.sp-collapse > summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 10px 14px;
+}
+.sp-collapse > summary::-webkit-details-marker { display: none; }
+.sp-collapse > summary::before {
+  content: '▸'; color: var(--blue); font-size: .8rem;
+  transition: transform .2s;
+}
+.sp-collapse[open] > summary::before { transform: rotate(90deg); }
+.sp-collapse > summary:hover { background: rgba(59,130,246,0.05); }
+.sp-summary-title { font-weight: 800; font-size: .86rem; letter-spacing: .3px; }
+.sp-summary-meta { font-size: .76rem; color: var(--dim); }
+.sp-summary-hint {
+  margin-left: auto; font-size: .66rem; color: var(--blue);
+  opacity: .75; font-weight: 600;
+}
+.sp-collapse[open] .sp-summary-hint { display: none; }
 .sp-leg { white-space: nowrap; margin-right: 6px; }
 .sp-leg b { color: var(--amber); }
 .sp-detail summary {
