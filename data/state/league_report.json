@@ -1,8 +1,8 @@
 {
-  "n_leagues": 19,
-  "n_matches": 212,
+  "n_leagues": 20,
+  "n_matches": 216,
   "external_added": 29,
-  "generated_at": "2026-08-11T15:22:25.304081",
+  "generated_at": "2026-08-11T18:42:29.141433",
   "leagues": [
     {
       "league": "挪超",
@@ -71,16 +71,16 @@
     },
     {
       "league": "欧冠",
-      "n": 14,
-      "hit_rate": 0.3571,
-      "avg_odds": 2.226,
-      "roi": -0.345,
-      "avg_confidence": 0.1641,
-      "verdict": "送钱区",
+      "n": 17,
+      "hit_rate": 0.4118,
+      "avg_odds": 2.186,
+      "roi": -0.2,
+      "avg_confidence": 0.1615,
+      "verdict": "回暖解禁",
       "recent_n": 5,
-      "recent_hits": 2,
-      "recent_hit_rate": 0.4,
-      "recent_roi": -0.424
+      "recent_hits": 4,
+      "recent_hit_rate": 0.8,
+      "recent_roi": 0.462
     },
     {
       "league": "欧罗巴",
@@ -250,6 +250,19 @@
       "recent_hits": 1,
       "recent_hit_rate": 0.5,
       "recent_roi": -0.26
+    },
+    {
+      "league": "亚冠杯",
+      "n": 1,
+      "hit_rate": 0.0,
+      "avg_odds": 1.81,
+      "roi": -1.0,
+      "avg_confidence": 0.2488,
+      "verdict": "样本不足",
+      "recent_n": 1,
+      "recent_hits": 0,
+      "recent_hit_rate": 0.0,
+      "recent_roi": -1.0
     }
   ]
 }
