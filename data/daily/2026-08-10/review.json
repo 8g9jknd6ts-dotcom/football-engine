@@ -1,20 +1,20 @@
 {
   "date": "2026-08-10",
-  "n_matches": 2,
+  "n_matches": 3,
   "hit_rate": 0.0,
   "hits": 0,
   "source_brier": {
-    "model": 0.9803,
+    "model": 1.0118,
     "market": null,
     "djyy": null,
-    "final": 0.8085
+    "final": 0.8329
   },
   "by_league": {
     "瑞典超": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.9573
+      "avg_brier": 0.9195
     },
     "葡超": {
       "n": 1,
@@ -24,6 +24,12 @@
     }
   },
   "by_confidence_tier": {
+    "mid": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.8816
+    },
     "high": {
       "n": 1,
       "hit_rate": 0.0,
@@ -38,48 +44,54 @@
     }
   },
   "by_odds_band": {
+    "2.0-3.0": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7706
+    },
     "1.5-2.0": {
       "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9573
-    },
-    "2.0-3.0": {
-      "n": 1,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.6596
     }
   },
   "score_stats": {
     "top1": 0,
-    "top3": 0,
-    "top5": 0,
-    "top8": 0,
-    "any": 0
+    "top3": 1,
+    "top5": 1,
+    "top8": 1,
+    "any": 1
   },
-  "score_rank_hist": {},
+  "score_rank_hist": {
+    "3": 1
+  },
   "score_source_stats": {
     "djyy": {
       "n": 0,
       "hits": 0
     },
     "mc": {
-      "n": 0,
-      "hits": 0
+      "n": 1,
+      "hits": 1
     }
   },
   "market_signal_stats": {
-    "n": 2,
-    "hits": 0
+    "n": 3,
+    "hits": 1
   },
   "layered": {
-    "log_loss_final": 1.2628,
+    "log_loss_final": 1.3216,
     "goal_framework": {
-      "n": 2,
-      "hits": 0
+      "n": 3,
+      "hits": 1
     },
     "prob_bands": {
+      "40-50%": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
       "50-60%": {
         "n": 1,
         "hit_rate": 0.0
@@ -91,7 +103,7 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 1,
+        "n": 2,
         "hit_rate": 0.0
       },
       "watch": {
@@ -102,6 +114,6 @@
   },
   "biases": [],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-10T23:22:16.114763",
-  "sha256": "c066f550b8b8a55152c51d8d82d7d846"
+  "generated_at": "2026-08-11T04:47:46.809225",
+  "sha256": "384ed04e0f0b7d578e0a1bd492eb8a95"
 }
