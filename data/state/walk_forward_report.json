@@ -1,25 +1,25 @@
 {
-  "total_matches": 187,
+  "total_matches": 192,
   "date_range": [
     "2026-07-20",
     "2026-08-11"
   ],
   "metrics": {
-    "brier": 0.658,
-    "weighted_brier": 0.6582,
-    "rps": 0.2228,
-    "weighted_rps": 0.2229,
-    "log_loss": 1.0865,
-    "hit_rate": 0.4332,
-    "ece": 0.2148
+    "brier": 0.6583,
+    "weighted_brier": 0.6585,
+    "rps": 0.2235,
+    "weighted_rps": 0.2236,
+    "log_loss": 1.0871,
+    "hit_rate": 0.4271,
+    "ece": 0.2192
   },
   "draw_analysis": {
-    "actual_draws": 54,
-    "actual_draw_rate": 0.2888,
-    "predicted_draws": 6,
-    "predicted_draw_rate": 0.0321,
+    "actual_draws": 55,
+    "actual_draw_rate": 0.2865,
+    "predicted_draws": 7,
+    "predicted_draw_rate": 0.0365,
     "max_draw_prob": 0.4592,
-    "avg_draw_prob": 0.2623,
+    "avg_draw_prob": 0.2634,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4332,
-      "n": 187
+      "hit_rate": 0.4271,
+      "n": 192
     },
     "market": {
       "hit_rate": 0.512,
@@ -50,6 +50,12 @@
       "brier": 0.5505,
       "rps": 0.212
     },
+    "欧冠": {
+      "n": 22,
+      "hit_rate": 0.3636,
+      "brier": 0.6452,
+      "rps": 0.2439
+    },
     "芬超": {
       "n": 19,
       "hit_rate": 0.3684,
@@ -61,12 +67,6 @@
       "hit_rate": 0.6111,
       "brier": 0.6031,
       "rps": 0.1852
-    },
-    "欧冠": {
-      "n": 17,
-      "hit_rate": 0.4118,
-      "brier": 0.6377,
-      "rps": 0.2426
     },
     "瑞典超": {
       "n": 16,
