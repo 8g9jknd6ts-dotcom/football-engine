@@ -1,13 +1,13 @@
 {
   "date": "2026-08-12",
-  "n_matches": 1,
+  "n_matches": 3,
   "hit_rate": 0.0,
   "hits": 0,
   "source_brier": {
-    "model": 0.7073,
+    "model": 0.9195,
     "market": null,
     "djyy": null,
-    "final": 0.6946
+    "final": 0.7611
   },
   "by_league": {
     "欧超杯": {
@@ -15,6 +15,12 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.6946
+    },
+    "解放者杯": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7943
     }
   },
   "by_confidence_tier": {
@@ -23,25 +29,38 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.6946
+    },
+    "mid": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7943
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7254
+    },
+    "1.5-2.0": {
       "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.6946
+      "avg_brier": 0.8324
     }
   },
   "score_stats": {
     "top1": 0,
     "top3": 0,
-    "top5": 0,
-    "top8": 1,
-    "any": 1
+    "top5": 1,
+    "top8": 3,
+    "any": 3
   },
   "score_rank_hist": {
-    "6": 1
+    "6": 2,
+    "5": 1
   },
   "score_source_stats": {
     "djyy": {
@@ -49,21 +68,29 @@
       "hits": 0
     },
     "mc": {
-      "n": 1,
-      "hits": 0
+      "n": 3,
+      "hits": 1
     }
   },
   "market_signal_stats": {
-    "n": 1,
+    "n": 3,
     "hits": 0
   },
   "layered": {
-    "log_loss_final": 1.131,
+    "log_loss_final": 1.208,
     "goal_framework": {
-      "n": 1,
-      "hits": 0
+      "n": 3,
+      "hits": 2
     },
     "prob_bands": {
+      "40-50%": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "50-60%": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
       "<40%": {
         "n": 1,
         "hit_rate": 0.0
@@ -71,13 +98,13 @@
     },
     "freshness_groups": {
       "watch": {
-        "n": 1,
+        "n": 3,
         "hit_rate": 0.0
       }
     }
   },
   "biases": [],
-  "total_pnl": 0.0,
-  "generated_at": "2026-08-12T23:11:41.172652",
-  "sha256": "d586bba0a223f3a32f15ed817390f234"
+  "total_pnl": -50.0,
+  "generated_at": "2026-08-13T05:27:00.437787",
+  "sha256": "b5eeac6772507b618c0583e28d14c78f"
 }
