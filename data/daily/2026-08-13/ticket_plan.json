@@ -16,10 +16,10 @@
           "away": "库奥皮奥",
           "league": "欧罗巴",
           "sel": "home",
-          "odds": 1.41,
+          "odds": 1.39,
           "prob": 0.362,
           "cal_prob": 0.339,
-          "market_prob": 0.672,
+          "market_prob": 0.681,
           "source": "market",
           "hit_prob": 0.615
         },
@@ -32,22 +32,67 @@
           "odds": 1.41,
           "prob": 0.503,
           "cal_prob": 0.381,
-          "market_prob": 0.672,
+          "market_prob": 0.67,
           "source": "market",
           "hit_prob": 0.615
         }
       ],
-      "total_odds": 1.99,
-      "model_ev": -1.28,
-      "cal_ev": -0.5,
-      "cal_roi": -0.2481,
+      "total_odds": 1.96,
+      "model_ev": -1.29,
+      "cal_ev": -0.52,
+      "cal_roi": -0.2587,
       "market_ev": -0.21,
-      "market_roi": -0.1031,
+      "market_roi": -0.106,
       "hit_prob_cal": 0.378,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 3.98,
+      "potential": 3.92,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-13_周四008",
+          "home": "哈茨",
+          "away": "本菲卡",
+          "league": "欧罗巴",
+          "sel": "away",
+          "odds": 1.41,
+          "prob": 0.503,
+          "cal_prob": 0.381,
+          "market_prob": 0.67,
+          "source": "market",
+          "hit_prob": 0.615
+        },
+        {
+          "match": "2026-08-13_周四006",
+          "home": "流浪者",
+          "away": "比亚韦",
+          "league": "欧罗巴",
+          "sel": "home",
+          "odds": 1.51,
+          "prob": 0.395,
+          "cal_prob": 0.339,
+          "market_prob": 0.628,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.13,
+      "model_ev": -1.15,
+      "cal_ev": -0.77,
+      "cal_roi": -0.3833,
+      "market_ev": -0.21,
+      "market_roi": -0.1044,
+      "hit_prob_cal": 0.29,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.26,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -61,10 +106,10 @@
           "away": "库奥皮奥",
           "league": "欧罗巴",
           "sel": "home",
-          "odds": 1.41,
+          "odds": 1.39,
           "prob": 0.362,
           "cal_prob": 0.339,
-          "market_prob": 0.672,
+          "market_prob": 0.681,
           "source": "market",
           "hit_prob": 0.615
         },
@@ -74,70 +119,25 @@
           "away": "比亚韦",
           "league": "欧罗巴",
           "sel": "home",
-          "odds": 1.55,
+          "odds": 1.51,
           "prob": 0.395,
           "cal_prob": 0.339,
-          "market_prob": 0.61,
+          "market_prob": 0.628,
           "source": "market",
           "hit_prob": 0.471
         }
       ],
-      "total_odds": 2.19,
-      "model_ev": -1.38,
-      "cal_ev": -0.73,
-      "cal_roi": -0.3669,
-      "market_ev": -0.21,
-      "market_roi": -0.104,
+      "total_odds": 2.1,
+      "model_ev": -1.4,
+      "cal_ev": -0.78,
+      "cal_roi": -0.392,
+      "market_ev": -0.2,
+      "market_roi": -0.1016,
       "hit_prob_cal": 0.29,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.37,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "market"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-08-13_周四008",
-          "home": "哈茨",
-          "away": "本菲卡",
-          "league": "欧罗巴",
-          "sel": "away",
-          "odds": 1.41,
-          "prob": 0.503,
-          "cal_prob": 0.381,
-          "market_prob": 0.672,
-          "source": "market",
-          "hit_prob": 0.615
-        },
-        {
-          "match": "2026-08-13_周四006",
-          "home": "流浪者",
-          "away": "比亚韦",
-          "league": "欧罗巴",
-          "sel": "home",
-          "odds": 1.55,
-          "prob": 0.395,
-          "cal_prob": 0.339,
-          "market_prob": 0.61,
-          "source": "market",
-          "hit_prob": 0.471
-        }
-      ],
-      "total_odds": 2.19,
-      "model_ev": -1.13,
-      "cal_ev": -0.73,
-      "cal_roi": -0.3669,
-      "market_ev": -0.21,
-      "market_roi": -0.1043,
-      "hit_prob_cal": 0.29,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.37,
+      "potential": 4.2,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -153,7 +153,7 @@
           "away": "塞萨洛",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.308,
+          "prob": 0.318,
           "odds": 7.0
         },
         {
@@ -162,18 +162,18 @@
           "away": "科林蒂安",
           "league": "解放者杯",
           "score": "0-1",
-          "prob": 0.297,
+          "prob": 0.299,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0915,
+      "hit_prob": 0.0949,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 31% × 30%）"
+      "note": "两场比分都中才赢（单场命中率约 32% × 30%）"
     },
     {
       "type": "比分2串1",
@@ -184,7 +184,7 @@
           "away": "塞萨洛",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.308,
+          "prob": 0.318,
           "odds": 7.0
         },
         {
@@ -193,18 +193,18 @@
           "away": "基多体大",
           "league": "解放者杯",
           "score": "1-0",
-          "prob": 0.278,
+          "prob": 0.282,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0857,
+      "hit_prob": 0.0895,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 31% × 28%）"
+      "note": "两场比分都中才赢（单场命中率约 32% × 28%）"
     },
     {
       "type": "比分2串1",
@@ -215,7 +215,7 @@
           "away": "科林蒂安",
           "league": "解放者杯",
           "score": "0-1",
-          "prob": 0.297,
+          "prob": 0.299,
           "odds": 7.0
         },
         {
@@ -224,12 +224,12 @@
           "away": "基多体大",
           "league": "解放者杯",
           "score": "1-0",
-          "prob": 0.278,
+          "prob": 0.282,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0825,
+      "hit_prob": 0.0841,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -246,7 +246,7 @@
           "away": "塞萨洛",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.308,
+          "prob": 0.318,
           "odds": 7.0
         },
         {
@@ -255,7 +255,7 @@
           "away": "科林蒂安",
           "league": "解放者杯",
           "score": "0-1",
-          "prob": 0.297,
+          "prob": 0.299,
           "odds": 7.0
         },
         {
@@ -264,12 +264,12 @@
           "away": "基多体大",
           "league": "解放者杯",
           "score": "1-0",
-          "prob": 0.278,
+          "prob": 0.282,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0254,
+      "hit_prob": 0.0267,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -286,7 +286,7 @@
           "away": "塞萨洛",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.308,
+          "prob": 0.318,
           "odds": 7.0
         },
         {
@@ -295,7 +295,7 @@
           "away": "科林蒂安",
           "league": "解放者杯",
           "score": "0-1",
-          "prob": 0.297,
+          "prob": 0.299,
           "odds": 7.0
         },
         {
@@ -304,12 +304,12 @@
           "away": "基多体大",
           "league": "解放者杯",
           "score": "1-0",
-          "prob": 0.278,
+          "prob": 0.282,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0254,
+      "hit_prob": 0.0267,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
