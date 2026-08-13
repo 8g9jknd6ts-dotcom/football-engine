@@ -1,0 +1,133 @@
+{
+  "date": "2026-08-13",
+  "n_matches": 6,
+  "hit_rate": 0.3333,
+  "hits": 2,
+  "source_brier": {
+    "model": 0.7385,
+    "market": null,
+    "djyy": 0.7425,
+    "final": 0.6638
+  },
+  "by_league": {
+    "欧罗巴": {
+      "n": 5,
+      "hit_rate": 0.4,
+      "wilson_lower": 0.1176,
+      "avg_brier": 0.6594
+    },
+    "沙特联": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6858
+    }
+  },
+  "by_confidence_tier": {
+    "mid": {
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.6558
+    },
+    "low": {
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.6717
+    }
+  },
+  "by_odds_band": {
+    "2.0-3.0": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6997
+    },
+    "1.0-1.5": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.7399
+    },
+    "1.5-2.0": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.5517
+    }
+  },
+  "score_stats": {
+    "top1": 1,
+    "top3": 3,
+    "top5": 3,
+    "top8": 3,
+    "any": 3
+  },
+  "score_rank_hist": {
+    "2": 1,
+    "3": 1,
+    "1": 1
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 3,
+      "hits": 3
+    },
+    "mc": {
+      "n": 2,
+      "hits": 1
+    }
+  },
+  "market_signal_stats": {
+    "n": 6,
+    "hits": 2
+  },
+  "layered": {
+    "log_loss_final": 1.0891,
+    "goal_framework": {
+      "n": 6,
+      "hits": 2
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 2,
+        "hit_rate": 0.5
+      },
+      "50-60%": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "<40%": {
+        "n": 3,
+        "hit_rate": 0.3333
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 2,
+        "hit_rate": 0.5
+      },
+      "watch": {
+        "n": 4,
+        "hit_rate": 0.25
+      }
+    }
+  },
+  "biases": [
+    {
+      "dimension": "outcome",
+      "key": "all",
+      "outcome": "draw",
+      "predicted_avg": 0.2963,
+      "actual_rate": 0.5,
+      "gap": -0.2037,
+      "n": 6,
+      "severity": "warn",
+      "suggested_action": "reduce draw_bias"
+    }
+  ],
+  "total_pnl": 0.0,
+  "generated_at": "2026-08-13T21:31:48.505852",
+  "sha256": "296091996851e8f612727aa27efe4054"
+}
