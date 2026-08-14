@@ -1,0 +1,253 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [
+    {
+      "match": "2026-08-14_周五014",
+      "sel": "away",
+      "odds": 4.48,
+      "stake": 50.0,
+      "prob": 0.404
+    }
+  ],
+  "total_stake": 50.0,
+  "expected_roi": 0.8117,
+  "bankroll": 4736.390600000001,
+  "breaker_multiplier": 1.0,
+  "parlay": [
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-14_周五015",
+          "home": "圣埃蒂安",
+          "away": "克莱蒙",
+          "league": "法乙",
+          "sel": "home",
+          "odds": 1.48,
+          "prob": 0.445,
+          "cal_prob": 0.432,
+          "market_prob": 0.642,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
+          "match": "2026-08-14_周五011",
+          "home": "瓦尔韦克",
+          "away": "多德勒支",
+          "league": "荷乙",
+          "sel": "home",
+          "odds": 1.72,
+          "prob": 0.554,
+          "cal_prob": 0.3,
+          "market_prob": 0.554,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.55,
+      "model_ev": -0.74,
+      "cal_ev": -0.87,
+      "cal_roi": -0.4353,
+      "market_ev": -0.19,
+      "market_roi": -0.0945,
+      "hit_prob_cal": 0.222,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.09,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    }
+  ],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-14_周五006",
+          "home": "埃尔夫斯堡",
+          "away": "韦斯特罗斯",
+          "league": "瑞典超",
+          "score": "0-1",
+          "prob": 0.294,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-14_周五002",
+          "home": "瓦萨",
+          "away": "TPS图尔库",
+          "league": "芬超",
+          "score": "0-1",
+          "prob": 0.285,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0837,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 29% × 29%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-14_周五006",
+          "home": "埃尔夫斯堡",
+          "away": "韦斯特罗斯",
+          "league": "瑞典超",
+          "score": "0-1",
+          "prob": 0.294,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-14_周五004",
+          "home": "不伦瑞克",
+          "away": "波鸿",
+          "league": "德乙",
+          "score": "1-0",
+          "prob": 0.25,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0735,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 29% × 25%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-14_周五006",
+          "home": "埃尔夫斯堡",
+          "away": "韦斯特罗斯",
+          "league": "瑞典超",
+          "score": "0-1",
+          "prob": 0.294,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-14_周五017",
+          "home": "里斯本",
+          "away": "吉马良斯",
+          "league": "葡超",
+          "score": "1-0",
+          "prob": 0.244,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0717,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 29% × 24%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-08-14_周五006",
+          "home": "埃尔夫斯堡",
+          "away": "韦斯特罗斯",
+          "league": "瑞典超",
+          "score": "0-1",
+          "prob": 0.294,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-14_周五002",
+          "home": "瓦萨",
+          "away": "TPS图尔库",
+          "league": "芬超",
+          "score": "0-1",
+          "prob": 0.285,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-14_周五004",
+          "home": "不伦瑞克",
+          "away": "波鸿",
+          "league": "德乙",
+          "score": "1-0",
+          "prob": 0.25,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.021,
+      "stake": 2.0,
+      "potential": 686.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 343 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-08-14_周五006",
+          "home": "埃尔夫斯堡",
+          "away": "韦斯特罗斯",
+          "league": "瑞典超",
+          "score": "0-1",
+          "prob": 0.294,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-14_周五002",
+          "home": "瓦萨",
+          "away": "TPS图尔库",
+          "league": "芬超",
+          "score": "0-1",
+          "prob": 0.285,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-14_周五004",
+          "home": "不伦瑞克",
+          "away": "波鸿",
+          "league": "德乙",
+          "score": "1-0",
+          "prob": 0.25,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.021,
+      "stake": 8.0,
+      "potential": 980.0,
+      "worst_win": 98.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥98，全中≈¥980"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4138,
+    "n": 203,
+    "table": {
+      "0.35": 0.3387,
+      "0.4": 0.4324,
+      "0.45": 0.5676,
+      "0.5": 0.3636,
+      "0.55": 0.3,
+      "0.6": 0.5,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
