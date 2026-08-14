@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-13",
-  "total_matches": 202,
+  "generated_at": "2026-08-14",
+  "total_matches": 203,
   "date_range": [
     "2026-07-20",
     "2026-08-13"
   ],
   "overall": {
-    "hit_rate": 0.4158,
-    "brier_final": 0.6601,
+    "hit_rate": 0.4138,
+    "brier_final": 0.6602,
     "brier_model": 0.6988,
-    "brier_market": 0.3864,
-    "brier_djyy": 0.3247
+    "brier_market": 0.3845,
+    "brier_djyy": 0.3231
   },
   "daily": [
     {
@@ -303,21 +303,21 @@
     },
     {
       "date": "2026-08-13",
-      "n": 6,
+      "n": 7,
       "hits": 2,
-      "hit_rate": 0.3333,
-      "cum_hit_rate": 0.4158,
-      "brier_final": 0.6638,
-      "brier_model": 0.7385,
+      "hit_rate": 0.2857,
+      "cum_hit_rate": 0.4138,
+      "brier_final": 0.6669,
+      "brier_model": 0.7312,
       "brier_market": null,
       "brier_djyy": 0.7425,
       "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 81,
-    "hit_rate": 0.3951,
-    "brier_final": 0.6893,
+    "n": 82,
+    "hit_rate": 0.3902,
+    "brier_final": 0.6897,
     "pnl": -263.6
   },
   "prev7": {
@@ -413,6 +413,12 @@
       "brier_final": 0.5657
     },
     {
+      "layer": "解放者杯",
+      "n": 4,
+      "hit_rate": 0.0,
+      "brier_final": 0.7375
+    },
+    {
       "layer": "德乙",
       "n": 3,
       "hit_rate": 0.3333,
@@ -429,12 +435,6 @@
       "n": 3,
       "hit_rate": 0.3333,
       "brier_final": 0.6963
-    },
-    {
-      "layer": "解放者杯",
-      "n": 3,
-      "hit_rate": 0.0,
-      "brier_final": 0.7546
     },
     {
       "layer": "荷乙",
@@ -476,9 +476,9 @@
     },
     {
       "layer": "2.0-3.0",
-      "n": 65,
-      "hit_rate": 0.3231,
-      "brier_final": 0.6751
+      "n": 66,
+      "hit_rate": 0.3182,
+      "brier_final": 0.6752
     },
     {
       "layer": "1.0-1.5",
@@ -502,9 +502,9 @@
     },
     {
       "layer": "low",
-      "n": 64,
-      "hit_rate": 0.3438,
-      "brier_final": 0.6586
+      "n": 65,
+      "hit_rate": 0.3385,
+      "brier_final": 0.659
     },
     {
       "layer": "high",
