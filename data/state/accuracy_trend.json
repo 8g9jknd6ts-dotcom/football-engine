@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-15",
-  "total_matches": 236,
+  "total_matches": 237,
   "date_range": [
     "2026-07-20",
     "2026-08-15"
   ],
   "overall": {
-    "hit_rate": 0.4364,
-    "brier_final": 0.6548,
-    "brier_model": 0.6901,
-    "brier_market": 0.3307,
-    "brier_djyy": 0.3134
+    "hit_rate": 0.4346,
+    "brier_final": 0.6565,
+    "brier_model": 0.6923,
+    "brier_market": 0.3293,
+    "brier_djyy": 0.312
   },
   "daily": [
     {
@@ -327,21 +327,21 @@
     },
     {
       "date": "2026-08-15",
-      "n": 13,
+      "n": 14,
       "hits": 7,
-      "hit_rate": 0.5385,
-      "cum_hit_rate": 0.4364,
-      "brier_final": 0.6207,
-      "brier_model": 0.6387,
+      "hit_rate": 0.5,
+      "cum_hit_rate": 0.4346,
+      "brier_final": 0.6511,
+      "brier_model": 0.68,
       "brier_market": null,
       "brier_djyy": 0.5389,
       "pnl": 31.4
     }
   ],
   "rolling7": {
-    "n": 80,
-    "hit_rate": 0.4,
-    "brier_final": 0.6884,
+    "n": 81,
+    "hit_rate": 0.3951,
+    "brier_final": 0.6927,
     "pnl": -268.6
   },
   "prev7": {
@@ -366,9 +366,9 @@
     },
     {
       "layer": "芬超",
-      "n": 20,
-      "hit_rate": 0.4,
-      "brier_final": 0.7035
+      "n": 21,
+      "hit_rate": 0.381,
+      "brier_final": 0.7199
     },
     {
       "layer": "K1联赛",
@@ -518,9 +518,9 @@
     },
     {
       "layer": "1.5-2.0",
-      "n": 75,
-      "hit_rate": 0.4267,
-      "brier_final": 0.6807
+      "n": 76,
+      "hit_rate": 0.4211,
+      "brier_final": 0.6855
     },
     {
       "layer": "1.0-1.5",
@@ -538,9 +538,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 109,
-      "hit_rate": 0.4771,
-      "brier_final": 0.6304
+      "n": 110,
+      "hit_rate": 0.4727,
+      "brier_final": 0.6342
     },
     {
       "layer": "low",

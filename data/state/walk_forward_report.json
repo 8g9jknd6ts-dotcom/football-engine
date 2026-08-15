@@ -1,23 +1,23 @@
 {
-  "total_matches": 236,
+  "total_matches": 237,
   "date_range": [
     "2026-07-20",
     "2026-08-15"
   ],
   "metrics": {
-    "brier": 0.6548,
-    "weighted_brier": 0.6549,
-    "rps": 0.2208,
-    "weighted_rps": 0.2208,
-    "log_loss": 1.081,
-    "hit_rate": 0.4364,
-    "ece": 0.1662
+    "brier": 0.6565,
+    "weighted_brier": 0.6566,
+    "rps": 0.2219,
+    "weighted_rps": 0.2219,
+    "log_loss": 1.0838,
+    "hit_rate": 0.4346,
+    "ece": 0.17
   },
   "draw_analysis": {
     "actual_draws": 70,
-    "actual_draw_rate": 0.2966,
+    "actual_draw_rate": 0.2954,
     "predicted_draws": 9,
-    "predicted_draw_rate": 0.0381,
+    "predicted_draw_rate": 0.038,
     "max_draw_prob": 0.4592,
     "avg_draw_prob": 0.2706,
     "avg_market_draw": 0.2437,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4364,
-      "n": 236
+      "hit_rate": 0.4346,
+      "n": 237
     },
     "market": {
       "hit_rate": 0.512,
@@ -57,10 +57,10 @@
       "rps": 0.2439
     },
     "芬超": {
-      "n": 20,
-      "hit_rate": 0.4,
-      "brier": 0.7035,
-      "rps": 0.2592
+      "n": 21,
+      "hit_rate": 0.381,
+      "brier": 0.7199,
+      "rps": 0.2698
     },
     "K1联赛": {
       "n": 20,

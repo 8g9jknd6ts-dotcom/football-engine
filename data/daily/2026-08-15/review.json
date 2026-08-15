@@ -1,13 +1,13 @@
 {
   "date": "2026-08-15",
-  "n_matches": 13,
-  "hit_rate": 0.5385,
+  "n_matches": 14,
+  "hit_rate": 0.5,
   "hits": 7,
   "source_brier": {
-    "model": 0.6387,
+    "model": 0.68,
     "market": null,
     "djyy": 0.5389,
-    "final": 0.6207
+    "final": 0.6511
   },
   "by_league": {
     "日职": {
@@ -63,14 +63,20 @@
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
       "avg_brier": 0.6381
+    },
+    "芬超": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.0463
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 9,
-      "hit_rate": 0.5556,
-      "wilson_lower": 0.2666,
-      "avg_brier": 0.6078
+      "n": 10,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.2366,
+      "avg_brier": 0.6517
     },
     "low": {
       "n": 4,
@@ -81,10 +87,10 @@
   },
   "by_odds_band": {
     "1.5-2.0": {
-      "n": 3,
-      "hit_rate": 1.0,
-      "wilson_lower": 0.4385,
-      "avg_brier": 0.4484
+      "n": 4,
+      "hit_rate": 0.75,
+      "wilson_lower": 0.3006,
+      "avg_brier": 0.5979
     },
     "2.0-3.0": {
       "n": 8,
@@ -123,19 +129,23 @@
     }
   },
   "market_signal_stats": {
-    "n": 13,
+    "n": 14,
     "hits": 7
   },
   "layered": {
-    "log_loss_final": 1.0345,
+    "log_loss_final": 1.0844,
     "goal_framework": {
-      "n": 13,
-      "hits": 1
+      "n": 14,
+      "hits": 2
     },
     "prob_bands": {
       "40-50%": {
         "n": 9,
         "hit_rate": 0.5556
+      },
+      "50-60%": {
+        "n": 1,
+        "hit_rate": 0.0
       },
       "<40%": {
         "n": 4,
@@ -144,8 +154,8 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 5,
-        "hit_rate": 0.4
+        "n": 6,
+        "hit_rate": 0.3333
       },
       "watch": {
         "n": 8,
@@ -155,6 +165,6 @@
   },
   "biases": [],
   "total_pnl": 31.37,
-  "generated_at": "2026-08-15T17:04:40.648654",
-  "sha256": "049adf4912f6eb8074a3fc8327517880"
+  "generated_at": "2026-08-15T17:54:53.689044",
+  "sha256": "4043caacd2388cfaf5d7eca5547d44d9"
 }
