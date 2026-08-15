@@ -1,25 +1,25 @@
 {
-  "total_matches": 237,
+  "total_matches": 241,
   "date_range": [
     "2026-07-20",
     "2026-08-15"
   ],
   "metrics": {
-    "brier": 0.6565,
-    "weighted_brier": 0.6566,
-    "rps": 0.2219,
+    "brier": 0.6578,
+    "weighted_brier": 0.658,
+    "rps": 0.2218,
     "weighted_rps": 0.2219,
-    "log_loss": 1.0838,
-    "hit_rate": 0.4346,
-    "ece": 0.17
+    "log_loss": 1.0854,
+    "hit_rate": 0.4315,
+    "ece": 0.1682
   },
   "draw_analysis": {
-    "actual_draws": 70,
-    "actual_draw_rate": 0.2954,
+    "actual_draws": 72,
+    "actual_draw_rate": 0.2988,
     "predicted_draws": 9,
-    "predicted_draw_rate": 0.038,
+    "predicted_draw_rate": 0.0373,
     "max_draw_prob": 0.4592,
-    "avg_draw_prob": 0.2706,
+    "avg_draw_prob": 0.2709,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4346,
-      "n": 237
+      "hit_rate": 0.4315,
+      "n": 241
     },
     "market": {
       "hit_rate": 0.512,
@@ -86,23 +86,23 @@
       "brier": 0.69,
       "rps": 0.1781
     },
+    "荷甲": {
+      "n": 12,
+      "hit_rate": 0.5833,
+      "brier": 0.5801,
+      "rps": 0.2347
+    },
+    "葡超": {
+      "n": 12,
+      "hit_rate": 0.4167,
+      "brier": 0.6506,
+      "rps": 0.1793
+    },
     "美职联": {
       "n": 11,
       "hit_rate": 0.4545,
       "brier": 0.689,
       "rps": 0.1721
-    },
-    "荷甲": {
-      "n": 11,
-      "hit_rate": 0.5455,
-      "brier": 0.5812,
-      "rps": 0.2334
-    },
-    "葡超": {
-      "n": 11,
-      "hit_rate": 0.4545,
-      "brier": 0.639,
-      "rps": 0.1647
     },
     "日职": {
       "n": 9,
@@ -140,6 +140,12 @@
       "brier": 0.7097,
       "rps": 0.1241
     },
+    "沙特联": {
+      "n": 5,
+      "hit_rate": 0.6,
+      "brier": 0.6309,
+      "rps": 0.2312
+    },
     "荷乙": {
       "n": 4,
       "hit_rate": 0.5,
@@ -152,23 +158,17 @@
       "brier": 0.5657,
       "rps": 0.1899
     },
-    "沙特联": {
+    "英冠": {
       "n": 4,
-      "hit_rate": 0.75,
-      "brier": 0.5977,
-      "rps": 0.2569
+      "hit_rate": 0.25,
+      "brier": 0.7263,
+      "rps": 0.2143
     },
     "韩职": {
       "n": 3,
       "hit_rate": 0.3333,
       "brier": 0.7053,
       "rps": 0.2367
-    },
-    "英冠": {
-      "n": 3,
-      "hit_rate": 0.3333,
-      "brier": 0.6877,
-      "rps": 0.2321
     }
   }
 }
