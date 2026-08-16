@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-16",
-  "total_matches": 273,
+  "total_matches": 274,
   "date_range": [
     "2026-07-20",
     "2026-08-16"
   ],
   "overall": {
-    "hit_rate": 0.4249,
-    "brier_final": 0.6614,
-    "brier_model": 0.6997,
-    "brier_market": 0.2859,
-    "brier_djyy": 0.2881
+    "hit_rate": 0.4234,
+    "brier_final": 0.6618,
+    "brier_model": 0.7003,
+    "brier_market": 0.2848,
+    "brier_djyy": 0.287
   },
   "daily": [
     {
@@ -339,21 +339,21 @@
     },
     {
       "date": "2026-08-16",
-      "n": 23,
+      "n": 24,
       "hits": 7,
-      "hit_rate": 0.3043,
-      "cum_hit_rate": 0.4249,
-      "brier_final": 0.7122,
-      "brier_model": 0.7692,
+      "hit_rate": 0.2917,
+      "cum_hit_rate": 0.4234,
+      "brier_final": 0.7156,
+      "brier_model": 0.7729,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": -136.9
     }
   ],
   "rolling7": {
-    "n": 93,
-    "hit_rate": 0.3978,
-    "brier_final": 0.7036,
+    "n": 94,
+    "hit_rate": 0.3936,
+    "brier_final": 0.704,
     "pnl": -305.5
   },
   "prev7": {
@@ -366,9 +366,9 @@
   "by_league": [
     {
       "layer": "挪超",
-      "n": 29,
-      "hit_rate": 0.4828,
-      "brier_final": 0.5799
+      "n": 30,
+      "hit_rate": 0.4667,
+      "brier_final": 0.587
     },
     {
       "layer": "瑞典超",
@@ -554,9 +554,9 @@
     },
     {
       "layer": "3.0+",
-      "n": 29,
-      "hit_rate": 0.3103,
-      "brier_final": 0.658
+      "n": 30,
+      "hit_rate": 0.3,
+      "brier_final": 0.6626
     }
   ],
   "by_conf_tier": [
@@ -568,9 +568,9 @@
     },
     {
       "layer": "low",
-      "n": 92,
-      "hit_rate": 0.3913,
-      "brier_final": 0.6542
+      "n": 93,
+      "hit_rate": 0.3871,
+      "brier_final": 0.6557
     },
     {
       "layer": "high",

@@ -1,13 +1,13 @@
 {
   "date": "2026-08-16",
-  "n_matches": 23,
-  "hit_rate": 0.3043,
+  "n_matches": 24,
+  "hit_rate": 0.2917,
   "hits": 7,
   "source_brier": {
-    "model": 0.7692,
+    "model": 0.7729,
     "market": null,
     "djyy": null,
-    "final": 0.7122
+    "final": 0.7156
   },
   "by_league": {
     "日职乙": {
@@ -35,10 +35,10 @@
       "avg_brier": 0.9123
     },
     "挪超": {
-      "n": 4,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.15,
-      "avg_brier": 0.668
+      "n": 5,
+      "hit_rate": 0.4,
+      "wilson_lower": 0.1176,
+      "avg_brier": 0.6933
     },
     "社区盾": {
       "n": 1,
@@ -73,10 +73,10 @@
   },
   "by_confidence_tier": {
     "low": {
-      "n": 4,
+      "n": 5,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.6903
+      "avg_brier": 0.7111
     },
     "high": {
       "n": 2,
@@ -99,10 +99,10 @@
       "avg_brier": 0.6826
     },
     "3.0+": {
-      "n": 4,
+      "n": 5,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.7835
+      "avg_brier": 0.7857
     },
     "1.5-2.0": {
       "n": 4,
@@ -119,16 +119,16 @@
   },
   "score_stats": {
     "top1": 1,
-    "top3": 2,
-    "top5": 4,
-    "top8": 7,
-    "any": 7
+    "top3": 3,
+    "top5": 5,
+    "top8": 8,
+    "any": 8
   },
   "score_rank_hist": {
     "1": 1,
     "5": 2,
     "7": 1,
-    "3": 1,
+    "3": 2,
     "6": 1,
     "8": 1
   },
@@ -138,19 +138,19 @@
       "hits": 0
     },
     "mc": {
-      "n": 7,
-      "hits": 4
+      "n": 8,
+      "hits": 5
     }
   },
   "market_signal_stats": {
-    "n": 23,
-    "hits": 11
+    "n": 24,
+    "hits": 12
   },
   "layered": {
-    "log_loss_final": 1.1699,
+    "log_loss_final": 1.1752,
     "goal_framework": {
-      "n": 23,
-      "hits": 4
+      "n": 24,
+      "hits": 5
     },
     "prob_bands": {
       "40-50%": {
@@ -162,14 +162,14 @@
         "hit_rate": 0.1667
       },
       "<40%": {
-        "n": 4,
+        "n": 5,
         "hit_rate": 0.0
       }
     },
     "freshness_groups": {
       "ok": {
-        "n": 16,
-        "hit_rate": 0.25
+        "n": 17,
+        "hit_rate": 0.2353
       },
       "watch": {
         "n": 7,
@@ -177,8 +177,20 @@
       }
     }
   },
-  "biases": [],
+  "biases": [
+    {
+      "dimension": "league",
+      "key": "挪超",
+      "outcome": "home",
+      "predicted_avg": 0.3772,
+      "actual_rate": 0.6,
+      "gap": -0.2228,
+      "n": 5,
+      "severity": "critical",
+      "suggested_action": "increase home_adv_weight"
+    }
+  ],
   "total_pnl": -136.91,
-  "generated_at": "2026-08-16T19:05:24.912737",
-  "sha256": "611328a8f647292229f71ce1ed08c480"
+  "generated_at": "2026-08-16T19:49:58.206397",
+  "sha256": "566cae91b8e289dbcccaddd5cc7d51d4"
 }
