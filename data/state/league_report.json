@@ -1,17 +1,30 @@
 {
-  "n_leagues": 27,
-  "n_matches": 279,
+  "n_leagues": 28,
+  "n_matches": 299,
   "external_added": 29,
-  "generated_at": "2026-08-16T15:56:56.489186",
+  "generated_at": "2026-08-16T17:02:24.068437",
   "leagues": [
     {
       "league": "挪超",
-      "n": 35,
-      "hit_rate": 0.5429,
-      "avg_odds": 1.928,
-      "roi": 0.0037,
-      "avg_confidence": 0.2756,
-      "verdict": "观望",
+      "n": 38,
+      "hit_rate": 0.5263,
+      "avg_odds": 1.933,
+      "roi": -0.0329,
+      "avg_confidence": 0.2711,
+      "verdict": "谨慎",
+      "recent_n": 5,
+      "recent_hits": 1,
+      "recent_hit_rate": 0.2,
+      "recent_roi": -0.676
+    },
+    {
+      "league": "瑞典超",
+      "n": 29,
+      "hit_rate": 0.1724,
+      "avg_odds": 2.186,
+      "roi": -0.6059,
+      "avg_confidence": 0.2465,
+      "verdict": "送钱区",
       "recent_n": 5,
       "recent_hits": 0,
       "recent_hit_rate": 0.0,
@@ -19,11 +32,11 @@
     },
     {
       "league": "芬超",
-      "n": 26,
-      "hit_rate": 0.3846,
-      "avg_odds": 1.961,
-      "roi": -0.2362,
-      "avg_confidence": 0.2271,
+      "n": 27,
+      "hit_rate": 0.3704,
+      "avg_odds": 1.982,
+      "roi": -0.2644,
+      "avg_confidence": 0.2219,
       "verdict": "送钱区",
       "recent_n": 5,
       "recent_hits": 1,
@@ -31,30 +44,17 @@
       "recent_roi": -0.626
     },
     {
-      "league": "瑞典超",
-      "n": 24,
-      "hit_rate": 0.2083,
-      "avg_odds": 2.124,
-      "roi": -0.5238,
-      "avg_confidence": 0.2633,
-      "verdict": "送钱区",
-      "recent_n": 5,
-      "recent_hits": 1,
-      "recent_hit_rate": 0.2,
-      "recent_roi": -0.494
-    },
-    {
       "league": "K1联赛",
-      "n": 22,
-      "hit_rate": 0.5455,
-      "avg_odds": 2.137,
-      "roi": 0.2177,
-      "avg_confidence": 0.2271,
+      "n": 24,
+      "hit_rate": 0.5,
+      "avg_odds": 2.264,
+      "roi": 0.1162,
+      "avg_confidence": 0.2205,
       "verdict": "价值区",
       "recent_n": 5,
-      "recent_hits": 3,
-      "recent_hit_rate": 0.6,
-      "recent_roi": 0.254
+      "recent_hits": 2,
+      "recent_hit_rate": 0.4,
+      "recent_roi": -0.146
     },
     {
       "league": "欧冠",
@@ -96,6 +96,32 @@
       "recent_roi": -0.4
     },
     {
+      "league": "荷甲",
+      "n": 18,
+      "hit_rate": 0.5556,
+      "avg_odds": 1.767,
+      "roi": -0.0406,
+      "avg_confidence": 0.2192,
+      "verdict": "谨慎",
+      "recent_n": 5,
+      "recent_hits": 3,
+      "recent_hit_rate": 0.6,
+      "recent_roi": 0.07
+    },
+    {
+      "league": "葡超",
+      "n": 14,
+      "hit_rate": 0.5714,
+      "avg_odds": 2.068,
+      "roi": 0.2093,
+      "avg_confidence": 0.2015,
+      "verdict": "价值区",
+      "recent_n": 5,
+      "recent_hits": 4,
+      "recent_hit_rate": 0.8,
+      "recent_roi": 0.782
+    },
+    {
       "league": "美职联",
       "n": 14,
       "hit_rate": 0.5,
@@ -107,32 +133,6 @@
       "recent_hits": 3,
       "recent_hit_rate": 0.6,
       "recent_roi": 0.398
-    },
-    {
-      "league": "荷甲",
-      "n": 14,
-      "hit_rate": 0.5714,
-      "avg_odds": 1.806,
-      "roi": -0.03,
-      "avg_confidence": 0.2087,
-      "verdict": "谨慎",
-      "recent_n": 5,
-      "recent_hits": 3,
-      "recent_hit_rate": 0.6,
-      "recent_roi": 0.144
-    },
-    {
-      "league": "葡超",
-      "n": 13,
-      "hit_rate": 0.5385,
-      "avg_odds": 2.045,
-      "roi": 0.1208,
-      "avg_confidence": 0.207,
-      "verdict": "价值区",
-      "recent_n": 5,
-      "recent_hits": 3,
-      "recent_hit_rate": 0.6,
-      "recent_roi": 0.31
     },
     {
       "league": "日职",
@@ -226,6 +226,19 @@
       "recent_roi": -0.484
     },
     {
+      "league": "英冠",
+      "n": 5,
+      "hit_rate": 0.2,
+      "avg_odds": 2.194,
+      "roi": -0.514,
+      "avg_confidence": 0.1747,
+      "verdict": "送钱区",
+      "recent_n": 5,
+      "recent_hits": 1,
+      "recent_hit_rate": 0.2,
+      "recent_roi": -0.514
+    },
+    {
       "league": "英联赛杯",
       "n": 4,
       "hit_rate": 0.75,
@@ -252,17 +265,17 @@
       "recent_roi": 0.03
     },
     {
-      "league": "英冠",
-      "n": 4,
-      "hit_rate": 0.25,
-      "avg_odds": 2.182,
-      "roi": -0.3925,
-      "avg_confidence": 0.1525,
+      "league": "西甲",
+      "n": 3,
+      "hit_rate": 0.3333,
+      "avg_odds": 2.543,
+      "roi": -0.24,
+      "avg_confidence": 0.178,
       "verdict": "送钱区",
-      "recent_n": 4,
+      "recent_n": 3,
       "recent_hits": 1,
-      "recent_hit_rate": 0.25,
-      "recent_roi": -0.3925
+      "recent_hit_rate": 0.3333,
+      "recent_roi": -0.24
     },
     {
       "league": "韩职",
@@ -278,19 +291,6 @@
       "recent_roi": -1.0
     },
     {
-      "league": "西甲",
-      "n": 2,
-      "hit_rate": 0.5,
-      "avg_odds": 2.75,
-      "roi": 0.14,
-      "avg_confidence": 0.143,
-      "verdict": "样本不足",
-      "recent_n": 2,
-      "recent_hits": 1,
-      "recent_hit_rate": 0.5,
-      "recent_roi": 0.14
-    },
-    {
       "league": "日乙",
       "n": 2,
       "hit_rate": 0.5,
@@ -302,6 +302,32 @@
       "recent_hits": 1,
       "recent_hit_rate": 0.5,
       "recent_roi": -0.05
+    },
+    {
+      "league": "日职乙",
+      "n": 2,
+      "hit_rate": 0.0,
+      "avg_odds": 2.535,
+      "roi": -1.0,
+      "avg_confidence": 0.087,
+      "verdict": "样本不足",
+      "recent_n": 2,
+      "recent_hits": 0,
+      "recent_hit_rate": 0.0,
+      "recent_roi": -1.0
+    },
+    {
+      "league": "社区盾",
+      "n": 1,
+      "hit_rate": 1.0,
+      "avg_odds": 2.29,
+      "roi": 1.29,
+      "avg_confidence": 0.1295,
+      "verdict": "样本不足",
+      "recent_n": 1,
+      "recent_hits": 1,
+      "recent_hit_rate": 1.0,
+      "recent_roi": 1.29
     },
     {
       "league": "亚冠杯",
@@ -336,19 +362,6 @@
       "avg_odds": 2.65,
       "roi": -1.0,
       "avg_confidence": 0.0873,
-      "verdict": "样本不足",
-      "recent_n": 1,
-      "recent_hits": 0,
-      "recent_hit_rate": 0.0,
-      "recent_roi": -1.0
-    },
-    {
-      "league": "日职乙",
-      "n": 1,
-      "hit_rate": 0.0,
-      "avg_odds": 2.57,
-      "roi": -1.0,
-      "avg_confidence": 0.087,
       "verdict": "样本不足",
       "recent_n": 1,
       "recent_hits": 0,
