@@ -1,25 +1,25 @@
 {
-  "total_matches": 278,
+  "total_matches": 279,
   "date_range": [
     "2026-07-20",
     "2026-08-17"
   ],
   "metrics": {
-    "brier": 0.6649,
-    "weighted_brier": 0.6653,
+    "brier": 0.6646,
+    "weighted_brier": 0.665,
     "rps": 0.2259,
     "weighted_rps": 0.2261,
-    "log_loss": 1.0975,
-    "hit_rate": 0.4173,
-    "ece": 0.1942
+    "log_loss": 1.0971,
+    "hit_rate": 0.4158,
+    "ece": 0.198
   },
   "draw_analysis": {
     "actual_draws": 81,
-    "actual_draw_rate": 0.2914,
-    "predicted_draws": 15,
-    "predicted_draw_rate": 0.054,
+    "actual_draw_rate": 0.2903,
+    "predicted_draws": 16,
+    "predicted_draw_rate": 0.0573,
     "max_draw_prob": 0.4592,
-    "avg_draw_prob": 0.2771,
+    "avg_draw_prob": 0.2775,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4173,
-      "n": 278
+      "hit_rate": 0.4158,
+      "n": 279
     },
     "market": {
       "hit_rate": 0.512,
@@ -50,17 +50,17 @@
       "brier": 0.587,
       "rps": 0.2206
     },
+    "瑞典超": {
+      "n": 24,
+      "hit_rate": 0.1667,
+      "brier": 0.821,
+      "rps": 0.2898
+    },
     "芬超": {
       "n": 23,
       "hit_rate": 0.3478,
       "brier": 0.7143,
       "rps": 0.2689
-    },
-    "瑞典超": {
-      "n": 23,
-      "hit_rate": 0.1739,
-      "brier": 0.8304,
-      "rps": 0.2926
     },
     "K1联赛": {
       "n": 22,

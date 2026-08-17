@@ -1,13 +1,13 @@
 {
   "date": "2026-08-17",
-  "n_matches": 1,
+  "n_matches": 2,
   "hit_rate": 0.0,
   "hits": 0,
   "source_brier": {
-    "model": 0.7238,
+    "model": 0.6555,
     "market": null,
     "djyy": null,
-    "final": 0.6793
+    "final": 0.6423
   },
   "by_league": {
     "芬超": {
@@ -15,59 +15,71 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.6793
+    },
+    "瑞典超": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6053
     }
   },
   "by_confidence_tier": {
     "low": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.6793
+      "avg_brier": 0.6423
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.6793
+      "avg_brier": 0.6423
     }
   },
   "score_stats": {
     "top1": 0,
-    "top3": 0,
-    "top5": 0,
-    "top8": 0,
-    "any": 0
+    "top3": 1,
+    "top5": 1,
+    "top8": 1,
+    "any": 1
   },
-  "score_rank_hist": {},
+  "score_rank_hist": {
+    "2": 1
+  },
   "score_source_stats": {
     "djyy": {
       "n": 0,
       "hits": 0
     },
     "mc": {
-      "n": 0,
-      "hits": 0
+      "n": 1,
+      "hits": 1
     }
   },
   "market_signal_stats": {
-    "n": 1,
-    "hits": 1
+    "n": 2,
+    "hits": 2
   },
   "layered": {
-    "log_loss_final": 1.1147,
+    "log_loss_final": 1.0527,
     "goal_framework": {
-      "n": 1,
-      "hits": 0
+      "n": 2,
+      "hits": 1
     },
     "prob_bands": {
       "<40%": {
-        "n": 1,
+        "n": 2,
         "hit_rate": 0.0
       }
     },
     "freshness_groups": {
+      "ok": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
       "watch": {
         "n": 1,
         "hit_rate": 0.0
@@ -76,6 +88,6 @@
   },
   "biases": [],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-17T18:05:18.025835",
-  "sha256": "f1c6a8f1da463eb389e7e2520f558c6b"
+  "generated_at": "2026-08-17T18:56:50.498599",
+  "sha256": "547911483183890da5f9b6e21d45fa2e"
 }
