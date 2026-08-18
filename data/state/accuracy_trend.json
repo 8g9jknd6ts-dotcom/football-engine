@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-17",
-  "total_matches": 282,
+  "generated_at": "2026-08-18",
+  "total_matches": 283,
   "date_range": [
     "2026-07-20",
     "2026-08-17"
   ],
   "overall": {
-    "hit_rate": 0.4149,
-    "brier_final": 0.6642,
-    "brier_model": 0.702,
-    "brier_market": 0.2768,
-    "brier_djyy": 0.2789
+    "hit_rate": 0.417,
+    "brier_final": 0.6636,
+    "brier_model": 0.7013,
+    "brier_market": 0.2758,
+    "brier_djyy": 0.2779
   },
   "daily": [
     {
@@ -351,21 +351,21 @@
     },
     {
       "date": "2026-08-17",
-      "n": 5,
-      "hits": 1,
-      "hit_rate": 0.2,
-      "cum_hit_rate": 0.4149,
-      "brier_final": 0.6288,
-      "brier_model": 0.621,
+      "n": 6,
+      "hits": 2,
+      "hit_rate": 0.3333,
+      "cum_hit_rate": 0.417,
+      "brier_final": 0.6092,
+      "brier_model": 0.6026,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 99,
-    "hit_rate": 0.3838,
-    "brier_final": 0.6784,
+    "n": 100,
+    "hit_rate": 0.39,
+    "brier_final": 0.6756,
     "pnl": -305.5
   },
   "prev7": {
@@ -419,16 +419,16 @@
       "brier_final": 0.594
     },
     {
+      "layer": "巴甲",
+      "n": 17,
+      "hit_rate": 0.3529,
+      "brier_final": 0.7206
+    },
+    {
       "layer": "葡超",
       "n": 17,
       "hit_rate": 0.5294,
       "brier_final": 0.6051
-    },
-    {
-      "layer": "巴甲",
-      "n": 16,
-      "hit_rate": 0.3125,
-      "brier_final": 0.7337
     },
     {
       "layer": "美职联",
@@ -548,9 +548,9 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 111,
-      "hit_rate": 0.3514,
-      "brier_final": 0.6761
+      "n": 112,
+      "hit_rate": 0.3571,
+      "brier_final": 0.6746
     },
     {
       "layer": "1.5-2.0",
@@ -574,9 +574,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 140,
-      "hit_rate": 0.4429,
-      "brier_final": 0.6542
+      "n": 141,
+      "hit_rate": 0.4468,
+      "brier_final": 0.6532
     },
     {
       "layer": "low",
