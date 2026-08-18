@@ -1,0 +1,199 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [],
+  "total_stake": 0,
+  "expected_roi": 0.0,
+  "bankroll": 4530.9021,
+  "breaker_multiplier": 1.0,
+  "parlay": [],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-18_周二001",
+          "home": "里瓦达维亚独立",
+          "away": "弗鲁米嫩塞",
+          "league": "解放者杯",
+          "score": "1-0",
+          "prob": 0.304,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-18_周二004",
+          "home": "费内巴切",
+          "away": "里昂",
+          "league": "欧冠",
+          "score": "1-0",
+          "prob": 0.286,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0871,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 30% × 29%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-18_周二001",
+          "home": "里瓦达维亚独立",
+          "away": "弗鲁米嫩塞",
+          "league": "解放者杯",
+          "score": "1-0",
+          "prob": 0.304,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-18_周二003",
+          "home": "萨迪纳摩",
+          "away": "维京",
+          "league": "欧冠",
+          "score": "0-1",
+          "prob": 0.275,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0836,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 30% × 27%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-18_周二004",
+          "home": "费内巴切",
+          "away": "里昂",
+          "league": "欧冠",
+          "score": "1-0",
+          "prob": 0.286,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-18_周二003",
+          "home": "萨迪纳摩",
+          "away": "维京",
+          "league": "欧冠",
+          "score": "0-1",
+          "prob": 0.275,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0786,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 29% × 27%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-08-18_周二001",
+          "home": "里瓦达维亚独立",
+          "away": "弗鲁米嫩塞",
+          "league": "解放者杯",
+          "score": "1-0",
+          "prob": 0.304,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-18_周二004",
+          "home": "费内巴切",
+          "away": "里昂",
+          "league": "欧冠",
+          "score": "1-0",
+          "prob": 0.286,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-18_周二003",
+          "home": "萨迪纳摩",
+          "away": "维京",
+          "league": "欧冠",
+          "score": "0-1",
+          "prob": 0.275,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0239,
+      "stake": 2.0,
+      "potential": 686.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 343 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-08-18_周二001",
+          "home": "里瓦达维亚独立",
+          "away": "弗鲁米嫩塞",
+          "league": "解放者杯",
+          "score": "1-0",
+          "prob": 0.304,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-18_周二004",
+          "home": "费内巴切",
+          "away": "里昂",
+          "league": "欧冠",
+          "score": "1-0",
+          "prob": 0.286,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-18_周二003",
+          "home": "萨迪纳摩",
+          "away": "维京",
+          "league": "欧冠",
+          "score": "0-1",
+          "prob": 0.275,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0239,
+      "stake": 8.0,
+      "potential": 980.0,
+      "worst_win": 98.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥98，全中≈¥980"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.417,
+    "n": 283,
+    "table": {
+      "0.35": 0.3696,
+      "0.4": 0.4364,
+      "0.45": 0.5179,
+      "0.5": 0.3548,
+      "0.55": 0.3043,
+      "0.6": 0.5,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
