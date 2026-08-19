@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-19",
-  "total_matches": 287,
+  "total_matches": 288,
   "date_range": [
     "2026-07-20",
-    "2026-08-18"
+    "2026-08-19"
   ],
   "overall": {
-    "hit_rate": 0.4111,
-    "brier_final": 0.6642,
-    "brier_model": 0.7025,
-    "brier_market": 0.2719,
-    "brier_djyy": 0.274
+    "hit_rate": 0.4097,
+    "brier_final": 0.665,
+    "brier_model": 0.704,
+    "brier_market": 0.271,
+    "brier_djyy": 0.2731
   },
   "daily": [
     {
@@ -372,19 +372,31 @@
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 0.0
+    },
+    {
+      "date": "2026-08-19",
+      "n": 1,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "cum_hit_rate": 0.4097,
+      "brier_final": 0.9006,
+      "brier_model": 1.1204,
+      "brier_market": null,
+      "brier_djyy": null,
+      "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 94,
-    "hit_rate": 0.383,
-    "brier_final": 0.6779,
-    "pnl": -255.5
+    "n": 92,
+    "hit_rate": 0.3913,
+    "brier_final": 0.6979,
+    "pnl": -205.5
   },
   "prev7": {
     "n": 80,
-    "hit_rate": 0.4125,
-    "brier_final": 0.6664,
-    "pnl": -213.6
+    "hit_rate": 0.3875,
+    "brier_final": 0.6879,
+    "pnl": -263.6
   },
   "verdict": "持平（±3pt 内）",
   "by_league": [
@@ -555,14 +567,20 @@
       "n": 1,
       "hit_rate": 1.0,
       "brier_final": 0.5138
+    },
+    {
+      "layer": "韩国杯",
+      "n": 1,
+      "hit_rate": 0.0,
+      "brier_final": 0.9006
     }
   ],
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 116,
-      "hit_rate": 0.3448,
-      "brier_final": 0.6756
+      "n": 117,
+      "hit_rate": 0.3419,
+      "brier_final": 0.6775
     },
     {
       "layer": "1.5-2.0",
@@ -586,9 +604,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 145,
-      "hit_rate": 0.4345,
-      "brier_final": 0.6546
+      "n": 146,
+      "hit_rate": 0.4315,
+      "brier_final": 0.6563
     },
     {
       "layer": "low",

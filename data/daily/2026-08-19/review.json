@@ -1,78 +1,69 @@
 {
-  "date": "2026-08-18",
-  "n_matches": 4,
+  "date": "2026-08-19",
+  "n_matches": 1,
   "hit_rate": 0.0,
   "hits": 0,
   "source_brier": {
-    "model": 0.7888,
+    "model": 1.1204,
     "market": null,
     "djyy": null,
-    "final": 0.7038
+    "final": 0.9006
   },
   "by_league": {
-    "欧冠": {
-      "n": 3,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.7149
-    },
-    "解放者杯": {
+    "韩国杯": {
       "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.6706
+      "avg_brier": 0.9006
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 4,
+      "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.7038
+      "avg_brier": 0.9006
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 4,
+      "n": 1,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.7038
+      "avg_brier": 0.9006
     }
   },
   "score_stats": {
-    "top1": 1,
-    "top3": 1,
-    "top5": 3,
-    "top8": 3,
-    "any": 3
+    "top1": 0,
+    "top3": 0,
+    "top5": 0,
+    "top8": 0,
+    "any": 0
   },
-  "score_rank_hist": {
-    "1": 1,
-    "5": 2
-  },
+  "score_rank_hist": {},
   "score_source_stats": {
     "djyy": {
       "n": 0,
       "hits": 0
     },
     "mc": {
-      "n": 3,
-      "hits": 3
+      "n": 0,
+      "hits": 0
     }
   },
   "market_signal_stats": {
-    "n": 4,
-    "hits": 1
+    "n": 1,
+    "hits": 0
   },
   "layered": {
-    "log_loss_final": 1.1396,
+    "log_loss_final": 1.4732,
     "goal_framework": {
-      "n": 4,
-      "hits": 3
+      "n": 1,
+      "hits": 0
     },
     "prob_bands": {
       "40-50%": {
-        "n": 4,
+        "n": 1,
         "hit_rate": 0.0
       }
     },
@@ -80,15 +71,11 @@
       "ok": {
         "n": 1,
         "hit_rate": 0.0
-      },
-      "watch": {
-        "n": 3,
-        "hit_rate": 0.0
       }
     }
   },
   "biases": [],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-19T16:05:45.992544",
-  "sha256": "9a799c7726311f15440fcb5febc42130"
+  "generated_at": "2026-08-19T16:05:17.580537",
+  "sha256": "5b3eda3b12a74b115c7a86f1b2430580"
 }
