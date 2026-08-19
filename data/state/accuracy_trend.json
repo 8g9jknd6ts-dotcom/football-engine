@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-19",
-  "total_matches": 288,
+  "total_matches": 291,
   "date_range": [
     "2026-07-20",
     "2026-08-19"
   ],
   "overall": {
-    "hit_rate": 0.4097,
-    "brier_final": 0.665,
-    "brier_model": 0.704,
-    "brier_market": 0.271,
-    "brier_djyy": 0.2731
+    "hit_rate": 0.4124,
+    "brier_final": 0.6637,
+    "brier_model": 0.7013,
+    "brier_market": 0.2682,
+    "brier_djyy": 0.2702
   },
   "daily": [
     {
@@ -375,21 +375,21 @@
     },
     {
       "date": "2026-08-19",
-      "n": 1,
-      "hits": 0,
-      "hit_rate": 0.0,
-      "cum_hit_rate": 0.4097,
-      "brier_final": 0.9006,
-      "brier_model": 1.1204,
+      "n": 4,
+      "hits": 2,
+      "hit_rate": 0.5,
+      "cum_hit_rate": 0.4124,
+      "brier_final": 0.6259,
+      "brier_model": 0.6158,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 92,
-    "hit_rate": 0.3913,
-    "brier_final": 0.6979,
+    "n": 95,
+    "hit_rate": 0.4,
+    "brier_final": 0.6586,
     "pnl": -205.5
   },
   "prev7": {
@@ -408,9 +408,9 @@
     },
     {
       "layer": "欧冠",
-      "n": 25,
-      "hit_rate": 0.32,
-      "brier_final": 0.6536
+      "n": 28,
+      "hit_rate": 0.3571,
+      "brier_final": 0.6408
     },
     {
       "layer": "瑞典超",
@@ -578,15 +578,15 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 117,
-      "hit_rate": 0.3419,
-      "brier_final": 0.6775
+      "n": 119,
+      "hit_rate": 0.3445,
+      "brier_final": 0.6762
     },
     {
       "layer": "1.5-2.0",
-      "n": 85,
-      "hit_rate": 0.4235,
-      "brier_final": 0.6842
+      "n": 86,
+      "hit_rate": 0.4302,
+      "brier_final": 0.6809
     },
     {
       "layer": "1.0-1.5",
@@ -604,9 +604,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 146,
-      "hit_rate": 0.4315,
-      "brier_final": 0.6563
+      "n": 149,
+      "hit_rate": 0.4362,
+      "brier_final": 0.6538
     },
     {
       "layer": "low",

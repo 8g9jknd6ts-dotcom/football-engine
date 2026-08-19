@@ -1,13 +1,13 @@
 {
   "date": "2026-08-19",
-  "n_matches": 1,
-  "hit_rate": 0.0,
-  "hits": 0,
+  "n_matches": 4,
+  "hit_rate": 0.5,
+  "hits": 2,
   "source_brier": {
-    "model": 1.1204,
+    "model": 0.6158,
     "market": null,
     "djyy": null,
-    "final": 0.9006
+    "final": 0.6259
   },
   "by_league": {
     "韩国杯": {
@@ -15,67 +15,85 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9006
+    },
+    "欧冠": {
+      "n": 3,
+      "hit_rate": 0.6667,
+      "wilson_lower": 0.2077,
+      "avg_brier": 0.5344
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 1,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.9006
+      "n": 4,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.15,
+      "avg_brier": 0.6259
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.7008
+    },
+    "1.5-2.0": {
       "n": 1,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.9006
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.4014
     }
   },
   "score_stats": {
     "top1": 0,
     "top3": 0,
-    "top5": 0,
-    "top8": 0,
-    "any": 0
+    "top5": 2,
+    "top8": 2,
+    "any": 2
   },
-  "score_rank_hist": {},
+  "score_rank_hist": {
+    "5": 2
+  },
   "score_source_stats": {
     "djyy": {
       "n": 0,
       "hits": 0
     },
     "mc": {
-      "n": 0,
-      "hits": 0
+      "n": 2,
+      "hits": 2
     }
   },
   "market_signal_stats": {
-    "n": 1,
-    "hits": 0
+    "n": 4,
+    "hits": 1
   },
   "layered": {
-    "log_loss_final": 1.4732,
+    "log_loss_final": 1.0422,
     "goal_framework": {
-      "n": 1,
-      "hits": 0
+      "n": 4,
+      "hits": 1
     },
     "prob_bands": {
       "40-50%": {
-        "n": 1,
-        "hit_rate": 0.0
+        "n": 4,
+        "hit_rate": 0.5
       }
     },
     "freshness_groups": {
       "ok": {
+        "n": 3,
+        "hit_rate": 0.3333
+      },
+      "watch": {
         "n": 1,
-        "hit_rate": 0.0
+        "hit_rate": 1.0
       }
     }
   },
   "biases": [],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-19T20:45:08.258457",
-  "sha256": "a0e45199ce2ff5a29b260cda2fa59f04"
+  "generated_at": "2026-08-19T21:06:19.718634",
+  "sha256": "69e6c23defd3840322690cb9c892371a"
 }
