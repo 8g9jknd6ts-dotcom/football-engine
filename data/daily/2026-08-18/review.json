@@ -1,13 +1,13 @@
 {
   "date": "2026-08-18",
-  "n_matches": 3,
+  "n_matches": 4,
   "hit_rate": 0.0,
   "hits": 0,
   "source_brier": {
-    "model": 0.8029,
+    "model": 0.7888,
     "market": null,
     "djyy": null,
-    "final": 0.7149
+    "final": 0.7038
   },
   "by_league": {
     "欧冠": {
@@ -15,34 +15,40 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.7149
+    },
+    "解放者杯": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6706
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 3,
+      "n": 4,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.7149
+      "avg_brier": 0.7038
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 3,
+      "n": 4,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.7149
+      "avg_brier": 0.7038
     }
   },
   "score_stats": {
     "top1": 1,
     "top3": 1,
-    "top5": 2,
-    "top8": 2,
-    "any": 2
+    "top5": 3,
+    "top8": 3,
+    "any": 3
   },
   "score_rank_hist": {
     "1": 1,
-    "5": 1
+    "5": 2
   },
   "score_source_stats": {
     "djyy": {
@@ -50,23 +56,23 @@
       "hits": 0
     },
     "mc": {
-      "n": 2,
-      "hits": 2
+      "n": 3,
+      "hits": 3
     }
   },
   "market_signal_stats": {
-    "n": 3,
+    "n": 4,
     "hits": 1
   },
   "layered": {
-    "log_loss_final": 1.1611,
+    "log_loss_final": 1.1396,
     "goal_framework": {
-      "n": 3,
-      "hits": 2
+      "n": 4,
+      "hits": 3
     },
     "prob_bands": {
       "40-50%": {
-        "n": 3,
+        "n": 4,
         "hit_rate": 0.0
       }
     },
@@ -76,13 +82,13 @@
         "hit_rate": 0.0
       },
       "watch": {
-        "n": 2,
+        "n": 3,
         "hit_rate": 0.0
       }
     }
   },
   "biases": [],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-18T23:58:36.560145",
-  "sha256": "d779046cc9c58e70b7b6872133ff843e"
+  "generated_at": "2026-08-19T01:52:45.059548",
+  "sha256": "08027473986264aae8fbdeee7cbe166d"
 }
