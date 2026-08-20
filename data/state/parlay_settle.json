@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T20:46:55.977370+00:00",
+  "generated_at": "2026-08-20T21:14:01.012378+00:00",
   "parlay": {
     "n_tickets": 16,
     "n_settled": 16,
@@ -19,16 +19,16 @@
   },
   "score_parlay": {
     "n_tickets": 119,
-    "n_settled": 115,
+    "n_settled": 116,
     "n_won": 0,
     "hit_rate": 0.0,
-    "stake": 362.0,
+    "stake": 364.0,
     "return": 0.0,
     "roi": -1.0,
-    "avg_odds": 179.47,
+    "avg_odds": 178.35,
     "by_type": {
       "比分2串1": {
-        "n": 71,
+        "n": 72,
         "won": 0,
         "roi": -1.0
       },
@@ -43,8 +43,8 @@
         "roi": -1.0
       }
     },
-    "leg_hit_rate": 0.1259,
-    "n_legs_settled": 278
+    "leg_hit_rate": 0.1246,
+    "n_legs_settled": 281
   },
   "tickets": {
     "parlay": [
@@ -5177,12 +5177,12 @@
         "potential": 98.0,
         "total_odds": 49.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "两场比分都中才赢（单场命中率约 38% × 32%）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
           false,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -5202,7 +5202,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -5290,7 +5290,7 @@
         "pending": true,
         "leg_results": [
           false,
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -5311,7 +5311,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-20_周四003",
@@ -5336,7 +5336,7 @@
         "pending": true,
         "leg_results": [
           false,
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -5357,7 +5357,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-20_周四003",
@@ -11611,22 +11611,22 @@
       "score_parlay": {
         "stats": {
           "n_tickets": 5,
-          "n_settled": 1,
+          "n_settled": 2,
           "n_won": 0,
           "hit_rate": 0.0,
-          "stake": 2.0,
+          "stake": 4.0,
           "return": 0.0,
           "roi": -1.0,
           "avg_odds": 49.0,
           "by_type": {
             "比分2串1": {
-              "n": 1,
+              "n": 2,
               "won": 0,
               "roi": -1.0
             }
           },
-          "leg_hit_rate": 0.1667,
-          "n_legs_settled": 6
+          "leg_hit_rate": 0.1111,
+          "n_legs_settled": 9
         },
         "tickets": [
           {
@@ -11636,12 +11636,12 @@
             "potential": 98.0,
             "total_odds": 49.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "两场比分都中才赢（单场命中率约 38% × 32%）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
               false,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -11661,7 +11661,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -11749,7 +11749,7 @@
             "pending": true,
             "leg_results": [
               false,
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -11770,7 +11770,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-20_周四003",
@@ -11795,7 +11795,7 @@
             "pending": true,
             "leg_results": [
               false,
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -11816,7 +11816,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-20_周四003",
