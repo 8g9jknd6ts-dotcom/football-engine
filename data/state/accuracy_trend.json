@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-19",
-  "total_matches": 292,
+  "generated_at": "2026-08-20",
+  "total_matches": 293,
   "date_range": [
     "2026-07-20",
     "2026-08-19"
   ],
   "overall": {
-    "hit_rate": 0.4144,
-    "brier_final": 0.6624,
-    "brier_model": 0.6993,
-    "brier_market": 0.2673,
-    "brier_djyy": 0.2693
+    "hit_rate": 0.4164,
+    "brier_final": 0.6623,
+    "brier_model": 0.6989,
+    "brier_market": 0.2664,
+    "brier_djyy": 0.2684
   },
   "daily": [
     {
@@ -375,21 +375,21 @@
     },
     {
       "date": "2026-08-19",
-      "n": 5,
-      "hits": 3,
-      "hit_rate": 0.6,
-      "cum_hit_rate": 0.4144,
-      "brier_final": 0.5616,
-      "brier_model": 0.5137,
+      "n": 6,
+      "hits": 4,
+      "hit_rate": 0.6667,
+      "cum_hit_rate": 0.4164,
+      "brier_final": 0.572,
+      "brier_model": 0.5237,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 96,
-    "hit_rate": 0.4062,
-    "brier_final": 0.6494,
+    "n": 97,
+    "hit_rate": 0.4124,
+    "brier_final": 0.6509,
     "pnl": -205.5
   },
   "prev7": {
@@ -479,6 +479,12 @@
       "brier_final": 0.5023
     },
     {
+      "layer": "解放者杯",
+      "n": 7,
+      "hit_rate": 0.2857,
+      "brier_final": 0.6919
+    },
+    {
       "layer": "沙特联",
       "n": 7,
       "hit_rate": 0.5714,
@@ -495,12 +501,6 @@
       "n": 6,
       "hit_rate": 0.5,
       "brier_final": 0.6436
-    },
-    {
-      "layer": "解放者杯",
-      "n": 6,
-      "hit_rate": 0.1667,
-      "brier_final": 0.7032
     },
     {
       "layer": "英冠",
@@ -578,9 +578,9 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 119,
-      "hit_rate": 0.3445,
-      "brier_final": 0.6762
+      "n": 120,
+      "hit_rate": 0.35,
+      "brier_final": 0.6758
     },
     {
       "layer": "1.5-2.0",
@@ -610,9 +610,9 @@
     },
     {
       "layer": "low",
-      "n": 96,
-      "hit_rate": 0.375,
-      "brier_final": 0.6561
+      "n": 97,
+      "hit_rate": 0.3814,
+      "brier_final": 0.6558
     },
     {
       "layer": "high",
