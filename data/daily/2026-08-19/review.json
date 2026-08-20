@@ -1,13 +1,13 @@
 {
   "date": "2026-08-19",
-  "n_matches": 7,
-  "hit_rate": 0.5714,
+  "n_matches": 8,
+  "hit_rate": 0.5,
   "hits": 4,
   "source_brier": {
-    "model": 0.5702,
+    "model": 0.5875,
     "market": null,
     "djyy": null,
-    "final": 0.5999
+    "final": 0.614
   },
   "by_league": {
     "韩国杯": {
@@ -35,10 +35,10 @@
       "avg_brier": 0.624
     },
     "美职联": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.7675
+      "avg_brier": 0.7402
     }
   },
   "by_confidence_tier": {
@@ -55,18 +55,18 @@
       "avg_brier": 0.3041
     },
     "low": {
-      "n": 2,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.0945,
-      "avg_brier": 0.6957
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.7014
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 5,
-      "hit_rate": 0.4,
-      "wilson_lower": 0.1176,
-      "avg_brier": 0.6988
+      "n": 6,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0968,
+      "avg_brier": 0.7011
     },
     "1.5-2.0": {
       "n": 2,
@@ -78,14 +78,15 @@
   "score_stats": {
     "top1": 1,
     "top3": 3,
-    "top5": 5,
-    "top8": 5,
-    "any": 5
+    "top5": 6,
+    "top8": 6,
+    "any": 6
   },
   "score_rank_hist": {
     "5": 2,
     "1": 1,
-    "2": 2
+    "2": 2,
+    "4": 1
   },
   "score_source_stats": {
     "djyy": {
@@ -93,19 +94,19 @@
       "hits": 0
     },
     "mc": {
-      "n": 5,
-      "hits": 5
+      "n": 6,
+      "hits": 6
     }
   },
   "market_signal_stats": {
-    "n": 7,
+    "n": 8,
     "hits": 3
   },
   "layered": {
-    "log_loss_final": 1.008,
+    "log_loss_final": 1.0277,
     "goal_framework": {
-      "n": 7,
-      "hits": 4
+      "n": 8,
+      "hits": 5
     },
     "prob_bands": {
       "40-50%": {
@@ -117,8 +118,8 @@
         "hit_rate": 1.0
       },
       "<40%": {
-        "n": 2,
-        "hit_rate": 0.5
+        "n": 3,
+        "hit_rate": 0.3333
       }
     },
     "freshness_groups": {
@@ -127,8 +128,8 @@
         "hit_rate": 0.3333
       },
       "watch": {
-        "n": 4,
-        "hit_rate": 0.75
+        "n": 5,
+        "hit_rate": 0.6
       }
     }
   },
@@ -137,15 +138,15 @@
       "dimension": "outcome",
       "key": "all",
       "outcome": "draw",
-      "predicted_avg": 0.3032,
-      "actual_rate": 0.1429,
-      "gap": 0.1603,
-      "n": 7,
+      "predicted_avg": 0.3123,
+      "actual_rate": 0.125,
+      "gap": 0.1873,
+      "n": 8,
       "severity": "warn",
       "suggested_action": "increase market_weight (trust market on draws)"
     }
   ],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-20T03:10:23.604215",
-  "sha256": "8119c3c02c8c319e3a09af222dabccf0"
+  "generated_at": "2026-08-20T03:58:31.198108",
+  "sha256": "9e2c44ec2b4c2cf6b3fb1f3ccfeaf199"
 }
