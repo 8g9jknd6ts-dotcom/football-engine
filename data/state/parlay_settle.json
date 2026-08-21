@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T18:06:04.472497+00:00",
+  "generated_at": "2026-08-21T18:56:49.740499+00:00",
   "parlay": {
     "n_tickets": 16,
     "n_settled": 16,
@@ -19,16 +19,16 @@
   },
   "score_parlay": {
     "n_tickets": 124,
-    "n_settled": 119,
+    "n_settled": 120,
     "n_won": 0,
     "hit_rate": 0.0,
-    "stake": 376.0,
+    "stake": 378.0,
     "return": 0.0,
     "roi": -1.0,
-    "avg_odds": 180.03,
+    "avg_odds": 178.94,
     "by_type": {
       "比分2串1": {
-        "n": 73,
+        "n": 74,
         "won": 0,
         "roi": -1.0
       },
@@ -43,8 +43,8 @@
         "roi": -1.0
       }
     },
-    "leg_hit_rate": 0.1324,
-    "n_legs_settled": 287
+    "leg_hit_rate": 0.1301,
+    "n_legs_settled": 292
   },
   "tickets": {
     "parlay": [
@@ -5377,11 +5377,11 @@
         "potential": 98.0,
         "total_odds": 49.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "两场比分都中才赢（单场命中率约 40% × 30%）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
-          null,
+          false,
           false
         ],
         "return": 0.0,
@@ -5393,7 +5393,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-21_周五004",
@@ -5417,7 +5417,7 @@
         "won": false,
         "pending": true,
         "leg_results": [
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -5429,7 +5429,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-21_周五007",
@@ -5453,7 +5453,7 @@
         "won": false,
         "pending": true,
         "leg_results": [
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -5465,7 +5465,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-21_周五010",
@@ -5489,7 +5489,7 @@
         "won": false,
         "pending": true,
         "leg_results": [
-          null,
+          false,
           false,
           null
         ],
@@ -5502,7 +5502,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-21_周五004",
@@ -5535,7 +5535,7 @@
         "won": false,
         "pending": true,
         "leg_results": [
-          null,
+          false,
           false,
           null
         ],
@@ -5548,7 +5548,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-21_周五004",
@@ -12050,16 +12050,22 @@
       "score_parlay": {
         "stats": {
           "n_tickets": 5,
-          "n_settled": 0,
+          "n_settled": 1,
           "n_won": 0,
-          "hit_rate": null,
-          "stake": 0,
-          "return": 0,
-          "roi": null,
-          "avg_odds": null,
-          "by_type": {},
+          "hit_rate": 0.0,
+          "stake": 2.0,
+          "return": 0.0,
+          "roi": -1.0,
+          "avg_odds": 49.0,
+          "by_type": {
+            "比分2串1": {
+              "n": 1,
+              "won": 0,
+              "roi": -1.0
+            }
+          },
           "leg_hit_rate": 0.0,
-          "n_legs_settled": 3
+          "n_legs_settled": 8
         },
         "tickets": [
           {
@@ -12069,11 +12075,11 @@
             "potential": 98.0,
             "total_odds": 49.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "两场比分都中才赢（单场命中率约 40% × 30%）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
-              null,
+              false,
               false
             ],
             "return": 0.0,
@@ -12085,7 +12091,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-21_周五004",
@@ -12109,7 +12115,7 @@
             "won": false,
             "pending": true,
             "leg_results": [
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -12121,7 +12127,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-21_周五007",
@@ -12145,7 +12151,7 @@
             "won": false,
             "pending": true,
             "leg_results": [
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -12157,7 +12163,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-21_周五010",
@@ -12181,7 +12187,7 @@
             "won": false,
             "pending": true,
             "leg_results": [
-              null,
+              false,
               false,
               null
             ],
@@ -12194,7 +12200,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-21_周五004",
@@ -12227,7 +12233,7 @@
             "won": false,
             "pending": true,
             "leg_results": [
-              null,
+              false,
               false,
               null
             ],
@@ -12240,7 +12246,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-21_周五004",

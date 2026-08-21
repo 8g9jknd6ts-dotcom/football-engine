@@ -1,13 +1,13 @@
 {
   "date": "2026-08-21",
-  "n_matches": 4,
-  "hit_rate": 0.75,
+  "n_matches": 5,
+  "hit_rate": 0.6,
   "hits": 3,
   "source_brier": {
-    "model": 0.6086,
+    "model": 0.7249,
     "market": null,
     "djyy": null,
-    "final": 0.6655
+    "final": 0.7242
   },
   "by_league": {
     "日职": {
@@ -27,14 +27,20 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9233
+    },
+    "瑞典超": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9588
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 2,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.0945,
-      "avg_brier": 0.7281
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.805
     },
     "low": {
       "n": 2,
@@ -45,10 +51,10 @@
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 4,
-      "hit_rate": 0.75,
-      "wilson_lower": 0.3006,
-      "avg_brier": 0.6655
+      "n": 5,
+      "hit_rate": 0.6,
+      "wilson_lower": 0.2307,
+      "avg_brier": 0.7242
     }
   },
   "score_stats": {
@@ -72,19 +78,19 @@
     }
   },
   "market_signal_stats": {
-    "n": 4,
-    "hits": 0
+    "n": 5,
+    "hits": 1
   },
   "layered": {
-    "log_loss_final": 1.1119,
+    "log_loss_final": 1.2079,
     "goal_framework": {
-      "n": 4,
+      "n": 5,
       "hits": 1
     },
     "prob_bands": {
       "40-50%": {
-        "n": 2,
-        "hit_rate": 0.5
+        "n": 3,
+        "hit_rate": 0.3333
       },
       "<40%": {
         "n": 2,
@@ -93,7 +99,7 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 1,
+        "n": 2,
         "hit_rate": 0.0
       },
       "watch": {
@@ -102,8 +108,20 @@
       }
     }
   },
-  "biases": [],
+  "biases": [
+    {
+      "dimension": "outcome",
+      "key": "all",
+      "outcome": "draw",
+      "predicted_avg": 0.3203,
+      "actual_rate": 0.0,
+      "gap": 0.3203,
+      "n": 5,
+      "severity": "warn",
+      "suggested_action": "increase market_weight (trust market on draws)"
+    }
+  ],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-21T18:04:47.926929",
-  "sha256": "e8af1dd9a267243baa2e09c8264254c7"
+  "generated_at": "2026-08-21T18:55:39.703494",
+  "sha256": "7a09bdea0a474cdd0902c9b08d67eb93"
 }
