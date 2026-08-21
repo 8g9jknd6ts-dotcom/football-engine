@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T17:45:38.788343+00:00",
+  "generated_at": "2026-08-21T18:06:04.472497+00:00",
   "parlay": {
     "n_tickets": 16,
     "n_settled": 16,
@@ -43,8 +43,8 @@
         "roi": -1.0
       }
     },
-    "leg_hit_rate": 0.1338,
-    "n_legs_settled": 284
+    "leg_hit_rate": 0.1324,
+    "n_legs_settled": 287
   },
   "tickets": {
     "parlay": [
@@ -5382,7 +5382,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -5402,7 +5402,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -5490,7 +5490,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -5511,7 +5511,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-21_周五007",
@@ -5536,7 +5536,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -5557,7 +5557,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-08-21_周五007",
@@ -12058,8 +12058,8 @@
           "roi": null,
           "avg_odds": null,
           "by_type": {},
-          "leg_hit_rate": null,
-          "n_legs_settled": 0
+          "leg_hit_rate": 0.0,
+          "n_legs_settled": 3
         },
         "tickets": [
           {
@@ -12074,7 +12074,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -12094,7 +12094,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -12182,7 +12182,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -12203,7 +12203,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-21_周五007",
@@ -12228,7 +12228,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -12249,7 +12249,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-08-21_周五007",
