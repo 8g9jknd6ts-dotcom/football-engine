@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-21",
-  "total_matches": 303,
+  "total_matches": 304,
   "date_range": [
     "2026-07-20",
     "2026-08-20"
   ],
   "overall": {
-    "hit_rate": 0.4257,
-    "brier_final": 0.6585,
-    "brier_model": 0.6909,
-    "brier_market": 0.2576,
-    "brier_djyy": 0.2595
+    "hit_rate": 0.4243,
+    "brier_final": 0.6588,
+    "brier_model": 0.6913,
+    "brier_market": 0.2567,
+    "brier_djyy": 0.2587
   },
   "daily": [
     {
@@ -387,21 +387,21 @@
     },
     {
       "date": "2026-08-20",
-      "n": 8,
+      "n": 9,
       "hits": 7,
-      "hit_rate": 0.875,
-      "cum_hit_rate": 0.4257,
-      "brier_final": 0.5008,
-      "brier_model": 0.3771,
+      "hit_rate": 0.7778,
+      "cum_hit_rate": 0.4243,
+      "brier_final": 0.5251,
+      "brier_model": 0.4256,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 97,
-    "hit_rate": 0.4433,
-    "brier_final": 0.6352,
+    "n": 98,
+    "hit_rate": 0.4388,
+    "brier_final": 0.6386,
     "pnl": -205.5
   },
   "prev7": {
@@ -479,6 +479,12 @@
       "brier_final": 0.5867
     },
     {
+      "layer": "解放者杯",
+      "n": 8,
+      "hit_rate": 0.25,
+      "brier_final": 0.6954
+    },
+    {
       "layer": "沙特联",
       "n": 8,
       "hit_rate": 0.625,
@@ -495,12 +501,6 @@
       "n": 7,
       "hit_rate": 0.7143,
       "brier_final": 0.5023
-    },
-    {
-      "layer": "解放者杯",
-      "n": 7,
-      "hit_rate": 0.2857,
-      "brier_final": 0.6919
     },
     {
       "layer": "西甲",
@@ -590,9 +590,9 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 127,
-      "hit_rate": 0.3622,
-      "brier_final": 0.6725
+      "n": 128,
+      "hit_rate": 0.3594,
+      "brier_final": 0.6729
     },
     {
       "layer": "1.5-2.0",
@@ -622,9 +622,9 @@
     },
     {
       "layer": "low",
-      "n": 101,
-      "hit_rate": 0.3861,
-      "brier_final": 0.6562
+      "n": 102,
+      "hit_rate": 0.3824,
+      "brier_final": 0.6568
     },
     {
       "layer": "high",

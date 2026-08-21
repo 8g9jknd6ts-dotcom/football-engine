@@ -1,0 +1,199 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [],
+  "total_stake": 0,
+  "expected_roi": 0.0,
+  "bankroll": 4530.9021,
+  "breaker_multiplier": 1.0,
+  "parlay": [],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-21_周五005",
+          "home": "天狼星",
+          "away": "赫根",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.4,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-21_周五004",
+          "home": "塞那乔其",
+          "away": "拉赫蒂",
+          "league": "芬超",
+          "score": "1-0",
+          "prob": 0.3,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1201,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 40% × 30%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-21_周五005",
+          "home": "天狼星",
+          "away": "赫根",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.4,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-21_周五007",
+          "home": "敦刻尔克",
+          "away": "蒙彼利埃",
+          "league": "法乙",
+          "score": "1-0",
+          "prob": 0.226,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0902,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 40% × 23%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-21_周五005",
+          "home": "天狼星",
+          "away": "赫根",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.4,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-21_周五010",
+          "home": "阿森纳",
+          "away": "考文垂",
+          "league": "英超",
+          "score": "1-0",
+          "prob": 0.225,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0899,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 40% × 22%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-08-21_周五005",
+          "home": "天狼星",
+          "away": "赫根",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.4,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-21_周五004",
+          "home": "塞那乔其",
+          "away": "拉赫蒂",
+          "league": "芬超",
+          "score": "1-0",
+          "prob": 0.3,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-21_周五007",
+          "home": "敦刻尔克",
+          "away": "蒙彼利埃",
+          "league": "法乙",
+          "score": "1-0",
+          "prob": 0.226,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0271,
+      "stake": 2.0,
+      "potential": 686.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 343 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-08-21_周五005",
+          "home": "天狼星",
+          "away": "赫根",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.4,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-21_周五004",
+          "home": "塞那乔其",
+          "away": "拉赫蒂",
+          "league": "芬超",
+          "score": "1-0",
+          "prob": 0.3,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-21_周五007",
+          "home": "敦刻尔克",
+          "away": "蒙彼利埃",
+          "league": "法乙",
+          "score": "1-0",
+          "prob": 0.226,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0271,
+      "stake": 8.0,
+      "potential": 980.0,
+      "worst_win": 98.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥98，全中≈¥980"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4257,
+    "n": 303,
+    "table": {
+      "0.35": 0.3814,
+      "0.4": 0.4194,
+      "0.45": 0.5323,
+      "0.5": 0.375,
+      "0.55": 0.3333,
+      "0.6": 0.5,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
