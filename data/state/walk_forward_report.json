@@ -1,25 +1,25 @@
 {
-  "total_matches": 311,
+  "total_matches": 312,
   "date_range": [
     "2026-07-20",
     "2026-08-21"
   ],
   "metrics": {
     "brier": 0.6611,
-    "weighted_brier": 0.6612,
-    "rps": 0.2249,
-    "weighted_rps": 0.225,
+    "weighted_brier": 0.6613,
+    "rps": 0.2251,
+    "weighted_rps": 0.2253,
     "log_loss": 1.0924,
-    "hit_rate": 0.4244,
-    "ece": 0.1617
+    "hit_rate": 0.4231,
+    "ece": 0.1577
   },
   "draw_analysis": {
     "actual_draws": 90,
-    "actual_draw_rate": 0.2894,
+    "actual_draw_rate": 0.2885,
     "predicted_draws": 20,
-    "predicted_draw_rate": 0.0643,
+    "predicted_draw_rate": 0.0641,
     "max_draw_prob": 0.4592,
-    "avg_draw_prob": 0.2813,
+    "avg_draw_prob": 0.2814,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4244,
-      "n": 311
+      "hit_rate": 0.4231,
+      "n": 312
     },
     "market": {
       "hit_rate": 0.512,
@@ -111,10 +111,10 @@
       "rps": 0.213
     },
     "沙特联": {
-      "n": 9,
-      "hit_rate": 0.6667,
-      "brier": 0.6275,
-      "rps": 0.2252
+      "n": 10,
+      "hit_rate": 0.6,
+      "brier": 0.6325,
+      "rps": 0.2323
     },
     "解放者杯": {
       "n": 8,
