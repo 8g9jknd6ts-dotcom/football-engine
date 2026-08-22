@@ -1,25 +1,25 @@
 {
-  "total_matches": 332,
+  "total_matches": 335,
   "date_range": [
     "2026-07-20",
     "2026-08-22"
   ],
   "metrics": {
-    "brier": 0.6599,
-    "weighted_brier": 0.66,
-    "rps": 0.2265,
+    "brier": 0.6601,
+    "weighted_brier": 0.6603,
+    "rps": 0.2266,
     "weighted_rps": 0.2268,
-    "log_loss": 1.0908,
-    "hit_rate": 0.4277,
-    "ece": 0.1669
+    "log_loss": 1.0912,
+    "hit_rate": 0.4269,
+    "ece": 0.1699
   },
   "draw_analysis": {
-    "actual_draws": 93,
-    "actual_draw_rate": 0.2801,
+    "actual_draws": 94,
+    "actual_draw_rate": 0.2806,
     "predicted_draws": 20,
-    "predicted_draw_rate": 0.0602,
+    "predicted_draw_rate": 0.0597,
     "max_draw_prob": 0.4592,
-    "avg_draw_prob": 0.2823,
+    "avg_draw_prob": 0.2819,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4277,
-      "n": 332
+      "hit_rate": 0.4269,
+      "n": 335
     },
     "market": {
       "hit_rate": 0.512,
@@ -158,17 +158,17 @@
       "brier": 0.6613,
       "rps": 0.2186
     },
+    "英超": {
+      "n": 6,
+      "hit_rate": 0.3333,
+      "brier": 0.7489,
+      "rps": 0.3379
+    },
     "荷乙": {
       "n": 5,
       "hit_rate": 0.4,
       "brier": 0.6749,
       "rps": 0.2491
-    },
-    "英超": {
-      "n": 5,
-      "hit_rate": 0.4,
-      "brier": 0.7183,
-      "rps": 0.3213
     },
     "英联赛杯": {
       "n": 4,
