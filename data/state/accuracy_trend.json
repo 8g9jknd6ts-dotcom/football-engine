@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-22",
-  "total_matches": 335,
+  "total_matches": 336,
   "date_range": [
     "2026-07-20",
     "2026-08-22"
   ],
   "overall": {
-    "hit_rate": 0.4269,
-    "brier_final": 0.6601,
-    "brier_model": 0.6933,
-    "brier_market": 0.233,
-    "brier_djyy": 0.2347
+    "hit_rate": 0.4256,
+    "brier_final": 0.6606,
+    "brier_model": 0.6942,
+    "brier_market": 0.2323,
+    "brier_djyy": 0.234
   },
   "daily": [
     {
@@ -411,21 +411,21 @@
     },
     {
       "date": "2026-08-22",
-      "n": 20,
+      "n": 21,
       "hits": 8,
-      "hit_rate": 0.4,
-      "cum_hit_rate": 0.4269,
-      "brier_final": 0.678,
-      "brier_model": 0.735,
+      "hit_rate": 0.381,
+      "cum_hit_rate": 0.4256,
+      "brier_final": 0.6852,
+      "brier_model": 0.7477,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": -50.0
     }
   ],
   "rolling7": {
-    "n": 85,
-    "hit_rate": 0.4,
-    "brier_final": 0.6479,
+    "n": 86,
+    "hit_rate": 0.3953,
+    "brier_final": 0.6489,
     "pnl": -186.9
   },
   "prev7": {
@@ -510,9 +510,9 @@
     },
     {
       "layer": "西甲",
-      "n": 9,
-      "hit_rate": 0.3333,
-      "brier_final": 0.6512
+      "n": 10,
+      "hit_rate": 0.3,
+      "brier_final": 0.6691
     },
     {
       "layer": "解放者杯",
@@ -638,9 +638,9 @@
     },
     {
       "layer": "1.5-2.0",
-      "n": 99,
-      "hit_rate": 0.4646,
-      "brier_final": 0.663
+      "n": 100,
+      "hit_rate": 0.46,
+      "brier_final": 0.6647
     },
     {
       "layer": "1.0-1.5",
@@ -658,9 +658,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 176,
-      "hit_rate": 0.4432,
-      "brier_final": 0.652
+      "n": 177,
+      "hit_rate": 0.4407,
+      "brier_final": 0.653
     },
     {
       "layer": "low",
