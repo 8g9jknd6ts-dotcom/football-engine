@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-08-22",
-  "total_matches": 341,
+  "total_matches": 342,
   "date_range": [
     "2026-07-20",
     "2026-08-22"
   ],
   "overall": {
-    "hit_rate": 0.4252,
-    "brier_final": 0.6603,
-    "brier_model": 0.6935,
-    "brier_market": 0.2289,
-    "brier_djyy": 0.2306
+    "hit_rate": 0.4269,
+    "brier_final": 0.6596,
+    "brier_model": 0.692,
+    "brier_market": 0.2282,
+    "brier_djyy": 0.2299
   },
   "daily": [
     {
@@ -411,21 +411,21 @@
     },
     {
       "date": "2026-08-22",
-      "n": 26,
-      "hits": 10,
-      "hit_rate": 0.3846,
-      "cum_hit_rate": 0.4252,
-      "brier_final": 0.6766,
-      "brier_model": 0.7285,
+      "n": 27,
+      "hits": 11,
+      "hit_rate": 0.4074,
+      "cum_hit_rate": 0.4269,
+      "brier_final": 0.6674,
+      "brier_model": 0.7086,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": -50.0
     }
   ],
   "rolling7": {
-    "n": 91,
-    "hit_rate": 0.3956,
-    "brier_final": 0.6477,
+    "n": 92,
+    "hit_rate": 0.4022,
+    "brier_final": 0.6464,
     "pnl": -186.9
   },
   "prev7": {
@@ -503,16 +503,16 @@
       "brier_final": 0.5714
     },
     {
+      "layer": "西甲",
+      "n": 11,
+      "hit_rate": 0.3636,
+      "brier_final": 0.6473
+    },
+    {
       "layer": "沙特联",
       "n": 10,
       "hit_rate": 0.6,
       "brier_final": 0.6325
-    },
-    {
-      "layer": "西甲",
-      "n": 10,
-      "hit_rate": 0.3,
-      "brier_final": 0.6691
     },
     {
       "layer": "解放者杯",
@@ -638,9 +638,9 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 154,
-      "hit_rate": 0.3636,
-      "brier_final": 0.6768
+      "n": 155,
+      "hit_rate": 0.3677,
+      "brier_final": 0.6752
     },
     {
       "layer": "1.5-2.0",
@@ -664,9 +664,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 181,
-      "hit_rate": 0.442,
-      "brier_final": 0.6522
+      "n": 182,
+      "hit_rate": 0.4451,
+      "brier_final": 0.6509
     },
     {
       "layer": "low",
