@@ -3,16 +3,24 @@
   "value": [],
   "lottery": [
     {
+      "match": "2026-08-23_周日002",
+      "sel": "home",
+      "odds": 1.81,
+      "stake": 25.0,
+      "prob": 0.526,
+      "downgrade_reason": "prob_5060"
+    },
+    {
       "match": "2026-08-23_周日018",
       "sel": "away",
       "odds": 1.89,
-      "stake": 50.0,
-      "prob": 0.504,
+      "stake": 25.0,
+      "prob": 0.503,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 50.0,
-  "expected_roi": -0.0469,
+  "expected_roi": -0.0481,
   "bankroll": 4480.9021,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -26,9 +34,9 @@
           "league": "荷甲",
           "sel": "home",
           "odds": 1.64,
-          "prob": 0.58,
+          "prob": 0.581,
           "cal_prob": 0.333,
-          "market_prob": 0.58,
+          "market_prob": 0.581,
           "source": "market",
           "hit_prob": 0.471
         },
@@ -39,7 +47,7 @@
           "league": "荷甲",
           "sel": "away",
           "odds": 1.65,
-          "prob": 0.577,
+          "prob": 0.576,
           "cal_prob": 0.333,
           "market_prob": 0.577,
           "source": "market",
@@ -72,7 +80,7 @@
           "away": "江原FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.377,
+          "prob": 0.381,
           "odds": 7.0
         },
         {
@@ -81,12 +89,12 @@
           "away": "埃尔夫斯堡",
           "league": "瑞典超",
           "score": "0-1",
-          "prob": 0.348,
+          "prob": 0.346,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1312,
+      "hit_prob": 0.1317,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -103,7 +111,7 @@
           "away": "江原FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.377,
+          "prob": 0.381,
           "odds": 7.0
         },
         {
@@ -112,18 +120,18 @@
           "away": "赫尔辛基火花",
           "league": "芬超",
           "score": "0-1",
-          "prob": 0.321,
+          "prob": 0.325,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.121,
+      "hit_prob": 0.124,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 32%）"
+      "note": "两场比分都中才赢（单场命中率约 38% × 33%）"
     },
     {
       "type": "比分2串1",
@@ -134,7 +142,7 @@
           "away": "埃尔夫斯堡",
           "league": "瑞典超",
           "score": "0-1",
-          "prob": 0.348,
+          "prob": 0.346,
           "odds": 7.0
         },
         {
@@ -143,18 +151,18 @@
           "away": "赫尔辛基火花",
           "league": "芬超",
           "score": "0-1",
-          "prob": 0.321,
+          "prob": 0.325,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1117,
+      "hit_prob": 0.1126,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 35% × 32%）"
+      "note": "两场比分都中才赢（单场命中率约 35% × 33%）"
     },
     {
       "type": "比分3串1",
@@ -165,7 +173,7 @@
           "away": "江原FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.377,
+          "prob": 0.381,
           "odds": 7.0
         },
         {
@@ -174,7 +182,7 @@
           "away": "埃尔夫斯堡",
           "league": "瑞典超",
           "score": "0-1",
-          "prob": 0.348,
+          "prob": 0.346,
           "odds": 7.0
         },
         {
@@ -183,12 +191,12 @@
           "away": "赫尔辛基火花",
           "league": "芬超",
           "score": "0-1",
-          "prob": 0.321,
+          "prob": 0.325,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0421,
+      "hit_prob": 0.0429,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -205,7 +213,7 @@
           "away": "江原FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.377,
+          "prob": 0.381,
           "odds": 7.0
         },
         {
@@ -214,7 +222,7 @@
           "away": "埃尔夫斯堡",
           "league": "瑞典超",
           "score": "0-1",
-          "prob": 0.348,
+          "prob": 0.346,
           "odds": 7.0
         },
         {
@@ -223,12 +231,12 @@
           "away": "赫尔辛基火花",
           "league": "芬超",
           "score": "0-1",
-          "prob": 0.321,
+          "prob": 0.325,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0421,
+      "hit_prob": 0.0429,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
