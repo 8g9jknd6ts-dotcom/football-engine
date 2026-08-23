@@ -1,13 +1,13 @@
 {
   "date": "2026-08-22",
-  "n_matches": 27,
-  "hit_rate": 0.4074,
+  "n_matches": 28,
+  "hit_rate": 0.3929,
   "hits": 11,
   "source_brier": {
-    "model": 0.7086,
+    "model": 0.7026,
     "market": null,
     "djyy": null,
-    "final": 0.6674
+    "final": 0.6688
   },
   "by_league": {
     "日职": {
@@ -81,14 +81,20 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.813
+    },
+    "美职联": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7065
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 21,
-      "hit_rate": 0.381,
-      "wilson_lower": 0.2075,
-      "avg_brier": 0.6723
+      "n": 22,
+      "hit_rate": 0.3636,
+      "wilson_lower": 0.1973,
+      "avg_brier": 0.6738
     },
     "low": {
       "n": 6,
@@ -99,10 +105,10 @@
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 19,
-      "hit_rate": 0.3684,
-      "wilson_lower": 0.1915,
-      "avg_brier": 0.6793
+      "n": 20,
+      "hit_rate": 0.35,
+      "wilson_lower": 0.1812,
+      "avg_brier": 0.6807
     },
     "1.5-2.0": {
       "n": 8,
@@ -138,19 +144,19 @@
     }
   },
   "market_signal_stats": {
-    "n": 27,
-    "hits": 11
+    "n": 28,
+    "hits": 12
   },
   "layered": {
-    "log_loss_final": 1.1006,
+    "log_loss_final": 1.1021,
     "goal_framework": {
-      "n": 27,
+      "n": 28,
       "hits": 14
     },
     "prob_bands": {
       "40-50%": {
-        "n": 16,
-        "hit_rate": 0.4375
+        "n": 17,
+        "hit_rate": 0.4118
       },
       "50-60%": {
         "n": 5,
@@ -163,8 +169,8 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 6,
-        "hit_rate": 0.1667
+        "n": 7,
+        "hit_rate": 0.1429
       },
       "watch": {
         "n": 21,
@@ -186,6 +192,6 @@
     }
   ],
   "total_pnl": -50.0,
-  "generated_at": "2026-08-23T03:15:44.877658",
-  "sha256": "c79ba3ed5f39c3260e78dd299f91425d"
+  "generated_at": "2026-08-23T04:04:48.882961",
+  "sha256": "629b6cfcffb16284d723003b5a5d7809"
 }
