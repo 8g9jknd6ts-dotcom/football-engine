@@ -3,24 +3,16 @@
   "value": [],
   "lottery": [
     {
-      "match": "2026-08-23_周日002",
-      "sel": "home",
-      "odds": 1.81,
-      "stake": 25.0,
-      "prob": 0.527,
-      "downgrade_reason": "prob_5060"
-    },
-    {
       "match": "2026-08-23_周日018",
       "sel": "away",
       "odds": 1.89,
-      "stake": 25.0,
+      "stake": 50.0,
       "prob": 0.504,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 50.0,
-  "expected_roi": -0.0472,
+  "expected_roi": -0.0467,
   "bankroll": 4480.9021,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -34,7 +26,7 @@
           "league": "荷甲",
           "sel": "home",
           "odds": 1.64,
-          "prob": 0.581,
+          "prob": 0.582,
           "cal_prob": 0.333,
           "market_prob": 0.581,
           "source": "market",
@@ -59,7 +51,7 @@
       "cal_ev": -0.8,
       "cal_roi": -0.3997,
       "market_ev": -0.19,
-      "market_roi": -0.0932,
+      "market_roi": -0.0926,
       "hit_prob_cal": 0.222,
       "recommended": false,
       "stake": 2.0,
@@ -94,7 +86,7 @@
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1313,
+      "hit_prob": 0.1312,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -125,13 +117,13 @@
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.123,
+      "hit_prob": 0.1227,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 33%）"
+      "note": "两场比分都中才赢（单场命中率约 38% × 32%）"
     },
     {
       "type": "比分2串1",
@@ -156,13 +148,13 @@
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1129,
+      "hit_prob": 0.1128,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 35% × 33%）"
+      "note": "两场比分都中才赢（单场命中率约 35% × 32%）"
     },
     {
       "type": "比分3串1",
@@ -196,7 +188,7 @@
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0427,
+      "hit_prob": 0.0426,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -236,7 +228,7 @@
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0427,
+      "hit_prob": 0.0426,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
