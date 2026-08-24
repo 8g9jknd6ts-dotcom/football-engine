@@ -1,25 +1,25 @@
 {
-  "total_matches": 370,
+  "total_matches": 373,
   "date_range": [
     "2026-07-20",
-    "2026-08-23"
+    "2026-08-24"
   ],
   "metrics": {
-    "brier": 0.6518,
-    "weighted_brier": 0.6515,
-    "rps": 0.2243,
-    "weighted_rps": 0.2245,
-    "log_loss": 1.0791,
-    "hit_rate": 0.4432,
-    "ece": 0.1637
+    "brier": 0.6527,
+    "weighted_brier": 0.6525,
+    "rps": 0.2252,
+    "weighted_rps": 0.2254,
+    "log_loss": 1.0804,
+    "hit_rate": 0.4397,
+    "ece": 0.1595
   },
   "draw_analysis": {
     "actual_draws": 101,
-    "actual_draw_rate": 0.273,
+    "actual_draw_rate": 0.2708,
     "predicted_draws": 25,
-    "predicted_draw_rate": 0.0676,
+    "predicted_draw_rate": 0.067,
     "max_draw_prob": 0.4592,
-    "avg_draw_prob": 0.2843,
+    "avg_draw_prob": 0.2844,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4432,
-      "n": 370
+      "hit_rate": 0.4397,
+      "n": 373
     },
     "market": {
       "hit_rate": 0.512,
@@ -51,10 +51,10 @@
       "rps": 0.2206
     },
     "瑞典超": {
-      "n": 28,
-      "hit_rate": 0.1429,
-      "brier": 0.8165,
-      "rps": 0.2836
+      "n": 29,
+      "hit_rate": 0.1379,
+      "brier": 0.8143,
+      "rps": 0.2849
     },
     "欧冠": {
       "n": 28,
@@ -117,16 +117,22 @@
       "rps": 0.2098
     },
     "沙特联": {
-      "n": 10,
-      "hit_rate": 0.6,
-      "brier": 0.6325,
-      "rps": 0.2323
+      "n": 11,
+      "hit_rate": 0.5455,
+      "brier": 0.6389,
+      "rps": 0.2393
     },
     "英冠": {
       "n": 9,
       "hit_rate": 0.2222,
       "brier": 0.6815,
       "rps": 0.1834
+    },
+    "意甲": {
+      "n": 9,
+      "hit_rate": 0.6667,
+      "brier": 0.5394,
+      "rps": 0.2022
     },
     "解放者杯": {
       "n": 8,
@@ -139,12 +145,6 @@
       "hit_rate": 0.25,
       "brier": 0.7401,
       "rps": 0.3056
-    },
-    "意甲": {
-      "n": 8,
-      "hit_rate": 0.75,
-      "brier": 0.5018,
-      "rps": 0.1805
     },
     "巴西杯": {
       "n": 7,
