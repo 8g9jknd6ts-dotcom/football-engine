@@ -1,25 +1,25 @@
 {
-  "total_matches": 377,
+  "total_matches": 380,
   "date_range": [
     "2026-07-20",
     "2026-08-24"
   ],
   "metrics": {
-    "brier": 0.6528,
-    "weighted_brier": 0.6525,
-    "rps": 0.2254,
-    "weighted_rps": 0.2255,
-    "log_loss": 1.0808,
-    "hit_rate": 0.4403,
-    "ece": 0.16
+    "brier": 0.6535,
+    "weighted_brier": 0.6532,
+    "rps": 0.2256,
+    "weighted_rps": 0.2258,
+    "log_loss": 1.0817,
+    "hit_rate": 0.4368,
+    "ece": 0.156
   },
   "draw_analysis": {
-    "actual_draws": 102,
-    "actual_draw_rate": 0.2706,
+    "actual_draws": 103,
+    "actual_draw_rate": 0.2711,
     "predicted_draws": 25,
-    "predicted_draw_rate": 0.0663,
+    "predicted_draw_rate": 0.0658,
     "max_draw_prob": 0.4592,
-    "avg_draw_prob": 0.2844,
+    "avg_draw_prob": 0.2847,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4403,
-      "n": 377
+      "hit_rate": 0.4368,
+      "n": 380
     },
     "market": {
       "hit_rate": 0.512,
@@ -87,10 +87,10 @@
       "rps": 0.211
     },
     "葡超": {
-      "n": 21,
-      "hit_rate": 0.5238,
-      "brier": 0.6208,
-      "rps": 0.1975
+      "n": 22,
+      "hit_rate": 0.5,
+      "brier": 0.6259,
+      "rps": 0.2025
     },
     "巴甲": {
       "n": 18,
@@ -105,10 +105,10 @@
       "rps": 0.197
     },
     "西甲": {
-      "n": 15,
-      "hit_rate": 0.3333,
-      "brier": 0.6642,
-      "rps": 0.2044
+      "n": 16,
+      "hit_rate": 0.3125,
+      "brier": 0.6653,
+      "rps": 0.199
     },
     "日职": {
       "n": 14,
@@ -134,6 +134,12 @@
       "brier": 0.6815,
       "rps": 0.1834
     },
+    "英超": {
+      "n": 9,
+      "hit_rate": 0.2222,
+      "brier": 0.746,
+      "rps": 0.3107
+    },
     "法乙": {
       "n": 8,
       "hit_rate": 0.375,
@@ -145,12 +151,6 @@
       "hit_rate": 0.25,
       "brier": 0.6954,
       "rps": 0.1619
-    },
-    "英超": {
-      "n": 8,
-      "hit_rate": 0.25,
-      "brier": 0.7401,
-      "rps": 0.3056
     },
     "巴西杯": {
       "n": 7,
