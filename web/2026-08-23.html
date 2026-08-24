@@ -5540,8 +5540,8 @@ body {
     
   <div class="section-title">赛果复盘</div>
   <div class="results-summary">
-    <div class="ts-chip"><div class="ts-label">命中率</div><div class="ts-val" style="color:var(--green)">67% (18/27)</div></div>
-    <div class="ts-chip"><div class="ts-label">平均Brier</div><div class="ts-val" style="color:var(--amber)">0.551</div></div>
+    <div class="ts-chip"><div class="ts-label">命中率</div><div class="ts-val" style="color:var(--green)">65% (22/34)</div></div>
+    <div class="ts-chip"><div class="ts-label">平均Brier</div><div class="ts-val" style="color:var(--amber)">0.561</div></div>
     <div class="ts-chip"><div class="ts-label">总盈亏</div><div class="ts-val" style="color:var(--green)">&yen;+0</div></div>
   </div>
   <div class="results-summary" style="margin-top:6px;"><div class="ts-chip"><div class="ts-label">LogLoss(final)</div><div class="ts-val" style="color:var(--amber)">0.934</div></div><div class="ts-chip"><div class="ts-label">进球框架</div><div class="ts-val" style="color:var(--amber)">44% (12/27)</div></div><div class="ts-chip"><div class="ts-label">概率分段</div><div class="ts-val" style="font-size:0.68rem;">40-50%:82% · 50-60%:80% · <40%:45%</div></div><div class="ts-chip"><div class="ts-label">新鲜度分层</div><div class="ts-val" style="font-size:0.68rem;">ok:75% · watch:60%</div></div></div>
@@ -5792,6 +5792,69 @@ body {
           <td style="font-family:monospace;font-size:0.68rem;">0.484</td>
           <td style="color:var(--dim);font-weight:600;">0</td>
         </tr>
+        <tr class="hit">
+          <td>町田泽维 vs 浦和红钻</td>
+          <td style="font-weight:800;text-align:center;">3-1</td>
+          <td>主胜</td>
+          <td>主胜 (53%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.338</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>不伦瑞克 vs 柏林联合</td>
+          <td style="font-weight:800;text-align:center;">2-4</td>
+          <td>客胜</td>
+          <td>客胜 (46%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.436</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>吉马良斯 vs 葡国民</td>
+          <td style="font-weight:800;text-align:center;">1-0</td>
+          <td>主胜</td>
+          <td>客胜 (47%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.950</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>哈马比 vs 盖斯</td>
+          <td style="font-weight:800;text-align:center;">2-0</td>
+          <td>主胜</td>
+          <td>平局 (35%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.693</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>马竞 vs 比利亚雷</td>
+          <td style="font-weight:800;text-align:center;">2-2</td>
+          <td>平局</td>
+          <td>主胜 (40%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.787</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>弗洛西诺 vs 尤文图斯</td>
+          <td style="font-weight:800;text-align:center;">0-1</td>
+          <td>客胜</td>
+          <td>客胜 (50%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.370</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>赫塔费 vs 桑坦德</td>
+          <td style="font-weight:800;text-align:center;">1-0</td>
+          <td>主胜</td>
+          <td>主胜 (36%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.615</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
     </table>
   </div>
 
@@ -5830,7 +5893,7 @@ body {
   <div style="overflow-x:auto">
   <table class="edge-table">
     <tr><th>联赛</th><th>场数</th><th>命中率</th><th>均赔</th><th>ROI</th><th>判断</th><th>近期窗口</th><th>判平(命中/次数·强度)</th></tr>
-    <tr><td>挪超</td><td>30</td><td>47%</td><td>1.99</td><td style="color:var(--red);font-weight:700">-16.8%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -23%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>欧冠</td><td>28</td><td>36%</td><td>2.40</td><td style="color:var(--red);font-weight:700">-30.3%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -18%</span></td></td><td style="color:var(--red)">0/1 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>瑞典超</td><td>28</td><td>14%</td><td>2.23</td><td style="color:var(--red);font-weight:700">-66.3%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--red)">近5场 0中 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -100%</span></td></td><td style="color:var(--red)">0/4 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>欧罗巴</td><td>26</td><td>50%</td><td>2.02</td><td style="color:var(--red);font-weight:700">-5.7%</td><td><td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">✅ 回暖解禁·观察</td></td><td><td style="color:var(--green)">近5场 5中 (100%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +113%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>K1联赛</td><td>25</td><td>52%</td><td>2.27</td><td style="color:var(--green);font-weight:700">+15.1%</td><td><td style="color:var(--green);font-weight:700">✅ 价值区</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -60%</span></td></td><td style="color:var(--red)">0/1 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>芬超</td><td>25</td><td>36%</td><td>2.02</td><td style="color:var(--red);font-weight:700">-28.0%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -57%</span></td></td><td style="color:var(--red)">0/2 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>荷甲</td><td>22</td><td>59%</td><td>1.81</td><td style="color:var(--green);font-weight:700">+3.7%</td><td><td style="color:var(--dim)">👀 观望</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +11%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>葡超</td><td>21</td><td>57%</td><td>2.06</td><td style="color:var(--green);font-weight:700">+21.3%</td><td><td style="color:var(--green);font-weight:700">✅ 价值区</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +31%</span></td></td><td style="color:var(--green)">1/1 (100%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>巴甲</td><td>18</td><td>39%</td><td>2.54</td><td style="color:var(--red);font-weight:700">-11.4%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -11%</span></td></td><td style="color:var(--green)">9/18 (50%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.85</span></td></tr><tr><td>美职联</td><td>17</td><td>41%</td><td>2.15</td><td style="color:var(--red);font-weight:700">-10.4%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -50%</span></td></td><td style="color:var(--green)">8/16 (50%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.85</span></td></tr>
+    <tr><td>挪超</td><td>40</td><td>52%</td><td>1.99</td><td style="color:var(--red);font-weight:700">-2.6%</td><td><td style="color:var(--amber)">⚠️ 谨慎</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -23%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>瑞典超</td><td>34</td><td>15%</td><td>2.19</td><td style="color:var(--red);font-weight:700">-66.4%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--red)">近5场 0中 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -100%</span></td></td><td style="color:var(--red)">0/4 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>芬超</td><td>30</td><td>37%</td><td>2.02</td><td style="color:var(--red);font-weight:700">-26.6%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -57%</span></td></td><td style="color:var(--red)">0/2 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>欧冠</td><td>28</td><td>36%</td><td>2.40</td><td style="color:var(--red);font-weight:700">-30.3%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -18%</span></td></td><td style="color:var(--red)">0/1 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>K1联赛</td><td>27</td><td>48%</td><td>2.25</td><td style="color:var(--green);font-weight:700">+6.6%</td><td><td style="color:var(--dim)">👀 观望</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -60%</span></td></td><td style="color:var(--red)">0/1 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>欧罗巴</td><td>26</td><td>50%</td><td>2.02</td><td style="color:var(--red);font-weight:700">-5.7%</td><td><td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">✅ 回暖解禁·观察</td></td><td><td style="color:var(--green)">近5场 5中 (100%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +113%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>荷甲</td><td>22</td><td>59%</td><td>1.81</td><td style="color:var(--green);font-weight:700">+3.7%</td><td><td style="color:var(--dim)">👀 观望</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +11%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>巴甲</td><td>22</td><td>41%</td><td>2.44</td><td style="color:var(--red);font-weight:700">-9.3%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -11%</span></td></td><td style="color:var(--green)">9/18 (50%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.85</span></td></tr><tr><td>葡超</td><td>21</td><td>57%</td><td>2.06</td><td style="color:var(--green);font-weight:700">+21.3%</td><td><td style="color:var(--green);font-weight:700">✅ 价值区</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +31%</span></td></td><td style="color:var(--green)">1/1 (100%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>美职联</td><td>19</td><td>42%</td><td>2.14</td><td style="color:var(--red);font-weight:700">-9.3%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -50%</span></td></td><td style="color:var(--green)">8/16 (50%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.85</span></td></tr>
   </table>
   <div style="padding:6px 2px;font-size:0.62rem;color:var(--dim)">回暖解禁 = 累计口径送钱区，但最近5场命中≥60% → 自动解除禁投观察；再拉胯自动打回送钱区。</div>
   </div>
