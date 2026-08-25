@@ -1,13 +1,13 @@
 {
   "date": "2026-08-24",
-  "n_matches": 10,
-  "hit_rate": 0.2,
+  "n_matches": 11,
+  "hit_rate": 0.1818,
   "hits": 2,
   "source_brier": {
-    "model": 0.732,
+    "model": 0.7415,
     "market": null,
     "djyy": null,
-    "final": 0.7139
+    "final": 0.7248
   },
   "by_league": {
     "意甲": {
@@ -51,14 +51,20 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.7323
+    },
+    "巴甲": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.8341
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 7,
-      "hit_rate": 0.2857,
-      "wilson_lower": 0.0822,
-      "avg_brier": 0.7072
+      "n": 8,
+      "hit_rate": 0.25,
+      "wilson_lower": 0.0715,
+      "avg_brier": 0.7231
     },
     "low": {
       "n": 3,
@@ -69,10 +75,10 @@
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 8,
-      "hit_rate": 0.125,
-      "wilson_lower": 0.0224,
-      "avg_brier": 0.723
+      "n": 9,
+      "hit_rate": 0.1111,
+      "wilson_lower": 0.0199,
+      "avg_brier": 0.7353
     },
     "1.5-2.0": {
       "n": 2,
@@ -107,19 +113,19 @@
     }
   },
   "market_signal_stats": {
-    "n": 10,
+    "n": 11,
     "hits": 3
   },
   "layered": {
-    "log_loss_final": 1.1788,
+    "log_loss_final": 1.1939,
     "goal_framework": {
-      "n": 10,
+      "n": 11,
       "hits": 5
     },
     "prob_bands": {
       "40-50%": {
-        "n": 5,
-        "hit_rate": 0.2
+        "n": 6,
+        "hit_rate": 0.1667
       },
       "50-60%": {
         "n": 2,
@@ -132,7 +138,7 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 2,
+        "n": 3,
         "hit_rate": 0.0
       },
       "watch": {
@@ -146,15 +152,15 @@
       "dimension": "outcome",
       "key": "all",
       "outcome": "draw",
-      "predicted_avg": 0.3015,
-      "actual_rate": 0.2,
-      "gap": 0.1015,
-      "n": 10,
+      "predicted_avg": 0.3152,
+      "actual_rate": 0.1818,
+      "gap": 0.1334,
+      "n": 11,
       "severity": "warn",
       "suggested_action": "increase market_weight (trust market on draws)"
     }
   ],
   "total_pnl": 0.0,
-  "generated_at": "2026-08-24T23:58:05.585116",
-  "sha256": "0f92f28f7ea6e543752b124cc7d353e1"
+  "generated_at": "2026-08-25T01:52:15.664673",
+  "sha256": "f0705baacff9c5f055b9fb48e6485a7c"
 }
