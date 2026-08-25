@@ -1,0 +1,199 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [],
+  "total_stake": 0,
+  "expected_roi": 0.0,
+  "bankroll": 4525.4021,
+  "breaker_multiplier": 1.0,
+  "parlay": [],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-25_周二001",
+          "home": "金泉尚武",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-0",
+          "prob": 0.289,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-25_周二006",
+          "home": "博德闪耀",
+          "away": "奈梅亨",
+          "league": "欧冠",
+          "score": "1-0",
+          "prob": 0.287,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.083,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 29% × 29%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-25_周二001",
+          "home": "金泉尚武",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-0",
+          "prob": 0.289,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-25_周二002",
+          "home": "济州SK",
+          "away": "浦项制铁",
+          "league": "K1联赛",
+          "score": "1-0",
+          "prob": 0.276,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.0798,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 29% × 28%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-25_周二006",
+          "home": "博德闪耀",
+          "away": "奈梅亨",
+          "league": "欧冠",
+          "score": "1-0",
+          "prob": 0.287,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-25_周二002",
+          "home": "济州SK",
+          "away": "浦项制铁",
+          "league": "K1联赛",
+          "score": "1-0",
+          "prob": 0.276,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0794,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 29% × 28%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-08-25_周二001",
+          "home": "金泉尚武",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-0",
+          "prob": 0.289,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-25_周二006",
+          "home": "博德闪耀",
+          "away": "奈梅亨",
+          "league": "欧冠",
+          "score": "1-0",
+          "prob": 0.287,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-25_周二002",
+          "home": "济州SK",
+          "away": "浦项制铁",
+          "league": "K1联赛",
+          "score": "1-0",
+          "prob": 0.276,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 441.0,
+      "hit_prob": 0.0229,
+      "stake": 2.0,
+      "potential": 882.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 441 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-08-25_周二001",
+          "home": "金泉尚武",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-0",
+          "prob": 0.289,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-25_周二006",
+          "home": "博德闪耀",
+          "away": "奈梅亨",
+          "league": "欧冠",
+          "score": "1-0",
+          "prob": 0.287,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-25_周二002",
+          "home": "济州SK",
+          "away": "浦项制铁",
+          "league": "K1联赛",
+          "score": "1-0",
+          "prob": 0.276,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 441.0,
+      "hit_prob": 0.0229,
+      "stake": 8.0,
+      "potential": 1232.0,
+      "worst_win": 126.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥126，全中≈¥1232"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4357,
+    "n": 381,
+    "table": {
+      "0.35": 0.3934,
+      "0.4": 0.4286,
+      "0.45": 0.5385,
+      "0.5": 0.3864,
+      "0.55": 0.3846,
+      "0.6": 0.5,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
