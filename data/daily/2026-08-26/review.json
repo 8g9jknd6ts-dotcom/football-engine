@@ -1,0 +1,97 @@
+{
+  "date": "2026-08-26",
+  "n_matches": 2,
+  "hit_rate": 0.0,
+  "hits": 0,
+  "source_brier": {
+    "model": 1.0196,
+    "market": null,
+    "djyy": null,
+    "final": 0.8959
+  },
+  "by_league": {
+    "K1联赛": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.8959
+    }
+  },
+  "by_confidence_tier": {
+    "mid": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9941
+    },
+    "low": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7978
+    }
+  },
+  "by_odds_band": {
+    "1.5-2.0": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9941
+    },
+    "2.0-3.0": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7978
+    }
+  },
+  "score_stats": {
+    "top1": 0,
+    "top3": 0,
+    "top5": 0,
+    "top8": 0,
+    "any": 0
+  },
+  "score_rank_hist": {},
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 0,
+      "hits": 0
+    }
+  },
+  "market_signal_stats": {
+    "n": 2,
+    "hits": 1
+  },
+  "layered": {
+    "log_loss_final": 1.4629,
+    "goal_framework": {
+      "n": 2,
+      "hits": 0
+    },
+    "prob_bands": {
+      "50-60%": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "<40%": {
+        "n": 1,
+        "hit_rate": 0.0
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 2,
+        "hit_rate": 0.0
+      }
+    }
+  },
+  "biases": [],
+  "total_pnl": -25.0,
+  "generated_at": "2026-08-26T16:06:01.420839",
+  "sha256": "b401525259dbce0ba9d325e39090e9d9"
+}

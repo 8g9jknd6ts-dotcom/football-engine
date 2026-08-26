@@ -1,25 +1,25 @@
 {
-  "total_matches": 390,
+  "total_matches": 392,
   "date_range": [
     "2026-07-20",
-    "2026-08-25"
+    "2026-08-26"
   ],
   "metrics": {
-    "brier": 0.6536,
-    "weighted_brier": 0.6534,
-    "rps": 0.2262,
-    "weighted_rps": 0.2264,
-    "log_loss": 1.0819,
-    "hit_rate": 0.4333,
-    "ece": 0.1523
+    "brier": 0.6549,
+    "weighted_brier": 0.6547,
+    "rps": 0.2271,
+    "weighted_rps": 0.2273,
+    "log_loss": 1.0839,
+    "hit_rate": 0.4311,
+    "ece": 0.1558
   },
   "draw_analysis": {
     "actual_draws": 105,
-    "actual_draw_rate": 0.2692,
+    "actual_draw_rate": 0.2679,
     "predicted_draws": 26,
-    "predicted_draw_rate": 0.0667,
+    "predicted_draw_rate": 0.0663,
     "max_draw_prob": 0.4592,
-    "avg_draw_prob": 0.2855,
+    "avg_draw_prob": 0.2857,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4333,
-      "n": 390
+      "hit_rate": 0.4311,
+      "n": 392
     },
     "market": {
       "hit_rate": 0.512,
@@ -63,10 +63,10 @@
       "rps": 0.2849
     },
     "K1联赛": {
-      "n": 27,
-      "hit_rate": 0.4815,
-      "brier": 0.6295,
-      "rps": 0.2061
+      "n": 29,
+      "hit_rate": 0.4483,
+      "brier": 0.6479,
+      "rps": 0.2193
     },
     "欧罗巴": {
       "n": 26,
