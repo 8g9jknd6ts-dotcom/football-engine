@@ -1,0 +1,216 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [
+    {
+      "match": "2026-08-26_周三003",
+      "sel": "home",
+      "odds": 1.83,
+      "stake": 25.0,
+      "prob": 0.521,
+      "downgrade_reason": "prob_5060"
+    },
+    {
+      "match": "2026-08-26_周三001",
+      "sel": "away",
+      "odds": 1.84,
+      "stake": 25.0,
+      "prob": 0.516,
+      "downgrade_reason": "prob_5060"
+    }
+  ],
+  "total_stake": 50.0,
+  "expected_roi": -0.0481,
+  "bankroll": 4525.4021,
+  "breaker_multiplier": 1.0,
+  "parlay": [],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-26_周三011",
+          "home": "帕尔梅拉斯",
+          "away": "桑托斯",
+          "league": "巴西杯",
+          "score": "1-0",
+          "prob": 0.399,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-26_周三012",
+          "home": "达伽马",
+          "away": "维多利亚",
+          "league": "巴西杯",
+          "score": "1-0",
+          "prob": 0.348,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1387,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 40% × 35%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-26_周三011",
+          "home": "帕尔梅拉斯",
+          "away": "桑托斯",
+          "league": "巴西杯",
+          "score": "1-0",
+          "prob": 0.399,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-26_周三001",
+          "home": "大田市民",
+          "away": "蔚山现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.318,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1268,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 40% × 32%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-26_周三011",
+          "home": "帕尔梅拉斯",
+          "away": "桑托斯",
+          "league": "巴西杯",
+          "score": "1-0",
+          "prob": 0.399,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-26_周三002",
+          "home": "安养FC",
+          "away": "仁川联",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.301,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1199,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 40% × 30%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-08-26_周三011",
+          "home": "帕尔梅拉斯",
+          "away": "桑托斯",
+          "league": "巴西杯",
+          "score": "1-0",
+          "prob": 0.399,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-26_周三012",
+          "home": "达伽马",
+          "away": "维多利亚",
+          "league": "巴西杯",
+          "score": "1-0",
+          "prob": 0.348,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-26_周三001",
+          "home": "大田市民",
+          "away": "蔚山现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.318,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0441,
+      "stake": 2.0,
+      "potential": 686.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 343 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-08-26_周三011",
+          "home": "帕尔梅拉斯",
+          "away": "桑托斯",
+          "league": "巴西杯",
+          "score": "1-0",
+          "prob": 0.399,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-26_周三012",
+          "home": "达伽马",
+          "away": "维多利亚",
+          "league": "巴西杯",
+          "score": "1-0",
+          "prob": 0.348,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-26_周三001",
+          "home": "大田市民",
+          "away": "蔚山现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.318,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0441,
+      "stake": 8.0,
+      "potential": 980.0,
+      "worst_win": 98.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥98，全中≈¥980"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4333,
+    "n": 390,
+    "table": {
+      "0.35": 0.384,
+      "0.4": 0.4318,
+      "0.45": 0.5385,
+      "0.5": 0.3778,
+      "0.55": 0.4074,
+      "0.6": 0.5,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
