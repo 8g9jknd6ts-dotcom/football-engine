@@ -5,14 +5,14 @@
     {
       "match": "2026-08-27_周四003",
       "sel": "home",
-      "odds": 1.89,
+      "odds": 1.87,
       "stake": 50.0,
-      "prob": 0.504,
+      "prob": 0.51,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 50.0,
-  "expected_roi": -0.0474,
+  "expected_roi": -0.0467,
   "bankroll": 4520.9021,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -25,10 +25,10 @@
           "away": "本菲卡",
           "league": "欧罗巴",
           "sel": "away",
-          "odds": 1.67,
-          "prob": 0.57,
+          "odds": 1.65,
+          "prob": 0.578,
           "cal_prob": 0.429,
-          "market_prob": 0.57,
+          "market_prob": 0.578,
           "source": "market",
           "hit_prob": 0.471
         },
@@ -38,25 +38,25 @@
           "away": "特拉布宗",
           "league": "欧罗巴",
           "sel": "home",
-          "odds": 1.71,
-          "prob": 0.558,
+          "odds": 1.69,
+          "prob": 0.564,
           "cal_prob": 0.429,
-          "market_prob": 0.558,
+          "market_prob": 0.564,
           "source": "market",
           "hit_prob": 0.471
         }
       ],
-      "total_odds": 2.86,
+      "total_odds": 2.79,
       "model_ev": -0.18,
-      "cal_ev": -0.73,
-      "cal_roi": -0.3665,
+      "cal_ev": -0.76,
+      "cal_roi": -0.3814,
       "market_ev": -0.18,
-      "market_roi": -0.0919,
+      "market_roi": -0.0914,
       "hit_prob_cal": 0.222,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 5.71,
+      "potential": 5.58,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -72,7 +72,7 @@
           "away": "阿拉木图",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.364,
           "odds": 7.0
         },
         {
@@ -86,7 +86,7 @@
         }
       ],
       "total_odds": 63.0,
-      "hit_prob": 0.1163,
+      "hit_prob": 0.1172,
       "stake": 2.0,
       "potential": 126.0,
       "worst_win": 0.0,
@@ -103,7 +103,7 @@
           "away": "阿拉木图",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.364,
           "odds": 7.0
         },
         {
@@ -112,12 +112,12 @@
           "away": "本菲卡",
           "league": "欧罗巴",
           "score": "0-1",
-          "prob": 0.315,
+          "prob": 0.309,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1135,
+      "hit_prob": 0.1125,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -134,7 +134,7 @@
           "away": "阿拉木图",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.364,
           "odds": 7.0
         },
         {
@@ -143,18 +143,18 @@
           "away": "米亚尔比",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.303,
+          "prob": 0.305,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1095,
+      "hit_prob": 0.1111,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 36% × 30%）"
+      "note": "两场比分都中才赢（单场命中率约 36% × 31%）"
     },
     {
       "type": "比分3串1",
@@ -165,7 +165,7 @@
           "away": "阿拉木图",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.364,
           "odds": 7.0
         },
         {
@@ -183,12 +183,12 @@
           "away": "本菲卡",
           "league": "欧罗巴",
           "score": "0-1",
-          "prob": 0.315,
+          "prob": 0.309,
           "odds": 7.0
         }
       ],
       "total_odds": 441.0,
-      "hit_prob": 0.0366,
+      "hit_prob": 0.0363,
       "stake": 2.0,
       "potential": 882.0,
       "worst_win": 0.0,
@@ -205,7 +205,7 @@
           "away": "阿拉木图",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.364,
           "odds": 7.0
         },
         {
@@ -223,12 +223,12 @@
           "away": "本菲卡",
           "league": "欧罗巴",
           "score": "0-1",
-          "prob": 0.315,
+          "prob": 0.309,
           "odds": 7.0
         }
       ],
       "total_odds": 441.0,
-      "hit_prob": 0.0366,
+      "hit_prob": 0.0363,
       "stake": 8.0,
       "potential": 1232.0,
       "worst_win": 126.0,
@@ -238,13 +238,13 @@
     }
   ],
   "parlay_calibration": {
-    "overall": 0.435,
-    "n": 400,
+    "overall": 0.4378,
+    "n": 402,
     "table": {
       "0.35": 0.3828,
       "0.4": 0.4348,
       "0.45": 0.5385,
-      "0.5": 0.383,
+      "0.5": 0.4082,
       "0.55": 0.4286,
       "0.6": 0.5,
       "0.7": 0.5
