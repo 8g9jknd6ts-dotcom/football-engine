@@ -1,0 +1,254 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [
+    {
+      "match": "2026-08-27_周四003",
+      "sel": "home",
+      "odds": 1.89,
+      "stake": 50.0,
+      "prob": 0.504,
+      "downgrade_reason": "prob_5060"
+    }
+  ],
+  "total_stake": 50.0,
+  "expected_roi": -0.0474,
+  "bankroll": 4520.9021,
+  "breaker_multiplier": 1.0,
+  "parlay": [
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-27_周四004",
+          "home": "奥胡斯",
+          "away": "本菲卡",
+          "league": "欧罗巴",
+          "sel": "away",
+          "odds": 1.67,
+          "prob": 0.57,
+          "cal_prob": 0.429,
+          "market_prob": 0.57,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
+          "match": "2026-08-27_周四005",
+          "home": "费伦茨",
+          "away": "特拉布宗",
+          "league": "欧罗巴",
+          "sel": "home",
+          "odds": 1.71,
+          "prob": 0.558,
+          "cal_prob": 0.429,
+          "market_prob": 0.558,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.86,
+      "model_ev": -0.18,
+      "cal_ev": -0.73,
+      "cal_roi": -0.3665,
+      "market_ev": -0.18,
+      "market_roi": -0.0919,
+      "hit_prob_cal": 0.222,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.71,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    }
+  ],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-27_周四006",
+          "home": "安德莱赫特",
+          "away": "阿拉木图",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.361,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-27_周四009",
+          "home": "巴西国际",
+          "away": "格雷米奥",
+          "league": "巴西杯",
+          "score": "0-0",
+          "prob": 0.322,
+          "odds": 9.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.1163,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 32%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-27_周四006",
+          "home": "安德莱赫特",
+          "away": "阿拉木图",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.361,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-27_周四004",
+          "home": "奥胡斯",
+          "away": "本菲卡",
+          "league": "欧罗巴",
+          "score": "0-1",
+          "prob": 0.315,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1135,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 31%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-27_周四006",
+          "home": "安德莱赫特",
+          "away": "阿拉木图",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.361,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-27_周四003",
+          "home": "萨尔茨堡",
+          "away": "米亚尔比",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.303,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1095,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 30%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-08-27_周四006",
+          "home": "安德莱赫特",
+          "away": "阿拉木图",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.361,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-27_周四009",
+          "home": "巴西国际",
+          "away": "格雷米奥",
+          "league": "巴西杯",
+          "score": "0-0",
+          "prob": 0.322,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-27_周四004",
+          "home": "奥胡斯",
+          "away": "本菲卡",
+          "league": "欧罗巴",
+          "score": "0-1",
+          "prob": 0.315,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 441.0,
+      "hit_prob": 0.0366,
+      "stake": 2.0,
+      "potential": 882.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 441 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-08-27_周四006",
+          "home": "安德莱赫特",
+          "away": "阿拉木图",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.361,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-27_周四009",
+          "home": "巴西国际",
+          "away": "格雷米奥",
+          "league": "巴西杯",
+          "score": "0-0",
+          "prob": 0.322,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-27_周四004",
+          "home": "奥胡斯",
+          "away": "本菲卡",
+          "league": "欧罗巴",
+          "score": "0-1",
+          "prob": 0.315,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 441.0,
+      "hit_prob": 0.0366,
+      "stake": 8.0,
+      "potential": 1232.0,
+      "worst_win": 126.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥126，全中≈¥1232"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.435,
+    "n": 400,
+    "table": {
+      "0.35": 0.3828,
+      "0.4": 0.4348,
+      "0.45": 0.5385,
+      "0.5": 0.383,
+      "0.55": 0.4286,
+      "0.6": 0.5,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
