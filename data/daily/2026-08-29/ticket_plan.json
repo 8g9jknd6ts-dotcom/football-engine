@@ -1,15 +1,37 @@
 {
   "stable": [],
   "value": [],
-  "lottery": [],
-  "total_stake": 0,
-  "expected_roi": 0.0,
+  "lottery": [
+    {
+      "match": "2026-08-29_周六004",
+      "sel": "home",
+      "odds": 1.85,
+      "stake": 50.0,
+      "prob": 0.514,
+      "downgrade_reason": "prob_5060"
+    }
+  ],
+  "total_stake": 50.0,
+  "expected_roi": -0.0489,
   "bankroll": 4678.4021,
   "breaker_multiplier": 1.0,
   "parlay": [
     {
       "type": "2串1",
       "legs": [
+        {
+          "match": "2026-08-29_周六021",
+          "home": "蒙扎",
+          "away": "乌迪内斯",
+          "league": "意甲",
+          "sel": "away",
+          "odds": 1.65,
+          "prob": 0.576,
+          "cal_prob": 0.467,
+          "market_prob": 0.576,
+          "source": "market",
+          "hit_prob": 0.471
+        },
         {
           "match": "2026-08-29_周六019",
           "home": "热刺",
@@ -22,32 +44,19 @@
           "market_prob": 0.571,
           "source": "market",
           "hit_prob": 0.471
-        },
-        {
-          "match": "2026-08-29_周六018",
-          "home": "维京",
-          "away": "奥勒松",
-          "league": "挪超",
-          "sel": "home",
-          "odds": 1.68,
-          "prob": 0.566,
-          "cal_prob": 0.467,
-          "market_prob": 0.566,
-          "source": "market",
-          "hit_prob": 0.471
         }
       ],
-      "total_odds": 2.81,
+      "total_odds": 2.76,
       "model_ev": -0.19,
-      "cal_ev": -0.76,
-      "cal_roi": -0.3776,
+      "cal_ev": -0.78,
+      "cal_roi": -0.3887,
       "market_ev": -0.19,
       "market_roi": -0.0935,
       "hit_prob_cal": 0.222,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 5.61,
+      "potential": 5.51,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -62,54 +71,9 @@
           "league": "葡超",
           "sel": "away",
           "odds": 1.59,
-          "prob": 0.599,
+          "prob": 0.598,
           "cal_prob": 0.467,
-          "market_prob": 0.599,
-          "source": "market",
-          "hit_prob": 0.471
-        },
-        {
-          "match": "2026-08-29_周六018",
-          "home": "维京",
-          "away": "奥勒松",
-          "league": "挪超",
-          "sel": "home",
-          "odds": 1.68,
-          "prob": 0.566,
-          "cal_prob": 0.467,
-          "market_prob": 0.566,
-          "source": "market",
-          "hit_prob": 0.471
-        }
-      ],
-      "total_odds": 2.67,
-      "model_ev": -0.19,
-      "cal_ev": -0.81,
-      "cal_roi": -0.4074,
-      "market_ev": -0.19,
-      "market_roi": -0.0938,
-      "hit_prob_cal": 0.222,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 5.34,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "market"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-08-29_周六026",
-          "home": "维塞乌",
-          "away": "波尔图",
-          "league": "葡超",
-          "sel": "away",
-          "odds": 1.59,
-          "prob": 0.599,
-          "cal_prob": 0.467,
-          "market_prob": 0.599,
+          "market_prob": 0.598,
           "source": "market",
           "hit_prob": 0.471
         },
@@ -128,16 +92,61 @@
         }
       ],
       "total_odds": 2.66,
-      "model_ev": -0.18,
+      "model_ev": -0.19,
       "cal_ev": -0.82,
       "cal_roi": -0.4109,
-      "market_ev": -0.18,
-      "market_roi": -0.0919,
+      "market_ev": -0.19,
+      "market_roi": -0.0936,
       "hit_prob_cal": 0.222,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
       "potential": 5.31,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-29_周六026",
+          "home": "维塞乌",
+          "away": "波尔图",
+          "league": "葡超",
+          "sel": "away",
+          "odds": 1.59,
+          "prob": 0.598,
+          "cal_prob": 0.467,
+          "market_prob": 0.598,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
+          "match": "2026-08-29_周六021",
+          "home": "蒙扎",
+          "away": "乌迪内斯",
+          "league": "意甲",
+          "sel": "away",
+          "odds": 1.65,
+          "prob": 0.576,
+          "cal_prob": 0.467,
+          "market_prob": 0.576,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.62,
+      "model_ev": -0.19,
+      "cal_ev": -0.84,
+      "cal_roi": -0.418,
+      "market_ev": -0.19,
+      "market_roi": -0.0957,
+      "hit_prob_cal": 0.222,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.25,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -153,7 +162,7 @@
           "away": "代格福什",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.379,
+          "prob": 0.372,
           "odds": 7.0
         },
         {
@@ -162,18 +171,18 @@
           "away": "奥勒松",
           "league": "挪超",
           "score": "1-0",
-          "prob": 0.356,
+          "prob": 0.358,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1348,
+      "hit_prob": 0.1332,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 36%）"
+      "note": "两场比分都中才赢（单场命中率约 37% × 36%）"
     },
     {
       "type": "比分2串1",
@@ -184,7 +193,7 @@
           "away": "代格福什",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.379,
+          "prob": 0.372,
           "odds": 7.0
         },
         {
@@ -193,18 +202,18 @@
           "away": "金泉尚武",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.325,
+          "prob": 0.329,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.123,
+      "hit_prob": 0.1225,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 32%）"
+      "note": "两场比分都中才赢（单场命中率约 37% × 33%）"
     },
     {
       "type": "比分2串1",
@@ -215,7 +224,7 @@
           "away": "代格福什",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.379,
+          "prob": 0.372,
           "odds": 7.0
         },
         {
@@ -224,18 +233,18 @@
           "away": "洛杉矶FC",
           "league": "美职联",
           "score": "0-1",
-          "prob": 0.317,
+          "prob": 0.319,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1199,
+      "hit_prob": 0.1184,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 32%）"
+      "note": "两场比分都中才赢（单场命中率约 37% × 32%）"
     },
     {
       "type": "比分3串1",
@@ -246,7 +255,7 @@
           "away": "代格福什",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.379,
+          "prob": 0.372,
           "odds": 7.0
         },
         {
@@ -255,7 +264,7 @@
           "away": "奥勒松",
           "league": "挪超",
           "score": "1-0",
-          "prob": 0.356,
+          "prob": 0.358,
           "odds": 7.0
         },
         {
@@ -264,12 +273,12 @@
           "away": "金泉尚武",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.325,
+          "prob": 0.329,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0437,
+      "hit_prob": 0.0439,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -286,7 +295,7 @@
           "away": "代格福什",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.379,
+          "prob": 0.372,
           "odds": 7.0
         },
         {
@@ -295,7 +304,7 @@
           "away": "奥勒松",
           "league": "挪超",
           "score": "1-0",
-          "prob": 0.356,
+          "prob": 0.358,
           "odds": 7.0
         },
         {
@@ -304,12 +313,12 @@
           "away": "金泉尚武",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.325,
+          "prob": 0.329,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0437,
+      "hit_prob": 0.0439,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
