@@ -1,0 +1,196 @@
+{
+  "date": "2026-08-29",
+  "n_matches": 23,
+  "hit_rate": 0.3043,
+  "hits": 7,
+  "source_brier": {
+    "model": 0.7625,
+    "market": null,
+    "djyy": null,
+    "final": 0.6994
+  },
+  "by_league": {
+    "日职": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.5958
+    },
+    "日职乙": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7341
+    },
+    "K1联赛": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3607
+    },
+    "德乙": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7143
+    },
+    "英超": {
+      "n": 4,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7855
+    },
+    "英冠": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3871
+    },
+    "瑞典超": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3212
+    },
+    "德甲": {
+      "n": 6,
+      "hit_rate": 0.1667,
+      "wilson_lower": 0.0301,
+      "avg_brier": 0.8366
+    },
+    "西甲": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.8902
+    },
+    "法甲": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9138
+    },
+    "意甲": {
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.6288
+    },
+    "荷甲": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.5241
+    }
+  },
+  "by_confidence_tier": {
+    "low": {
+      "n": 7,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7258
+    },
+    "mid": {
+      "n": 13,
+      "hit_rate": 0.4615,
+      "wilson_lower": 0.2321,
+      "avg_brier": 0.6771
+    },
+    "high": {
+      "n": 3,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.0615,
+      "avg_brier": 0.734
+    }
+  },
+  "by_odds_band": {
+    "2.0-3.0": {
+      "n": 14,
+      "hit_rate": 0.2143,
+      "wilson_lower": 0.0757,
+      "avg_brier": 0.7169
+    },
+    "1.5-2.0": {
+      "n": 9,
+      "hit_rate": 0.4444,
+      "wilson_lower": 0.1888,
+      "avg_brier": 0.672
+    }
+  },
+  "score_stats": {
+    "top1": 0,
+    "top3": 2,
+    "top5": 6,
+    "top8": 8,
+    "any": 8
+  },
+  "score_rank_hist": {
+    "4": 3,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1,
+    "8": 1
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 8,
+      "hits": 6
+    }
+  },
+  "market_signal_stats": {
+    "n": 23,
+    "hits": 13
+  },
+  "layered": {
+    "log_loss_final": 1.1447,
+    "goal_framework": {
+      "n": 23,
+      "hits": 9
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 8,
+        "hit_rate": 0.5
+      },
+      "50-60%": {
+        "n": 8,
+        "hit_rate": 0.375
+      },
+      "<40%": {
+        "n": 7,
+        "hit_rate": 0.0
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 7,
+        "hit_rate": 0.4286
+      },
+      "watch": {
+        "n": 16,
+        "hit_rate": 0.25
+      }
+    }
+  },
+  "biases": [
+    {
+      "dimension": "league",
+      "key": "德甲",
+      "outcome": "home",
+      "predicted_avg": 0.3509,
+      "actual_rate": 0.6667,
+      "gap": -0.3158,
+      "n": 6,
+      "severity": "critical",
+      "suggested_action": "increase home_adv_weight"
+    }
+  ],
+  "total_pnl": 42.5,
+  "generated_at": "2026-08-29T18:52:45.745767",
+  "sha256": "f3b1e7359b086b1be14780f1e99ddd3b"
+}
