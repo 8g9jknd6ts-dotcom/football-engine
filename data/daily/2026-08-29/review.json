@@ -1,13 +1,13 @@
 {
   "date": "2026-08-29",
-  "n_matches": 27,
-  "hit_rate": 0.3704,
-  "hits": 10,
+  "n_matches": 28,
+  "hit_rate": 0.3929,
+  "hits": 11,
   "source_brier": {
-    "model": 0.705,
+    "model": 0.7092,
     "market": null,
     "djyy": null,
-    "final": 0.6616
+    "final": 0.6573
   },
   "by_league": {
     "日职": {
@@ -87,6 +87,12 @@
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
       "avg_brier": 0.2444
+    },
+    "美职联": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.542
     }
   },
   "by_confidence_tier": {
@@ -97,10 +103,10 @@
       "avg_brier": 0.7273
     },
     "mid": {
-      "n": 14,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.268,
-      "avg_brier": 0.6642
+      "n": 15,
+      "hit_rate": 0.5333,
+      "wilson_lower": 0.3012,
+      "avg_brier": 0.6561
     },
     "high": {
       "n": 5,
@@ -111,10 +117,10 @@
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 16,
-      "hit_rate": 0.25,
-      "wilson_lower": 0.1018,
-      "avg_brier": 0.7045
+      "n": 17,
+      "hit_rate": 0.2941,
+      "wilson_lower": 0.1328,
+      "avg_brier": 0.6949
     },
     "1.5-2.0": {
       "n": 11,
@@ -124,11 +130,11 @@
     }
   },
   "score_stats": {
-    "top1": 0,
-    "top3": 3,
-    "top5": 8,
-    "top8": 11,
-    "any": 11
+    "top1": 1,
+    "top3": 4,
+    "top5": 9,
+    "top8": 12,
+    "any": 12
   },
   "score_rank_hist": {
     "4": 4,
@@ -136,7 +142,8 @@
     "3": 2,
     "5": 1,
     "6": 1,
-    "8": 2
+    "8": 2,
+    "1": 1
   },
   "score_source_stats": {
     "djyy": {
@@ -144,24 +151,24 @@
       "hits": 0
     },
     "mc": {
-      "n": 11,
-      "hits": 8
+      "n": 12,
+      "hits": 9
     }
   },
   "market_signal_stats": {
-    "n": 27,
+    "n": 28,
     "hits": 14
   },
   "layered": {
-    "log_loss_final": 1.0923,
+    "log_loss_final": 1.0854,
     "goal_framework": {
-      "n": 27,
-      "hits": 10
+      "n": 28,
+      "hits": 11
     },
     "prob_bands": {
       "40-50%": {
-        "n": 9,
-        "hit_rate": 0.5556
+        "n": 10,
+        "hit_rate": 0.6
       },
       "50-60%": {
         "n": 10,
@@ -178,8 +185,8 @@
         "hit_rate": 0.5
       },
       "watch": {
-        "n": 17,
-        "hit_rate": 0.2941
+        "n": 18,
+        "hit_rate": 0.3333
       }
     }
   },
@@ -197,6 +204,6 @@
     }
   ],
   "total_pnl": 42.5,
-  "generated_at": "2026-08-29T23:37:31.412937",
-  "sha256": "246f760fdd7c4e22f53f5bdbd3777696"
+  "generated_at": "2026-08-30T01:40:42.931442",
+  "sha256": "ada0d5969931411ce963afaebffc4e0e"
 }
