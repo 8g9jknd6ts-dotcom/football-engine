@@ -1,0 +1,367 @@
+{
+  "stable": [
+    {
+      "match": "2026-08-30_周日006",
+      "sel": "home",
+      "odds": 1.45,
+      "stake": 150.0,
+      "prob": 0.658
+    },
+    {
+      "match": "2026-08-30_周日018",
+      "sel": "away",
+      "odds": 1.58,
+      "stake": 150.0,
+      "prob": 0.603
+    }
+  ],
+  "value": [],
+  "lottery": [
+    {
+      "match": "2026-08-30_周日012",
+      "sel": "away",
+      "odds": 1.86,
+      "stake": 25.0,
+      "prob": 0.512,
+      "downgrade_reason": "prob_5060"
+    },
+    {
+      "match": "2026-08-30_周日010",
+      "sel": "home",
+      "odds": 1.87,
+      "stake": 25.0,
+      "prob": 0.508,
+      "downgrade_reason": "prob_5060"
+    }
+  ],
+  "total_stake": 350.0,
+  "expected_roi": -0.0467,
+  "bankroll": 4720.9021,
+  "breaker_multiplier": 1.0,
+  "parlay": [
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-30_周日013",
+          "home": "皇马",
+          "away": "马拉加",
+          "league": "西甲",
+          "sel": "home",
+          "odds": 1.46,
+          "prob": 0.651,
+          "cal_prob": 0.545,
+          "market_prob": 0.652,
+          "source": "fusion",
+          "hit_prob": 0.545
+        },
+        {
+          "match": "2026-08-30_周日014",
+          "home": "曼联",
+          "away": "伊普斯",
+          "league": "英超",
+          "sel": "home",
+          "odds": 1.54,
+          "prob": 0.617,
+          "cal_prob": 0.545,
+          "market_prob": 0.617,
+          "source": "fusion",
+          "hit_prob": 0.545
+        }
+      ],
+      "total_odds": 2.25,
+      "model_ev": -0.19,
+      "cal_ev": -0.66,
+      "cal_roi": -0.3309,
+      "market_ev": -0.19,
+      "market_roi": -0.0951,
+      "hit_prob_cal": 0.298,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.5,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-30_周日006",
+          "home": "费耶诺德",
+          "away": "海牙",
+          "league": "荷甲",
+          "sel": "home",
+          "odds": 1.45,
+          "prob": 0.658,
+          "cal_prob": 0.545,
+          "market_prob": 0.658,
+          "source": "fusion",
+          "hit_prob": 0.545
+        },
+        {
+          "match": "2026-08-30_周日014",
+          "home": "曼联",
+          "away": "伊普斯",
+          "league": "英超",
+          "sel": "home",
+          "odds": 1.54,
+          "prob": 0.617,
+          "cal_prob": 0.545,
+          "market_prob": 0.617,
+          "source": "fusion",
+          "hit_prob": 0.545
+        }
+      ],
+      "total_odds": 2.23,
+      "model_ev": -0.19,
+      "cal_ev": -0.67,
+      "cal_roi": -0.3355,
+      "market_ev": -0.19,
+      "market_roi": -0.0934,
+      "hit_prob_cal": 0.298,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.47,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-08-30_周日006",
+          "home": "费耶诺德",
+          "away": "海牙",
+          "league": "荷甲",
+          "sel": "home",
+          "odds": 1.45,
+          "prob": 0.658,
+          "cal_prob": 0.545,
+          "market_prob": 0.658,
+          "source": "fusion",
+          "hit_prob": 0.545
+        },
+        {
+          "match": "2026-08-30_周日013",
+          "home": "皇马",
+          "away": "马拉加",
+          "league": "西甲",
+          "sel": "home",
+          "odds": 1.46,
+          "prob": 0.651,
+          "cal_prob": 0.545,
+          "market_prob": 0.652,
+          "source": "fusion",
+          "hit_prob": 0.545
+        }
+      ],
+      "total_odds": 2.12,
+      "model_ev": -0.19,
+      "cal_ev": -0.74,
+      "cal_roi": -0.37,
+      "market_ev": -0.19,
+      "market_roi": -0.0927,
+      "hit_prob_cal": 0.298,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.23,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    }
+  ],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-30_周日022",
+          "home": "弗拉门戈",
+          "away": "博塔弗戈",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.357,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-30_周日007",
+          "home": "博德闪耀",
+          "away": "罗森博格",
+          "league": "挪超",
+          "score": "1-0",
+          "prob": 0.353,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.126,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 35%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-30_周日022",
+          "home": "弗拉门戈",
+          "away": "博塔弗戈",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.357,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-30_周日005",
+          "home": "索尔纳",
+          "away": "哈马比",
+          "league": "瑞典超",
+          "score": "0-1",
+          "prob": 0.343,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.1226,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 34%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-08-30_周日022",
+          "home": "弗拉门戈",
+          "away": "博塔弗戈",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.357,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-30_周日003",
+          "home": "仁川联",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.343,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.1225,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 34%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-08-30_周日022",
+          "home": "弗拉门戈",
+          "away": "博塔弗戈",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.357,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-30_周日007",
+          "home": "博德闪耀",
+          "away": "罗森博格",
+          "league": "挪超",
+          "score": "1-0",
+          "prob": 0.353,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-30_周日005",
+          "home": "索尔纳",
+          "away": "哈马比",
+          "league": "瑞典超",
+          "score": "0-1",
+          "prob": 0.343,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 441.0,
+      "hit_prob": 0.0432,
+      "stake": 2.0,
+      "potential": 882.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 441 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-08-30_周日022",
+          "home": "弗拉门戈",
+          "away": "博塔弗戈",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.357,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-08-30_周日007",
+          "home": "博德闪耀",
+          "away": "罗森博格",
+          "league": "挪超",
+          "score": "1-0",
+          "prob": 0.353,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-08-30_周日005",
+          "home": "索尔纳",
+          "away": "哈马比",
+          "league": "瑞典超",
+          "score": "0-1",
+          "prob": 0.343,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 441.0,
+      "hit_prob": 0.0432,
+      "stake": 8.0,
+      "potential": 1232.0,
+      "worst_win": 126.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥126，全中≈¥1232"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4415,
+    "n": 453,
+    "table": {
+      "0.35": 0.3551,
+      "0.4": 0.4563,
+      "0.45": 0.5227,
+      "0.5": 0.4576,
+      "0.55": 0.4857,
+      "0.6": 0.5455,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
