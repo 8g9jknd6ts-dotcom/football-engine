@@ -1,13 +1,13 @@
 {
   "date": "2026-08-30",
-  "n_matches": 24,
-  "hit_rate": 0.625,
+  "n_matches": 25,
+  "hit_rate": 0.6,
   "hits": 15,
   "source_brier": {
-    "model": 0.5229,
+    "model": 0.5401,
     "market": null,
     "djyy": null,
-    "final": 0.5447
+    "final": 0.5454
   },
   "by_league": {
     "荷甲": {
@@ -81,14 +81,20 @@
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
       "avg_brier": 0.6517
+    },
+    "美职联": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.5609
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 13,
-      "hit_rate": 0.6154,
-      "wilson_lower": 0.3552,
-      "avg_brier": 0.5541
+      "n": 14,
+      "hit_rate": 0.5714,
+      "wilson_lower": 0.3259,
+      "avg_brier": 0.5546
     },
     "low": {
       "n": 5,
@@ -111,10 +117,10 @@
       "avg_brier": 0.3646
     },
     "2.0-3.0": {
-      "n": 11,
-      "hit_rate": 0.3636,
-      "wilson_lower": 0.1517,
-      "avg_brier": 0.7056
+      "n": 12,
+      "hit_rate": 0.3333,
+      "wilson_lower": 0.1381,
+      "avg_brier": 0.6935
     },
     "1.0-1.5": {
       "n": 2,
@@ -151,19 +157,19 @@
     }
   },
   "market_signal_stats": {
-    "n": 24,
+    "n": 25,
     "hits": 9
   },
   "layered": {
-    "log_loss_final": 0.9237,
+    "log_loss_final": 0.922,
     "goal_framework": {
-      "n": 24,
+      "n": 25,
       "hits": 8
     },
     "prob_bands": {
       "40-50%": {
-        "n": 7,
-        "hit_rate": 0.4286
+        "n": 8,
+        "hit_rate": 0.375
       },
       "50-60%": {
         "n": 8,
@@ -184,25 +190,13 @@
         "hit_rate": 0.5333
       },
       "watch": {
-        "n": 9,
-        "hit_rate": 0.7778
+        "n": 10,
+        "hit_rate": 0.7
       }
     }
   },
-  "biases": [
-    {
-      "dimension": "outcome",
-      "key": "all",
-      "outcome": "draw",
-      "predicted_avg": 0.2888,
-      "actual_rate": 0.1667,
-      "gap": 0.1222,
-      "n": 24,
-      "severity": "warn",
-      "suggested_action": "increase market_weight (trust market on draws)"
-    }
-  ],
+  "biases": [],
   "total_pnl": -19.75,
-  "generated_at": "2026-08-30T23:29:59.372956",
-  "sha256": "34a052c1357b3cf6fc89e30c8ae9a656"
+  "generated_at": "2026-08-31T01:37:29.067624",
+  "sha256": "fe1f7b0156d2f3c18c38528a4000e8f5"
 }
