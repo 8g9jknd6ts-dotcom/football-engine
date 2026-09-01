@@ -1,0 +1,145 @@
+{
+  "date": "2026-09-01",
+  "n_matches": 10,
+  "hit_rate": 0.5,
+  "hits": 5,
+  "source_brier": {
+    "model": 0.6421,
+    "market": null,
+    "djyy": null,
+    "final": 0.6428
+  },
+  "by_league": {
+    "沙特联": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3141
+    },
+    "英冠": {
+      "n": 8,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.2152,
+      "avg_brier": 0.6318
+    },
+    "意杯": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.0592
+    }
+  },
+  "by_confidence_tier": {
+    "mid": {
+      "n": 7,
+      "hit_rate": 0.7143,
+      "wilson_lower": 0.3589,
+      "avg_brier": 0.5434
+    },
+    "low": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.7097
+    },
+    "high": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.2044
+    }
+  },
+  "by_odds_band": {
+    "1.5-2.0": {
+      "n": 4,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.15,
+      "avg_brier": 0.734
+    },
+    "2.0-3.0": {
+      "n": 6,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.1876,
+      "avg_brier": 0.5819
+    }
+  },
+  "score_stats": {
+    "top1": 2,
+    "top3": 3,
+    "top5": 4,
+    "top8": 7,
+    "any": 7
+  },
+  "score_rank_hist": {
+    "7": 1,
+    "3": 1,
+    "6": 2,
+    "1": 2,
+    "4": 1
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 7,
+      "hits": 4
+    }
+  },
+  "market_signal_stats": {
+    "n": 10,
+    "hits": 5
+  },
+  "layered": {
+    "log_loss_final": 1.0953,
+    "goal_framework": {
+      "n": 10,
+      "hits": 6
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 4,
+        "hit_rate": 0.75
+      },
+      "50-60%": {
+        "n": 3,
+        "hit_rate": 0.6667
+      },
+      "60%+": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "<40%": {
+        "n": 2,
+        "hit_rate": 0.0
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 3,
+        "hit_rate": 0.3333
+      },
+      "watch": {
+        "n": 7,
+        "hit_rate": 0.5714
+      }
+    }
+  },
+  "biases": [
+    {
+      "dimension": "league",
+      "key": "英冠",
+      "outcome": "home",
+      "predicted_avg": 0.3697,
+      "actual_rate": 0.5,
+      "gap": -0.1303,
+      "n": 8,
+      "severity": "warn",
+      "suggested_action": "increase home_adv_weight"
+    }
+  ],
+  "total_pnl": -50.0,
+  "generated_at": "2026-09-01T21:20:48.438918",
+  "sha256": "e066d923088dab2198c7ee3ea57173e5"
+}
