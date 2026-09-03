@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T04:38:53.086664+00:00",
+  "generated_at": "2026-09-03T09:13:51.710147+00:00",
   "parlay": {
     "n_tickets": 29,
     "n_settled": 28,
@@ -1060,8 +1060,8 @@
         "date": "2026-09-03",
         "type": "2串1",
         "stake": 2.0,
-        "potential": 5.23,
-        "total_odds": 2.62,
+        "potential": 5.2,
+        "total_odds": 2.6,
         "odds_source": null,
         "note": "待赛",
         "won": false,
@@ -1087,7 +1087,7 @@
             "away": "塞尔塔",
             "sel": "home",
             "score": null,
-            "odds": 1.71,
+            "odds": 1.7,
             "hit": null
           }
         ]
@@ -8455,6 +8455,15 @@
         "return": 0.0,
         "legs": [
           {
+            "match": "2026-09-03_周四003",
+            "home": "米亚尔比",
+            "away": "佐加顿斯",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          },
+          {
             "match": "2026-09-03_周四007",
             "home": "格雷米奥",
             "away": "巴西国际",
@@ -8462,11 +8471,38 @@
             "score": "0-0",
             "odds": 9.0,
             "hit": null
-          },
+          }
+        ]
+      },
+      {
+        "date": "2026-09-03",
+        "type": "比分2串1",
+        "stake": 2.0,
+        "potential": 98.0,
+        "total_odds": 49.0,
+        "odds_source": "simulated",
+        "note": "待赛",
+        "won": false,
+        "pending": true,
+        "leg_results": [
+          null,
+          null
+        ],
+        "return": 0.0,
+        "legs": [
           {
             "match": "2026-09-03_周四003",
             "home": "米亚尔比",
             "away": "佐加顿斯",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          },
+          {
+            "match": "2026-09-03_周四005",
+            "home": "图卢兹",
+            "away": "里尔",
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
@@ -8512,42 +8548,6 @@
       },
       {
         "date": "2026-09-03",
-        "type": "比分2串1",
-        "stake": 2.0,
-        "potential": 98.0,
-        "total_odds": 49.0,
-        "odds_source": "simulated",
-        "note": "待赛",
-        "won": false,
-        "pending": true,
-        "leg_results": [
-          null,
-          null
-        ],
-        "return": 0.0,
-        "legs": [
-          {
-            "match": "2026-09-03_周四003",
-            "home": "米亚尔比",
-            "away": "佐加顿斯",
-            "sel": null,
-            "score": "0-1",
-            "odds": 7.0,
-            "hit": null
-          },
-          {
-            "match": "2026-09-03_周四005",
-            "home": "图卢兹",
-            "away": "里尔",
-            "sel": null,
-            "score": "0-1",
-            "odds": 7.0,
-            "hit": null
-          }
-        ]
-      },
-      {
-        "date": "2026-09-03",
         "type": "比分3串1",
         "stake": 2.0,
         "potential": 882.0,
@@ -8564,21 +8564,21 @@
         "return": 0.0,
         "legs": [
           {
-            "match": "2026-09-03_周四007",
-            "home": "格雷米奥",
-            "away": "巴西国际",
-            "sel": null,
-            "score": "0-0",
-            "odds": 9.0,
-            "hit": null
-          },
-          {
             "match": "2026-09-03_周四003",
             "home": "米亚尔比",
             "away": "佐加顿斯",
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
+            "hit": null
+          },
+          {
+            "match": "2026-09-03_周四007",
+            "home": "格雷米奥",
+            "away": "巴西国际",
+            "sel": null,
+            "score": "0-0",
+            "odds": 9.0,
             "hit": null
           },
           {
@@ -8610,21 +8610,21 @@
         "return": 0.0,
         "legs": [
           {
-            "match": "2026-09-03_周四007",
-            "home": "格雷米奥",
-            "away": "巴西国际",
-            "sel": null,
-            "score": "0-0",
-            "odds": 9.0,
-            "hit": null
-          },
-          {
             "match": "2026-09-03_周四003",
             "home": "米亚尔比",
             "away": "佐加顿斯",
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
+            "hit": null
+          },
+          {
+            "match": "2026-09-03_周四007",
+            "home": "格雷米奥",
+            "away": "巴西国际",
+            "sel": null,
+            "score": "0-0",
+            "odds": 9.0,
             "hit": null
           },
           {
@@ -18769,8 +18769,8 @@
             "date": "2026-09-03",
             "type": "2串1",
             "stake": 2.0,
-            "potential": 5.23,
-            "total_odds": 2.62,
+            "potential": 5.2,
+            "total_odds": 2.6,
             "odds_source": null,
             "note": "待赛",
             "won": false,
@@ -18796,7 +18796,7 @@
                 "away": "塞尔塔",
                 "sel": "home",
                 "score": null,
-                "odds": 1.71,
+                "odds": 1.7,
                 "hit": null
               }
             ]
@@ -18835,15 +18835,6 @@
             "return": 0.0,
             "legs": [
               {
-                "match": "2026-09-03_周四007",
-                "home": "格雷米奥",
-                "away": "巴西国际",
-                "sel": null,
-                "score": "0-0",
-                "odds": 9.0,
-                "hit": null
-              },
-              {
                 "match": "2026-09-03_周四003",
                 "home": "米亚尔比",
                 "away": "佐加顿斯",
@@ -18851,25 +18842,7 @@
                 "score": "0-1",
                 "odds": 7.0,
                 "hit": null
-              }
-            ]
-          },
-          {
-            "date": "2026-09-03",
-            "type": "比分2串1",
-            "stake": 2.0,
-            "potential": 126.0,
-            "total_odds": 63.0,
-            "odds_source": "simulated",
-            "note": "待赛",
-            "won": false,
-            "pending": true,
-            "leg_results": [
-              null,
-              null
-            ],
-            "return": 0.0,
-            "legs": [
+              },
               {
                 "match": "2026-09-03_周四007",
                 "home": "格雷米奥",
@@ -18877,15 +18850,6 @@
                 "sel": null,
                 "score": "0-0",
                 "odds": 9.0,
-                "hit": null
-              },
-              {
-                "match": "2026-09-03_周四005",
-                "home": "图卢兹",
-                "away": "里尔",
-                "sel": null,
-                "score": "0-1",
-                "odds": 7.0,
                 "hit": null
               }
             ]
@@ -18928,6 +18892,42 @@
           },
           {
             "date": "2026-09-03",
+            "type": "比分2串1",
+            "stake": 2.0,
+            "potential": 126.0,
+            "total_odds": 63.0,
+            "odds_source": "simulated",
+            "note": "待赛",
+            "won": false,
+            "pending": true,
+            "leg_results": [
+              null,
+              null
+            ],
+            "return": 0.0,
+            "legs": [
+              {
+                "match": "2026-09-03_周四007",
+                "home": "格雷米奥",
+                "away": "巴西国际",
+                "sel": null,
+                "score": "0-0",
+                "odds": 9.0,
+                "hit": null
+              },
+              {
+                "match": "2026-09-03_周四005",
+                "home": "图卢兹",
+                "away": "里尔",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              }
+            ]
+          },
+          {
+            "date": "2026-09-03",
             "type": "比分3串1",
             "stake": 2.0,
             "potential": 882.0,
@@ -18944,21 +18944,21 @@
             "return": 0.0,
             "legs": [
               {
-                "match": "2026-09-03_周四007",
-                "home": "格雷米奥",
-                "away": "巴西国际",
-                "sel": null,
-                "score": "0-0",
-                "odds": 9.0,
-                "hit": null
-              },
-              {
                 "match": "2026-09-03_周四003",
                 "home": "米亚尔比",
                 "away": "佐加顿斯",
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
+                "hit": null
+              },
+              {
+                "match": "2026-09-03_周四007",
+                "home": "格雷米奥",
+                "away": "巴西国际",
+                "sel": null,
+                "score": "0-0",
+                "odds": 9.0,
                 "hit": null
               },
               {
@@ -18990,21 +18990,21 @@
             "return": 0.0,
             "legs": [
               {
-                "match": "2026-09-03_周四007",
-                "home": "格雷米奥",
-                "away": "巴西国际",
-                "sel": null,
-                "score": "0-0",
-                "odds": 9.0,
-                "hit": null
-              },
-              {
                 "match": "2026-09-03_周四003",
                 "home": "米亚尔比",
                 "away": "佐加顿斯",
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
+                "hit": null
+              },
+              {
+                "match": "2026-09-03_周四007",
+                "home": "格雷米奥",
+                "away": "巴西国际",
+                "sel": null,
+                "score": "0-0",
+                "odds": 9.0,
                 "hit": null
               },
               {
