@@ -3,16 +3,9 @@
     {
       "match": "2026-09-04_周五006",
       "sel": "home",
-      "odds": 1.48,
+      "odds": 1.49,
       "stake": 100.0,
-      "prob": 0.645
-    },
-    {
-      "match": "2026-09-04_周五013",
-      "sel": "home",
-      "odds": 1.56,
-      "stake": 100.0,
-      "prob": 0.611
+      "prob": 0.641
     },
     {
       "match": "2026-09-04_周五009",
@@ -20,12 +13,28 @@
       "odds": 1.48,
       "stake": 100.0,
       "prob": 0.644
+    },
+    {
+      "match": "2026-09-04_周五013",
+      "sel": "home",
+      "odds": 1.56,
+      "stake": 100.0,
+      "prob": 0.61
     }
   ],
   "value": [],
-  "lottery": [],
-  "total_stake": 300.0,
-  "expected_roi": -0.0459,
+  "lottery": [
+    {
+      "match": "2026-09-04_周五008",
+      "sel": "home",
+      "odds": 1.9,
+      "stake": 50.0,
+      "prob": 0.5,
+      "downgrade_reason": "prob_5060"
+    }
+  ],
+  "total_stake": 350.0,
+  "expected_roi": -0.0469,
   "bankroll": 4916.1521,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -46,19 +55,6 @@
           "hit_prob": 0.684
         },
         {
-          "match": "2026-09-04_周五006",
-          "home": "鹿斯巴达",
-          "away": "兹沃勒",
-          "league": "荷甲",
-          "sel": "home",
-          "odds": 1.48,
-          "prob": 0.645,
-          "cal_prob": 0.684,
-          "market_prob": 0.645,
-          "source": "fusion",
-          "hit_prob": 0.684
-        },
-        {
           "match": "2026-09-04_周五009",
           "home": "热那亚",
           "away": "科莫",
@@ -70,14 +66,27 @@
           "market_prob": 0.644,
           "source": "fusion",
           "hit_prob": 0.684
+        },
+        {
+          "match": "2026-09-04_周五003",
+          "home": "腓特烈斯塔",
+          "away": "博德闪耀",
+          "league": "挪超",
+          "sel": "away",
+          "odds": 1.48,
+          "prob": 0.643,
+          "cal_prob": 0.684,
+          "market_prob": 0.643,
+          "source": "fusion",
+          "hit_prob": 0.684
         }
       ],
       "total_odds": 2.43,
       "model_ev": null,
       "cal_ev": 0.15,
       "cal_roi": 0.0182,
-      "market_ev": -0.82,
-      "market_roi": -0.1026,
+      "market_ev": -0.84,
+      "market_roi": -0.1046,
       "hit_prob_cal": 0.32,
       "recommended": true,
       "stake": 8.33,
@@ -91,19 +100,6 @@
       "type": "2串1",
       "legs": [
         {
-          "match": "2026-09-04_周五006",
-          "home": "鹿斯巴达",
-          "away": "兹沃勒",
-          "league": "荷甲",
-          "sel": "home",
-          "odds": 1.48,
-          "prob": 0.645,
-          "cal_prob": 0.684,
-          "market_prob": 0.645,
-          "source": "fusion",
-          "hit_prob": 0.684
-        },
-        {
           "match": "2026-09-04_周五009",
           "home": "热那亚",
           "away": "科莫",
@@ -115,14 +111,27 @@
           "market_prob": 0.644,
           "source": "fusion",
           "hit_prob": 0.684
+        },
+        {
+          "match": "2026-09-04_周五003",
+          "home": "腓特烈斯塔",
+          "away": "博德闪耀",
+          "league": "挪超",
+          "sel": "away",
+          "odds": 1.48,
+          "prob": 0.643,
+          "cal_prob": 0.684,
+          "market_prob": 0.643,
+          "source": "fusion",
+          "hit_prob": 0.684
         }
       ],
       "total_odds": 2.19,
-      "model_ev": -0.18,
+      "model_ev": -0.19,
       "cal_ev": 0.35,
       "cal_roi": 0.0254,
-      "market_ev": -0.18,
-      "market_roi": -0.0904,
+      "market_ev": -0.19,
+      "market_roi": -0.093,
       "hit_prob_cal": 0.468,
       "recommended": true,
       "stake": 13.94,
@@ -149,19 +158,6 @@
           "hit_prob": 0.684
         },
         {
-          "match": "2026-09-04_周五006",
-          "home": "鹿斯巴达",
-          "away": "兹沃勒",
-          "league": "荷甲",
-          "sel": "home",
-          "odds": 1.48,
-          "prob": 0.645,
-          "cal_prob": 0.684,
-          "market_prob": 0.645,
-          "source": "fusion",
-          "hit_prob": 0.684
-        },
-        {
           "match": "2026-09-04_周五009",
           "home": "热那亚",
           "away": "科莫",
@@ -173,14 +169,27 @@
           "market_prob": 0.644,
           "source": "fusion",
           "hit_prob": 0.684
+        },
+        {
+          "match": "2026-09-04_周五003",
+          "home": "腓特烈斯塔",
+          "away": "博德闪耀",
+          "league": "挪超",
+          "sel": "away",
+          "odds": 1.48,
+          "prob": 0.643,
+          "cal_prob": 0.684,
+          "market_prob": 0.643,
+          "source": "fusion",
+          "hit_prob": 0.684
         }
       ],
       "total_odds": 3.2,
-      "model_ev": -0.27,
+      "model_ev": -0.28,
       "cal_ev": 0.18,
       "cal_roi": 0.0243,
       "market_ev": -0.27,
-      "market_roi": -0.1346,
+      "market_roi": -0.1372,
       "hit_prob_cal": 0.32,
       "recommended": true,
       "stake": 7.23,
@@ -201,7 +210,7 @@
           "away": "纳什维尔",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.345,
+          "prob": 0.341,
           "odds": 7.0
         },
         {
@@ -210,18 +219,18 @@
           "away": "博德闪耀",
           "league": "挪超",
           "score": "0-1",
-          "prob": 0.321,
+          "prob": 0.318,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1108,
+      "hit_prob": 0.1083,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 35% × 32%）"
+      "note": "两场比分都中才赢（单场命中率约 34% × 32%）"
     },
     {
       "type": "比分2串1",
@@ -232,7 +241,7 @@
           "away": "纳什维尔",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.345,
+          "prob": 0.341,
           "odds": 7.0
         },
         {
@@ -241,18 +250,18 @@
           "away": "科莫",
           "league": "意甲",
           "score": "0-1",
-          "prob": 0.284,
+          "prob": 0.282,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.098,
+      "hit_prob": 0.0959,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 35% × 28%）"
+      "note": "两场比分都中才赢（单场命中率约 34% × 28%）"
     },
     {
       "type": "比分2串1",
@@ -263,7 +272,7 @@
           "away": "博德闪耀",
           "league": "挪超",
           "score": "0-1",
-          "prob": 0.321,
+          "prob": 0.318,
           "odds": 7.0
         },
         {
@@ -272,12 +281,12 @@
           "away": "科莫",
           "league": "意甲",
           "score": "0-1",
-          "prob": 0.284,
+          "prob": 0.282,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0911,
+      "hit_prob": 0.0896,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -294,7 +303,7 @@
           "away": "纳什维尔",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.345,
+          "prob": 0.341,
           "odds": 7.0
         },
         {
@@ -303,7 +312,7 @@
           "away": "博德闪耀",
           "league": "挪超",
           "score": "0-1",
-          "prob": 0.321,
+          "prob": 0.318,
           "odds": 7.0
         },
         {
@@ -312,12 +321,12 @@
           "away": "科莫",
           "league": "意甲",
           "score": "0-1",
-          "prob": 0.284,
+          "prob": 0.282,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0315,
+      "hit_prob": 0.0305,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -334,7 +343,7 @@
           "away": "纳什维尔",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.345,
+          "prob": 0.341,
           "odds": 7.0
         },
         {
@@ -343,7 +352,7 @@
           "away": "博德闪耀",
           "league": "挪超",
           "score": "0-1",
-          "prob": 0.321,
+          "prob": 0.318,
           "odds": 7.0
         },
         {
@@ -352,12 +361,12 @@
           "away": "科莫",
           "league": "意甲",
           "score": "0-1",
-          "prob": 0.284,
+          "prob": 0.282,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0315,
+      "hit_prob": 0.0305,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
@@ -367,12 +376,12 @@
     }
   ],
   "parlay_calibration": {
-    "overall": 0.4577,
-    "n": 520,
+    "overall": 0.4568,
+    "n": 521,
     "table": {
       "0.35": 0.3514,
       "0.4": 0.4444,
-      "0.45": 0.5102,
+      "0.45": 0.5051,
       "0.5": 0.5205,
       "0.55": 0.5238,
       "0.6": 0.6842,
