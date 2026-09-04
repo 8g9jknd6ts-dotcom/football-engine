@@ -1,13 +1,13 @@
 {
   "date": "2026-09-03",
-  "n_matches": 6,
-  "hit_rate": 0.5,
+  "n_matches": 7,
+  "hit_rate": 0.4286,
   "hits": 3,
   "source_brier": {
-    "model": 0.5917,
+    "model": 0.5981,
     "market": null,
     "djyy": null,
-    "final": 0.6092
+    "final": 0.6114
   },
   "by_league": {
     "沙特联": {
@@ -33,14 +33,20 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.8891
+    },
+    "巴西杯": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6244
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 3,
-      "hit_rate": 0.3333,
-      "wilson_lower": 0.0615,
-      "avg_brier": 0.6621
+      "n": 4,
+      "hit_rate": 0.25,
+      "wilson_lower": 0.0456,
+      "avg_brier": 0.6527
     },
     "low": {
       "n": 1,
@@ -57,10 +63,10 @@
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 4,
-      "hit_rate": 0.5,
-      "wilson_lower": 0.15,
-      "avg_brier": 0.6373
+      "n": 5,
+      "hit_rate": 0.4,
+      "wilson_lower": 0.1176,
+      "avg_brier": 0.6347
     },
     "1.5-2.0": {
       "n": 2,
@@ -93,19 +99,19 @@
     }
   },
   "market_signal_stats": {
-    "n": 6,
+    "n": 7,
     "hits": 1
   },
   "layered": {
-    "log_loss_final": 1.0049,
+    "log_loss_final": 1.0011,
     "goal_framework": {
-      "n": 6,
+      "n": 7,
       "hits": 4
     },
     "prob_bands": {
       "40-50%": {
-        "n": 3,
-        "hit_rate": 0.3333
+        "n": 4,
+        "hit_rate": 0.25
       },
       "50-60%": {
         "n": 1,
@@ -122,8 +128,8 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 3,
-        "hit_rate": 0.6667
+        "n": 4,
+        "hit_rate": 0.5
       },
       "watch": {
         "n": 3,
@@ -133,6 +139,6 @@
   },
   "biases": [],
   "total_pnl": 0.0,
-  "generated_at": "2026-09-04T00:25:54.698070",
-  "sha256": "f3ca54ab08b60a336075ff02e711b78d"
+  "generated_at": "2026-09-04T05:07:33.587883",
+  "sha256": "e74a67996b68709cb8876175e3d789fb"
 }
