@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-09-05",
-  "total_matches": 534,
+  "total_matches": 535,
   "date_range": [
     "2026-07-20",
     "2026-09-04"
   ],
   "overall": {
-    "hit_rate": 0.4625,
-    "brier_final": 0.6332,
-    "brier_model": 0.6499,
-    "brier_market": 0.1462,
-    "brier_djyy": 0.1473
+    "hit_rate": 0.4636,
+    "brier_final": 0.6329,
+    "brier_model": 0.65,
+    "brier_market": 0.1459,
+    "brier_djyy": 0.147
   },
   "daily": [
     {
@@ -567,21 +567,21 @@
     },
     {
       "date": "2026-09-04",
-      "n": 13,
-      "hits": 9,
-      "hit_rate": 0.6923,
-      "cum_hit_rate": 0.4625,
-      "brier_final": 0.5307,
-      "brier_model": 0.4982,
+      "n": 14,
+      "hits": 10,
+      "hit_rate": 0.7143,
+      "cum_hit_rate": 0.4636,
+      "brier_final": 0.5284,
+      "brier_model": 0.5133,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 1.0
     }
   ],
   "rolling7": {
-    "n": 109,
-    "hit_rate": 0.5321,
-    "brier_final": 0.5788,
+    "n": 110,
+    "hit_rate": 0.5364,
+    "brier_final": 0.5785,
     "pnl": 238.7
   },
   "prev7": {
@@ -590,7 +590,7 @@
     "brier_final": 0.6088,
     "pnl": 147.5
   },
-  "verdict": "命中率提升 +4pt",
+  "verdict": "命中率提升 +5pt",
   "by_league": [
     {
       "layer": "瑞典超",
@@ -666,9 +666,9 @@
     },
     {
       "layer": "美职联",
-      "n": 19,
-      "hit_rate": 0.4211,
-      "brier_final": 0.6817
+      "n": 20,
+      "hit_rate": 0.45,
+      "brier_final": 0.6725
     },
     {
       "layer": "日职",
@@ -824,9 +824,9 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 267,
-      "hit_rate": 0.3708,
-      "brier_final": 0.6703
+      "n": 268,
+      "hit_rate": 0.3731,
+      "brier_final": 0.6696
     },
     {
       "layer": "1.5-2.0",
@@ -850,9 +850,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 292,
-      "hit_rate": 0.4863,
-      "brier_final": 0.6291
+      "n": 293,
+      "hit_rate": 0.4881,
+      "brier_final": 0.6286
     },
     {
       "layer": "low",
