@@ -1,55 +1,47 @@
 {
   "stable": [
     {
-      "match": "2026-09-05_周六023",
-      "sel": "away",
-      "odds": 1.42,
-      "stake": 75.0,
-      "prob": 0.672
-    },
-    {
-      "match": "2026-09-05_周六013",
+      "match": "2026-09-05_周六017",
       "sel": "home",
-      "odds": 1.46,
+      "odds": 1.49,
       "stake": 75.0,
-      "prob": 0.651
+      "prob": 0.64
     },
     {
       "match": "2026-09-05_周六021",
       "sel": "away",
       "odds": 1.52,
       "stake": 75.0,
-      "prob": 0.625
+      "prob": 0.627
     },
     {
-      "match": "2026-09-05_周六017",
+      "match": "2026-09-05_周六013",
       "sel": "home",
-      "odds": 1.48,
+      "odds": 1.43,
       "stake": 75.0,
-      "prob": 0.642
+      "prob": 0.665
+    },
+    {
+      "match": "2026-09-05_周六023",
+      "sel": "away",
+      "odds": 1.42,
+      "stake": 75.0,
+      "prob": 0.669
     }
   ],
   "value": [],
   "lottery": [
     {
-      "match": "2026-09-05_周六003",
-      "sel": "away",
-      "odds": 1.81,
-      "stake": 25.0,
-      "prob": 0.527,
-      "downgrade_reason": "prob_5060"
-    },
-    {
       "match": "2026-09-05_周六001",
       "sel": "away",
       "odds": 1.82,
-      "stake": 25.0,
-      "prob": 0.523,
+      "stake": 50.0,
+      "prob": 0.524,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.0486,
+  "expected_roi": -0.0481,
   "bankroll": 4917.1521,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -57,15 +49,15 @@
       "type": "2串1",
       "legs": [
         {
-          "match": "2026-09-05_周六023",
-          "home": "马里迪莫",
-          "away": "本菲卡",
-          "league": "葡超",
-          "sel": "away",
-          "odds": 1.42,
-          "prob": 0.672,
+          "match": "2026-09-05_周六028",
+          "home": "比利亚雷",
+          "away": "拉科",
+          "league": "西甲",
+          "sel": "home",
+          "odds": 1.43,
+          "prob": 0.667,
           "cal_prob": 0.682,
-          "market_prob": 0.671,
+          "market_prob": 0.667,
           "source": "fusion",
           "hit_prob": 0.682
         },
@@ -75,25 +67,25 @@
           "away": "考文垂",
           "league": "英超",
           "sel": "home",
-          "odds": 1.46,
-          "prob": 0.651,
+          "odds": 1.43,
+          "prob": 0.665,
           "cal_prob": 0.682,
-          "market_prob": 0.652,
+          "market_prob": 0.665,
           "source": "fusion",
           "hit_prob": 0.682
         }
       ],
-      "total_odds": 2.07,
+      "total_odds": 2.04,
       "model_ev": -0.19,
-      "cal_ev": -0.07,
-      "cal_roi": -0.0363,
+      "cal_ev": -0.1,
+      "cal_roi": -0.0494,
       "market_ev": -0.19,
       "market_roi": -0.0929,
       "hit_prob_cal": 0.465,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.15,
+      "potential": 4.09,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -102,15 +94,60 @@
       "type": "2串1",
       "legs": [
         {
+          "match": "2026-09-05_周六023",
+          "home": "马里迪莫",
+          "away": "本菲卡",
+          "league": "葡超",
+          "sel": "away",
+          "odds": 1.42,
+          "prob": 0.669,
+          "cal_prob": 0.682,
+          "market_prob": 0.669,
+          "source": "fusion",
+          "hit_prob": 0.682
+        },
+        {
           "match": "2026-09-05_周六028",
           "home": "比利亚雷",
           "away": "拉科",
           "league": "西甲",
           "sel": "home",
-          "odds": 1.41,
-          "prob": 0.673,
+          "odds": 1.43,
+          "prob": 0.667,
           "cal_prob": 0.682,
-          "market_prob": 0.674,
+          "market_prob": 0.667,
+          "source": "fusion",
+          "hit_prob": 0.682
+        }
+      ],
+      "total_odds": 2.03,
+      "model_ev": -0.19,
+      "cal_ev": -0.11,
+      "cal_roi": -0.0561,
+      "market_ev": -0.19,
+      "market_roi": -0.0934,
+      "hit_prob_cal": 0.465,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.06,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-05_周六023",
+          "home": "马里迪莫",
+          "away": "本菲卡",
+          "league": "葡超",
+          "sel": "away",
+          "odds": 1.42,
+          "prob": 0.669,
+          "cal_prob": 0.682,
+          "market_prob": 0.669,
           "source": "fusion",
           "hit_prob": 0.682
         },
@@ -120,70 +157,25 @@
           "away": "考文垂",
           "league": "英超",
           "sel": "home",
-          "odds": 1.46,
-          "prob": 0.651,
+          "odds": 1.43,
+          "prob": 0.665,
           "cal_prob": 0.682,
-          "market_prob": 0.652,
+          "market_prob": 0.665,
           "source": "fusion",
           "hit_prob": 0.682
         }
       ],
-      "total_odds": 2.06,
-      "model_ev": -0.19,
-      "cal_ev": -0.09,
-      "cal_roi": -0.0431,
+      "total_odds": 2.03,
+      "model_ev": -0.2,
+      "cal_ev": -0.11,
+      "cal_roi": -0.0561,
       "market_ev": -0.19,
       "market_roi": -0.096,
       "hit_prob_cal": 0.465,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.12,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "calibrated"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-09-05_周六028",
-          "home": "比利亚雷",
-          "away": "拉科",
-          "league": "西甲",
-          "sel": "home",
-          "odds": 1.41,
-          "prob": 0.673,
-          "cal_prob": 0.682,
-          "market_prob": 0.674,
-          "source": "fusion",
-          "hit_prob": 0.682
-        },
-        {
-          "match": "2026-09-05_周六023",
-          "home": "马里迪莫",
-          "away": "本菲卡",
-          "league": "葡超",
-          "sel": "away",
-          "odds": 1.42,
-          "prob": 0.672,
-          "cal_prob": 0.682,
-          "market_prob": 0.671,
-          "source": "fusion",
-          "hit_prob": 0.682
-        }
-      ],
-      "total_odds": 2.0,
-      "model_ev": -0.19,
-      "cal_ev": -0.14,
-      "cal_roi": -0.0693,
-      "market_ev": -0.19,
-      "market_roi": -0.0944,
-      "hit_prob_cal": 0.465,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.0,
+      "potential": 4.06,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -199,7 +191,7 @@
           "away": "利勒斯特伦",
           "league": "挪超",
           "score": "1-0",
-          "prob": 0.306,
+          "prob": 0.304,
           "odds": 7.0
         },
         {
@@ -208,18 +200,18 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.301,
+          "prob": 0.303,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0924,
+      "hit_prob": 0.0921,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 31% × 30%）"
+      "note": "两场比分都中才赢（单场命中率约 30% × 30%）"
     },
     {
       "type": "比分2串1",
@@ -230,7 +222,7 @@
           "away": "利勒斯特伦",
           "league": "挪超",
           "score": "1-0",
-          "prob": 0.306,
+          "prob": 0.304,
           "odds": 7.0
         },
         {
@@ -239,18 +231,18 @@
           "away": "多特蒙德",
           "league": "德甲",
           "score": "1-0",
-          "prob": 0.27,
+          "prob": 0.269,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0826,
+      "hit_prob": 0.0817,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 31% × 27%）"
+      "note": "两场比分都中才赢（单场命中率约 30% × 27%）"
     },
     {
       "type": "比分2串1",
@@ -261,7 +253,7 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.301,
+          "prob": 0.303,
           "odds": 7.0
         },
         {
@@ -270,12 +262,12 @@
           "away": "多特蒙德",
           "league": "德甲",
           "score": "1-0",
-          "prob": 0.27,
+          "prob": 0.269,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.0813,
+      "hit_prob": 0.0815,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -292,7 +284,7 @@
           "away": "利勒斯特伦",
           "league": "挪超",
           "score": "1-0",
-          "prob": 0.306,
+          "prob": 0.304,
           "odds": 7.0
         },
         {
@@ -301,7 +293,7 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.301,
+          "prob": 0.303,
           "odds": 7.0
         },
         {
@@ -310,12 +302,12 @@
           "away": "多特蒙德",
           "league": "德甲",
           "score": "1-0",
-          "prob": 0.27,
+          "prob": 0.269,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0249,
+      "hit_prob": 0.0248,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -332,7 +324,7 @@
           "away": "利勒斯特伦",
           "league": "挪超",
           "score": "1-0",
-          "prob": 0.306,
+          "prob": 0.304,
           "odds": 7.0
         },
         {
@@ -341,7 +333,7 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.301,
+          "prob": 0.303,
           "odds": 7.0
         },
         {
@@ -350,12 +342,12 @@
           "away": "多特蒙德",
           "league": "德甲",
           "score": "1-0",
-          "prob": 0.27,
+          "prob": 0.269,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0249,
+      "hit_prob": 0.0248,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
