@@ -1,18 +1,18 @@
 {
   "stable": [
     {
-      "match": "2026-09-06_周日001",
-      "sel": "home",
-      "odds": 1.43,
-      "stake": 150.0,
-      "prob": 0.667
-    },
-    {
       "match": "2026-09-06_周日014",
       "sel": "home",
       "odds": 1.54,
       "stake": 150.0,
       "prob": 0.619
+    },
+    {
+      "match": "2026-09-06_周日001",
+      "sel": "home",
+      "odds": 1.43,
+      "stake": 150.0,
+      "prob": 0.666
     }
   ],
   "value": [],
@@ -20,14 +20,14 @@
     {
       "match": "2026-09-06_周日009",
       "sel": "home",
-      "odds": 1.87,
+      "odds": 1.88,
       "stake": 50.0,
-      "prob": 0.508,
+      "prob": 0.507,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.047,
+  "expected_roi": -0.0474,
   "bankroll": 4780.9021,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -41,9 +41,9 @@
           "league": "英超",
           "sel": "home",
           "odds": 1.46,
-          "prob": 0.65,
+          "prob": 0.651,
           "cal_prob": 0.6,
-          "market_prob": 0.651,
+          "market_prob": 0.652,
           "source": "fusion",
           "hit_prob": 0.6
         },
@@ -56,7 +56,7 @@
           "odds": 1.54,
           "prob": 0.619,
           "cal_prob": 0.625,
-          "market_prob": 0.618,
+          "market_prob": 0.619,
           "source": "fusion",
           "hit_prob": 0.625
         }
@@ -66,7 +66,7 @@
       "cal_ev": -0.31,
       "cal_roi": -0.1568,
       "market_ev": -0.19,
-      "market_roi": -0.0945,
+      "market_roi": -0.0939,
       "hit_prob_cal": 0.375,
       "recommended": false,
       "stake": 2.0,
@@ -86,9 +86,9 @@
           "league": "日职",
           "sel": "home",
           "odds": 1.43,
-          "prob": 0.667,
+          "prob": 0.666,
           "cal_prob": 0.6,
-          "market_prob": 0.667,
+          "market_prob": 0.666,
           "source": "fusion",
           "hit_prob": 0.6
         },
@@ -101,17 +101,17 @@
           "odds": 1.54,
           "prob": 0.619,
           "cal_prob": 0.625,
-          "market_prob": 0.618,
+          "market_prob": 0.619,
           "source": "fusion",
           "hit_prob": 0.625
         }
       ],
       "total_odds": 2.2,
-      "model_ev": -0.18,
+      "model_ev": -0.19,
       "cal_ev": -0.35,
       "cal_roi": -0.1742,
-      "market_ev": -0.18,
-      "market_roi": -0.0917,
+      "market_ev": -0.19,
+      "market_roi": -0.0933,
       "hit_prob_cal": 0.375,
       "recommended": false,
       "stake": 2.0,
@@ -131,9 +131,9 @@
           "league": "日职",
           "sel": "home",
           "odds": 1.43,
-          "prob": 0.667,
+          "prob": 0.666,
           "cal_prob": 0.6,
-          "market_prob": 0.667,
+          "market_prob": 0.666,
           "source": "fusion",
           "hit_prob": 0.6
         },
@@ -144,9 +144,9 @@
           "league": "英超",
           "sel": "home",
           "odds": 1.46,
-          "prob": 0.65,
+          "prob": 0.651,
           "cal_prob": 0.6,
-          "market_prob": 0.651,
+          "market_prob": 0.652,
           "source": "fusion",
           "hit_prob": 0.6
         }
@@ -156,7 +156,7 @@
       "cal_ev": -0.5,
       "cal_roi": -0.2484,
       "market_ev": -0.19,
-      "market_roi": -0.0933,
+      "market_roi": -0.0945,
       "hit_prob_cal": 0.36,
       "recommended": false,
       "stake": 2.0,
@@ -186,12 +186,12 @@
           "away": "江原FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.389,
+          "prob": 0.393,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1556,
+      "hit_prob": 0.157,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -217,12 +217,12 @@
           "away": "帕尔梅拉斯",
           "league": "巴甲",
           "score": "0-1",
-          "prob": 0.375,
+          "prob": 0.378,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1498,
+      "hit_prob": 0.1507,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -239,7 +239,7 @@
           "away": "江原FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.389,
+          "prob": 0.393,
           "odds": 7.0
         },
         {
@@ -248,12 +248,12 @@
           "away": "帕尔梅拉斯",
           "league": "巴甲",
           "score": "0-1",
-          "prob": 0.375,
+          "prob": 0.378,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1461,
+      "hit_prob": 0.1485,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -279,7 +279,7 @@
           "away": "江原FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.389,
+          "prob": 0.393,
           "odds": 7.0
         },
         {
@@ -288,12 +288,12 @@
           "away": "帕尔梅拉斯",
           "league": "巴甲",
           "score": "0-1",
-          "prob": 0.375,
+          "prob": 0.378,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0583,
+      "hit_prob": 0.0593,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -319,7 +319,7 @@
           "away": "江原FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.389,
+          "prob": 0.393,
           "odds": 7.0
         },
         {
@@ -328,12 +328,12 @@
           "away": "帕尔梅拉斯",
           "league": "巴甲",
           "score": "0-1",
-          "prob": 0.375,
+          "prob": 0.378,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0583,
+      "hit_prob": 0.0593,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
