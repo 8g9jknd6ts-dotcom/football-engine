@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-09-06",
-  "total_matches": 584,
+  "total_matches": 587,
   "date_range": [
     "2026-07-20",
     "2026-09-06"
   ],
   "overall": {
-    "hit_rate": 0.4572,
-    "brier_final": 0.6381,
-    "brier_model": 0.6544,
-    "brier_market": 0.1336,
-    "brier_djyy": 0.1347
+    "hit_rate": 0.4566,
+    "brier_final": 0.6382,
+    "brier_model": 0.6543,
+    "brier_market": 0.133,
+    "brier_djyy": 0.134
   },
   "daily": [
     {
@@ -591,21 +591,21 @@
     },
     {
       "date": "2026-09-06",
-      "n": 20,
-      "hits": 12,
-      "hit_rate": 0.6,
-      "cum_hit_rate": 0.4572,
-      "brier_final": 0.6043,
-      "brier_model": 0.5997,
+      "n": 23,
+      "hits": 13,
+      "hit_rate": 0.5652,
+      "cum_hit_rate": 0.4566,
+      "brier_final": 0.6115,
+      "brier_model": 0.6054,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": -25.0
     }
   ],
   "rolling7": {
-    "n": 105,
-    "hit_rate": 0.4857,
-    "brier_final": 0.6029,
+    "n": 108,
+    "hit_rate": 0.4815,
+    "brier_final": 0.6039,
     "pnl": 54.8
   },
   "prev7": {
@@ -618,9 +618,9 @@
   "by_league": [
     {
       "layer": "西甲",
-      "n": 38,
-      "hit_rate": 0.3684,
-      "brier_final": 0.6822
+      "n": 39,
+      "hit_rate": 0.359,
+      "brier_final": 0.6823
     },
     {
       "layer": "K1联赛",
@@ -665,6 +665,12 @@
       "brier_final": 0.5341
     },
     {
+      "layer": "意甲",
+      "n": 28,
+      "hit_rate": 0.6786,
+      "brier_final": 0.4763
+    },
+    {
       "layer": "芬超",
       "n": 27,
       "hit_rate": 0.3704,
@@ -675,12 +681,6 @@
       "n": 27,
       "hit_rate": 0.3333,
       "brier_final": 0.6576
-    },
-    {
-      "layer": "意甲",
-      "n": 27,
-      "hit_rate": 0.7037,
-      "brier_final": 0.4651
     },
     {
       "layer": "英冠",
@@ -720,9 +720,9 @@
     },
     {
       "layer": "法甲",
-      "n": 16,
-      "hit_rate": 0.5,
-      "brier_final": 0.6432
+      "n": 17,
+      "hit_rate": 0.5294,
+      "brier_final": 0.6358
     },
     {
       "layer": "巴西杯",
@@ -848,9 +848,9 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 292,
-      "hit_rate": 0.3733,
-      "brier_final": 0.6703
+      "n": 295,
+      "hit_rate": 0.3729,
+      "brier_final": 0.6702
     },
     {
       "layer": "1.5-2.0",
@@ -874,15 +874,15 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 312,
-      "hit_rate": 0.4744,
-      "brier_final": 0.6364
+      "n": 314,
+      "hit_rate": 0.4745,
+      "brier_final": 0.6365
     },
     {
       "layer": "low",
-      "n": 172,
-      "hit_rate": 0.3663,
-      "brier_final": 0.6639
+      "n": 173,
+      "hit_rate": 0.3642,
+      "brier_final": 0.664
     },
     {
       "layer": "high",
