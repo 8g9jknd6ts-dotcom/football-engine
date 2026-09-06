@@ -1,23 +1,23 @@
 {
-  "total_matches": 579,
+  "total_matches": 584,
   "date_range": [
     "2026-07-20",
     "2026-09-06"
   ],
   "metrics": {
-    "brier": 0.639,
-    "weighted_brier": 0.6382,
-    "rps": 0.2243,
-    "weighted_rps": 0.2244,
-    "log_loss": 1.0621,
-    "hit_rate": 0.456,
-    "ece": 0.1269
+    "brier": 0.6381,
+    "weighted_brier": 0.6373,
+    "rps": 0.2237,
+    "weighted_rps": 0.2237,
+    "log_loss": 1.0607,
+    "hit_rate": 0.4572,
+    "ece": 0.1253
   },
   "draw_analysis": {
-    "actual_draws": 146,
-    "actual_draw_rate": 0.2522,
+    "actual_draws": 148,
+    "actual_draw_rate": 0.2534,
     "predicted_draws": 38,
-    "predicted_draw_rate": 0.0656,
+    "predicted_draw_rate": 0.0651,
     "max_draw_prob": 0.4912,
     "avg_draw_prob": 0.2855,
     "avg_market_draw": 0.2437,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.456,
-      "n": 579
+      "hit_rate": 0.4572,
+      "n": 584
     },
     "market": {
       "hit_rate": 0.512,
@@ -45,10 +45,10 @@
   },
   "by_league": {
     "西甲": {
-      "n": 36,
-      "hit_rate": 0.3611,
-      "brier": 0.6824,
-      "rps": 0.2551
+      "n": 38,
+      "hit_rate": 0.3684,
+      "brier": 0.6822,
+      "rps": 0.2511
     },
     "K1联赛": {
       "n": 35,
@@ -99,16 +99,16 @@
       "rps": 0.2597
     },
     "英超": {
-      "n": 26,
-      "hit_rate": 0.3077,
-      "brier": 0.6757,
-      "rps": 0.2232
+      "n": 27,
+      "hit_rate": 0.3333,
+      "brier": 0.6576,
+      "rps": 0.2175
     },
     "意甲": {
-      "n": 26,
-      "hit_rate": 0.7308,
-      "brier": 0.4572,
-      "rps": 0.1764
+      "n": 27,
+      "hit_rate": 0.7037,
+      "brier": 0.4651,
+      "rps": 0.174
     },
     "英冠": {
       "n": 25,
@@ -141,10 +141,10 @@
       "rps": 0.2274
     },
     "德甲": {
-      "n": 17,
-      "hit_rate": 0.4706,
-      "brier": 0.6782,
-      "rps": 0.2585
+      "n": 18,
+      "hit_rate": 0.5,
+      "brier": 0.6684,
+      "rps": 0.2557
     },
     "法甲": {
       "n": 16,
