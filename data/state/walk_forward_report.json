@@ -1,25 +1,25 @@
 {
-  "total_matches": 598,
+  "total_matches": 602,
   "date_range": [
     "2026-07-20",
     "2026-09-08"
   ],
   "metrics": {
-    "brier": 0.6383,
-    "weighted_brier": 0.6375,
-    "rps": 0.2232,
-    "weighted_rps": 0.2231,
-    "log_loss": 1.0615,
-    "hit_rate": 0.4582,
-    "ece": 0.116
+    "brier": 0.6374,
+    "weighted_brier": 0.6366,
+    "rps": 0.2227,
+    "weighted_rps": 0.2227,
+    "log_loss": 1.0603,
+    "hit_rate": 0.4601,
+    "ece": 0.1171
   },
   "draw_analysis": {
-    "actual_draws": 154,
+    "actual_draws": 155,
     "actual_draw_rate": 0.2575,
     "predicted_draws": 41,
-    "predicted_draw_rate": 0.0686,
+    "predicted_draw_rate": 0.0681,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2866,
+    "avg_draw_prob": 0.2865,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4582,
-      "n": 598
+      "hit_rate": 0.4601,
+      "n": 602
     },
     "market": {
       "hit_rate": 0.512,
@@ -62,17 +62,17 @@
       "brier": 0.6555,
       "rps": 0.22
     },
+    "欧冠": {
+      "n": 36,
+      "hit_rate": 0.3889,
+      "brier": 0.6297,
+      "rps": 0.2242
+    },
     "挪超": {
       "n": 35,
       "hit_rate": 0.5143,
       "brier": 0.5662,
       "rps": 0.2159
-    },
-    "欧冠": {
-      "n": 34,
-      "hit_rate": 0.3529,
-      "brier": 0.6441,
-      "rps": 0.2281
     },
     "欧罗巴": {
       "n": 32,
@@ -81,10 +81,10 @@
       "rps": 0.2326
     },
     "荷甲": {
-      "n": 31,
-      "hit_rate": 0.6129,
-      "brier": 0.5761,
-      "rps": 0.2104
+      "n": 32,
+      "hit_rate": 0.5938,
+      "brier": 0.5842,
+      "rps": 0.2085
     },
     "葡超": {
       "n": 31,
@@ -129,10 +129,10 @@
       "rps": 0.2403
     },
     "沙特联": {
-      "n": 21,
-      "hit_rate": 0.5714,
-      "brier": 0.6166,
-      "rps": 0.2392
+      "n": 22,
+      "hit_rate": 0.5909,
+      "brier": 0.6081,
+      "rps": 0.2363
     },
     "美职联": {
       "n": 20,
