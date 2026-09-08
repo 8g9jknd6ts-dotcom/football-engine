@@ -1,25 +1,25 @@
 {
-  "total_matches": 596,
+  "total_matches": 597,
   "date_range": [
     "2026-07-20",
     "2026-09-07"
   ],
   "metrics": {
-    "brier": 0.6378,
-    "weighted_brier": 0.637,
-    "rps": 0.2228,
-    "weighted_rps": 0.2228,
-    "log_loss": 1.06,
-    "hit_rate": 0.4581,
-    "ece": 0.1134
+    "brier": 0.6388,
+    "weighted_brier": 0.6381,
+    "rps": 0.2233,
+    "weighted_rps": 0.2233,
+    "log_loss": 1.0623,
+    "hit_rate": 0.4573,
+    "ece": 0.1147
   },
   "draw_analysis": {
     "actual_draws": 154,
-    "actual_draw_rate": 0.2584,
-    "predicted_draws": 40,
-    "predicted_draw_rate": 0.0671,
+    "actual_draw_rate": 0.258,
+    "predicted_draws": 41,
+    "predicted_draw_rate": 0.0687,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2863,
+    "avg_draw_prob": 0.2867,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4581,
-      "n": 596
+      "hit_rate": 0.4573,
+      "n": 597
     },
     "market": {
       "hit_rate": 0.512,
@@ -117,10 +117,10 @@
       "rps": 0.2051
     },
     "巴甲": {
-      "n": 23,
-      "hit_rate": 0.3478,
-      "brier": 0.715,
-      "rps": 0.208
+      "n": 24,
+      "hit_rate": 0.3333,
+      "brier": 0.7373,
+      "rps": 0.2204
     },
     "日职": {
       "n": 23,
