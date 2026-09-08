@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-09-08",
-  "total_matches": 597,
+  "total_matches": 598,
   "date_range": [
     "2026-07-20",
-    "2026-09-07"
+    "2026-09-08"
   ],
   "overall": {
-    "hit_rate": 0.4573,
-    "brier_final": 0.6388,
-    "brier_model": 0.6554,
-    "brier_market": 0.1307,
-    "brier_djyy": 0.1317
+    "hit_rate": 0.4582,
+    "brier_final": 0.6383,
+    "brier_model": 0.6546,
+    "brier_market": 0.1305,
+    "brier_djyy": 0.1315
   },
   "daily": [
     {
@@ -612,21 +612,33 @@
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 0.0
+    },
+    {
+      "date": "2026-09-08",
+      "n": 1,
+      "hits": 1,
+      "hit_rate": 1.0,
+      "cum_hit_rate": 0.4582,
+      "brier_final": 0.3202,
+      "brier_model": 0.1798,
+      "brier_market": null,
+      "brier_djyy": null,
+      "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 106,
-    "hit_rate": 0.4434,
-    "brier_final": 0.6433,
-    "pnl": -104.2
+    "n": 97,
+    "hit_rate": 0.4433,
+    "brier_final": 0.5972,
+    "pnl": -54.2
   },
   "prev7": {
-    "n": 110,
-    "hit_rate": 0.5455,
-    "brier_final": 0.5604,
-    "pnl": 334.7
+    "n": 111,
+    "hit_rate": 0.5586,
+    "brier_final": 0.5608,
+    "pnl": 284.7
   },
-  "verdict": "命中率下降 -10pt",
+  "verdict": "命中率下降 -12pt",
   "by_league": [
     {
       "layer": "西甲",
@@ -642,9 +654,9 @@
     },
     {
       "layer": "K1联赛",
-      "n": 35,
-      "hit_rate": 0.4286,
-      "brier_final": 0.6651
+      "n": 36,
+      "hit_rate": 0.4444,
+      "brier_final": 0.6555
     },
     {
       "layer": "挪超",
@@ -866,9 +878,9 @@
     },
     {
       "layer": "1.5-2.0",
-      "n": 198,
-      "hit_rate": 0.5606,
-      "brier_final": 0.5975
+      "n": 199,
+      "hit_rate": 0.5628,
+      "brier_final": 0.5961
     },
     {
       "layer": "1.0-1.5",
@@ -886,9 +898,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 319,
-      "hit_rate": 0.4734,
-      "brier_final": 0.6377
+      "n": 320,
+      "hit_rate": 0.475,
+      "brier_final": 0.6367
     },
     {
       "layer": "low",
