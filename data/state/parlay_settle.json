@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T20:20:08.383859+00:00",
+  "generated_at": "2026-09-08T23:00:12.841433+00:00",
   "parlay": {
     "n_tickets": 39,
     "n_settled": 39,
@@ -48,8 +48,8 @@
         "roi": -1.0
       }
     },
-    "leg_hit_rate": 0.1193,
-    "n_legs_settled": 503
+    "leg_hit_rate": 0.1183,
+    "n_legs_settled": 507
   },
   "tickets": {
     "parlay": [
@@ -9861,7 +9861,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -9881,7 +9881,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -9897,7 +9897,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -9917,7 +9917,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -9934,7 +9934,7 @@
         "leg_results": [
           null,
           true,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -9963,7 +9963,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -9980,7 +9980,7 @@
         "leg_results": [
           null,
           true,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -10009,7 +10009,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       }
@@ -21833,8 +21833,8 @@
           "roi": null,
           "avg_odds": null,
           "by_type": {},
-          "leg_hit_rate": 1.0,
-          "n_legs_settled": 3
+          "leg_hit_rate": 0.4286,
+          "n_legs_settled": 7
         },
         "tickets": [
           {
@@ -21885,7 +21885,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -21905,7 +21905,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -21921,7 +21921,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -21941,7 +21941,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -21958,7 +21958,7 @@
             "leg_results": [
               null,
               true,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -21987,7 +21987,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -22004,7 +22004,7 @@
             "leg_results": [
               null,
               true,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -22033,7 +22033,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           }
