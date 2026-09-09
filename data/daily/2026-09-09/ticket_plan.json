@@ -1,0 +1,344 @@
+{
+  "stable": [
+    {
+      "match": "2026-09-09_周三012",
+      "sel": "away",
+      "odds": 1.52,
+      "stake": 200,
+      "prob": 0.628
+    }
+  ],
+  "value": [],
+  "lottery": [],
+  "total_stake": 200,
+  "expected_roi": -0.0457,
+  "bankroll": 4755.9021,
+  "breaker_multiplier": 1.0,
+  "parlay": [
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-09_周三012",
+          "home": "摩雷伦斯",
+          "away": "本菲卡",
+          "league": "葡超",
+          "sel": "away",
+          "odds": 1.52,
+          "prob": 0.628,
+          "cal_prob": 0.615,
+          "market_prob": 0.627,
+          "source": "fusion",
+          "hit_prob": 0.615
+        },
+        {
+          "match": "2026-09-09_周三007",
+          "home": "那不勒斯",
+          "away": "阿森纳",
+          "league": "欧冠",
+          "sel": "away",
+          "odds": 1.73,
+          "prob": 0.551,
+          "cal_prob": 0.537,
+          "market_prob": 0.551,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.63,
+      "model_ev": -0.18,
+      "cal_ev": -0.48,
+      "cal_roi": -0.2378,
+      "market_ev": -0.18,
+      "market_roi": -0.0908,
+      "hit_prob_cal": 0.29,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.26,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-09_周三012",
+          "home": "摩雷伦斯",
+          "away": "本菲卡",
+          "league": "葡超",
+          "sel": "away",
+          "odds": 1.52,
+          "prob": 0.628,
+          "cal_prob": 0.615,
+          "market_prob": 0.627,
+          "source": "fusion",
+          "hit_prob": 0.615
+        },
+        {
+          "match": "2026-09-09_周三005",
+          "home": "特温特",
+          "away": "特尔斯达",
+          "league": "荷甲",
+          "sel": "home",
+          "odds": 1.69,
+          "prob": 0.565,
+          "cal_prob": 0.537,
+          "market_prob": 0.564,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.57,
+      "model_ev": -0.18,
+      "cal_ev": -0.51,
+      "cal_roi": -0.2554,
+      "market_ev": -0.18,
+      "market_roi": -0.0902,
+      "hit_prob_cal": 0.29,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.14,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-09_周三005",
+          "home": "特温特",
+          "away": "特尔斯达",
+          "league": "荷甲",
+          "sel": "home",
+          "odds": 1.69,
+          "prob": 0.565,
+          "cal_prob": 0.537,
+          "market_prob": 0.564,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
+          "match": "2026-09-09_周三007",
+          "home": "那不勒斯",
+          "away": "阿森纳",
+          "league": "欧冠",
+          "sel": "away",
+          "odds": 1.73,
+          "prob": 0.551,
+          "cal_prob": 0.537,
+          "market_prob": 0.551,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.92,
+      "model_ev": -0.18,
+      "cal_ev": -0.7,
+      "cal_roi": -0.3514,
+      "market_ev": -0.18,
+      "market_roi": -0.0905,
+      "hit_prob_cal": 0.222,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.85,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    }
+  ],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-09_周三001",
+          "home": "江原FC",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.382,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-09_周三013",
+          "home": "帕尔梅拉斯",
+          "away": "基多体大",
+          "league": "解放者杯",
+          "score": "1-0",
+          "prob": 0.339,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1297,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 38% × 34%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-09_周三001",
+          "home": "江原FC",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.382,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-09_周三007",
+          "home": "那不勒斯",
+          "away": "阿森纳",
+          "league": "欧冠",
+          "score": "0-1",
+          "prob": 0.321,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1228,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 38% × 32%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-09_周三001",
+          "home": "江原FC",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.382,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-09_周三015",
+          "home": "芝加哥火焰",
+          "away": "迈阿密国际",
+          "league": "美职联",
+          "score": "0-1",
+          "prob": 0.307,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1171,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 38% × 31%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-09-09_周三001",
+          "home": "江原FC",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.382,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-09_周三013",
+          "home": "帕尔梅拉斯",
+          "away": "基多体大",
+          "league": "解放者杯",
+          "score": "1-0",
+          "prob": 0.339,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-09_周三007",
+          "home": "那不勒斯",
+          "away": "阿森纳",
+          "league": "欧冠",
+          "score": "0-1",
+          "prob": 0.321,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0417,
+      "stake": 2.0,
+      "potential": 686.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 343 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-09-09_周三001",
+          "home": "江原FC",
+          "away": "全北现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.382,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-09_周三013",
+          "home": "帕尔梅拉斯",
+          "away": "基多体大",
+          "league": "解放者杯",
+          "score": "1-0",
+          "prob": 0.339,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-09_周三007",
+          "home": "那不勒斯",
+          "away": "阿森纳",
+          "league": "欧冠",
+          "score": "0-1",
+          "prob": 0.321,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0417,
+      "stake": 8.0,
+      "potential": 980.0,
+      "worst_win": 98.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥98，全中≈¥980"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4598,
+    "n": 609,
+    "table": {
+      "0.35": 0.369,
+      "0.4": 0.4341,
+      "0.45": 0.5126,
+      "0.5": 0.494,
+      "0.55": 0.537,
+      "0.6": 0.6154,
+      "0.65": 0.5833,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
