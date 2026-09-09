@@ -1,23 +1,23 @@
 {
-  "total_matches": 614,
+  "total_matches": 620,
   "date_range": [
     "2026-07-20",
     "2026-09-09"
   ],
   "metrics": {
-    "brier": 0.6366,
-    "weighted_brier": 0.6357,
-    "rps": 0.2231,
-    "weighted_rps": 0.2231,
-    "log_loss": 1.059,
-    "hit_rate": 0.4625,
-    "ece": 0.1241
+    "brier": 0.6358,
+    "weighted_brier": 0.6348,
+    "rps": 0.2229,
+    "weighted_rps": 0.2229,
+    "log_loss": 1.0578,
+    "hit_rate": 0.4645,
+    "ece": 0.1271
   },
   "draw_analysis": {
-    "actual_draws": 156,
-    "actual_draw_rate": 0.2541,
+    "actual_draws": 157,
+    "actual_draw_rate": 0.2532,
     "predicted_draws": 42,
-    "predicted_draw_rate": 0.0684,
+    "predicted_draw_rate": 0.0677,
     "max_draw_prob": 0.4912,
     "avg_draw_prob": 0.2868,
     "avg_market_draw": 0.2437,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4625,
-      "n": 614
+      "hit_rate": 0.4645,
+      "n": 620
     },
     "market": {
       "hit_rate": 0.512,
@@ -45,10 +45,10 @@
   },
   "by_league": {
     "欧冠": {
-      "n": 42,
-      "hit_rate": 0.381,
-      "brier": 0.639,
-      "rps": 0.2367
+      "n": 46,
+      "hit_rate": 0.4348,
+      "brier": 0.6206,
+      "rps": 0.2313
     },
     "西甲": {
       "n": 41,
@@ -104,17 +104,17 @@
       "brier": 0.7005,
       "rps": 0.2597
     },
+    "英冠": {
+      "n": 27,
+      "hit_rate": 0.3333,
+      "brier": 0.6737,
+      "rps": 0.2045
+    },
     "英超": {
       "n": 27,
       "hit_rate": 0.3333,
       "brier": 0.6576,
       "rps": 0.2175
-    },
-    "英冠": {
-      "n": 26,
-      "hit_rate": 0.3462,
-      "brier": 0.6694,
-      "rps": 0.2069
     },
     "巴甲": {
       "n": 24,
@@ -176,6 +176,12 @@
       "brier": 0.6667,
       "rps": 0.1596
     },
+    "英联杯": {
+      "n": 8,
+      "hit_rate": 0.625,
+      "brier": 0.5811,
+      "rps": 0.2211
+    },
     "瑞超": {
       "n": 7,
       "hit_rate": 0.7143,
@@ -187,12 +193,6 @@
       "hit_rate": 0.4286,
       "brier": 0.6648,
       "rps": 0.2277
-    },
-    "英联杯": {
-      "n": 7,
-      "hit_rate": 0.7143,
-      "brier": 0.5479,
-      "rps": 0.2012
     },
     "日职乙": {
       "n": 6,
