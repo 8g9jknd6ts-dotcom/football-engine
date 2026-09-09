@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-08",
-  "total_matches": 608,
+  "generated_at": "2026-09-09",
+  "total_matches": 609,
   "date_range": [
     "2026-07-20",
     "2026-09-08"
   ],
   "overall": {
-    "hit_rate": 0.4589,
-    "brier_final": 0.6386,
-    "brier_model": 0.6549,
-    "brier_market": 0.1284,
-    "brier_djyy": 0.1293
+    "hit_rate": 0.4598,
+    "brier_final": 0.6383,
+    "brier_model": 0.6546,
+    "brier_market": 0.1282,
+    "brier_djyy": 0.1291
   },
   "daily": [
     {
@@ -615,21 +615,21 @@
     },
     {
       "date": "2026-09-08",
-      "n": 11,
-      "hits": 6,
-      "hit_rate": 0.5455,
-      "cum_hit_rate": 0.4589,
-      "brier_final": 0.6281,
-      "brier_model": 0.6287,
+      "n": 12,
+      "hits": 7,
+      "hit_rate": 0.5833,
+      "cum_hit_rate": 0.4598,
+      "brier_final": 0.6122,
+      "brier_model": 0.612,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 107,
-    "hit_rate": 0.4486,
-    "brier_final": 0.6412,
+    "n": 108,
+    "hit_rate": 0.4537,
+    "brier_final": 0.639,
     "pnl": -54.2
   },
   "prev7": {
@@ -638,7 +638,7 @@
     "brier_final": 0.5608,
     "pnl": 284.7
   },
-  "verdict": "命中率下降 -11pt",
+  "verdict": "命中率下降 -10pt",
   "by_league": [
     {
       "layer": "西甲",
@@ -768,9 +768,9 @@
     },
     {
       "layer": "解放者杯",
-      "n": 8,
-      "hit_rate": 0.25,
-      "brier_final": 0.6954
+      "n": 9,
+      "hit_rate": 0.3333,
+      "brier_final": 0.6667
     },
     {
       "layer": "瑞超",
@@ -878,9 +878,9 @@
     },
     {
       "layer": "1.5-2.0",
-      "n": 204,
-      "hit_rate": 0.5588,
-      "brier_final": 0.5982
+      "n": 205,
+      "hit_rate": 0.561,
+      "brier_final": 0.5974
     },
     {
       "layer": "1.0-1.5",
@@ -898,9 +898,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 329,
-      "hit_rate": 0.4742,
-      "brier_final": 0.6375
+      "n": 330,
+      "hit_rate": 0.4758,
+      "brier_final": 0.6369
     },
     {
       "layer": "low",
