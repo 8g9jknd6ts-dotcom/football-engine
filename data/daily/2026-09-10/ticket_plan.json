@@ -7,15 +7,60 @@
       "sel": "away",
       "odds": 1.85,
       "stake": 50.0,
-      "prob": 0.515,
+      "prob": 0.516,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 50.0,
-  "expected_roi": -0.0463,
+  "expected_roi": -0.0452,
   "bankroll": 4859.9021,
   "breaker_multiplier": 1.0,
   "parlay": [
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-10_周四006",
+          "home": "阿马多拉",
+          "away": "布拉加",
+          "league": "葡超",
+          "sel": "away",
+          "odds": 1.65,
+          "prob": 0.578,
+          "cal_prob": 0.554,
+          "market_prob": 0.578,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
+          "match": "2026-09-10_周四004",
+          "home": "斯拉维亚",
+          "away": "朗斯",
+          "league": "欧冠",
+          "sel": "away",
+          "odds": 1.71,
+          "prob": 0.557,
+          "cal_prob": 0.554,
+          "market_prob": 0.557,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.82,
+      "model_ev": -0.18,
+      "cal_ev": -0.75,
+      "cal_roi": -0.3741,
+      "market_ev": -0.18,
+      "market_roi": -0.0914,
+      "hit_prob_cal": 0.222,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.64,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
     {
       "type": "2串1",
       "legs": [
@@ -26,7 +71,7 @@
           "league": "欧冠",
           "sel": "home",
           "odds": 1.6,
-          "prob": 0.596,
+          "prob": 0.597,
           "cal_prob": 0.554,
           "market_prob": 0.596,
           "source": "market",
@@ -51,52 +96,7 @@
       "cal_ev": -0.79,
       "cal_roi": -0.393,
       "market_ev": -0.18,
-      "market_roi": -0.0916,
-      "hit_prob_cal": 0.222,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 5.47,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "market"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-09-10_周四006",
-          "home": "阿马多拉",
-          "away": "布拉加",
-          "league": "葡超",
-          "sel": "away",
-          "odds": 1.6,
-          "prob": 0.594,
-          "cal_prob": 0.554,
-          "market_prob": 0.595,
-          "source": "market",
-          "hit_prob": 0.471
-        },
-        {
-          "match": "2026-09-10_周四004",
-          "home": "斯拉维亚",
-          "away": "朗斯",
-          "league": "欧冠",
-          "sel": "away",
-          "odds": 1.71,
-          "prob": 0.557,
-          "cal_prob": 0.554,
-          "market_prob": 0.557,
-          "source": "market",
-          "hit_prob": 0.471
-        }
-      ],
-      "total_odds": 2.74,
-      "model_ev": -0.19,
-      "cal_ev": -0.79,
-      "cal_roi": -0.393,
-      "market_ev": -0.19,
-      "market_roi": -0.0933,
+      "market_roi": -0.0907,
       "hit_prob_cal": 0.222,
       "recommended": false,
       "stake": 2.0,
@@ -116,7 +116,7 @@
           "league": "欧冠",
           "sel": "home",
           "odds": 1.6,
-          "prob": 0.596,
+          "prob": 0.597,
           "cal_prob": 0.554,
           "market_prob": 0.596,
           "source": "market",
@@ -128,25 +128,25 @@
           "away": "布拉加",
           "league": "葡超",
           "sel": "away",
-          "odds": 1.6,
-          "prob": 0.594,
+          "odds": 1.65,
+          "prob": 0.578,
           "cal_prob": 0.554,
-          "market_prob": 0.595,
+          "market_prob": 0.578,
           "source": "market",
           "hit_prob": 0.471
         }
       ],
-      "total_odds": 2.56,
-      "model_ev": -0.19,
-      "cal_ev": -0.86,
-      "cal_roi": -0.4321,
-      "market_ev": -0.19,
-      "market_roi": -0.0929,
+      "total_odds": 2.64,
+      "model_ev": -0.18,
+      "cal_ev": -0.83,
+      "cal_roi": -0.4143,
+      "market_ev": -0.18,
+      "market_roi": -0.0904,
       "hit_prob_cal": 0.222,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 5.12,
+      "potential": 5.28,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -162,7 +162,7 @@
           "away": "弗拉门戈",
           "league": "解放者杯",
           "score": "0-1",
-          "prob": 0.352,
+          "prob": 0.351,
           "odds": 7.0
         },
         {
@@ -171,12 +171,12 @@
           "away": "布拉加",
           "league": "葡超",
           "score": "0-1",
-          "prob": 0.313,
+          "prob": 0.308,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1102,
+      "hit_prob": 0.1081,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -193,38 +193,7 @@
           "away": "弗拉门戈",
           "league": "解放者杯",
           "score": "0-1",
-          "prob": 0.352,
-          "odds": 7.0
-        },
-        {
-          "match": "2026-09-10_周四003",
-          "home": "拜仁",
-          "away": "博德闪耀",
-          "league": "欧冠",
-          "score": "0-1",
-          "prob": 0.309,
-          "odds": 7.0
-        }
-      ],
-      "total_odds": 49.0,
-      "hit_prob": 0.1087,
-      "stake": 2.0,
-      "potential": 98.0,
-      "worst_win": 0.0,
-      "n_bets": 1,
-      "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 35% × 31%）"
-    },
-    {
-      "type": "比分2串1",
-      "legs": [
-        {
-          "match": "2026-09-10_周四007",
-          "home": "德尔瓦耶",
-          "away": "弗拉门戈",
-          "league": "解放者杯",
-          "score": "0-1",
-          "prob": 0.352,
+          "prob": 0.351,
           "odds": 7.0
         },
         {
@@ -233,12 +202,43 @@
           "away": "罗马",
           "league": "欧冠",
           "score": "0-1",
-          "prob": 0.309,
+          "prob": 0.307,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1086,
+      "hit_prob": 0.1076,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 35% × 31%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-10_周四007",
+          "home": "德尔瓦耶",
+          "away": "弗拉门戈",
+          "league": "解放者杯",
+          "score": "0-1",
+          "prob": 0.351,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-10_周四003",
+          "home": "拜仁",
+          "away": "博德闪耀",
+          "league": "欧冠",
+          "score": "0-1",
+          "prob": 0.306,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1076,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -255,7 +255,7 @@
           "away": "弗拉门戈",
           "league": "解放者杯",
           "score": "0-1",
-          "prob": 0.352,
+          "prob": 0.351,
           "odds": 7.0
         },
         {
@@ -264,21 +264,21 @@
           "away": "布拉加",
           "league": "葡超",
           "score": "0-1",
-          "prob": 0.313,
+          "prob": 0.308,
           "odds": 7.0
         },
         {
-          "match": "2026-09-10_周四003",
-          "home": "拜仁",
-          "away": "博德闪耀",
+          "match": "2026-09-10_周四001",
+          "home": "费内巴切",
+          "away": "罗马",
           "league": "欧冠",
           "score": "0-1",
-          "prob": 0.309,
+          "prob": 0.307,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0341,
+      "hit_prob": 0.0331,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -295,7 +295,7 @@
           "away": "弗拉门戈",
           "league": "解放者杯",
           "score": "0-1",
-          "prob": 0.352,
+          "prob": 0.351,
           "odds": 7.0
         },
         {
@@ -304,21 +304,21 @@
           "away": "布拉加",
           "league": "葡超",
           "score": "0-1",
-          "prob": 0.313,
+          "prob": 0.308,
           "odds": 7.0
         },
         {
-          "match": "2026-09-10_周四003",
-          "home": "拜仁",
-          "away": "博德闪耀",
+          "match": "2026-09-10_周四001",
+          "home": "费内巴切",
+          "away": "罗马",
           "league": "欧冠",
           "score": "0-1",
-          "prob": 0.309,
+          "prob": 0.307,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0341,
+      "hit_prob": 0.0331,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
@@ -328,11 +328,11 @@
     }
   ],
   "parlay_calibration": {
-    "overall": 0.4662,
-    "n": 622,
+    "overall": 0.4663,
+    "n": 624,
     "table": {
       "0.35": 0.3669,
-      "0.4": 0.4478,
+      "0.4": 0.4485,
       "0.45": 0.5164,
       "0.5": 0.5,
       "0.55": 0.5536,
