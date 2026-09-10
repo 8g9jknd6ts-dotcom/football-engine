@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-09-10",
-  "total_matches": 622,
+  "total_matches": 624,
   "date_range": [
     "2026-07-20",
     "2026-09-09"
   ],
   "overall": {
-    "hit_rate": 0.4662,
-    "brier_final": 0.6349,
+    "hit_rate": 0.4663,
+    "brier_final": 0.6347,
     "brier_model": 0.65,
-    "brier_market": 0.1255,
-    "brier_djyy": 0.1264
+    "brier_market": 0.1251,
+    "brier_djyy": 0.126
   },
   "daily": [
     {
@@ -627,21 +627,21 @@
     },
     {
       "date": "2026-09-09",
-      "n": 13,
-      "hits": 10,
-      "hit_rate": 0.7692,
-      "cum_hit_rate": 0.4662,
-      "brier_final": 0.4759,
-      "brier_model": 0.4384,
+      "n": 15,
+      "hits": 11,
+      "hit_rate": 0.7333,
+      "cum_hit_rate": 0.4663,
+      "brier_final": 0.4883,
+      "brier_model": 0.4654,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 104.0
     }
   ],
   "rolling7": {
-    "n": 108,
-    "hit_rate": 0.5093,
-    "brier_final": 0.6126,
+    "n": 110,
+    "hit_rate": 0.5091,
+    "brier_final": 0.6143,
     "pnl": -56.2
   },
   "prev7": {
@@ -744,9 +744,9 @@
     },
     {
       "layer": "美职联",
-      "n": 20,
-      "hit_rate": 0.45,
-      "brier_final": 0.6725
+      "n": 21,
+      "hit_rate": 0.4762,
+      "brier_final": 0.6662
     },
     {
       "layer": "德甲",
@@ -780,9 +780,9 @@
     },
     {
       "layer": "解放者杯",
-      "n": 10,
-      "hit_rate": 0.4,
-      "brier_final": 0.6521
+      "n": 11,
+      "hit_rate": 0.3636,
+      "brier_final": 0.6472
     },
     {
       "layer": "英联杯",
@@ -884,9 +884,9 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 311,
-      "hit_rate": 0.3859,
-      "brier_final": 0.6667
+      "n": 313,
+      "hit_rate": 0.3866,
+      "brier_final": 0.6661
     },
     {
       "layer": "1.5-2.0",
@@ -910,9 +910,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 339,
-      "hit_rate": 0.4838,
-      "brier_final": 0.634
+      "n": 341,
+      "hit_rate": 0.4839,
+      "brier_final": 0.6336
     },
     {
       "layer": "low",

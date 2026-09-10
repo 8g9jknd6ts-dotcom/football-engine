@@ -1,25 +1,25 @@
 {
-  "total_matches": 622,
+  "total_matches": 624,
   "date_range": [
     "2026-07-20",
     "2026-09-09"
   ],
   "metrics": {
-    "brier": 0.6349,
-    "weighted_brier": 0.6339,
-    "rps": 0.2227,
-    "weighted_rps": 0.2226,
-    "log_loss": 1.0566,
-    "hit_rate": 0.4662,
-    "ece": 0.1281
+    "brier": 0.6347,
+    "weighted_brier": 0.6336,
+    "rps": 0.2223,
+    "weighted_rps": 0.2222,
+    "log_loss": 1.0562,
+    "hit_rate": 0.4663,
+    "ece": 0.126
   },
   "draw_analysis": {
-    "actual_draws": 157,
-    "actual_draw_rate": 0.2524,
-    "predicted_draws": 42,
-    "predicted_draw_rate": 0.0675,
+    "actual_draws": 159,
+    "actual_draw_rate": 0.2548,
+    "predicted_draws": 43,
+    "predicted_draw_rate": 0.0689,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2867,
+    "avg_draw_prob": 0.2871,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4662,
-      "n": 622
+      "hit_rate": 0.4663,
+      "n": 624
     },
     "market": {
       "hit_rate": 0.512,
@@ -135,10 +135,10 @@
       "rps": 0.2379
     },
     "美职联": {
-      "n": 20,
-      "hit_rate": 0.45,
-      "brier": 0.6725,
-      "rps": 0.1828
+      "n": 21,
+      "hit_rate": 0.4762,
+      "brier": 0.6662,
+      "rps": 0.1784
     },
     "德甲": {
       "n": 18,
@@ -171,10 +171,10 @@
       "rps": 0.2365
     },
     "解放者杯": {
-      "n": 10,
-      "hit_rate": 0.4,
-      "brier": 0.6521,
-      "rps": 0.1651
+      "n": 11,
+      "hit_rate": 0.3636,
+      "brier": 0.6472,
+      "rps": 0.1596
     },
     "英联杯": {
       "n": 8,
