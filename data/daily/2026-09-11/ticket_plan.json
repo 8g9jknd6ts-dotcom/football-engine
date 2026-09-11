@@ -1,0 +1,353 @@
+{
+  "stable": [
+    {
+      "match": "2026-09-11_周五005",
+      "sel": "home",
+      "odds": 1.48,
+      "stake": 200,
+      "prob": 0.643
+    }
+  ],
+  "value": [],
+  "lottery": [
+    {
+      "match": "2026-09-11_周五004",
+      "sel": "home",
+      "odds": 1.84,
+      "stake": 50.0,
+      "prob": 0.518,
+      "downgrade_reason": "prob_5060"
+    }
+  ],
+  "total_stake": 250.0,
+  "expected_roi": -0.0479,
+  "bankroll": 4809.9021,
+  "breaker_multiplier": 1.0,
+  "parlay": [
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-11_周五005",
+          "home": "阿尔克马",
+          "away": "威廉二世",
+          "league": "荷甲",
+          "sel": "home",
+          "odds": 1.48,
+          "prob": 0.643,
+          "cal_prob": 0.63,
+          "market_prob": 0.643,
+          "source": "fusion",
+          "hit_prob": 0.63
+        },
+        {
+          "match": "2026-09-11_周五010",
+          "home": "西汉姆联",
+          "away": "雷克斯",
+          "league": "英冠",
+          "sel": "home",
+          "odds": 1.73,
+          "prob": 0.552,
+          "cal_prob": 0.559,
+          "market_prob": 0.551,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.56,
+      "model_ev": -0.18,
+      "cal_ev": -0.48,
+      "cal_roi": -0.2407,
+      "market_ev": -0.18,
+      "market_roi": -0.092,
+      "hit_prob_cal": 0.297,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.12,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-11_周五005",
+          "home": "阿尔克马",
+          "away": "威廉二世",
+          "league": "荷甲",
+          "sel": "home",
+          "odds": 1.48,
+          "prob": 0.643,
+          "cal_prob": 0.63,
+          "market_prob": 0.643,
+          "source": "fusion",
+          "hit_prob": 0.63
+        },
+        {
+          "match": "2026-09-11_周五009",
+          "home": "雷恩",
+          "away": "马赛",
+          "league": "法甲",
+          "sel": "home",
+          "odds": 1.72,
+          "prob": 0.553,
+          "cal_prob": 0.559,
+          "market_prob": 0.554,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.55,
+      "model_ev": -0.19,
+      "cal_ev": -0.49,
+      "cal_roi": -0.2451,
+      "market_ev": -0.19,
+      "market_roi": -0.0936,
+      "hit_prob_cal": 0.297,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.09,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-11_周五009",
+          "home": "雷恩",
+          "away": "马赛",
+          "league": "法甲",
+          "sel": "home",
+          "odds": 1.72,
+          "prob": 0.553,
+          "cal_prob": 0.559,
+          "market_prob": 0.554,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
+          "match": "2026-09-11_周五010",
+          "home": "西汉姆联",
+          "away": "雷克斯",
+          "league": "英冠",
+          "sel": "home",
+          "odds": 1.73,
+          "prob": 0.552,
+          "cal_prob": 0.559,
+          "market_prob": 0.551,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.98,
+      "model_ev": -0.18,
+      "cal_ev": -0.68,
+      "cal_roi": -0.3399,
+      "market_ev": -0.18,
+      "market_roi": -0.092,
+      "hit_prob_cal": 0.222,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.95,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    }
+  ],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-11_周五004",
+          "home": "赫根",
+          "away": "米亚尔比",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.394,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-11_周五012",
+          "home": "科里蒂巴",
+          "away": "巴拉纳竞技",
+          "league": "巴甲",
+          "score": "0-1",
+          "prob": 0.391,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1542,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 39% × 39%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-11_周五004",
+          "home": "赫根",
+          "away": "米亚尔比",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.394,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-11_周五008",
+          "home": "威尼斯",
+          "away": "佛罗伦萨",
+          "league": "意甲",
+          "score": "0-1",
+          "prob": 0.29,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1141,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 39% × 29%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-11_周五012",
+          "home": "科里蒂巴",
+          "away": "巴拉纳竞技",
+          "league": "巴甲",
+          "score": "0-1",
+          "prob": 0.391,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-11_周五008",
+          "home": "威尼斯",
+          "away": "佛罗伦萨",
+          "league": "意甲",
+          "score": "0-1",
+          "prob": 0.29,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1132,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 39% × 29%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-09-11_周五004",
+          "home": "赫根",
+          "away": "米亚尔比",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.394,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-11_周五012",
+          "home": "科里蒂巴",
+          "away": "巴拉纳竞技",
+          "league": "巴甲",
+          "score": "0-1",
+          "prob": 0.391,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-11_周五008",
+          "home": "威尼斯",
+          "away": "佛罗伦萨",
+          "league": "意甲",
+          "score": "0-1",
+          "prob": 0.29,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0446,
+      "stake": 2.0,
+      "potential": 686.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 343 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-09-11_周五004",
+          "home": "赫根",
+          "away": "米亚尔比",
+          "league": "瑞典超",
+          "score": "1-0",
+          "prob": 0.394,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-11_周五012",
+          "home": "科里蒂巴",
+          "away": "巴拉纳竞技",
+          "league": "巴甲",
+          "score": "0-1",
+          "prob": 0.391,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-11_周五008",
+          "home": "威尼斯",
+          "away": "佛罗伦萨",
+          "league": "意甲",
+          "score": "0-1",
+          "prob": 0.29,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0446,
+      "stake": 8.0,
+      "potential": 980.0,
+      "worst_win": 98.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥98，全中≈¥980"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4667,
+    "n": 630,
+    "table": {
+      "0.35": 0.3669,
+      "0.4": 0.4485,
+      "0.45": 0.5203,
+      "0.5": 0.4884,
+      "0.55": 0.5593,
+      "0.6": 0.6296,
+      "0.65": 0.5833,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
