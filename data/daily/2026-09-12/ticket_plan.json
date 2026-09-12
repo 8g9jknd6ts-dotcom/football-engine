@@ -1,6 +1,13 @@
 {
   "stable": [
     {
+      "match": "2026-09-12_周六007",
+      "sel": "home",
+      "odds": 1.54,
+      "stake": 100.0,
+      "prob": 0.619
+    },
+    {
       "match": "2026-09-12_周六011",
       "sel": "away",
       "odds": 1.55,
@@ -8,33 +15,34 @@
       "prob": 0.615
     },
     {
-      "match": "2026-09-12_周六007",
-      "sel": "home",
-      "odds": 1.54,
-      "stake": 100.0,
-      "prob": 0.618
-    },
-    {
       "match": "2026-09-12_周六008",
       "sel": "home",
-      "odds": 1.51,
+      "odds": 1.55,
       "stake": 100.0,
-      "prob": 0.629
+      "prob": 0.613
     }
   ],
   "value": [],
   "lottery": [
     {
+      "match": "2026-09-12_周六009",
+      "sel": "home",
+      "odds": 1.89,
+      "stake": 25.0,
+      "prob": 0.504,
+      "downgrade_reason": "prob_5060"
+    },
+    {
       "match": "2026-09-12_周六001",
       "sel": "home",
-      "odds": 1.82,
-      "stake": 50.0,
+      "odds": 1.81,
+      "stake": 25.0,
       "prob": 0.525,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.048,
+  "expected_roi": -0.0477,
   "bankroll": 4559.9021,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -42,88 +50,43 @@
       "type": "2串1",
       "legs": [
         {
-          "match": "2026-09-12_周六012",
-          "home": "切尔西",
-          "away": "赫尔城",
+          "match": "2026-09-12_周六007",
+          "home": "弗赖堡",
+          "away": "门兴",
+          "league": "德甲",
+          "sel": "home",
+          "odds": 1.54,
+          "prob": 0.619,
+          "cal_prob": 0.607,
+          "market_prob": 0.619,
+          "source": "fusion",
+          "hit_prob": 0.607
+        },
+        {
+          "match": "2026-09-12_周六029",
+          "home": "桑德兰",
+          "away": "阿森纳",
           "league": "英超",
-          "sel": "home",
-          "odds": 1.51,
-          "prob": 0.631,
+          "sel": "away",
+          "odds": 1.55,
+          "prob": 0.616,
           "cal_prob": 0.607,
-          "market_prob": 0.631,
-          "source": "fusion",
-          "hit_prob": 0.607
-        },
-        {
-          "match": "2026-09-12_周六007",
-          "home": "弗赖堡",
-          "away": "门兴",
-          "league": "德甲",
-          "sel": "home",
-          "odds": 1.54,
-          "prob": 0.618,
-          "cal_prob": 0.607,
-          "market_prob": 0.618,
+          "market_prob": 0.616,
           "source": "fusion",
           "hit_prob": 0.607
         }
       ],
-      "total_odds": 2.33,
-      "model_ev": -0.19,
-      "cal_ev": -0.29,
-      "cal_roi": -0.1429,
-      "market_ev": -0.19,
-      "market_roi": -0.0932,
+      "total_odds": 2.39,
+      "model_ev": -0.18,
+      "cal_ev": -0.24,
+      "cal_roi": -0.1202,
+      "market_ev": -0.18,
+      "market_roi": -0.0905,
       "hit_prob_cal": 0.369,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.65,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "calibrated"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-09-12_周六008",
-          "home": "美因茨",
-          "away": "法兰克福",
-          "league": "德甲",
-          "sel": "home",
-          "odds": 1.51,
-          "prob": 0.629,
-          "cal_prob": 0.607,
-          "market_prob": 0.63,
-          "source": "fusion",
-          "hit_prob": 0.607
-        },
-        {
-          "match": "2026-09-12_周六007",
-          "home": "弗赖堡",
-          "away": "门兴",
-          "league": "德甲",
-          "sel": "home",
-          "odds": 1.54,
-          "prob": 0.618,
-          "cal_prob": 0.607,
-          "market_prob": 0.618,
-          "source": "fusion",
-          "hit_prob": 0.607
-        }
-      ],
-      "total_odds": 2.33,
-      "model_ev": -0.19,
-      "cal_ev": -0.29,
-      "cal_roi": -0.1429,
-      "market_ev": -0.19,
-      "market_roi": -0.0946,
-      "hit_prob_cal": 0.369,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.65,
+      "potential": 4.77,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -137,38 +100,83 @@
           "away": "赫尔城",
           "league": "英超",
           "sel": "home",
-          "odds": 1.51,
-          "prob": 0.631,
+          "odds": 1.5,
+          "prob": 0.634,
           "cal_prob": 0.607,
-          "market_prob": 0.631,
+          "market_prob": 0.634,
           "source": "fusion",
           "hit_prob": 0.607
         },
         {
-          "match": "2026-09-12_周六008",
-          "home": "美因茨",
-          "away": "法兰克福",
-          "league": "德甲",
-          "sel": "home",
-          "odds": 1.51,
-          "prob": 0.629,
+          "match": "2026-09-12_周六029",
+          "home": "桑德兰",
+          "away": "阿森纳",
+          "league": "英超",
+          "sel": "away",
+          "odds": 1.55,
+          "prob": 0.616,
           "cal_prob": 0.607,
-          "market_prob": 0.63,
+          "market_prob": 0.616,
           "source": "fusion",
           "hit_prob": 0.607
         }
       ],
-      "total_odds": 2.28,
-      "model_ev": -0.19,
-      "cal_ev": -0.32,
-      "cal_roi": -0.1596,
-      "market_ev": -0.19,
-      "market_roi": -0.0941,
+      "total_odds": 2.33,
+      "model_ev": -0.18,
+      "cal_ev": -0.29,
+      "cal_roi": -0.1431,
+      "market_ev": -0.18,
+      "market_roi": -0.0921,
       "hit_prob_cal": 0.369,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.56,
+      "potential": 4.65,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-12_周六012",
+          "home": "切尔西",
+          "away": "赫尔城",
+          "league": "英超",
+          "sel": "home",
+          "odds": 1.5,
+          "prob": 0.634,
+          "cal_prob": 0.607,
+          "market_prob": 0.634,
+          "source": "fusion",
+          "hit_prob": 0.607
+        },
+        {
+          "match": "2026-09-12_周六007",
+          "home": "弗赖堡",
+          "away": "门兴",
+          "league": "德甲",
+          "sel": "home",
+          "odds": 1.54,
+          "prob": 0.619,
+          "cal_prob": 0.607,
+          "market_prob": 0.619,
+          "source": "fusion",
+          "hit_prob": 0.607
+        }
+      ],
+      "total_odds": 2.31,
+      "model_ev": -0.19,
+      "cal_ev": -0.3,
+      "cal_roi": -0.1486,
+      "market_ev": -0.19,
+      "market_roi": -0.0931,
+      "hit_prob_cal": 0.369,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.62,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -184,7 +192,38 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.387,
+          "prob": 0.384,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-12_周六001",
+          "home": "蔚山现代",
+          "away": "仁川联",
+          "league": "K1联赛",
+          "score": "1-0",
+          "prob": 0.355,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1366,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 38% × 36%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-12_周六002",
+          "home": "全北现代",
+          "away": "首尔FC",
+          "league": "K1联赛",
+          "score": "1-0",
+          "prob": 0.384,
           "odds": 7.0
         },
         {
@@ -198,13 +237,13 @@
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1363,
+      "hit_prob": 0.1352,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 39% × 35%）"
+      "note": "两场比分都中才赢（单场命中率约 38% × 35%）"
     },
     {
       "type": "比分2串1",
@@ -215,38 +254,7 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.387,
-          "odds": 7.0
-        },
-        {
-          "match": "2026-09-12_周六001",
-          "home": "蔚山现代",
-          "away": "仁川联",
-          "league": "K1联赛",
-          "score": "1-0",
-          "prob": 0.351,
-          "odds": 7.0
-        }
-      ],
-      "total_odds": 49.0,
-      "hit_prob": 0.1359,
-      "stake": 2.0,
-      "potential": 98.0,
-      "worst_win": 0.0,
-      "n_bets": 1,
-      "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 39% × 35%）"
-    },
-    {
-      "type": "比分2串1",
-      "legs": [
-        {
-          "match": "2026-09-12_周六002",
-          "home": "全北现代",
-          "away": "首尔FC",
-          "league": "K1联赛",
-          "score": "1-0",
-          "prob": 0.387,
+          "prob": 0.384,
           "odds": 7.0
         },
         {
@@ -255,18 +263,18 @@
           "away": "波尔图",
           "league": "葡超",
           "score": "0-1",
-          "prob": 0.327,
+          "prob": 0.33,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1266,
+      "hit_prob": 0.1267,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 39% × 33%）"
+      "note": "两场比分都中才赢（单场命中率约 38% × 33%）"
     },
     {
       "type": "比分3串1",
@@ -277,7 +285,16 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.387,
+          "prob": 0.384,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-12_周六001",
+          "home": "蔚山现代",
+          "away": "仁川联",
+          "league": "K1联赛",
+          "score": "1-0",
+          "prob": 0.355,
           "odds": 7.0
         },
         {
@@ -288,19 +305,10 @@
           "score": "0-1",
           "prob": 0.352,
           "odds": 7.0
-        },
-        {
-          "match": "2026-09-12_周六001",
-          "home": "蔚山现代",
-          "away": "仁川联",
-          "league": "K1联赛",
-          "score": "1-0",
-          "prob": 0.351,
-          "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0478,
+      "hit_prob": 0.0481,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -317,7 +325,16 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.387,
+          "prob": 0.384,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-12_周六001",
+          "home": "蔚山现代",
+          "away": "仁川联",
+          "league": "K1联赛",
+          "score": "1-0",
+          "prob": 0.355,
           "odds": 7.0
         },
         {
@@ -328,19 +345,10 @@
           "score": "0-1",
           "prob": 0.352,
           "odds": 7.0
-        },
-        {
-          "match": "2026-09-12_周六001",
-          "home": "蔚山现代",
-          "away": "仁川联",
-          "league": "K1联赛",
-          "score": "1-0",
-          "prob": 0.351,
-          "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0478,
+      "hit_prob": 0.0481,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
@@ -350,12 +358,12 @@
     }
   ],
   "parlay_calibration": {
-    "overall": 0.4688,
-    "n": 642,
+    "overall": 0.4697,
+    "n": 643,
     "table": {
       "0.35": 0.3684,
       "0.4": 0.4485,
-      "0.45": 0.5312,
+      "0.45": 0.5349,
       "0.5": 0.4831,
       "0.55": 0.5667,
       "0.6": 0.6071,
