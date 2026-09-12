@@ -1,13 +1,13 @@
 {
   "date": "2026-09-12",
-  "n_matches": 24,
-  "hit_rate": 0.25,
-  "hits": 6,
+  "n_matches": 30,
+  "hit_rate": 0.3333,
+  "hits": 10,
   "source_brier": {
-    "model": 0.8022,
+    "model": 0.739,
     "market": null,
     "djyy": null,
-    "final": 0.768
+    "final": 0.7181
   },
   "by_league": {
     "K1联赛": {
@@ -23,16 +23,16 @@
       "avg_brier": 0.6091
     },
     "西甲": {
+      "n": 4,
+      "hit_rate": 0.25,
+      "wilson_lower": 0.0456,
+      "avg_brier": 0.7252
+    },
+    "意甲": {
       "n": 3,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.8903
-    },
-    "意甲": {
-      "n": 2,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.7391
+      "avg_brier": 0.7874
     },
     "德甲": {
       "n": 6,
@@ -41,16 +41,16 @@
       "avg_brier": 0.734
     },
     "英超": {
-      "n": 6,
-      "hit_rate": 0.0,
-      "wilson_lower": 0.0,
-      "avg_brier": 0.9491
+      "n": 7,
+      "hit_rate": 0.1429,
+      "wilson_lower": 0.0257,
+      "avg_brier": 0.8464
     },
     "法甲": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.9394
+      "avg_brier": 0.91
     },
     "沙特联": {
       "n": 1,
@@ -63,20 +63,32 @@
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
       "avg_brier": 0.467
+    },
+    "葡超": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.399
+    },
+    "荷甲": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.4876
     }
   },
   "by_confidence_tier": {
     "mid": {
-      "n": 12,
-      "hit_rate": 0.4167,
-      "wilson_lower": 0.1933,
-      "avg_brier": 0.6429
+      "n": 16,
+      "hit_rate": 0.4375,
+      "wilson_lower": 0.231,
+      "avg_brier": 0.6479
     },
     "high": {
-      "n": 8,
-      "hit_rate": 0.125,
-      "wilson_lower": 0.0224,
-      "avg_brier": 0.9449
+      "n": 10,
+      "hit_rate": 0.3,
+      "wilson_lower": 0.1078,
+      "avg_brier": 0.8019
     },
     "low": {
       "n": 4,
@@ -87,16 +99,16 @@
   },
   "by_odds_band": {
     "1.5-2.0": {
-      "n": 12,
-      "hit_rate": 0.25,
-      "wilson_lower": 0.0889,
-      "avg_brier": 0.8187
+      "n": 16,
+      "hit_rate": 0.375,
+      "wilson_lower": 0.1848,
+      "avg_brier": 0.7227
     },
     "2.0-3.0": {
-      "n": 11,
-      "hit_rate": 0.2727,
-      "wilson_lower": 0.0975,
-      "avg_brier": 0.6906
+      "n": 13,
+      "hit_rate": 0.3077,
+      "wilson_lower": 0.1268,
+      "avg_brier": 0.6898
     },
     "1.0-1.5": {
       "n": 1,
@@ -106,18 +118,18 @@
     }
   },
   "score_stats": {
-    "top1": 2,
-    "top3": 3,
-    "top5": 6,
-    "top8": 10,
-    "any": 10
+    "top1": 3,
+    "top3": 5,
+    "top5": 8,
+    "top8": 12,
+    "any": 12
   },
   "score_rank_hist": {
     "7": 2,
     "4": 2,
     "6": 2,
-    "1": 2,
-    "3": 1,
+    "1": 3,
+    "3": 2,
     "5": 1
   },
   "score_source_stats": {
@@ -126,32 +138,32 @@
       "hits": 0
     },
     "mc": {
-      "n": 10,
-      "hits": 6
+      "n": 12,
+      "hits": 8
     }
   },
   "market_signal_stats": {
-    "n": 24,
-    "hits": 8
+    "n": 30,
+    "hits": 11
   },
   "layered": {
-    "log_loss_final": 1.2406,
+    "log_loss_final": 1.1706,
     "goal_framework": {
-      "n": 24,
-      "hits": 9
+      "n": 30,
+      "hits": 11
     },
     "prob_bands": {
       "40-50%": {
-        "n": 9,
-        "hit_rate": 0.3333
+        "n": 12,
+        "hit_rate": 0.4167
       },
       "50-60%": {
-        "n": 6,
-        "hit_rate": 0.3333
+        "n": 7,
+        "hit_rate": 0.2857
       },
       "60%+": {
-        "n": 5,
-        "hit_rate": 0.2
+        "n": 7,
+        "hit_rate": 0.4286
       },
       "<40%": {
         "n": 4,
@@ -160,12 +172,12 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 14,
-        "hit_rate": 0.3571
+        "n": 19,
+        "hit_rate": 0.4211
       },
       "watch": {
-        "n": 10,
-        "hit_rate": 0.1
+        "n": 11,
+        "hit_rate": 0.1818
       }
     }
   },
@@ -174,26 +186,15 @@
       "dimension": "league",
       "key": "英超",
       "outcome": "home",
-      "predicted_avg": 0.5443,
+      "predicted_avg": 0.4837,
       "actual_rate": 0.0,
-      "gap": 0.5443,
-      "n": 6,
+      "gap": 0.4837,
+      "n": 7,
       "severity": "critical",
       "suggested_action": "reduce home_adv_weight"
-    },
-    {
-      "dimension": "outcome",
-      "key": "all",
-      "outcome": "draw",
-      "predicted_avg": 0.2762,
-      "actual_rate": 0.4167,
-      "gap": -0.1405,
-      "n": 24,
-      "severity": "warn",
-      "suggested_action": "reduce draw_bias"
     }
   ],
   "total_pnl": -103.25,
-  "generated_at": "2026-09-12T18:46:59.432937",
-  "sha256": "62b4f0b670c7ddaca7d171b9ac0a2f3d"
+  "generated_at": "2026-09-12T21:26:38.543869",
+  "sha256": "f6bf44efb1f6f0faae071e7f55139d26"
 }
