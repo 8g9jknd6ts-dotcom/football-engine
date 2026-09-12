@@ -1,18 +1,18 @@
 {
   "stable": [
     {
-      "match": "2026-09-12_周六007",
-      "sel": "home",
-      "odds": 1.54,
-      "stake": 100.0,
-      "prob": 0.619
-    },
-    {
       "match": "2026-09-12_周六011",
       "sel": "away",
       "odds": 1.55,
       "stake": 100.0,
       "prob": 0.615
+    },
+    {
+      "match": "2026-09-12_周六007",
+      "sel": "home",
+      "odds": 1.54,
+      "stake": 100.0,
+      "prob": 0.619
     },
     {
       "match": "2026-09-12_周六008",
@@ -27,9 +27,9 @@
     {
       "match": "2026-09-12_周六009",
       "sel": "home",
-      "odds": 1.89,
+      "odds": 1.9,
       "stake": 25.0,
-      "prob": 0.504,
+      "prob": 0.502,
       "downgrade_reason": "prob_5060"
     },
     {
@@ -37,12 +37,12 @@
       "sel": "home",
       "odds": 1.81,
       "stake": 25.0,
-      "prob": 0.525,
+      "prob": 0.526,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.0477,
+  "expected_roi": -0.0474,
   "bankroll": 4559.9021,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -68,25 +68,25 @@
           "away": "阿森纳",
           "league": "英超",
           "sel": "away",
-          "odds": 1.55,
-          "prob": 0.616,
+          "odds": 1.54,
+          "prob": 0.617,
           "cal_prob": 0.607,
-          "market_prob": 0.616,
+          "market_prob": 0.617,
           "source": "fusion",
           "hit_prob": 0.607
         }
       ],
-      "total_odds": 2.39,
-      "model_ev": -0.18,
-      "cal_ev": -0.24,
-      "cal_roi": -0.1202,
-      "market_ev": -0.18,
-      "market_roi": -0.0905,
+      "total_odds": 2.37,
+      "model_ev": -0.19,
+      "cal_ev": -0.25,
+      "cal_roi": -0.1259,
+      "market_ev": -0.19,
+      "market_roi": -0.0939,
       "hit_prob_cal": 0.369,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.77,
+      "potential": 4.74,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -100,55 +100,10 @@
           "away": "赫尔城",
           "league": "英超",
           "sel": "home",
-          "odds": 1.5,
-          "prob": 0.634,
+          "odds": 1.48,
+          "prob": 0.646,
           "cal_prob": 0.607,
-          "market_prob": 0.634,
-          "source": "fusion",
-          "hit_prob": 0.607
-        },
-        {
-          "match": "2026-09-12_周六029",
-          "home": "桑德兰",
-          "away": "阿森纳",
-          "league": "英超",
-          "sel": "away",
-          "odds": 1.55,
-          "prob": 0.616,
-          "cal_prob": 0.607,
-          "market_prob": 0.616,
-          "source": "fusion",
-          "hit_prob": 0.607
-        }
-      ],
-      "total_odds": 2.33,
-      "model_ev": -0.18,
-      "cal_ev": -0.29,
-      "cal_roi": -0.1431,
-      "market_ev": -0.18,
-      "market_roi": -0.0921,
-      "hit_prob_cal": 0.369,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.65,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "calibrated"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-09-12_周六012",
-          "home": "切尔西",
-          "away": "赫尔城",
-          "league": "英超",
-          "sel": "home",
-          "odds": 1.5,
-          "prob": 0.634,
-          "cal_prob": 0.607,
-          "market_prob": 0.634,
+          "market_prob": 0.645,
           "source": "fusion",
           "hit_prob": 0.607
         },
@@ -166,17 +121,62 @@
           "hit_prob": 0.607
         }
       ],
-      "total_odds": 2.31,
-      "model_ev": -0.19,
-      "cal_ev": -0.3,
-      "cal_roi": -0.1486,
-      "market_ev": -0.19,
-      "market_roi": -0.0931,
+      "total_odds": 2.28,
+      "model_ev": -0.18,
+      "cal_ev": -0.32,
+      "cal_roi": -0.16,
+      "market_ev": -0.18,
+      "market_roi": -0.0904,
       "hit_prob_cal": 0.369,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.62,
+      "potential": 4.56,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-12_周六012",
+          "home": "切尔西",
+          "away": "赫尔城",
+          "league": "英超",
+          "sel": "home",
+          "odds": 1.48,
+          "prob": 0.646,
+          "cal_prob": 0.607,
+          "market_prob": 0.645,
+          "source": "fusion",
+          "hit_prob": 0.607
+        },
+        {
+          "match": "2026-09-12_周六029",
+          "home": "桑德兰",
+          "away": "阿森纳",
+          "league": "英超",
+          "sel": "away",
+          "odds": 1.54,
+          "prob": 0.617,
+          "cal_prob": 0.607,
+          "market_prob": 0.617,
+          "source": "fusion",
+          "hit_prob": 0.607
+        }
+      ],
+      "total_odds": 2.28,
+      "model_ev": -0.18,
+      "cal_ev": -0.32,
+      "cal_roi": -0.16,
+      "market_ev": -0.18,
+      "market_roi": -0.0925,
+      "hit_prob_cal": 0.369,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.56,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -192,7 +192,7 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.384,
+          "prob": 0.387,
           "odds": 7.0
         },
         {
@@ -201,18 +201,18 @@
           "away": "仁川联",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.355,
+          "prob": 0.354,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1366,
+      "hit_prob": 0.137,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 36%）"
+      "note": "两场比分都中才赢（单场命中率约 39% × 35%）"
     },
     {
       "type": "比分2串1",
@@ -223,7 +223,7 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.384,
+          "prob": 0.387,
           "odds": 7.0
         },
         {
@@ -232,18 +232,18 @@
           "away": "阿森纳",
           "league": "英超",
           "score": "0-1",
-          "prob": 0.352,
+          "prob": 0.353,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1352,
+      "hit_prob": 0.1368,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 35%）"
+      "note": "两场比分都中才赢（单场命中率约 39% × 35%）"
     },
     {
       "type": "比分2串1",
@@ -254,7 +254,7 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.384,
+          "prob": 0.387,
           "odds": 7.0
         },
         {
@@ -263,18 +263,18 @@
           "away": "波尔图",
           "league": "葡超",
           "score": "0-1",
-          "prob": 0.33,
+          "prob": 0.332,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1267,
+      "hit_prob": 0.1284,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 33%）"
+      "note": "两场比分都中才赢（单场命中率约 39% × 33%）"
     },
     {
       "type": "比分3串1",
@@ -285,7 +285,7 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.384,
+          "prob": 0.387,
           "odds": 7.0
         },
         {
@@ -294,7 +294,7 @@
           "away": "仁川联",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.355,
+          "prob": 0.354,
           "odds": 7.0
         },
         {
@@ -303,12 +303,12 @@
           "away": "阿森纳",
           "league": "英超",
           "score": "0-1",
-          "prob": 0.352,
+          "prob": 0.353,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0481,
+      "hit_prob": 0.0484,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -325,7 +325,7 @@
           "away": "首尔FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.384,
+          "prob": 0.387,
           "odds": 7.0
         },
         {
@@ -334,7 +334,7 @@
           "away": "仁川联",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.355,
+          "prob": 0.354,
           "odds": 7.0
         },
         {
@@ -343,12 +343,12 @@
           "away": "阿森纳",
           "league": "英超",
           "score": "0-1",
-          "prob": 0.352,
+          "prob": 0.353,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0481,
+      "hit_prob": 0.0484,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
