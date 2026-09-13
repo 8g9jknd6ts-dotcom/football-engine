@@ -5,7 +5,7 @@
       "sel": "home",
       "odds": 1.53,
       "stake": 200,
-      "prob": 0.623
+      "prob": 0.622
     }
   ],
   "value": [],
@@ -21,14 +21,14 @@
     {
       "match": "2026-09-13_周日006",
       "sel": "home",
-      "odds": 1.84,
+      "odds": 1.83,
       "stake": 25.0,
-      "prob": 0.517,
+      "prob": 0.52,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 250.0,
-  "expected_roi": -0.047,
+  "expected_roi": -0.0478,
   "bankroll": 4456.6521,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -42,54 +42,9 @@
           "league": "葡超",
           "sel": "home",
           "odds": 1.53,
-          "prob": 0.623,
+          "prob": 0.622,
           "cal_prob": 0.571,
-          "market_prob": 0.623,
-          "source": "fusion",
-          "hit_prob": 0.571
-        },
-        {
-          "match": "2026-09-13_周日010",
-          "home": "莱万特",
-          "away": "巴萨",
-          "league": "西甲",
-          "sel": "away",
-          "odds": 1.62,
-          "prob": 0.588,
-          "cal_prob": 0.54,
-          "market_prob": 0.588,
-          "source": "market",
-          "hit_prob": 0.471
-        }
-      ],
-      "total_odds": 2.48,
-      "model_ev": -0.19,
-      "cal_ev": -0.67,
-      "cal_roi": -0.3329,
-      "market_ev": -0.19,
-      "market_roi": -0.0928,
-      "hit_prob_cal": 0.269,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.96,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "market"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-09-13_周日017",
-          "home": "本菲卡",
-          "away": "吉维森特",
-          "league": "葡超",
-          "sel": "home",
-          "odds": 1.53,
-          "prob": 0.623,
-          "cal_prob": 0.571,
-          "market_prob": 0.623,
+          "market_prob": 0.622,
           "source": "fusion",
           "hit_prob": 0.571
         },
@@ -102,7 +57,7 @@
           "odds": 1.61,
           "prob": 0.59,
           "cal_prob": 0.54,
-          "market_prob": 0.59,
+          "market_prob": 0.591,
           "source": "market",
           "hit_prob": 0.471
         }
@@ -126,6 +81,64 @@
       "type": "2串1",
       "legs": [
         {
+          "match": "2026-09-13_周日017",
+          "home": "本菲卡",
+          "away": "吉维森特",
+          "league": "葡超",
+          "sel": "home",
+          "odds": 1.53,
+          "prob": 0.622,
+          "cal_prob": 0.571,
+          "market_prob": 0.622,
+          "source": "fusion",
+          "hit_prob": 0.571
+        },
+        {
+          "match": "2026-09-13_周日010",
+          "home": "莱万特",
+          "away": "巴萨",
+          "league": "西甲",
+          "sel": "away",
+          "odds": 1.59,
+          "prob": 0.599,
+          "cal_prob": 0.54,
+          "market_prob": 0.599,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.43,
+      "model_ev": -0.19,
+      "cal_ev": -0.69,
+      "cal_roi": -0.3453,
+      "market_ev": -0.19,
+      "market_roi": -0.0932,
+      "hit_prob_cal": 0.269,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.87,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-13_周日010",
+          "home": "莱万特",
+          "away": "巴萨",
+          "league": "西甲",
+          "sel": "away",
+          "odds": 1.59,
+          "prob": 0.599,
+          "cal_prob": 0.54,
+          "market_prob": 0.599,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
           "match": "2026-09-13_周日018",
           "home": "埃因霍温",
           "away": "鹿斯巴达",
@@ -134,35 +147,22 @@
           "odds": 1.61,
           "prob": 0.59,
           "cal_prob": 0.54,
-          "market_prob": 0.59,
-          "source": "market",
-          "hit_prob": 0.471
-        },
-        {
-          "match": "2026-09-13_周日010",
-          "home": "莱万特",
-          "away": "巴萨",
-          "league": "西甲",
-          "sel": "away",
-          "odds": 1.62,
-          "prob": 0.588,
-          "cal_prob": 0.54,
-          "market_prob": 0.588,
+          "market_prob": 0.591,
           "source": "market",
           "hit_prob": 0.471
         }
       ],
-      "total_odds": 2.61,
+      "total_odds": 2.56,
       "model_ev": -0.19,
-      "cal_ev": -0.84,
-      "cal_roi": -0.4214,
+      "cal_ev": -0.86,
+      "cal_roi": -0.4321,
       "market_ev": -0.19,
-      "market_roi": -0.0947,
+      "market_roi": -0.0937,
       "hit_prob_cal": 0.222,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 5.22,
+      "potential": 5.12,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -178,7 +178,7 @@
           "away": "莫尔德",
           "league": "挪超",
           "score": "0-1",
-          "prob": 0.365,
+          "prob": 0.368,
           "odds": 7.0
         },
         {
@@ -187,12 +187,12 @@
           "away": "马拉加",
           "league": "西甲",
           "score": "1-0",
-          "prob": 0.36,
+          "prob": 0.363,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1315,
+      "hit_prob": 0.1337,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -209,7 +209,7 @@
           "away": "莫尔德",
           "league": "挪超",
           "score": "0-1",
-          "prob": 0.365,
+          "prob": 0.368,
           "odds": 7.0
         },
         {
@@ -217,15 +217,15 @@
           "home": "弗拉门戈",
           "away": "科林蒂安",
           "league": "巴甲",
-          "score": "0-0",
-          "prob": 0.33,
-          "odds": 9.0
+          "score": "1-0",
+          "prob": 0.333,
+          "odds": 7.0
         }
       ],
-      "total_odds": 63.0,
-      "hit_prob": 0.1207,
+      "total_odds": 49.0,
+      "hit_prob": 0.1226,
       "stake": 2.0,
-      "potential": 126.0,
+      "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
@@ -240,7 +240,7 @@
           "away": "马拉加",
           "league": "西甲",
           "score": "1-0",
-          "prob": 0.36,
+          "prob": 0.363,
           "odds": 7.0
         },
         {
@@ -248,15 +248,15 @@
           "home": "弗拉门戈",
           "away": "科林蒂安",
           "league": "巴甲",
-          "score": "0-0",
-          "prob": 0.33,
-          "odds": 9.0
+          "score": "1-0",
+          "prob": 0.333,
+          "odds": 7.0
         }
       ],
-      "total_odds": 63.0,
-      "hit_prob": 0.119,
+      "total_odds": 49.0,
+      "hit_prob": 0.121,
       "stake": 2.0,
-      "potential": 126.0,
+      "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
@@ -271,7 +271,7 @@
           "away": "莫尔德",
           "league": "挪超",
           "score": "0-1",
-          "prob": 0.365,
+          "prob": 0.368,
           "odds": 7.0
         },
         {
@@ -280,7 +280,7 @@
           "away": "马拉加",
           "league": "西甲",
           "score": "1-0",
-          "prob": 0.36,
+          "prob": 0.363,
           "odds": 7.0
         },
         {
@@ -288,19 +288,19 @@
           "home": "弗拉门戈",
           "away": "科林蒂安",
           "league": "巴甲",
-          "score": "0-0",
-          "prob": 0.33,
-          "odds": 9.0
+          "score": "1-0",
+          "prob": 0.333,
+          "odds": 7.0
         }
       ],
-      "total_odds": 441.0,
-      "hit_prob": 0.0435,
+      "total_odds": 343.0,
+      "hit_prob": 0.0445,
       "stake": 2.0,
-      "potential": 882.0,
+      "potential": 686.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "三场比分全中才赢（赔率 441 倍）"
+      "note": "三场比分全中才赢（赔率 343 倍）"
     },
     {
       "type": "比分3串4(容错)",
@@ -311,7 +311,7 @@
           "away": "莫尔德",
           "league": "挪超",
           "score": "0-1",
-          "prob": 0.365,
+          "prob": 0.368,
           "odds": 7.0
         },
         {
@@ -320,7 +320,7 @@
           "away": "马拉加",
           "league": "西甲",
           "score": "1-0",
-          "prob": 0.36,
+          "prob": 0.363,
           "odds": 7.0
         },
         {
@@ -328,19 +328,19 @@
           "home": "弗拉门戈",
           "away": "科林蒂安",
           "league": "巴甲",
-          "score": "0-0",
-          "prob": 0.33,
-          "odds": 9.0
+          "score": "1-0",
+          "prob": 0.333,
+          "odds": 7.0
         }
       ],
-      "total_odds": 441.0,
-      "hit_prob": 0.0435,
+      "total_odds": 343.0,
+      "hit_prob": 0.0445,
       "stake": 8.0,
-      "potential": 1232.0,
-      "worst_win": 126.0,
+      "potential": 980.0,
+      "worst_win": 98.0,
       "n_bets": 4,
       "odds_source": "simulated",
-      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥126，全中≈¥1232"
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥98，全中≈¥980"
     }
   ],
   "parlay_calibration": {
