@@ -1,25 +1,25 @@
 {
-  "total_matches": 697,
+  "total_matches": 703,
   "date_range": [
     "2026-07-20",
-    "2026-09-13"
+    "2026-09-14"
   ],
   "metrics": {
-    "brier": 0.6365,
-    "weighted_brier": 0.6357,
-    "rps": 0.2218,
-    "weighted_rps": 0.2217,
-    "log_loss": 1.0583,
-    "hit_rate": 0.4634,
-    "ece": 0.1147
+    "brier": 0.6338,
+    "weighted_brier": 0.6328,
+    "rps": 0.2211,
+    "weighted_rps": 0.2209,
+    "log_loss": 1.0546,
+    "hit_rate": 0.4666,
+    "ece": 0.1148
   },
   "draw_analysis": {
     "actual_draws": 182,
-    "actual_draw_rate": 0.2611,
+    "actual_draw_rate": 0.2589,
     "predicted_draws": 49,
-    "predicted_draw_rate": 0.0703,
+    "predicted_draw_rate": 0.0697,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.287,
+    "avg_draw_prob": 0.2866,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4634,
-      "n": 697
+      "hit_rate": 0.4666,
+      "n": 703
     },
     "market": {
       "hit_rate": 0.512,
@@ -56,35 +56,35 @@
       "brier": 0.6746,
       "rps": 0.2392
     },
+    "瑞典超": {
+      "n": 39,
+      "hit_rate": 0.2564,
+      "brier": 0.7477,
+      "rps": 0.2636
+    },
     "K1联赛": {
       "n": 39,
       "hit_rate": 0.4615,
       "brier": 0.6476,
       "rps": 0.217
     },
-    "瑞典超": {
-      "n": 38,
-      "hit_rate": 0.2368,
-      "brier": 0.7583,
-      "rps": 0.2669
+    "意甲": {
+      "n": 39,
+      "hit_rate": 0.6154,
+      "brier": 0.5121,
+      "rps": 0.1854
     },
     "挪超": {
-      "n": 37,
-      "hit_rate": 0.5405,
-      "brier": 0.5556,
-      "rps": 0.2124
+      "n": 38,
+      "hit_rate": 0.5526,
+      "brier": 0.5468,
+      "rps": 0.2092
     },
     "荷甲": {
       "n": 37,
       "hit_rate": 0.5946,
       "brier": 0.5854,
       "rps": 0.202
-    },
-    "意甲": {
-      "n": 37,
-      "hit_rate": 0.5946,
-      "brier": 0.5294,
-      "rps": 0.1914
     },
     "葡超": {
       "n": 36,
@@ -105,10 +105,10 @@
       "rps": 0.2326
     },
     "芬超": {
-      "n": 28,
-      "hit_rate": 0.3929,
-      "brier": 0.6942,
-      "rps": 0.2536
+      "n": 29,
+      "hit_rate": 0.4138,
+      "brier": 0.6812,
+      "rps": 0.2492
     },
     "英冠": {
       "n": 28,
