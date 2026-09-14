@@ -1,8 +1,8 @@
 {
   "n_leagues": 39,
-  "n_matches": 732,
+  "n_matches": 738,
   "external_added": 29,
-  "generated_at": "2026-09-14T19:22:51.822695",
+  "generated_at": "2026-09-14T22:47:10.700636",
   "leagues": [
     {
       "league": "欧冠",
@@ -19,16 +19,16 @@
     },
     {
       "league": "西甲",
-      "n": 50,
-      "hit_rate": 0.36,
-      "avg_odds": 2.101,
-      "roi": -0.2768,
-      "avg_confidence": 0.18,
+      "n": 51,
+      "hit_rate": 0.3529,
+      "avg_odds": 2.094,
+      "roi": -0.291,
+      "avg_confidence": 0.1802,
       "verdict": "送钱区",
       "recent_n": 5,
-      "recent_hits": 2,
-      "recent_hit_rate": 0.4,
-      "recent_roi": -0.37
+      "recent_hits": 1,
+      "recent_hit_rate": 0.2,
+      "recent_roi": -0.682
     },
     {
       "league": "挪超",
@@ -71,16 +71,29 @@
     },
     {
       "league": "意甲",
-      "n": 39,
-      "hit_rate": 0.6154,
-      "avg_odds": 1.998,
-      "roi": 0.131,
-      "avg_confidence": 0.1845,
+      "n": 40,
+      "hit_rate": 0.625,
+      "avg_odds": 1.99,
+      "roi": 0.1442,
+      "avg_confidence": 0.1864,
+      "verdict": "价值区",
+      "recent_n": 5,
+      "recent_hits": 4,
+      "recent_hit_rate": 0.8,
+      "recent_roi": 0.382
+    },
+    {
+      "league": "葡超",
+      "n": 37,
+      "hit_rate": 0.6486,
+      "avg_odds": 1.966,
+      "roi": 0.2522,
+      "avg_confidence": 0.2151,
       "verdict": "价值区",
       "recent_n": 5,
       "recent_hits": 3,
       "recent_hit_rate": 0.6,
-      "recent_roi": 0.05
+      "recent_roi": 0.134
     },
     {
       "league": "荷甲",
@@ -96,30 +109,17 @@
       "recent_roi": 0.102
     },
     {
-      "league": "葡超",
+      "league": "英超",
       "n": 36,
-      "hit_rate": 0.6389,
-      "avg_odds": 1.96,
-      "roi": 0.2261,
-      "avg_confidence": 0.2173,
-      "verdict": "价值区",
+      "hit_rate": 0.3333,
+      "avg_odds": 2.05,
+      "roi": -0.355,
+      "avg_confidence": 0.1925,
+      "verdict": "回暖解禁",
       "recent_n": 5,
       "recent_hits": 3,
       "recent_hit_rate": 0.6,
-      "recent_roi": 0.0
-    },
-    {
-      "league": "英超",
-      "n": 35,
-      "hit_rate": 0.3143,
-      "avg_odds": 2.041,
-      "roi": -0.4037,
-      "avg_confidence": 0.1947,
-      "verdict": "送钱区",
-      "recent_n": 5,
-      "recent_hits": 2,
-      "recent_hit_rate": 0.4,
-      "recent_roi": -0.2
+      "recent_roi": 0.27
     },
     {
       "league": "芬超",
@@ -265,6 +265,19 @@
       "recent_roi": -0.19
     },
     {
+      "league": "法乙",
+      "n": 12,
+      "hit_rate": 0.4167,
+      "avg_odds": 2.254,
+      "roi": -0.1408,
+      "avg_confidence": 0.1566,
+      "verdict": "回暖解禁",
+      "recent_n": 5,
+      "recent_hits": 3,
+      "recent_hit_rate": 0.6,
+      "recent_roi": 0.298
+    },
+    {
       "league": "巴西杯",
       "n": 12,
       "hit_rate": 0.4167,
@@ -276,19 +289,6 @@
       "recent_hits": 3,
       "recent_hit_rate": 0.6,
       "recent_roi": 0.186
-    },
-    {
-      "league": "法乙",
-      "n": 11,
-      "hit_rate": 0.3636,
-      "avg_odds": 2.216,
-      "roi": -0.3055,
-      "avg_confidence": 0.1632,
-      "verdict": "送钱区",
-      "recent_n": 5,
-      "recent_hits": 2,
-      "recent_hit_rate": 0.4,
-      "recent_roi": -0.236
     },
     {
       "league": "英联杯",
@@ -408,6 +408,19 @@
       "recent_roi": -0.05
     },
     {
+      "league": "亚冠杯",
+      "n": 2,
+      "hit_rate": 0.0,
+      "avg_odds": 1.975,
+      "roi": -1.0,
+      "avg_confidence": 0.192,
+      "verdict": "样本不足",
+      "recent_n": 2,
+      "recent_hits": 0,
+      "recent_hit_rate": 0.0,
+      "recent_roi": -1.0
+    },
+    {
       "league": "社区盾",
       "n": 1,
       "hit_rate": 1.0,
@@ -419,19 +432,6 @@
       "recent_hits": 1,
       "recent_hit_rate": 1.0,
       "recent_roi": 1.29
-    },
-    {
-      "league": "亚冠杯",
-      "n": 1,
-      "hit_rate": 0.0,
-      "avg_odds": 1.81,
-      "roi": -1.0,
-      "avg_confidence": 0.2488,
-      "verdict": "样本不足",
-      "recent_n": 1,
-      "recent_hits": 0,
-      "recent_hit_rate": 0.0,
-      "recent_roi": -1.0
     },
     {
       "league": "欧超杯",
