@@ -1,25 +1,25 @@
 {
   "stable": [
     {
-      "match": "2026-09-14_周一006",
-      "sel": "home",
-      "odds": 1.49,
-      "stake": 100.0,
-      "prob": 0.64
-    },
-    {
       "match": "2026-09-14_周一004",
       "sel": "away",
       "odds": 1.51,
       "stake": 100.0,
-      "prob": 0.631
+      "prob": 0.632
     },
     {
       "match": "2026-09-14_周一003",
       "sel": "home",
-      "odds": 1.48,
+      "odds": 1.45,
       "stake": 100.0,
-      "prob": 0.643
+      "prob": 0.656
+    },
+    {
+      "match": "2026-09-14_周一006",
+      "sel": "home",
+      "odds": 1.54,
+      "stake": 100.0,
+      "prob": 0.617
     }
   ],
   "value": [],
@@ -34,7 +34,7 @@
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.0471,
+  "expected_roi": -0.0478,
   "bankroll": 4512.6521,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -42,43 +42,43 @@
       "type": "2串1",
       "legs": [
         {
-          "match": "2026-09-14_周一006",
-          "home": "博德闪耀",
-          "away": "桑纳菲",
-          "league": "挪超",
-          "sel": "home",
-          "odds": 1.49,
-          "prob": 0.64,
-          "cal_prob": 0.583,
-          "market_prob": 0.64,
-          "source": "fusion",
-          "hit_prob": 0.583
-        },
-        {
           "match": "2026-09-14_周一004",
           "home": "都灵",
           "away": "罗马",
           "league": "意甲",
           "sel": "away",
           "odds": 1.51,
-          "prob": 0.631,
+          "prob": 0.632,
           "cal_prob": 0.583,
-          "market_prob": 0.631,
+          "market_prob": 0.632,
+          "source": "fusion",
+          "hit_prob": 0.583
+        },
+        {
+          "match": "2026-09-14_周一006",
+          "home": "博德闪耀",
+          "away": "桑纳菲",
+          "league": "挪超",
+          "sel": "home",
+          "odds": 1.54,
+          "prob": 0.617,
+          "cal_prob": 0.583,
+          "market_prob": 0.618,
           "source": "fusion",
           "hit_prob": 0.583
         }
       ],
-      "total_odds": 2.25,
-      "model_ev": -0.18,
-      "cal_ev": -0.47,
-      "cal_roi": -0.2345,
-      "market_ev": -0.18,
-      "market_roi": -0.0919,
+      "total_odds": 2.33,
+      "model_ev": -0.19,
+      "cal_ev": -0.42,
+      "cal_roi": -0.2088,
+      "market_ev": -0.19,
+      "market_roi": -0.0929,
       "hit_prob_cal": 0.34,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.5,
+      "potential": 4.65,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -92,23 +92,23 @@
           "away": "帕尔马",
           "league": "意甲",
           "sel": "home",
-          "odds": 1.48,
-          "prob": 0.643,
+          "odds": 1.45,
+          "prob": 0.656,
           "cal_prob": 0.583,
-          "market_prob": 0.643,
+          "market_prob": 0.656,
           "source": "fusion",
           "hit_prob": 0.583
         },
         {
-          "match": "2026-09-14_周一004",
-          "home": "都灵",
-          "away": "罗马",
-          "league": "意甲",
-          "sel": "away",
-          "odds": 1.51,
-          "prob": 0.631,
+          "match": "2026-09-14_周一006",
+          "home": "博德闪耀",
+          "away": "桑纳菲",
+          "league": "挪超",
+          "sel": "home",
+          "odds": 1.54,
+          "prob": 0.617,
           "cal_prob": 0.583,
-          "market_prob": 0.631,
+          "market_prob": 0.618,
           "source": "fusion",
           "hit_prob": 0.583
         }
@@ -116,9 +116,9 @@
       "total_odds": 2.23,
       "model_ev": -0.19,
       "cal_ev": -0.48,
-      "cal_roi": -0.2396,
+      "cal_roi": -0.2402,
       "market_ev": -0.19,
-      "market_roi": -0.0936,
+      "market_roi": -0.0951,
       "hit_prob_cal": 0.34,
       "recommended": false,
       "stake": 2.0,
@@ -137,38 +137,38 @@
           "away": "帕尔马",
           "league": "意甲",
           "sel": "home",
-          "odds": 1.48,
-          "prob": 0.643,
+          "odds": 1.45,
+          "prob": 0.656,
           "cal_prob": 0.583,
-          "market_prob": 0.643,
+          "market_prob": 0.656,
           "source": "fusion",
           "hit_prob": 0.583
         },
         {
-          "match": "2026-09-14_周一006",
-          "home": "博德闪耀",
-          "away": "桑纳菲",
-          "league": "挪超",
-          "sel": "home",
-          "odds": 1.49,
-          "prob": 0.64,
+          "match": "2026-09-14_周一004",
+          "home": "都灵",
+          "away": "罗马",
+          "league": "意甲",
+          "sel": "away",
+          "odds": 1.51,
+          "prob": 0.632,
           "cal_prob": 0.583,
-          "market_prob": 0.64,
+          "market_prob": 0.632,
           "source": "fusion",
           "hit_prob": 0.583
         }
       ],
-      "total_odds": 2.21,
-      "model_ev": -0.19,
-      "cal_ev": -0.5,
-      "cal_roi": -0.2497,
+      "total_odds": 2.19,
+      "model_ev": -0.18,
+      "cal_ev": -0.51,
+      "cal_roi": -0.255,
       "market_ev": -0.19,
-      "market_roi": -0.0932,
+      "market_roi": -0.0926,
       "hit_prob_cal": 0.34,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.41,
+      "potential": 4.38,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -184,7 +184,7 @@
           "away": "盖斯",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.358,
           "odds": 7.0
         },
         {
@@ -193,12 +193,12 @@
           "away": "瓦萨",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.351,
+          "prob": 0.352,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.127,
+      "hit_prob": 0.1262,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -215,7 +215,7 @@
           "away": "盖斯",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.358,
           "odds": 7.0
         },
         {
@@ -229,7 +229,7 @@
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1155,
+      "hit_prob": 0.1148,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -246,7 +246,7 @@
           "away": "瓦萨",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.351,
+          "prob": 0.352,
           "odds": 7.0
         },
         {
@@ -260,7 +260,7 @@
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1124,
+      "hit_prob": 0.1129,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -277,7 +277,7 @@
           "away": "盖斯",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.358,
           "odds": 7.0
         },
         {
@@ -286,7 +286,7 @@
           "away": "瓦萨",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.351,
+          "prob": 0.352,
           "odds": 7.0
         },
         {
@@ -300,7 +300,7 @@
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0406,
+      "hit_prob": 0.0405,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -317,7 +317,7 @@
           "away": "盖斯",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.361,
+          "prob": 0.358,
           "odds": 7.0
         },
         {
@@ -326,7 +326,7 @@
           "away": "瓦萨",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.351,
+          "prob": 0.352,
           "odds": 7.0
         },
         {
@@ -340,7 +340,7 @@
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0406,
+      "hit_prob": 0.0405,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
