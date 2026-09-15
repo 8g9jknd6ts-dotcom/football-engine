@@ -1,9 +1,22 @@
 {
-  "n_leagues": 39,
-  "n_matches": 738,
+  "n_leagues": 40,
+  "n_matches": 745,
   "external_added": 29,
-  "generated_at": "2026-09-15T15:44:57.478676",
+  "generated_at": "2026-09-15T19:15:10.015563",
   "leagues": [
+    {
+      "league": "西甲",
+      "n": 52,
+      "hit_rate": 0.3462,
+      "avg_odds": 2.105,
+      "roi": -0.3046,
+      "avg_confidence": 0.1784,
+      "verdict": "送钱区",
+      "recent_n": 5,
+      "recent_hits": 1,
+      "recent_hit_rate": 0.2,
+      "recent_roi": -0.682
+    },
     {
       "league": "欧冠",
       "n": 51,
@@ -16,19 +29,6 @@
       "recent_hits": 3,
       "recent_hit_rate": 0.6,
       "recent_roi": 0.074
-    },
-    {
-      "league": "西甲",
-      "n": 51,
-      "hit_rate": 0.3529,
-      "avg_odds": 2.094,
-      "roi": -0.291,
-      "avg_confidence": 0.1802,
-      "verdict": "送钱区",
-      "recent_n": 5,
-      "recent_hits": 1,
-      "recent_hit_rate": 0.2,
-      "recent_roi": -0.682
     },
     {
       "league": "挪超",
@@ -343,6 +343,19 @@
       "recent_roi": 0.022
     },
     {
+      "league": "亚冠杯",
+      "n": 7,
+      "hit_rate": 0.2857,
+      "avg_odds": 2.337,
+      "roi": -0.2814,
+      "avg_confidence": 0.1257,
+      "verdict": "送钱区",
+      "recent_n": 5,
+      "recent_hits": 2,
+      "recent_hit_rate": 0.4,
+      "recent_roi": 0.006
+    },
+    {
       "league": "英联赛杯",
       "n": 4,
       "hit_rate": 0.75,
@@ -406,19 +419,6 @@
       "recent_hits": 1,
       "recent_hit_rate": 0.5,
       "recent_roi": -0.05
-    },
-    {
-      "league": "亚冠杯",
-      "n": 2,
-      "hit_rate": 0.0,
-      "avg_odds": 1.975,
-      "roi": -1.0,
-      "avg_confidence": 0.192,
-      "verdict": "样本不足",
-      "recent_n": 2,
-      "recent_hits": 0,
-      "recent_hit_rate": 0.0,
-      "recent_roi": -1.0
     },
     {
       "league": "社区盾",
@@ -505,6 +505,19 @@
       "avg_odds": 2.56,
       "roi": -1.0,
       "avg_confidence": 0.0871,
+      "verdict": "样本不足",
+      "recent_n": 1,
+      "recent_hits": 0,
+      "recent_hit_rate": 0.0,
+      "recent_roi": -1.0
+    },
+    {
+      "league": "亚运男足",
+      "n": 1,
+      "hit_rate": 0.0,
+      "avg_odds": 2.45,
+      "roi": -1.0,
+      "avg_confidence": 0.0873,
       "verdict": "样本不足",
       "recent_n": 1,
       "recent_hits": 0,
