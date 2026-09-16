@@ -1,0 +1,345 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [
+    {
+      "match": "2026-09-16_周三011",
+      "sel": "home",
+      "odds": 1.84,
+      "stake": 50.0,
+      "prob": 0.517,
+      "downgrade_reason": "prob_5060"
+    }
+  ],
+  "total_stake": 50.0,
+  "expected_roi": -0.0489,
+  "bankroll": 4791.6521,
+  "breaker_multiplier": 1.0,
+  "parlay": [
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-16_周三013",
+          "home": "巴萨",
+          "away": "桑坦德",
+          "league": "西甲",
+          "sel": "home",
+          "odds": 1.52,
+          "prob": 0.628,
+          "cal_prob": 0.625,
+          "market_prob": 0.627,
+          "source": "fusion",
+          "hit_prob": 0.625
+        },
+        {
+          "match": "2026-09-16_周三006",
+          "home": "马竞",
+          "away": "奥萨苏纳",
+          "league": "西甲",
+          "sel": "home",
+          "odds": 1.63,
+          "prob": 0.585,
+          "cal_prob": 0.559,
+          "market_prob": 0.584,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.48,
+      "model_ev": -0.18,
+      "cal_ev": -0.54,
+      "cal_roi": -0.2707,
+      "market_ev": -0.18,
+      "market_roi": -0.0921,
+      "hit_prob_cal": 0.294,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.96,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-16_周三013",
+          "home": "巴萨",
+          "away": "桑坦德",
+          "league": "西甲",
+          "sel": "home",
+          "odds": 1.52,
+          "prob": 0.628,
+          "cal_prob": 0.625,
+          "market_prob": 0.627,
+          "source": "fusion",
+          "hit_prob": 0.625
+        },
+        {
+          "match": "2026-09-16_周三007",
+          "home": "AC米兰",
+          "away": "本菲卡",
+          "league": "欧罗巴",
+          "sel": "away",
+          "odds": 1.62,
+          "prob": 0.587,
+          "cal_prob": 0.559,
+          "market_prob": 0.588,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.46,
+      "model_ev": -0.18,
+      "cal_ev": -0.55,
+      "cal_roi": -0.2751,
+      "market_ev": -0.19,
+      "market_roi": -0.0929,
+      "hit_prob_cal": 0.294,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.92,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-16_周三007",
+          "home": "AC米兰",
+          "away": "本菲卡",
+          "league": "欧罗巴",
+          "sel": "away",
+          "odds": 1.62,
+          "prob": 0.587,
+          "cal_prob": 0.559,
+          "market_prob": 0.588,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
+          "match": "2026-09-16_周三006",
+          "home": "马竞",
+          "away": "奥萨苏纳",
+          "league": "西甲",
+          "sel": "home",
+          "odds": 1.63,
+          "prob": 0.585,
+          "cal_prob": 0.559,
+          "market_prob": 0.584,
+          "source": "market",
+          "hit_prob": 0.471
+        }
+      ],
+      "total_odds": 2.64,
+      "model_ev": -0.19,
+      "cal_ev": -0.83,
+      "cal_roi": -0.4142,
+      "market_ev": -0.19,
+      "market_roi": -0.0934,
+      "hit_prob_cal": 0.222,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 5.28,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "market"
+    }
+  ],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-16_周三016",
+          "home": "博塔弗戈",
+          "away": "格雷米奥",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.362,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-09-16_周三015",
+          "home": "基多体大",
+          "away": "帕尔梅拉斯",
+          "league": "解放者杯",
+          "score": "0-1",
+          "prob": 0.345,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.1248,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 34%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-16_周三016",
+          "home": "博塔弗戈",
+          "away": "格雷米奥",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.362,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-09-16_周三011",
+          "home": "安德莱赫特",
+          "away": "里昂",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.339,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.1228,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 34%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-16_周三016",
+          "home": "博塔弗戈",
+          "away": "格雷米奥",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.362,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-09-16_周三007",
+          "home": "AC米兰",
+          "away": "本菲卡",
+          "league": "欧罗巴",
+          "score": "0-1",
+          "prob": 0.338,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 63.0,
+      "hit_prob": 0.1223,
+      "stake": 2.0,
+      "potential": 126.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 36% × 34%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-09-16_周三016",
+          "home": "博塔弗戈",
+          "away": "格雷米奥",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.362,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-09-16_周三015",
+          "home": "基多体大",
+          "away": "帕尔梅拉斯",
+          "league": "解放者杯",
+          "score": "0-1",
+          "prob": 0.345,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-16_周三011",
+          "home": "安德莱赫特",
+          "away": "里昂",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.339,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 441.0,
+      "hit_prob": 0.0424,
+      "stake": 2.0,
+      "potential": 882.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 441 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-09-16_周三016",
+          "home": "博塔弗戈",
+          "away": "格雷米奥",
+          "league": "巴甲",
+          "score": "0-0",
+          "prob": 0.362,
+          "odds": 9.0
+        },
+        {
+          "match": "2026-09-16_周三015",
+          "home": "基多体大",
+          "away": "帕尔梅拉斯",
+          "league": "解放者杯",
+          "score": "0-1",
+          "prob": 0.345,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-16_周三011",
+          "home": "安德莱赫特",
+          "away": "里昂",
+          "league": "欧罗巴",
+          "score": "1-0",
+          "prob": 0.339,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 441.0,
+      "hit_prob": 0.0424,
+      "stake": 8.0,
+      "potential": 1232.0,
+      "worst_win": 126.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥126，全中≈¥1232"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4675,
+    "n": 723,
+    "table": {
+      "0.35": 0.3568,
+      "0.4": 0.451,
+      "0.45": 0.5177,
+      "0.5": 0.4808,
+      "0.55": 0.5588,
+      "0.6": 0.625,
+      "0.65": 0.6429,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
