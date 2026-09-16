@@ -1,25 +1,25 @@
 {
-  "total_matches": 722,
+  "total_matches": 723,
   "date_range": [
     "2026-07-20",
     "2026-09-15"
   ],
   "metrics": {
-    "brier": 0.6329,
-    "weighted_brier": 0.6318,
-    "rps": 0.2213,
-    "weighted_rps": 0.2211,
-    "log_loss": 1.0535,
-    "hit_rate": 0.4681,
-    "ece": 0.1184
+    "brier": 0.6336,
+    "weighted_brier": 0.6326,
+    "rps": 0.2217,
+    "weighted_rps": 0.2215,
+    "log_loss": 1.0548,
+    "hit_rate": 0.4675,
+    "ece": 0.1206
   },
   "draw_analysis": {
     "actual_draws": 185,
-    "actual_draw_rate": 0.2562,
+    "actual_draw_rate": 0.2559,
     "predicted_draws": 49,
-    "predicted_draw_rate": 0.0679,
+    "predicted_draw_rate": 0.0678,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2864,
+    "avg_draw_prob": 0.2865,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4681,
-      "n": 722
+      "hit_rate": 0.4675,
+      "n": 723
     },
     "market": {
       "hit_rate": 0.512,
@@ -152,6 +152,12 @@
       "brier": 0.6692,
       "rps": 0.1825
     },
+    "解放者杯": {
+      "n": 13,
+      "hit_rate": 0.3846,
+      "brier": 0.6787,
+      "rps": 0.1916
+    },
     "巴西杯": {
       "n": 12,
       "hit_rate": 0.4167,
@@ -169,12 +175,6 @@
       "hit_rate": 0.5,
       "brier": 0.6637,
       "rps": 0.2385
-    },
-    "解放者杯": {
-      "n": 12,
-      "hit_rate": 0.4167,
-      "brier": 0.6405,
-      "rps": 0.1655
     },
     "英联杯": {
       "n": 10,
