@@ -1,0 +1,117 @@
+{
+  "date": "2026-09-16",
+  "n_matches": 4,
+  "hit_rate": 0.75,
+  "hits": 3,
+  "source_brier": {
+    "model": 0.6427,
+    "market": null,
+    "djyy": null,
+    "final": 0.654
+  },
+  "by_league": {
+    "亚运男足": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.5855
+    },
+    "亚冠杯": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.0141
+    },
+    "欧罗巴": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.4309
+    }
+  },
+  "by_confidence_tier": {
+    "low": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.5855
+    },
+    "mid": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.7225
+    }
+  },
+  "by_odds_band": {
+    "2.0-3.0": {
+      "n": 3,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.4385,
+      "avg_brier": 0.534
+    },
+    "1.5-2.0": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.0141
+    }
+  },
+  "score_stats": {
+    "top1": 0,
+    "top3": 1,
+    "top5": 2,
+    "top8": 4,
+    "any": 4
+  },
+  "score_rank_hist": {
+    "7": 2,
+    "5": 1,
+    "2": 1
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 4,
+      "hits": 2
+    }
+  },
+  "market_signal_stats": {
+    "n": 3,
+    "hits": 2
+  },
+  "layered": {
+    "log_loss_final": 1.1017,
+    "goal_framework": {
+      "n": 4,
+      "hits": 2
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 2,
+        "hit_rate": 0.5
+      },
+      "<40%": {
+        "n": 2,
+        "hit_rate": 1.0
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 2,
+        "hit_rate": 0.5
+      },
+      "watch": {
+        "n": 2,
+        "hit_rate": 1.0
+      }
+    }
+  },
+  "biases": [],
+  "total_pnl": 0.0,
+  "generated_at": "2026-09-16T18:54:40.780370",
+  "sha256": "20d7dccbe24791dbbb86afd0adc1e420"
+}

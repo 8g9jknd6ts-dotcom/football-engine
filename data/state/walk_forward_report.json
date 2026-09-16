@@ -1,25 +1,25 @@
 {
-  "total_matches": 723,
+  "total_matches": 727,
   "date_range": [
     "2026-07-20",
-    "2026-09-15"
+    "2026-09-16"
   ],
   "metrics": {
-    "brier": 0.6336,
-    "weighted_brier": 0.6326,
-    "rps": 0.2217,
-    "weighted_rps": 0.2215,
-    "log_loss": 1.0548,
-    "hit_rate": 0.4675,
-    "ece": 0.1206
+    "brier": 0.6337,
+    "weighted_brier": 0.6327,
+    "rps": 0.2219,
+    "weighted_rps": 0.2218,
+    "log_loss": 1.055,
+    "hit_rate": 0.4691,
+    "ece": 0.1235
   },
   "draw_analysis": {
     "actual_draws": 185,
-    "actual_draw_rate": 0.2559,
+    "actual_draw_rate": 0.2545,
     "predicted_draws": 49,
-    "predicted_draw_rate": 0.0678,
+    "predicted_draw_rate": 0.0674,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2865,
+    "avg_draw_prob": 0.2867,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4675,
-      "n": 723
+      "hit_rate": 0.4691,
+      "n": 727
     },
     "market": {
       "hit_rate": 0.512,
@@ -99,10 +99,10 @@
       "rps": 0.2263
     },
     "欧罗巴": {
-      "n": 32,
-      "hit_rate": 0.5312,
-      "brier": 0.6267,
-      "rps": 0.2326
+      "n": 33,
+      "hit_rate": 0.5455,
+      "brier": 0.6207,
+      "rps": 0.2301
     },
     "芬超": {
       "n": 29,
@@ -188,17 +188,17 @@
       "brier": 0.7105,
       "rps": 0.2585
     },
+    "亚冠杯": {
+      "n": 8,
+      "hit_rate": 0.25,
+      "brier": 0.7513,
+      "rps": 0.251
+    },
     "瑞超": {
       "n": 7,
       "hit_rate": 0.7143,
       "brier": 0.5023,
       "rps": 0.2113
-    },
-    "亚冠杯": {
-      "n": 7,
-      "hit_rate": 0.2857,
-      "brier": 0.7137,
-      "rps": 0.2226
     },
     "日职乙": {
       "n": 7,
@@ -229,6 +229,12 @@
       "hit_rate": 0.3333,
       "brier": 0.6549,
       "rps": 0.2278
+    },
+    "亚运男足": {
+      "n": 3,
+      "hit_rate": 0.6667,
+      "brier": 0.6269,
+      "rps": 0.2686
     }
   }
 }
