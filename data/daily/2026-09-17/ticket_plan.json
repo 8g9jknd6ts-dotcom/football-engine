@@ -5,9 +5,9 @@
     {
       "match": "2026-09-17_周四008",
       "sel": "home",
-      "odds": 1.85,
+      "odds": 1.86,
       "stake": 25.0,
-      "prob": 0.514,
+      "prob": 0.513,
       "downgrade_reason": "prob_5060"
     },
     {
@@ -20,7 +20,7 @@
     }
   ],
   "total_stake": 50.0,
-  "expected_roi": -0.0497,
+  "expected_roi": -0.0472,
   "bankroll": 4741.6521,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -28,43 +28,43 @@
       "type": "2串1",
       "legs": [
         {
+          "match": "2026-09-17_周四005",
+          "home": "水晶宫",
+          "away": "波兹南莱赫",
+          "league": "欧罗巴",
+          "sel": "away",
+          "odds": 1.6,
+          "prob": 0.594,
+          "cal_prob": 0.578,
+          "market_prob": 0.594,
+          "source": "market",
+          "hit_prob": 0.471
+        },
+        {
           "match": "2026-09-17_周四010",
           "home": "马拉加",
           "away": "比利亚雷",
           "league": "西甲",
           "sel": "away",
           "odds": 1.6,
-          "prob": 0.595,
+          "prob": 0.594,
           "cal_prob": 0.578,
-          "market_prob": 0.595,
-          "source": "market",
-          "hit_prob": 0.471
-        },
-        {
-          "match": "2026-09-17_周四005",
-          "home": "水晶宫",
-          "away": "波兹南莱赫",
-          "league": "欧罗巴",
-          "sel": "away",
-          "odds": 1.63,
-          "prob": 0.583,
-          "cal_prob": 0.578,
-          "market_prob": 0.583,
+          "market_prob": 0.594,
           "source": "market",
           "hit_prob": 0.471
         }
       ],
-      "total_odds": 2.61,
+      "total_odds": 2.56,
       "model_ev": -0.19,
-      "cal_ev": -0.84,
-      "cal_roi": -0.4214,
+      "cal_ev": -0.86,
+      "cal_roi": -0.4321,
       "market_ev": -0.19,
-      "market_roi": -0.0945,
+      "market_roi": -0.096,
       "hit_prob_cal": 0.222,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 5.22,
+      "potential": 5.12,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "market"
@@ -80,7 +80,7 @@
           "away": "马赛",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.365,
+          "prob": 0.356,
           "odds": 7.0
         },
         {
@@ -89,18 +89,18 @@
           "away": "德尔瓦耶",
           "league": "解放者杯",
           "score": "1-0",
-          "prob": 0.353,
+          "prob": 0.352,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.129,
+      "hit_prob": 0.1256,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 37% × 35%）"
+      "note": "两场比分都中才赢（单场命中率约 36% × 35%）"
     },
     {
       "type": "比分2串1",
@@ -111,38 +111,7 @@
           "away": "马赛",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.365,
-          "odds": 7.0
-        },
-        {
-          "match": "2026-09-17_周四010",
-          "home": "马拉加",
-          "away": "比利亚雷",
-          "league": "西甲",
-          "score": "0-1",
-          "prob": 0.279,
-          "odds": 7.0
-        }
-      ],
-      "total_odds": 49.0,
-      "hit_prob": 0.102,
-      "stake": 2.0,
-      "potential": 98.0,
-      "worst_win": 0.0,
-      "n_bets": 1,
-      "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 37% × 28%）"
-    },
-    {
-      "type": "比分2串1",
-      "legs": [
-        {
-          "match": "2026-09-17_周四008",
-          "home": "贝西克塔斯",
-          "away": "马赛",
-          "league": "欧罗巴",
-          "score": "1-0",
-          "prob": 0.365,
+          "prob": 0.356,
           "odds": 7.0
         },
         {
@@ -151,18 +120,49 @@
           "away": "赫塔费",
           "league": "西甲",
           "score": "1-0",
-          "prob": 0.279,
+          "prob": 0.284,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1019,
+      "hit_prob": 0.1012,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 37% × 28%）"
+      "note": "两场比分都中才赢（单场命中率约 36% × 28%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-17_周四011",
+          "home": "弗拉门戈",
+          "away": "德尔瓦耶",
+          "league": "解放者杯",
+          "score": "1-0",
+          "prob": 0.352,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-17_周四004",
+          "home": "贝蒂斯",
+          "away": "赫塔费",
+          "league": "西甲",
+          "score": "1-0",
+          "prob": 0.284,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.1,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 35% × 28%）"
     },
     {
       "type": "比分3串1",
@@ -173,7 +173,7 @@
           "away": "马赛",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.365,
+          "prob": 0.356,
           "odds": 7.0
         },
         {
@@ -182,21 +182,21 @@
           "away": "德尔瓦耶",
           "league": "解放者杯",
           "score": "1-0",
-          "prob": 0.353,
+          "prob": 0.352,
           "odds": 7.0
         },
         {
-          "match": "2026-09-17_周四010",
-          "home": "马拉加",
-          "away": "比利亚雷",
+          "match": "2026-09-17_周四004",
+          "home": "贝蒂斯",
+          "away": "赫塔费",
           "league": "西甲",
-          "score": "0-1",
-          "prob": 0.279,
+          "score": "1-0",
+          "prob": 0.284,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.036,
+      "hit_prob": 0.0357,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -213,7 +213,7 @@
           "away": "马赛",
           "league": "欧罗巴",
           "score": "1-0",
-          "prob": 0.365,
+          "prob": 0.356,
           "odds": 7.0
         },
         {
@@ -222,21 +222,21 @@
           "away": "德尔瓦耶",
           "league": "解放者杯",
           "score": "1-0",
-          "prob": 0.353,
+          "prob": 0.352,
           "odds": 7.0
         },
         {
-          "match": "2026-09-17_周四010",
-          "home": "马拉加",
-          "away": "比利亚雷",
+          "match": "2026-09-17_周四004",
+          "home": "贝蒂斯",
+          "away": "赫塔费",
           "league": "西甲",
-          "score": "0-1",
-          "prob": 0.279,
+          "score": "1-0",
+          "prob": 0.284,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.036,
+      "hit_prob": 0.0357,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
