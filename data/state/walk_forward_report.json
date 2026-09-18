@@ -1,23 +1,23 @@
 {
-  "total_matches": 750,
+  "total_matches": 753,
   "date_range": [
     "2026-07-20",
-    "2026-09-17"
+    "2026-09-18"
   ],
   "metrics": {
-    "brier": 0.6319,
-    "weighted_brier": 0.6307,
-    "rps": 0.2218,
-    "weighted_rps": 0.2217,
-    "log_loss": 1.0526,
-    "hit_rate": 0.4707,
+    "brier": 0.6315,
+    "weighted_brier": 0.6304,
+    "rps": 0.2216,
+    "weighted_rps": 0.2214,
+    "log_loss": 1.052,
+    "hit_rate": 0.4714,
     "ece": 0.1271
   },
   "draw_analysis": {
-    "actual_draws": 188,
-    "actual_draw_rate": 0.2507,
+    "actual_draws": 189,
+    "actual_draw_rate": 0.251,
     "predicted_draws": 50,
-    "predicted_draw_rate": 0.0667,
+    "predicted_draw_rate": 0.0664,
     "max_draw_prob": 0.4912,
     "avg_draw_prob": 0.2867,
     "avg_market_draw": 0.2437,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4707,
-      "n": 750
+      "hit_rate": 0.4714,
+      "n": 753
     },
     "market": {
       "hit_rate": 0.512,
@@ -105,10 +105,10 @@
       "rps": 0.2263
     },
     "芬超": {
-      "n": 29,
-      "hit_rate": 0.4138,
-      "brier": 0.6812,
-      "rps": 0.2492
+      "n": 30,
+      "hit_rate": 0.4,
+      "brier": 0.6835,
+      "rps": 0.2459
     },
     "英冠": {
       "n": 29,
@@ -158,17 +158,17 @@
       "brier": 0.6792,
       "rps": 0.1969
     },
+    "德乙": {
+      "n": 13,
+      "hit_rate": 0.4615,
+      "brier": 0.5899,
+      "rps": 0.2044
+    },
     "巴西杯": {
       "n": 12,
       "hit_rate": 0.4167,
       "brier": 0.6229,
       "rps": 0.1928
-    },
-    "德乙": {
-      "n": 12,
-      "hit_rate": 0.4167,
-      "brier": 0.6139,
-      "rps": 0.212
     },
     "法乙": {
       "n": 12,
@@ -212,6 +212,12 @@
       "brier": 0.5657,
       "rps": 0.1899
     },
+    "亚运男足": {
+      "n": 4,
+      "hit_rate": 0.75,
+      "brier": 0.6177,
+      "rps": 0.2641
+    },
     "韩职": {
       "n": 3,
       "hit_rate": 0.3333,
@@ -229,12 +235,6 @@
       "hit_rate": 0.3333,
       "brier": 0.6549,
       "rps": 0.2278
-    },
-    "亚运男足": {
-      "n": 3,
-      "hit_rate": 0.6667,
-      "brier": 0.6269,
-      "rps": 0.2686
     }
   }
 }

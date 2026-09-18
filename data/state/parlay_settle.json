@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T15:01:54.944983+00:00",
+  "generated_at": "2026-09-18T18:29:28.645664+00:00",
   "parlay": {
     "n_tickets": 65,
     "n_settled": 62,
@@ -48,8 +48,8 @@
         "roi": -0.5196
       }
     },
-    "leg_hit_rate": 0.1258,
-    "n_legs_settled": 620
+    "leg_hit_rate": 0.1252,
+    "n_legs_settled": 623
   },
   "tickets": {
     "parlay": [
@@ -12761,7 +12761,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -12781,7 +12781,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -12869,7 +12869,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -12890,7 +12890,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-18_周五009",
@@ -12915,7 +12915,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -12936,7 +12936,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-18_周五009",
@@ -28259,8 +28259,8 @@
           "roi": null,
           "avg_odds": null,
           "by_type": {},
-          "leg_hit_rate": null,
-          "n_legs_settled": 0
+          "leg_hit_rate": 0.0,
+          "n_legs_settled": 3
         },
         "tickets": [
           {
@@ -28275,7 +28275,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -28295,7 +28295,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -28383,7 +28383,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -28404,7 +28404,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-18_周五009",
@@ -28429,7 +28429,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -28450,7 +28450,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-18_周五009",
