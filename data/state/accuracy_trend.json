@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-09-18",
-  "total_matches": 749,
+  "total_matches": 750,
   "date_range": [
     "2026-07-20",
     "2026-09-17"
   ],
   "overall": {
-    "hit_rate": 0.4713,
-    "brier_final": 0.6317,
-    "brier_model": 0.6432,
-    "brier_market": 0.1042,
-    "brier_djyy": 0.105
+    "hit_rate": 0.4707,
+    "brier_final": 0.6319,
+    "brier_model": 0.6435,
+    "brier_market": 0.1041,
+    "brier_djyy": 0.1049
   },
   "daily": [
     {
@@ -723,21 +723,21 @@
     },
     {
       "date": "2026-09-17",
-      "n": 10,
+      "n": 11,
       "hits": 5,
-      "hit_rate": 0.5,
-      "cum_hit_rate": 0.4713,
-      "brier_final": 0.5804,
-      "brier_model": 0.5488,
+      "hit_rate": 0.4545,
+      "cum_hit_rate": 0.4707,
+      "brier_final": 0.5984,
+      "brier_model": 0.577,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 43.2
     }
   ],
   "rolling7": {
-    "n": 118,
-    "hit_rate": 0.4915,
-    "brier_final": 0.5969,
+    "n": 119,
+    "hit_rate": 0.4874,
+    "brier_final": 0.5995,
     "pnl": -25.0
   },
   "prev7": {
@@ -746,7 +746,7 @@
     "brier_final": 0.618,
     "pnl": -106.2
   },
-  "verdict": "持平（±3pt 内）",
+  "verdict": "命中率下降 -3pt",
   "by_league": [
     {
       "layer": "西甲",
@@ -858,9 +858,9 @@
     },
     {
       "layer": "解放者杯",
-      "n": 15,
-      "hit_rate": 0.4,
-      "brier_final": 0.6726
+      "n": 16,
+      "hit_rate": 0.375,
+      "brier_final": 0.6792
     },
     {
       "layer": "巴西杯",
@@ -1004,9 +1004,9 @@
     },
     {
       "layer": "1.5-2.0",
-      "n": 276,
-      "hit_rate": 0.5616,
-      "brier_final": 0.5929
+      "n": 277,
+      "hit_rate": 0.5596,
+      "brier_final": 0.5936
     },
     {
       "layer": "1.0-1.5",
@@ -1024,9 +1024,9 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 413,
-      "hit_rate": 0.4818,
-      "brier_final": 0.635
+      "n": 414,
+      "hit_rate": 0.4807,
+      "brier_final": 0.6353
     },
     {
       "layer": "low",
