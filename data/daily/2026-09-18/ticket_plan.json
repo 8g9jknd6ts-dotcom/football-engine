@@ -5,14 +5,14 @@
       "sel": "away",
       "odds": 1.54,
       "stake": 150.0,
-      "prob": 0.619
+      "prob": 0.62
     },
     {
       "match": "2026-09-18_周五008",
       "sel": "home",
-      "odds": 1.54,
+      "odds": 1.57,
       "stake": 150.0,
-      "prob": 0.617
+      "prob": 0.606
     }
   ],
   "value": [],
@@ -20,14 +20,14 @@
     {
       "match": "2026-09-18_周五006",
       "sel": "home",
-      "odds": 1.87,
+      "odds": 1.9,
       "stake": 50.0,
-      "prob": 0.51,
+      "prob": 0.501,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.0476,
+  "expected_roi": -0.0472,
   "bankroll": 4784.9021,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -41,9 +41,9 @@
           "league": "意甲",
           "sel": "away",
           "odds": 1.54,
-          "prob": 0.619,
+          "prob": 0.62,
           "cal_prob": 0.634,
-          "market_prob": 0.619,
+          "market_prob": 0.62,
           "source": "fusion",
           "hit_prob": 0.634
         },
@@ -53,20 +53,65 @@
           "away": "柏林联合",
           "league": "德甲",
           "sel": "home",
-          "odds": 1.54,
-          "prob": 0.617,
+          "odds": 1.57,
+          "prob": 0.606,
           "cal_prob": 0.634,
-          "market_prob": 0.618,
+          "market_prob": 0.606,
+          "source": "fusion",
+          "hit_prob": 0.634
+        }
+      ],
+      "total_odds": 2.42,
+      "model_ev": -0.18,
+      "cal_ev": -0.06,
+      "cal_roi": -0.0278,
+      "market_ev": -0.18,
+      "market_roi": -0.0921,
+      "hit_prob_cal": 0.402,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.84,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-18_周五012",
+          "home": "布城",
+          "away": "沃特福德",
+          "league": "英冠",
+          "sel": "home",
+          "odds": 1.51,
+          "prob": 0.632,
+          "cal_prob": 0.634,
+          "market_prob": 0.632,
+          "source": "fusion",
+          "hit_prob": 0.634
+        },
+        {
+          "match": "2026-09-18_周五008",
+          "home": "拜仁",
+          "away": "柏林联合",
+          "league": "德甲",
+          "sel": "home",
+          "odds": 1.57,
+          "prob": 0.606,
+          "cal_prob": 0.634,
+          "market_prob": 0.606,
           "source": "fusion",
           "hit_prob": 0.634
         }
       ],
       "total_odds": 2.37,
-      "model_ev": -0.19,
+      "model_ev": -0.18,
       "cal_ev": -0.09,
-      "cal_roi": -0.0464,
-      "market_ev": -0.19,
-      "market_roi": -0.0929,
+      "cal_roi": -0.0468,
+      "market_ev": -0.18,
+      "market_roi": -0.0921,
       "hit_prob_cal": 0.402,
       "recommended": false,
       "stake": 2.0,
@@ -85,10 +130,10 @@
           "away": "沃特福德",
           "league": "英冠",
           "sel": "home",
-          "odds": 1.5,
-          "prob": 0.634,
+          "odds": 1.51,
+          "prob": 0.632,
           "cal_prob": 0.634,
-          "market_prob": 0.634,
+          "market_prob": 0.632,
           "source": "fusion",
           "hit_prob": 0.634
         },
@@ -99,69 +144,24 @@
           "league": "意甲",
           "sel": "away",
           "odds": 1.54,
-          "prob": 0.619,
+          "prob": 0.62,
           "cal_prob": 0.634,
-          "market_prob": 0.619,
+          "market_prob": 0.62,
           "source": "fusion",
           "hit_prob": 0.634
         }
       ],
-      "total_odds": 2.31,
-      "model_ev": -0.19,
-      "cal_ev": -0.14,
-      "cal_roi": -0.0712,
-      "market_ev": -0.19,
-      "market_roi": -0.0934,
+      "total_odds": 2.33,
+      "model_ev": -0.18,
+      "cal_ev": -0.13,
+      "cal_roi": -0.065,
+      "market_ev": -0.18,
+      "market_roi": -0.0895,
       "hit_prob_cal": 0.402,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.62,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "calibrated"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-09-18_周五012",
-          "home": "布城",
-          "away": "沃特福德",
-          "league": "英冠",
-          "sel": "home",
-          "odds": 1.5,
-          "prob": 0.634,
-          "cal_prob": 0.634,
-          "market_prob": 0.634,
-          "source": "fusion",
-          "hit_prob": 0.634
-        },
-        {
-          "match": "2026-09-18_周五008",
-          "home": "拜仁",
-          "away": "柏林联合",
-          "league": "德甲",
-          "sel": "home",
-          "odds": 1.54,
-          "prob": 0.617,
-          "cal_prob": 0.634,
-          "market_prob": 0.618,
-          "source": "fusion",
-          "hit_prob": 0.634
-        }
-      ],
-      "total_odds": 2.31,
-      "model_ev": -0.19,
-      "cal_ev": -0.14,
-      "cal_roi": -0.0712,
-      "market_ev": -0.19,
-      "market_roi": -0.0952,
-      "hit_prob_cal": 0.402,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.62,
+      "potential": 4.65,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -177,7 +177,7 @@
           "away": "纽约红牛",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.382,
+          "prob": 0.385,
           "odds": 7.0
         },
         {
@@ -186,18 +186,18 @@
           "away": "赫尔辛基",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.355,
+          "prob": 0.361,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1357,
+      "hit_prob": 0.1387,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 35%）"
+      "note": "两场比分都中才赢（单场命中率约 38% × 36%）"
     },
     {
       "type": "比分2串1",
@@ -208,7 +208,7 @@
           "away": "纽约红牛",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.382,
+          "prob": 0.385,
           "odds": 7.0
         },
         {
@@ -222,7 +222,7 @@
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1155,
+      "hit_prob": 0.1162,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -239,7 +239,7 @@
           "away": "纽约红牛",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.382,
+          "prob": 0.385,
           "odds": 7.0
         },
         {
@@ -248,18 +248,18 @@
           "away": "蒙彼利埃",
           "league": "法乙",
           "score": "1-0",
-          "prob": 0.291,
+          "prob": 0.295,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1114,
+      "hit_prob": 0.1135,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 38% × 29%）"
+      "note": "两场比分都中才赢（单场命中率约 38% × 30%）"
     },
     {
       "type": "比分3串1",
@@ -270,7 +270,7 @@
           "away": "纽约红牛",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.382,
+          "prob": 0.385,
           "odds": 7.0
         },
         {
@@ -279,7 +279,7 @@
           "away": "赫尔辛基",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.355,
+          "prob": 0.361,
           "odds": 7.0
         },
         {
@@ -293,7 +293,7 @@
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.041,
+      "hit_prob": 0.0419,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -310,7 +310,7 @@
           "away": "纽约红牛",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.382,
+          "prob": 0.385,
           "odds": 7.0
         },
         {
@@ -319,7 +319,7 @@
           "away": "赫尔辛基",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.355,
+          "prob": 0.361,
           "odds": 7.0
         },
         {
@@ -333,7 +333,7 @@
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.041,
+      "hit_prob": 0.0419,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
@@ -343,12 +343,12 @@
     }
   ],
   "parlay_calibration": {
-    "overall": 0.4713,
-    "n": 749,
+    "overall": 0.4707,
+    "n": 750,
     "table": {
       "0.35": 0.3598,
       "0.4": 0.4459,
-      "0.45": 0.5135,
+      "0.45": 0.5101,
       "0.5": 0.4954,
       "0.55": 0.5753,
       "0.6": 0.6341,
