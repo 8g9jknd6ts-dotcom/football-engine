@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T20:39:41.078087+00:00",
+  "generated_at": "2026-09-19T22:31:35.627208+00:00",
   "parlay": {
     "n_tickets": 68,
     "n_settled": 68,
@@ -24,18 +24,18 @@
   },
   "score_parlay": {
     "n_tickets": 269,
-    "n_settled": 268,
+    "n_settled": 269,
     "n_won": 4,
     "hit_rate": 0.0149,
-    "stake": 854.0,
+    "stake": 856.0,
     "return": 392.0,
-    "roi": -0.541,
-    "avg_odds": 177.31,
+    "roi": -0.5421,
+    "avg_odds": 176.89,
     "by_type": {
       "比分2串1": {
-        "n": 162,
+        "n": 163,
         "won": 2,
-        "roi": -0.3951
+        "roi": -0.3988
       },
       "比分3串1": {
         "n": 53,
@@ -48,8 +48,8 @@
         "roi": -0.5377
       }
     },
-    "leg_hit_rate": 0.1213,
-    "n_legs_settled": 643
+    "leg_hit_rate": 0.1211,
+    "n_legs_settled": 644
   },
   "tickets": {
     "parlay": [
@@ -13136,12 +13136,12 @@
         "potential": 126.0,
         "total_odds": 63.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "两场比分都中才赢（单场命中率约 40% × 31%）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
           false,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -13161,7 +13161,7 @@
             "sel": null,
             "score": "0-0",
             "odds": 9.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -28929,16 +28929,16 @@
       "score_parlay": {
         "stats": {
           "n_tickets": 5,
-          "n_settled": 4,
+          "n_settled": 5,
           "n_won": 0,
           "hit_rate": 0.0,
-          "stake": 14.0,
+          "stake": 16.0,
           "return": 0.0,
           "roi": -1.0,
-          "avg_odds": 196.0,
+          "avg_odds": 169.4,
           "by_type": {
             "比分2串1": {
-              "n": 2,
+              "n": 3,
               "won": 0,
               "roi": -1.0
             },
@@ -28954,7 +28954,7 @@
             }
           },
           "leg_hit_rate": 0.0,
-          "n_legs_settled": 11
+          "n_legs_settled": 12
         },
         "tickets": [
           {
@@ -29036,12 +29036,12 @@
             "potential": 126.0,
             "total_odds": 63.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "两场比分都中才赢（单场命中率约 40% × 31%）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
               false,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -29061,7 +29061,7 @@
                 "sel": null,
                 "score": "0-0",
                 "odds": 9.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
