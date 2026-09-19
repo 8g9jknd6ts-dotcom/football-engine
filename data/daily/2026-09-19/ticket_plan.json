@@ -1,25 +1,11 @@
 {
   "stable": [
     {
-      "match": "2026-09-19_周六028",
-      "sel": "away",
-      "odds": 1.55,
-      "stake": 75.0,
-      "prob": 0.616
-    },
-    {
-      "match": "2026-09-19_周六024",
-      "sel": "home",
-      "odds": 1.5,
-      "stake": 75.0,
-      "prob": 0.636
-    },
-    {
       "match": "2026-09-19_周六015",
       "sel": "home",
       "odds": 1.52,
       "stake": 75.0,
-      "prob": 0.627
+      "prob": 0.628
     },
     {
       "match": "2026-09-19_周六025",
@@ -27,6 +13,20 @@
       "odds": 1.51,
       "stake": 75.0,
       "prob": 0.63
+    },
+    {
+      "match": "2026-09-19_周六028",
+      "sel": "away",
+      "odds": 1.54,
+      "stake": 75.0,
+      "prob": 0.617
+    },
+    {
+      "match": "2026-09-19_周六024",
+      "sel": "home",
+      "odds": 1.49,
+      "stake": 75.0,
+      "prob": 0.637
     }
   ],
   "value": [],
@@ -40,16 +40,16 @@
       "downgrade_reason": "prob_5060"
     },
     {
-      "match": "2026-09-19_周六013",
-      "sel": "away",
-      "odds": 1.81,
+      "match": "2026-09-19_周六018",
+      "sel": "home",
+      "odds": 1.9,
       "stake": 25.0,
-      "prob": 0.527,
+      "prob": 0.502,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.0466,
+  "expected_roi": -0.0483,
   "bankroll": 4717.4021,
   "breaker_multiplier": 1.0,
   "parlay": [
@@ -76,7 +76,7 @@
           "league": "英超",
           "sel": "home",
           "odds": 1.52,
-          "prob": 0.627,
+          "prob": 0.628,
           "cal_prob": 0.636,
           "market_prob": 0.627,
           "source": "fusion",
@@ -84,11 +84,11 @@
         }
       ],
       "total_odds": 2.3,
-      "model_ev": -0.19,
+      "model_ev": -0.18,
       "cal_ev": -0.14,
       "cal_roi": -0.0704,
-      "market_ev": -0.19,
-      "market_roi": -0.0936,
+      "market_ev": -0.18,
+      "market_roi": -0.0921,
       "hit_prob_cal": 0.405,
       "recommended": false,
       "stake": 2.0,
@@ -107,10 +107,10 @@
           "away": "SBV精英",
           "league": "荷甲",
           "sel": "home",
-          "odds": 1.5,
-          "prob": 0.636,
+          "odds": 1.49,
+          "prob": 0.637,
           "cal_prob": 0.636,
-          "market_prob": 0.635,
+          "market_prob": 0.638,
           "source": "fusion",
           "hit_prob": 0.636
         },
@@ -121,24 +121,24 @@
           "league": "英超",
           "sel": "home",
           "odds": 1.52,
-          "prob": 0.627,
+          "prob": 0.628,
           "cal_prob": 0.636,
           "market_prob": 0.627,
           "source": "fusion",
           "hit_prob": 0.636
         }
       ],
-      "total_odds": 2.28,
-      "model_ev": -0.18,
-      "cal_ev": -0.15,
-      "cal_roi": -0.0766,
-      "market_ev": -0.18,
-      "market_roi": -0.0922,
+      "total_odds": 2.26,
+      "model_ev": -0.19,
+      "cal_ev": -0.17,
+      "cal_roi": -0.0827,
+      "market_ev": -0.19,
+      "market_roi": -0.0935,
       "hit_prob_cal": 0.405,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.56,
+      "potential": 4.53,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -152,10 +152,10 @@
           "away": "SBV精英",
           "league": "荷甲",
           "sel": "home",
-          "odds": 1.5,
-          "prob": 0.636,
+          "odds": 1.49,
+          "prob": 0.637,
           "cal_prob": 0.636,
-          "market_prob": 0.635,
+          "market_prob": 0.638,
           "source": "fusion",
           "hit_prob": 0.636
         },
@@ -173,17 +173,17 @@
           "hit_prob": 0.636
         }
       ],
-      "total_odds": 2.27,
-      "model_ev": -0.18,
-      "cal_ev": -0.17,
-      "cal_roi": -0.0827,
+      "total_odds": 2.25,
+      "model_ev": -0.19,
+      "cal_ev": -0.18,
+      "cal_roi": -0.0888,
       "market_ev": -0.19,
-      "market_roi": -0.0928,
+      "market_roi": -0.0949,
       "hit_prob_cal": 0.405,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.53,
+      "potential": 4.5,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -199,7 +199,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.394,
+          "prob": 0.398,
           "odds": 7.0
         },
         {
@@ -208,7 +208,7 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.333,
+          "prob": 0.329,
           "odds": 7.0
         }
       ],
@@ -219,7 +219,7 @@
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 39% × 33%）"
+      "note": "两场比分都中才赢（单场命中率约 40% × 33%）"
     },
     {
       "type": "比分2串1",
@@ -230,7 +230,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.394,
+          "prob": 0.398,
           "odds": 7.0
         },
         {
@@ -244,13 +244,13 @@
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1245,
+      "hit_prob": 0.1257,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 39% × 32%）"
+      "note": "两场比分都中才赢（单场命中率约 40% × 32%）"
     },
     {
       "type": "比分2串1",
@@ -261,7 +261,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.394,
+          "prob": 0.398,
           "odds": 7.0
         },
         {
@@ -270,18 +270,18 @@
           "away": "博塔弗戈",
           "league": "巴甲",
           "score": "0-0",
-          "prob": 0.31,
+          "prob": 0.309,
           "odds": 9.0
         }
       ],
       "total_odds": 63.0,
-      "hit_prob": 0.1221,
+      "hit_prob": 0.123,
       "stake": 2.0,
       "potential": 126.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 39% × 31%）"
+      "note": "两场比分都中才赢（单场命中率约 40% × 31%）"
     },
     {
       "type": "比分3串1",
@@ -292,7 +292,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.394,
+          "prob": 0.398,
           "odds": 7.0
         },
         {
@@ -301,7 +301,7 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.333,
+          "prob": 0.329,
           "odds": 7.0
         },
         {
@@ -315,7 +315,7 @@
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0415,
+      "hit_prob": 0.0414,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -332,7 +332,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.394,
+          "prob": 0.398,
           "odds": 7.0
         },
         {
@@ -341,7 +341,7 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.333,
+          "prob": 0.329,
           "odds": 7.0
         },
         {
@@ -355,7 +355,7 @@
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0415,
+      "hit_prob": 0.0414,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
