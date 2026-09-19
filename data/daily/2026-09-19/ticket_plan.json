@@ -1,11 +1,11 @@
 {
   "stable": [
     {
-      "match": "2026-09-19_周六025",
+      "match": "2026-09-19_周六028",
       "sel": "away",
-      "odds": 1.56,
+      "odds": 1.55,
       "stake": 75.0,
-      "prob": 0.612
+      "prob": 0.616
     },
     {
       "match": "2026-09-19_周六024",
@@ -22,11 +22,11 @@
       "prob": 0.627
     },
     {
-      "match": "2026-09-19_周六028",
+      "match": "2026-09-19_周六025",
       "sel": "away",
-      "odds": 1.54,
+      "odds": 1.51,
       "stake": 75.0,
-      "prob": 0.617
+      "prob": 0.63
     }
   ],
   "value": [],
@@ -36,26 +36,39 @@
       "sel": "home",
       "odds": 1.87,
       "stake": 25.0,
-      "prob": 0.508,
+      "prob": 0.51,
       "downgrade_reason": "prob_5060"
     },
     {
-      "match": "2026-09-19_周六018",
-      "sel": "home",
-      "odds": 1.86,
+      "match": "2026-09-19_周六013",
+      "sel": "away",
+      "odds": 1.81,
       "stake": 25.0,
-      "prob": 0.511,
+      "prob": 0.527,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.0476,
+  "expected_roi": -0.0466,
   "bankroll": 4717.4021,
   "breaker_multiplier": 1.0,
   "parlay": [
     {
       "type": "2串1",
       "legs": [
+        {
+          "match": "2026-09-19_周六025",
+          "home": "威尼斯",
+          "away": "拉齐奥",
+          "league": "意甲",
+          "sel": "away",
+          "odds": 1.51,
+          "prob": 0.63,
+          "cal_prob": 0.636,
+          "market_prob": 0.63,
+          "source": "fusion",
+          "hit_prob": 0.636
+        },
         {
           "match": "2026-09-19_周六015",
           "home": "埃弗顿",
@@ -68,77 +81,19 @@
           "market_prob": 0.627,
           "source": "fusion",
           "hit_prob": 0.636
-        },
-        {
-          "match": "2026-09-19_周六028",
-          "home": "塞维利亚",
-          "away": "巴萨",
-          "league": "西甲",
-          "sel": "away",
-          "odds": 1.54,
-          "prob": 0.617,
-          "cal_prob": 0.636,
-          "market_prob": 0.617,
-          "source": "fusion",
-          "hit_prob": 0.636
         }
       ],
-      "total_odds": 2.34,
+      "total_odds": 2.3,
       "model_ev": -0.19,
-      "cal_ev": -0.1,
-      "cal_roi": -0.052,
+      "cal_ev": -0.14,
+      "cal_roi": -0.0704,
       "market_ev": -0.19,
-      "market_roi": -0.0944,
+      "market_roi": -0.0936,
       "hit_prob_cal": 0.405,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.68,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "calibrated"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-09-19_周六024",
-          "home": "阿贾克斯",
-          "away": "SBV精英",
-          "league": "荷甲",
-          "sel": "home",
-          "odds": 1.5,
-          "prob": 0.636,
-          "cal_prob": 0.636,
-          "market_prob": 0.635,
-          "source": "fusion",
-          "hit_prob": 0.636
-        },
-        {
-          "match": "2026-09-19_周六028",
-          "home": "塞维利亚",
-          "away": "巴萨",
-          "league": "西甲",
-          "sel": "away",
-          "odds": 1.54,
-          "prob": 0.617,
-          "cal_prob": 0.636,
-          "market_prob": 0.617,
-          "source": "fusion",
-          "hit_prob": 0.636
-        }
-      ],
-      "total_odds": 2.31,
-      "model_ev": -0.19,
-      "cal_ev": -0.13,
-      "cal_roi": -0.0644,
-      "market_ev": -0.19,
-      "market_roi": -0.094,
-      "hit_prob_cal": 0.405,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.62,
+      "potential": 4.59,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -187,6 +142,51 @@
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-09-19_周六024",
+          "home": "阿贾克斯",
+          "away": "SBV精英",
+          "league": "荷甲",
+          "sel": "home",
+          "odds": 1.5,
+          "prob": 0.636,
+          "cal_prob": 0.636,
+          "market_prob": 0.635,
+          "source": "fusion",
+          "hit_prob": 0.636
+        },
+        {
+          "match": "2026-09-19_周六025",
+          "home": "威尼斯",
+          "away": "拉齐奥",
+          "league": "意甲",
+          "sel": "away",
+          "odds": 1.51,
+          "prob": 0.63,
+          "cal_prob": 0.636,
+          "market_prob": 0.63,
+          "source": "fusion",
+          "hit_prob": 0.636
+        }
+      ],
+      "total_odds": 2.27,
+      "model_ev": -0.18,
+      "cal_ev": -0.17,
+      "cal_roi": -0.0827,
+      "market_ev": -0.19,
+      "market_roi": -0.0928,
+      "hit_prob_cal": 0.405,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.53,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
     }
   ],
   "score_parlay": [
@@ -199,7 +199,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.396,
+          "prob": 0.394,
           "odds": 7.0
         },
         {
@@ -208,18 +208,18 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.328,
+          "prob": 0.333,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1298,
+      "hit_prob": 0.1311,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 40% × 33%）"
+      "note": "两场比分都中才赢（单场命中率约 39% × 33%）"
     },
     {
       "type": "比分2串1",
@@ -230,7 +230,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.396,
+          "prob": 0.394,
           "odds": 7.0
         },
         {
@@ -239,18 +239,18 @@
           "away": "拉齐奥",
           "league": "意甲",
           "score": "0-1",
-          "prob": 0.315,
+          "prob": 0.316,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1247,
+      "hit_prob": 0.1245,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 40% × 32%）"
+      "note": "两场比分都中才赢（单场命中率约 39% × 32%）"
     },
     {
       "type": "比分2串1",
@@ -261,7 +261,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.396,
+          "prob": 0.394,
           "odds": 7.0
         },
         {
@@ -270,18 +270,18 @@
           "away": "博塔弗戈",
           "league": "巴甲",
           "score": "0-0",
-          "prob": 0.311,
+          "prob": 0.31,
           "odds": 9.0
         }
       ],
       "total_odds": 63.0,
-      "hit_prob": 0.1229,
+      "hit_prob": 0.1221,
       "stake": 2.0,
       "potential": 126.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 40% × 31%）"
+      "note": "两场比分都中才赢（单场命中率约 39% × 31%）"
     },
     {
       "type": "比分3串1",
@@ -292,7 +292,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.396,
+          "prob": 0.394,
           "odds": 7.0
         },
         {
@@ -301,7 +301,7 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.328,
+          "prob": 0.333,
           "odds": 7.0
         },
         {
@@ -310,12 +310,12 @@
           "away": "拉齐奥",
           "league": "意甲",
           "score": "0-1",
-          "prob": 0.315,
+          "prob": 0.316,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0409,
+      "hit_prob": 0.0415,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -332,7 +332,7 @@
           "away": "马尔默",
           "league": "瑞典超",
           "score": "1-0",
-          "prob": 0.396,
+          "prob": 0.394,
           "odds": 7.0
         },
         {
@@ -341,7 +341,7 @@
           "away": "蔚山现代",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.328,
+          "prob": 0.333,
           "odds": 7.0
         },
         {
@@ -350,12 +350,12 @@
           "away": "拉齐奥",
           "league": "意甲",
           "score": "0-1",
-          "prob": 0.315,
+          "prob": 0.316,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0409,
+      "hit_prob": 0.0415,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
