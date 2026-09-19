@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T14:51:29.823753+00:00",
+  "generated_at": "2026-09-19T18:02:08.190836+00:00",
   "parlay": {
     "n_tickets": 68,
     "n_settled": 65,
@@ -24,18 +24,18 @@
   },
   "score_parlay": {
     "n_tickets": 269,
-    "n_settled": 264,
+    "n_settled": 265,
     "n_won": 4,
-    "hit_rate": 0.0152,
-    "stake": 840.0,
+    "hit_rate": 0.0151,
+    "stake": 842.0,
     "return": 392.0,
-    "roi": -0.5333,
-    "avg_odds": 177.03,
+    "roi": -0.5344,
+    "avg_odds": 176.55,
     "by_type": {
       "比分2串1": {
-        "n": 160,
+        "n": 161,
         "won": 2,
-        "roi": -0.3875
+        "roi": -0.3913
       },
       "比分3串1": {
         "n": 52,
@@ -48,8 +48,8 @@
         "roi": -0.5288
       }
     },
-    "leg_hit_rate": 0.1234,
-    "n_legs_settled": 632
+    "leg_hit_rate": 0.1219,
+    "n_legs_settled": 640
   },
   "tickets": {
     "parlay": [
@@ -2415,7 +2415,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null
+          true
         ],
         "return": 0.0,
         "legs": [
@@ -2435,7 +2435,7 @@
             "sel": "home",
             "score": null,
             "odds": 1.52,
-            "hit": null
+            "hit": true
           }
         ]
       },
@@ -2451,7 +2451,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null
+          true
         ],
         "return": 0.0,
         "legs": [
@@ -2471,7 +2471,7 @@
             "sel": "home",
             "score": null,
             "odds": 1.52,
-            "hit": null
+            "hit": true
           }
         ]
       },
@@ -13064,12 +13064,12 @@
         "potential": 98.0,
         "total_odds": 49.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "两场比分都中才赢（单场命中率约 40% × 33%）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
-          null,
-          null
+          false,
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -13080,7 +13080,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-19_周六003",
@@ -13089,7 +13089,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -13104,7 +13104,7 @@
         "won": false,
         "pending": true,
         "leg_results": [
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -13116,7 +13116,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-19_周六025",
@@ -13140,7 +13140,7 @@
         "won": false,
         "pending": true,
         "leg_results": [
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -13152,7 +13152,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-19_周六030",
@@ -13176,8 +13176,8 @@
         "won": false,
         "pending": true,
         "leg_results": [
-          null,
-          null,
+          false,
+          false,
           null
         ],
         "return": 0.0,
@@ -13189,7 +13189,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-19_周六003",
@@ -13198,7 +13198,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-19_周六025",
@@ -13222,8 +13222,8 @@
         "won": false,
         "pending": true,
         "leg_results": [
-          null,
-          null,
+          false,
+          false,
           null
         ],
         "return": 0.0,
@@ -13235,7 +13235,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-19_周六003",
@@ -13244,7 +13244,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-19_周六025",
@@ -28822,7 +28822,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null
+              true
             ],
             "return": 0.0,
             "legs": [
@@ -28842,7 +28842,7 @@
                 "sel": "home",
                 "score": null,
                 "odds": 1.52,
-                "hit": null
+                "hit": true
               }
             ]
           },
@@ -28858,7 +28858,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null
+              true
             ],
             "return": 0.0,
             "legs": [
@@ -28878,7 +28878,7 @@
                 "sel": "home",
                 "score": null,
                 "odds": 1.52,
-                "hit": null
+                "hit": true
               }
             ]
           },
@@ -28923,16 +28923,22 @@
       "score_parlay": {
         "stats": {
           "n_tickets": 5,
-          "n_settled": 0,
+          "n_settled": 1,
           "n_won": 0,
-          "hit_rate": null,
-          "stake": 0,
-          "return": 0,
-          "roi": null,
-          "avg_odds": null,
-          "by_type": {},
-          "leg_hit_rate": null,
-          "n_legs_settled": 0
+          "hit_rate": 0.0,
+          "stake": 2.0,
+          "return": 0.0,
+          "roi": -1.0,
+          "avg_odds": 49.0,
+          "by_type": {
+            "比分2串1": {
+              "n": 1,
+              "won": 0,
+              "roi": -1.0
+            }
+          },
+          "leg_hit_rate": 0.0,
+          "n_legs_settled": 8
         },
         "tickets": [
           {
@@ -28942,12 +28948,12 @@
             "potential": 98.0,
             "total_odds": 49.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "两场比分都中才赢（单场命中率约 40% × 33%）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
-              null,
-              null
+              false,
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -28958,7 +28964,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-19_周六003",
@@ -28967,7 +28973,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -28982,7 +28988,7 @@
             "won": false,
             "pending": true,
             "leg_results": [
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -28994,7 +29000,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-19_周六025",
@@ -29018,7 +29024,7 @@
             "won": false,
             "pending": true,
             "leg_results": [
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -29030,7 +29036,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-19_周六030",
@@ -29054,8 +29060,8 @@
             "won": false,
             "pending": true,
             "leg_results": [
-              null,
-              null,
+              false,
+              false,
               null
             ],
             "return": 0.0,
@@ -29067,7 +29073,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-19_周六003",
@@ -29076,7 +29082,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-19_周六025",
@@ -29100,8 +29106,8 @@
             "won": false,
             "pending": true,
             "leg_results": [
-              null,
-              null,
+              false,
+              false,
               null
             ],
             "return": 0.0,
@@ -29113,7 +29119,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-19_周六003",
@@ -29122,7 +29128,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-19_周六025",
