@@ -1,13 +1,13 @@
 {
   "date": "2026-09-18",
-  "n_matches": 13,
-  "hit_rate": 0.6154,
+  "n_matches": 14,
+  "hit_rate": 0.5714,
   "hits": 8,
   "source_brier": {
-    "model": 0.5747,
+    "model": 0.6256,
     "market": null,
     "djyy": null,
-    "final": 0.599
+    "final": 0.6357
   },
   "by_league": {
     "亚运男足": {
@@ -87,6 +87,12 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.9397
+    },
+    "美职联": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.1121
     }
   },
   "by_confidence_tier": {
@@ -97,10 +103,10 @@
       "avg_brier": 0.5748
     },
     "mid": {
-      "n": 6,
-      "hit_rate": 0.3333,
-      "wilson_lower": 0.0968,
-      "avg_brier": 0.6746
+      "n": 7,
+      "hit_rate": 0.2857,
+      "wilson_lower": 0.0822,
+      "avg_brier": 0.7371
     },
     "high": {
       "n": 4,
@@ -111,10 +117,10 @@
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 7,
-      "hit_rate": 0.5714,
-      "wilson_lower": 0.2505,
-      "avg_brier": 0.6633
+      "n": 8,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.2152,
+      "avg_brier": 0.7194
     },
     "1.5-2.0": {
       "n": 6,
@@ -126,12 +132,12 @@
   "score_stats": {
     "top1": 1,
     "top3": 1,
-    "top5": 4,
-    "top8": 7,
-    "any": 7
+    "top5": 5,
+    "top8": 8,
+    "any": 8
   },
   "score_rank_hist": {
-    "5": 3,
+    "5": 4,
     "7": 1,
     "6": 1,
     "8": 1,
@@ -143,24 +149,24 @@
       "hits": 0
     },
     "mc": {
-      "n": 7,
-      "hits": 4
+      "n": 8,
+      "hits": 5
     }
   },
   "market_signal_stats": {
-    "n": 13,
-    "hits": 3
+    "n": 14,
+    "hits": 4
   },
   "layered": {
-    "log_loss_final": 1.0263,
+    "log_loss_final": 1.0938,
     "goal_framework": {
-      "n": 13,
-      "hits": 4
+      "n": 14,
+      "hits": 5
     },
     "prob_bands": {
       "40-50%": {
-        "n": 5,
-        "hit_rate": 0.4
+        "n": 6,
+        "hit_rate": 0.3333
       },
       "50-60%": {
         "n": 2,
@@ -181,8 +187,8 @@
         "hit_rate": 0.3333
       },
       "watch": {
-        "n": 7,
-        "hit_rate": 0.8571
+        "n": 8,
+        "hit_rate": 0.75
       }
     }
   },
@@ -191,15 +197,15 @@
       "dimension": "outcome",
       "key": "all",
       "outcome": "draw",
-      "predicted_avg": 0.2835,
-      "actual_rate": 0.1538,
-      "gap": 0.1297,
-      "n": 13,
+      "predicted_avg": 0.2927,
+      "actual_rate": 0.1429,
+      "gap": 0.1499,
+      "n": 14,
       "severity": "warn",
       "suggested_action": "increase market_weight (trust market on draws)"
     }
   ],
   "total_pnl": -67.5,
-  "generated_at": "2026-09-18T23:21:07.063702",
-  "sha256": "46e6d595406ac85ba6d6797f07306766"
+  "generated_at": "2026-09-19T01:37:35.211955",
+  "sha256": "b113e7649f019f8f2f778311752e2a19"
 }
