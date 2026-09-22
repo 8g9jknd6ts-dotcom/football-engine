@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-09-22",
-  "total_matches": 825,
+  "total_matches": 826,
   "date_range": [
     "2026-07-20",
-    "2026-09-21"
+    "2026-09-22"
   ],
   "overall": {
-    "hit_rate": 0.4655,
+    "hit_rate": 0.4661,
     "brier_final": 0.6343,
-    "brier_model": 0.6451,
-    "brier_market": 0.0946,
-    "brier_djyy": 0.0953
+    "brier_model": 0.645,
+    "brier_market": 0.0945,
+    "brier_djyy": 0.0952
   },
   "daily": [
     {
@@ -780,21 +780,33 @@
       "brier_market": null,
       "brier_djyy": null,
       "pnl": 0.0
+    },
+    {
+      "date": "2026-09-22",
+      "n": 1,
+      "hits": 1,
+      "hit_rate": 1.0,
+      "cum_hit_rate": 0.4661,
+      "brier_final": 0.6021,
+      "brier_model": 0.5621,
+      "brier_market": null,
+      "brier_djyy": null,
+      "pnl": 0.0
     }
   ],
   "rolling7": {
-    "n": 116,
-    "hit_rate": 0.4483,
-    "brier_final": 0.6236,
-    "pnl": -150.6
+    "n": 103,
+    "hit_rate": 0.4563,
+    "brier_final": 0.6194,
+    "pnl": -238.6
   },
   "prev7": {
-    "n": 112,
-    "hit_rate": 0.5268,
-    "brier_final": 0.5897,
-    "pnl": -52.2
+    "n": 114,
+    "hit_rate": 0.5088,
+    "brier_final": 0.5925,
+    "pnl": 35.8
   },
-  "verdict": "命中率下降 -8pt",
+  "verdict": "命中率下降 -5pt",
   "by_league": [
     {
       "layer": "西甲",
@@ -960,9 +972,9 @@
     },
     {
       "layer": "亚运男足",
-      "n": 6,
-      "hit_rate": 0.5,
-      "brier_final": 0.6477
+      "n": 7,
+      "hit_rate": 0.5714,
+      "brier_final": 0.6412
     },
     {
       "layer": "英联赛杯",
@@ -1046,9 +1058,9 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 402,
-      "hit_rate": 0.3881,
-      "brier_final": 0.6661
+      "n": 403,
+      "hit_rate": 0.3896,
+      "brier_final": 0.6659
     },
     {
       "layer": "1.5-2.0",
@@ -1078,9 +1090,9 @@
     },
     {
       "layer": "low",
-      "n": 215,
-      "hit_rate": 0.3628,
-      "brier_final": 0.6664
+      "n": 216,
+      "hit_rate": 0.3657,
+      "brier_final": 0.6661
     },
     {
       "layer": "high",
