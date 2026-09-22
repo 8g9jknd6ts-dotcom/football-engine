@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T17:40:12.434858+00:00",
+  "generated_at": "2026-09-22T20:30:14.294647+00:00",
   "parlay": {
     "n_tickets": 71,
     "n_settled": 71,
@@ -24,32 +24,32 @@
   },
   "score_parlay": {
     "n_tickets": 279,
-    "n_settled": 274,
+    "n_settled": 279,
     "n_won": 4,
-    "hit_rate": 0.0146,
-    "stake": 872.0,
+    "hit_rate": 0.0143,
+    "stake": 888.0,
     "return": 392.0,
-    "roi": -0.5505,
-    "avg_odds": 176.7,
+    "roi": -0.5586,
+    "avg_odds": 176.52,
     "by_type": {
       "比分2串1": {
-        "n": 166,
+        "n": 169,
         "won": 2,
-        "roi": -0.4096
+        "roi": -0.4201
       },
       "比分3串1": {
-        "n": 54,
+        "n": 55,
         "won": 0,
         "roi": -1.0
       },
       "比分3串4(容错)": {
-        "n": 54,
+        "n": 55,
         "won": 2,
-        "roi": -0.5463
+        "roi": -0.5545
       }
     },
-    "leg_hit_rate": 0.1258,
-    "n_legs_settled": 660
+    "leg_hit_rate": 0.1243,
+    "n_legs_settled": 668
   },
   "tickets": {
     "parlay": [
@@ -13572,47 +13572,11 @@
         "potential": 98.0,
         "total_odds": 49.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "两场比分都中才赢（单场命中率约 19% × 19%）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
-          null,
-          null
-        ],
-        "return": 0.0,
-        "legs": [
-          {
-            "match": "2026-09-22_周二002",
-            "home": "米尔顿",
-            "away": "克劳利",
-            "sel": null,
-            "score": "1-0",
-            "odds": 7.0,
-            "hit": null
-          },
-          {
-            "match": "2026-09-22_周二004",
-            "home": "维冈",
-            "away": "布莱克浦",
-            "sel": null,
-            "score": "1-0",
-            "odds": 7.0,
-            "hit": null
-          }
-        ]
-      },
-      {
-        "date": "2026-09-22",
-        "type": "比分2串1",
-        "stake": 2.0,
-        "potential": 98.0,
-        "total_odds": 49.0,
-        "odds_source": "simulated",
-        "note": "待赛",
-        "won": false,
-        "pending": true,
-        "leg_results": [
-          null,
+          false,
           false
         ],
         "return": 0.0,
@@ -13624,7 +13588,43 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
+          },
+          {
+            "match": "2026-09-22_周二004",
+            "home": "维冈",
+            "away": "布莱克浦",
+            "sel": null,
+            "score": "1-0",
+            "odds": 7.0,
+            "hit": false
+          }
+        ]
+      },
+      {
+        "date": "2026-09-22",
+        "type": "比分2串1",
+        "stake": 2.0,
+        "potential": 98.0,
+        "total_odds": 49.0,
+        "odds_source": "simulated",
+        "note": "两场比分都中才赢（单场命中率约 19% × 19%）",
+        "won": false,
+        "pending": false,
+        "leg_results": [
+          false,
+          false
+        ],
+        "return": 0.0,
+        "legs": [
+          {
+            "match": "2026-09-22_周二002",
+            "home": "米尔顿",
+            "away": "克劳利",
+            "sel": null,
+            "score": "1-0",
+            "odds": 7.0,
+            "hit": false
           },
           {
             "match": "2026-09-22_周二001",
@@ -13644,11 +13644,11 @@
         "potential": 98.0,
         "total_odds": 49.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "两场比分都中才赢（单场命中率约 19% × 19%）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
-          null,
+          false,
           false
         ],
         "return": 0.0,
@@ -13660,7 +13660,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-22_周二001",
@@ -13680,12 +13680,12 @@
         "potential": 686.0,
         "total_odds": 343.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "三场比分全中才赢（赔率 343 倍）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
-          null,
-          null,
+          false,
+          false,
           false
         ],
         "return": 0.0,
@@ -13697,7 +13697,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-22_周二004",
@@ -13706,7 +13706,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-22_周二001",
@@ -13726,12 +13726,12 @@
         "potential": 980.0,
         "total_odds": 343.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "0/4注中（命中0场）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
-          null,
-          null,
+          false,
+          false,
           false
         ],
         "return": 0.0,
@@ -13743,7 +13743,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-22_周二004",
@@ -13752,7 +13752,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-09-22_周二001",
@@ -30040,16 +30040,32 @@
       "score_parlay": {
         "stats": {
           "n_tickets": 5,
-          "n_settled": 0,
+          "n_settled": 5,
           "n_won": 0,
-          "hit_rate": null,
-          "stake": 0,
-          "return": 0,
-          "roi": null,
-          "avg_odds": null,
-          "by_type": {},
+          "hit_rate": 0.0,
+          "stake": 16.0,
+          "return": 0.0,
+          "roi": -1.0,
+          "avg_odds": 166.6,
+          "by_type": {
+            "比分2串1": {
+              "n": 3,
+              "won": 0,
+              "roi": -1.0
+            },
+            "比分3串1": {
+              "n": 1,
+              "won": 0,
+              "roi": -1.0
+            },
+            "比分3串4(容错)": {
+              "n": 1,
+              "won": 0,
+              "roi": -1.0
+            }
+          },
           "leg_hit_rate": 0.0,
-          "n_legs_settled": 4
+          "n_legs_settled": 12
         },
         "tickets": [
           {
@@ -30059,47 +30075,11 @@
             "potential": 98.0,
             "total_odds": 49.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "两场比分都中才赢（单场命中率约 19% × 19%）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
-              null,
-              null
-            ],
-            "return": 0.0,
-            "legs": [
-              {
-                "match": "2026-09-22_周二002",
-                "home": "米尔顿",
-                "away": "克劳利",
-                "sel": null,
-                "score": "1-0",
-                "odds": 7.0,
-                "hit": null
-              },
-              {
-                "match": "2026-09-22_周二004",
-                "home": "维冈",
-                "away": "布莱克浦",
-                "sel": null,
-                "score": "1-0",
-                "odds": 7.0,
-                "hit": null
-              }
-            ]
-          },
-          {
-            "date": "2026-09-22",
-            "type": "比分2串1",
-            "stake": 2.0,
-            "potential": 98.0,
-            "total_odds": 49.0,
-            "odds_source": "simulated",
-            "note": "待赛",
-            "won": false,
-            "pending": true,
-            "leg_results": [
-              null,
+              false,
               false
             ],
             "return": 0.0,
@@ -30111,7 +30091,43 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
+              },
+              {
+                "match": "2026-09-22_周二004",
+                "home": "维冈",
+                "away": "布莱克浦",
+                "sel": null,
+                "score": "1-0",
+                "odds": 7.0,
+                "hit": false
+              }
+            ]
+          },
+          {
+            "date": "2026-09-22",
+            "type": "比分2串1",
+            "stake": 2.0,
+            "potential": 98.0,
+            "total_odds": 49.0,
+            "odds_source": "simulated",
+            "note": "两场比分都中才赢（单场命中率约 19% × 19%）",
+            "won": false,
+            "pending": false,
+            "leg_results": [
+              false,
+              false
+            ],
+            "return": 0.0,
+            "legs": [
+              {
+                "match": "2026-09-22_周二002",
+                "home": "米尔顿",
+                "away": "克劳利",
+                "sel": null,
+                "score": "1-0",
+                "odds": 7.0,
+                "hit": false
               },
               {
                 "match": "2026-09-22_周二001",
@@ -30131,11 +30147,11 @@
             "potential": 98.0,
             "total_odds": 49.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "两场比分都中才赢（单场命中率约 19% × 19%）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
-              null,
+              false,
               false
             ],
             "return": 0.0,
@@ -30147,7 +30163,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-22_周二001",
@@ -30167,12 +30183,12 @@
             "potential": 686.0,
             "total_odds": 343.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "三场比分全中才赢（赔率 343 倍）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
-              null,
-              null,
+              false,
+              false,
               false
             ],
             "return": 0.0,
@@ -30184,7 +30200,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-22_周二004",
@@ -30193,7 +30209,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-22_周二001",
@@ -30213,12 +30229,12 @@
             "potential": 980.0,
             "total_odds": 343.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "0/4注中（命中0场）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
-              null,
-              null,
+              false,
+              false,
               false
             ],
             "return": 0.0,
@@ -30230,7 +30246,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-22_周二004",
@@ -30239,7 +30255,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-09-22_周二001",
