@@ -1,25 +1,25 @@
 {
-  "total_matches": 835,
+  "total_matches": 840,
   "date_range": [
     "2026-07-20",
     "2026-09-24"
   ],
   "metrics": {
     "brier": 0.6345,
-    "weighted_brier": 0.6337,
+    "weighted_brier": 0.6338,
     "rps": 0.2234,
-    "weighted_rps": 0.2234,
-    "log_loss": 1.057,
-    "hit_rate": 0.4683,
-    "ece": 0.1512
+    "weighted_rps": 0.2235,
+    "log_loss": 1.0573,
+    "hit_rate": 0.469,
+    "ece": 0.1525
   },
   "draw_analysis": {
-    "actual_draws": 207,
-    "actual_draw_rate": 0.2479,
+    "actual_draws": 208,
+    "actual_draw_rate": 0.2476,
     "predicted_draws": 56,
-    "predicted_draw_rate": 0.0671,
+    "predicted_draw_rate": 0.0667,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2873,
+    "avg_draw_prob": 0.2871,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4683,
-      "n": 835
+      "hit_rate": 0.469,
+      "n": 840
     },
     "market": {
       "hit_rate": 0.512,
@@ -211,6 +211,12 @@
       "hit_rate": 0.7143,
       "brier": 0.5023,
       "rps": 0.2113
+    },
+    "欧国联": {
+      "n": 5,
+      "hit_rate": 0.6,
+      "brier": 0.649,
+      "rps": 0.2373
     },
     "英联赛杯": {
       "n": 4,
