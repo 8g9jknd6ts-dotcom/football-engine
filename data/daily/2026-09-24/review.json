@@ -1,36 +1,48 @@
 {
-  "date": "2026-09-21",
-  "n_matches": 1,
-  "hit_rate": 1.0,
-  "hits": 1,
+  "date": "2026-09-24",
+  "n_matches": 3,
+  "hit_rate": 0.6667,
+  "hits": 2,
   "source_brier": {
-    "model": 0.5623,
+    "model": 0.6153,
     "market": null,
     "djyy": null,
-    "final": 0.592
+    "final": 0.6317
   },
   "by_league": {
-    "亚运女足": {
-      "n": 1,
-      "hit_rate": 1.0,
-      "wilson_lower": 0.2065,
-      "avg_brier": 0.592
+    "友谊赛": {
+      "n": 3,
+      "hit_rate": 0.6667,
+      "wilson_lower": 0.2077,
+      "avg_brier": 0.6317
     }
   },
   "by_confidence_tier": {
+    "mid": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.6743
+    },
     "low": {
       "n": 1,
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
-      "avg_brier": 0.592
+      "avg_brier": 0.5465
     }
   },
   "by_odds_band": {
+    "1.5-2.0": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.6743
+    },
     "2.0-3.0": {
       "n": 1,
       "hit_rate": 1.0,
       "wilson_lower": 0.2065,
-      "avg_brier": 0.592
+      "avg_brier": 0.5465
     }
   },
   "score_stats": {
@@ -52,16 +64,20 @@
     }
   },
   "market_signal_stats": {
-    "n": 0,
+    "n": 2,
     "hits": 0
   },
   "layered": {
-    "log_loss_final": 0.9889,
+    "log_loss_final": 1.0844,
     "goal_framework": {
-      "n": 1,
+      "n": 3,
       "hits": 0
     },
     "prob_bands": {
+      "50-60%": {
+        "n": 2,
+        "hit_rate": 0.5
+      },
       "<40%": {
         "n": 1,
         "hit_rate": 1.0
@@ -69,13 +85,13 @@
     },
     "freshness_groups": {
       "watch": {
-        "n": 1,
-        "hit_rate": 1.0
+        "n": 3,
+        "hit_rate": 0.6667
       }
     }
   },
   "biases": [],
-  "total_pnl": 0.0,
-  "generated_at": "2026-09-24T19:09:45.951692",
-  "sha256": "b371c9089b648218df7ec6359e34435a"
+  "total_pnl": -50.0,
+  "generated_at": "2026-09-24T19:08:37.024512",
+  "sha256": "b7c5ca298e6e40a12808ef394883ecd3"
 }
