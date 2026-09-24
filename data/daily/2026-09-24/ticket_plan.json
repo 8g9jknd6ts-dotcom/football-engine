@@ -1,0 +1,209 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [
+    {
+      "match": "2026-09-24_周四003",
+      "sel": "away",
+      "odds": 1.83,
+      "stake": 50.0,
+      "prob": 0.521,
+      "downgrade_reason": "prob_5060"
+    }
+  ],
+  "total_stake": 50.0,
+  "expected_roi": -0.0468,
+  "bankroll": 4553.1521,
+  "breaker_multiplier": 1.0,
+  "parlay": [],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-24_周四001",
+          "home": "日本",
+          "away": "乌拉圭",
+          "league": "友谊赛",
+          "score": "1-0",
+          "prob": 0.274,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-24_周四004",
+          "home": "科索沃",
+          "away": "爱尔兰",
+          "league": "欧国联",
+          "score": "0-1",
+          "prob": 0.26,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0712,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 27% × 26%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-24_周四001",
+          "home": "日本",
+          "away": "乌拉圭",
+          "league": "友谊赛",
+          "score": "1-0",
+          "prob": 0.274,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-24_周四003",
+          "home": "中国",
+          "away": "马尔代夫",
+          "league": "友谊赛",
+          "score": "0-1",
+          "prob": 0.254,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0696,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 27% × 25%）"
+    },
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-24_周四004",
+          "home": "科索沃",
+          "away": "爱尔兰",
+          "league": "欧国联",
+          "score": "0-1",
+          "prob": 0.26,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-24_周四003",
+          "home": "中国",
+          "away": "马尔代夫",
+          "league": "友谊赛",
+          "score": "0-1",
+          "prob": 0.254,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0662,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 26% × 25%）"
+    },
+    {
+      "type": "比分3串1",
+      "legs": [
+        {
+          "match": "2026-09-24_周四001",
+          "home": "日本",
+          "away": "乌拉圭",
+          "league": "友谊赛",
+          "score": "1-0",
+          "prob": 0.274,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-24_周四004",
+          "home": "科索沃",
+          "away": "爱尔兰",
+          "league": "欧国联",
+          "score": "0-1",
+          "prob": 0.26,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-24_周四003",
+          "home": "中国",
+          "away": "马尔代夫",
+          "league": "友谊赛",
+          "score": "0-1",
+          "prob": 0.254,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0181,
+      "stake": 2.0,
+      "potential": 686.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "三场比分全中才赢（赔率 343 倍）"
+    },
+    {
+      "type": "比分3串4(容错)",
+      "legs": [
+        {
+          "match": "2026-09-24_周四001",
+          "home": "日本",
+          "away": "乌拉圭",
+          "league": "友谊赛",
+          "score": "1-0",
+          "prob": 0.274,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-24_周四004",
+          "home": "科索沃",
+          "away": "爱尔兰",
+          "league": "欧国联",
+          "score": "0-1",
+          "prob": 0.26,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-24_周四003",
+          "home": "中国",
+          "away": "马尔代夫",
+          "league": "友谊赛",
+          "score": "0-1",
+          "prob": 0.254,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 343.0,
+      "hit_prob": 0.0181,
+      "stake": 8.0,
+      "potential": 980.0,
+      "worst_win": 98.0,
+      "n_bets": 4,
+      "odds_source": "simulated",
+      "note": "3场出4注（3×2串1+1×3串1）错1场仍中1注2串1≈¥98，全中≈¥980"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4681,
+    "n": 831,
+    "table": {
+      "0.35": 0.3744,
+      "0.4": 0.4286,
+      "0.45": 0.5031,
+      "0.5": 0.4839,
+      "0.55": 0.5783,
+      "0.6": 0.6327,
+      "0.65": 0.6429,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}
