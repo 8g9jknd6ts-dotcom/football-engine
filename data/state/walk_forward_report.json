@@ -1,23 +1,23 @@
 {
-  "total_matches": 847,
+  "total_matches": 853,
   "date_range": [
     "2026-07-20",
     "2026-09-25"
   ],
   "metrics": {
-    "brier": 0.6351,
-    "weighted_brier": 0.6345,
-    "rps": 0.2236,
-    "weighted_rps": 0.2237,
-    "log_loss": 1.0581,
-    "hit_rate": 0.4687,
-    "ece": 0.1545
+    "brier": 0.6353,
+    "weighted_brier": 0.6346,
+    "rps": 0.2237,
+    "weighted_rps": 0.2238,
+    "log_loss": 1.0582,
+    "hit_rate": 0.4666,
+    "ece": 0.1554
   },
   "draw_analysis": {
-    "actual_draws": 210,
-    "actual_draw_rate": 0.2479,
-    "predicted_draws": 57,
-    "predicted_draw_rate": 0.0673,
+    "actual_draws": 211,
+    "actual_draw_rate": 0.2474,
+    "predicted_draws": 58,
+    "predicted_draw_rate": 0.068,
     "max_draw_prob": 0.4912,
     "avg_draw_prob": 0.2872,
     "avg_market_draw": 0.2437,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4687,
-      "n": 847
+      "hit_rate": 0.4666,
+      "n": 853
     },
     "market": {
       "hit_rate": 0.512,
@@ -176,6 +176,12 @@
       "brier": 0.6229,
       "rps": 0.1928
     },
+    "欧国联": {
+      "n": 12,
+      "hit_rate": 0.3333,
+      "brier": 0.6529,
+      "rps": 0.2448
+    },
     "英联杯": {
       "n": 11,
       "hit_rate": 0.7273,
@@ -189,10 +195,10 @@
       "rps": 0.2385
     },
     "荷乙": {
-      "n": 9,
-      "hit_rate": 0.4444,
-      "brier": 0.6861,
-      "rps": 0.2524
+      "n": 10,
+      "hit_rate": 0.4,
+      "brier": 0.7045,
+      "rps": 0.2641
     },
     "亚冠杯": {
       "n": 8,
@@ -211,12 +217,6 @@
       "hit_rate": 0.7143,
       "brier": 0.5023,
       "rps": 0.2113
-    },
-    "欧国联": {
-      "n": 7,
-      "hit_rate": 0.4286,
-      "brier": 0.6836,
-      "rps": 0.2621
     },
     "亚运女足": {
       "n": 5,
