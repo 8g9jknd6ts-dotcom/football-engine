@@ -1,25 +1,25 @@
 {
-  "total_matches": 845,
+  "total_matches": 847,
   "date_range": [
     "2026-07-20",
     "2026-09-25"
   ],
   "metrics": {
-    "brier": 0.6348,
-    "weighted_brier": 0.6341,
-    "rps": 0.2234,
-    "weighted_rps": 0.2234,
-    "log_loss": 1.0577,
-    "hit_rate": 0.4698,
-    "ece": 0.1546
+    "brier": 0.6351,
+    "weighted_brier": 0.6345,
+    "rps": 0.2236,
+    "weighted_rps": 0.2237,
+    "log_loss": 1.0581,
+    "hit_rate": 0.4687,
+    "ece": 0.1545
   },
   "draw_analysis": {
     "actual_draws": 210,
-    "actual_draw_rate": 0.2485,
-    "predicted_draws": 56,
-    "predicted_draw_rate": 0.0663,
+    "actual_draw_rate": 0.2479,
+    "predicted_draws": 57,
+    "predicted_draw_rate": 0.0673,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2871,
+    "avg_draw_prob": 0.2872,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4698,
-      "n": 845
+      "hit_rate": 0.4687,
+      "n": 847
     },
     "market": {
       "hit_rate": 0.512,
@@ -212,17 +212,17 @@
       "brier": 0.5023,
       "rps": 0.2113
     },
+    "欧国联": {
+      "n": 7,
+      "hit_rate": 0.4286,
+      "brier": 0.6836,
+      "rps": 0.2621
+    },
     "亚运女足": {
       "n": 5,
       "hit_rate": 0.4,
       "brier": 0.669,
       "rps": 0.2089
-    },
-    "欧国联": {
-      "n": 5,
-      "hit_rate": 0.6,
-      "brier": 0.649,
-      "rps": 0.2373
     },
     "英联赛杯": {
       "n": 4,

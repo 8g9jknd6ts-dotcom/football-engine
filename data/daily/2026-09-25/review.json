@@ -1,13 +1,13 @@
 {
   "date": "2026-09-25",
-  "n_matches": 5,
-  "hit_rate": 0.6,
+  "n_matches": 7,
+  "hit_rate": 0.4286,
   "hits": 3,
   "source_brier": {
-    "model": 0.6903,
+    "model": 0.7446,
     "market": null,
     "djyy": null,
-    "final": 0.682
+    "final": 0.7072
   },
   "by_league": {
     "亚运男足": {
@@ -27,6 +27,12 @@
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
       "avg_brier": 0.8711
+    },
+    "欧国联": {
+      "n": 2,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.77
     }
   },
   "by_confidence_tier": {
@@ -37,36 +43,37 @@
       "avg_brier": 0.6348
     },
     "mid": {
-      "n": 1,
+      "n": 3,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.8711
+      "avg_brier": 0.8037
     }
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 4,
-      "hit_rate": 0.75,
-      "wilson_lower": 0.3006,
-      "avg_brier": 0.6348
+      "n": 5,
+      "hit_rate": 0.6,
+      "wilson_lower": 0.2307,
+      "avg_brier": 0.6289
     },
     "1.5-2.0": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 0.0,
       "wilson_lower": 0.0,
-      "avg_brier": 0.8711
+      "avg_brier": 0.9027
     }
   },
   "score_stats": {
     "top1": 1,
     "top3": 1,
-    "top5": 2,
-    "top8": 2,
-    "any": 2
+    "top5": 4,
+    "top8": 4,
+    "any": 4
   },
   "score_rank_hist": {
     "1": 1,
-    "4": 1
+    "4": 2,
+    "5": 1
   },
   "score_source_stats": {
     "djyy": {
@@ -74,22 +81,26 @@
       "hits": 0
     },
     "mc": {
-      "n": 2,
-      "hits": 2
+      "n": 4,
+      "hits": 4
     }
   },
   "market_signal_stats": {
-    "n": 3,
-    "hits": 0
+    "n": 5,
+    "hits": 2
   },
   "layered": {
-    "log_loss_final": 1.1199,
+    "log_loss_final": 1.1525,
     "goal_framework": {
-      "n": 5,
-      "hits": 2
+      "n": 7,
+      "hits": 4
     },
     "prob_bands": {
       "40-50%": {
+        "n": 2,
+        "hit_rate": 0.0
+      },
+      "50-60%": {
         "n": 1,
         "hit_rate": 0.0
       },
@@ -100,25 +111,13 @@
     },
     "freshness_groups": {
       "watch": {
-        "n": 5,
-        "hit_rate": 0.6
+        "n": 7,
+        "hit_rate": 0.4286
       }
     }
   },
-  "biases": [
-    {
-      "dimension": "outcome",
-      "key": "all",
-      "outcome": "draw",
-      "predicted_avg": 0.2874,
-      "actual_rate": 0.4,
-      "gap": -0.1126,
-      "n": 5,
-      "severity": "warn",
-      "suggested_action": "reduce draw_bias"
-    }
-  ],
-  "total_pnl": 0.0,
-  "generated_at": "2026-09-25T17:09:41.857316",
-  "sha256": "f9aaeb50e6b9cec0c2d2ac4a47cb7698"
+  "biases": [],
+  "total_pnl": -50.0,
+  "generated_at": "2026-09-25T20:29:56.935148",
+  "sha256": "58e01f91405917e40b1282538f0ccc5a"
 }
