@@ -1,25 +1,25 @@
 {
-  "total_matches": 853,
+  "total_matches": 862,
   "date_range": [
     "2026-07-20",
-    "2026-09-25"
+    "2026-09-26"
   ],
   "metrics": {
-    "brier": 0.6353,
-    "weighted_brier": 0.6346,
-    "rps": 0.2237,
-    "weighted_rps": 0.2238,
-    "log_loss": 1.0582,
-    "hit_rate": 0.4666,
-    "ece": 0.1554
+    "brier": 0.6356,
+    "weighted_brier": 0.635,
+    "rps": 0.2235,
+    "weighted_rps": 0.2235,
+    "log_loss": 1.0585,
+    "hit_rate": 0.4664,
+    "ece": 0.1551
   },
   "draw_analysis": {
-    "actual_draws": 211,
-    "actual_draw_rate": 0.2474,
+    "actual_draws": 215,
+    "actual_draw_rate": 0.2494,
     "predicted_draws": 58,
-    "predicted_draw_rate": 0.068,
+    "predicted_draw_rate": 0.0673,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2872,
+    "avg_draw_prob": 0.2873,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4666,
-      "n": 853
+      "hit_rate": 0.4664,
+      "n": 862
     },
     "market": {
       "hit_rate": 0.512,
@@ -170,17 +170,35 @@
       "brier": 0.6629,
       "rps": 0.2292
     },
+    "日职乙": {
+      "n": 13,
+      "hit_rate": 0.2308,
+      "brier": 0.7266,
+      "rps": 0.2102
+    },
+    "亚运男足": {
+      "n": 13,
+      "hit_rate": 0.6923,
+      "brier": 0.6325,
+      "rps": 0.2406
+    },
+    "欧国联": {
+      "n": 13,
+      "hit_rate": 0.3077,
+      "brier": 0.6627,
+      "rps": 0.2365
+    },
     "巴西杯": {
       "n": 12,
       "hit_rate": 0.4167,
       "brier": 0.6229,
       "rps": 0.1928
     },
-    "欧国联": {
-      "n": 12,
-      "hit_rate": 0.3333,
-      "brier": 0.6529,
-      "rps": 0.2448
+    "荷乙": {
+      "n": 11,
+      "hit_rate": 0.4545,
+      "brier": 0.6768,
+      "rps": 0.2544
     },
     "英联杯": {
       "n": 11,
@@ -188,29 +206,11 @@
       "brier": 0.5143,
       "rps": 0.1974
     },
-    "亚运男足": {
-      "n": 11,
-      "hit_rate": 0.6364,
-      "brier": 0.6396,
-      "rps": 0.2385
-    },
-    "荷乙": {
-      "n": 10,
-      "hit_rate": 0.4,
-      "brier": 0.7045,
-      "rps": 0.2641
-    },
     "亚冠杯": {
       "n": 8,
       "hit_rate": 0.25,
       "brier": 0.7513,
       "rps": 0.251
-    },
-    "日职乙": {
-      "n": 8,
-      "hit_rate": 0.25,
-      "brier": 0.7315,
-      "rps": 0.2217
     },
     "瑞超": {
       "n": 7,
