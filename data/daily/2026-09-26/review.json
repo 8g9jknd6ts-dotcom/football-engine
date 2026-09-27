@@ -1,13 +1,13 @@
 {
   "date": "2026-09-26",
-  "n_matches": 18,
-  "hit_rate": 0.5,
+  "n_matches": 24,
+  "hit_rate": 0.375,
   "hits": 9,
   "source_brier": {
-    "model": 0.6345,
+    "model": 0.7111,
     "market": null,
     "djyy": null,
-    "final": 0.6349
+    "final": 0.6953
   },
   "by_league": {
     "亚运男足": {
@@ -39,20 +39,26 @@
       "hit_rate": 1.0,
       "wilson_lower": 0.3424,
       "avg_brier": 0.4339
+    },
+    "美职联": {
+      "n": 6,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.8767
     }
   },
   "by_confidence_tier": {
     "low": {
-      "n": 7,
-      "hit_rate": 0.5714,
-      "wilson_lower": 0.2505,
-      "avg_brier": 0.674
+      "n": 8,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.2152,
+      "avg_brier": 0.6907
     },
     "mid": {
-      "n": 8,
-      "hit_rate": 0.375,
-      "wilson_lower": 0.1368,
-      "avg_brier": 0.6617
+      "n": 13,
+      "hit_rate": 0.2308,
+      "wilson_lower": 0.0818,
+      "avg_brier": 0.7497
     },
     "high": {
       "n": 3,
@@ -63,10 +69,10 @@
   },
   "by_odds_band": {
     "2.0-3.0": {
-      "n": 13,
-      "hit_rate": 0.4615,
-      "wilson_lower": 0.2321,
-      "avg_brier": 0.6761
+      "n": 19,
+      "hit_rate": 0.3158,
+      "wilson_lower": 0.1536,
+      "avg_brier": 0.7395
     },
     "1.5-2.0": {
       "n": 5,
@@ -78,13 +84,13 @@
   "score_stats": {
     "top1": 2,
     "top3": 5,
-    "top5": 6,
-    "top8": 12,
-    "any": 12
+    "top5": 7,
+    "top8": 14,
+    "any": 14
   },
   "score_rank_hist": {
-    "6": 3,
-    "4": 1,
+    "6": 4,
+    "4": 2,
     "2": 2,
     "1": 2,
     "8": 3,
@@ -96,38 +102,46 @@
       "hits": 0
     },
     "mc": {
-      "n": 12,
-      "hits": 6
+      "n": 14,
+      "hits": 7
     }
   },
   "market_signal_stats": {
-    "n": 18,
-    "hits": 4
+    "n": 24,
+    "hits": 6
   },
   "layered": {
-    "log_loss_final": 1.0454,
+    "log_loss_final": 1.1507,
     "goal_framework": {
-      "n": 18,
-      "hits": 9
+      "n": 24,
+      "hits": 11
     },
     "prob_bands": {
       "40-50%": {
-        "n": 7,
-        "hit_rate": 0.4286
+        "n": 12,
+        "hit_rate": 0.25
       },
       "50-60%": {
         "n": 4,
         "hit_rate": 0.5
       },
       "<40%": {
-        "n": 7,
-        "hit_rate": 0.5714
+        "n": 8,
+        "hit_rate": 0.5
       }
     },
     "freshness_groups": {
+      "alert": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "ok": {
+        "n": 2,
+        "hit_rate": 0.0
+      },
       "watch": {
-        "n": 18,
-        "hit_rate": 0.5
+        "n": 21,
+        "hit_rate": 0.4286
       }
     }
   },
@@ -153,9 +167,20 @@
       "n": 7,
       "severity": "critical",
       "suggested_action": "reduce home_adv_weight"
+    },
+    {
+      "dimension": "league",
+      "key": "美职联",
+      "outcome": "home",
+      "predicted_avg": 0.2399,
+      "actual_rate": 1.0,
+      "gap": -0.7601,
+      "n": 6,
+      "severity": "critical",
+      "suggested_action": "increase home_adv_weight"
     }
   ],
   "total_pnl": 0.0,
-  "generated_at": "2026-09-27T01:26:07.972193",
-  "sha256": "c229f8b1cccdb18352a5fda3fec3bc49"
+  "generated_at": "2026-09-27T07:06:35.421371",
+  "sha256": "cc1ce32b4efed9137e52ec26de147707"
 }
