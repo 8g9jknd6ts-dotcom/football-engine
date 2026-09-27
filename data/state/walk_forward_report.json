@@ -1,25 +1,25 @@
 {
-  "total_matches": 877,
+  "total_matches": 880,
   "date_range": [
     "2026-07-20",
-    "2026-09-26"
+    "2026-09-27"
   ],
   "metrics": {
-    "brier": 0.6369,
-    "weighted_brier": 0.6365,
-    "rps": 0.2243,
-    "weighted_rps": 0.2244,
-    "log_loss": 1.0607,
-    "hit_rate": 0.4641,
-    "ece": 0.1621
+    "brier": 0.6374,
+    "weighted_brier": 0.6371,
+    "rps": 0.2245,
+    "weighted_rps": 0.2247,
+    "log_loss": 1.0615,
+    "hit_rate": 0.4636,
+    "ece": 0.1617
   },
   "draw_analysis": {
-    "actual_draws": 217,
-    "actual_draw_rate": 0.2474,
-    "predicted_draws": 65,
-    "predicted_draw_rate": 0.0741,
+    "actual_draws": 218,
+    "actual_draw_rate": 0.2477,
+    "predicted_draws": 66,
+    "predicted_draw_rate": 0.075,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.288,
+    "avg_draw_prob": 0.2883,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4641,
-      "n": 877
+      "hit_rate": 0.4636,
+      "n": 880
     },
     "market": {
       "hit_rate": 0.512,
@@ -74,17 +74,17 @@
       "brier": 0.6249,
       "rps": 0.2376
     },
+    "K1联赛": {
+      "n": 42,
+      "hit_rate": 0.4524,
+      "brier": 0.6556,
+      "rps": 0.2186
+    },
     "瑞典超": {
       "n": 41,
       "hit_rate": 0.2927,
       "brier": 0.7297,
       "rps": 0.2575
-    },
-    "K1联赛": {
-      "n": 41,
-      "hit_rate": 0.439,
-      "brier": 0.6595,
-      "rps": 0.2219
     },
     "挪超": {
       "n": 41,
@@ -164,6 +164,12 @@
       "brier": 0.6792,
       "rps": 0.1969
     },
+    "荷乙": {
+      "n": 13,
+      "hit_rate": 0.3846,
+      "brier": 0.7136,
+      "rps": 0.2794
+    },
     "德乙": {
       "n": 13,
       "hit_rate": 0.4615,
@@ -194,12 +200,6 @@
       "brier": 0.6229,
       "rps": 0.1928
     },
-    "荷乙": {
-      "n": 12,
-      "hit_rate": 0.4167,
-      "brier": 0.6955,
-      "rps": 0.2672
-    },
     "英联杯": {
       "n": 11,
       "hit_rate": 0.7273,
@@ -219,10 +219,10 @@
       "rps": 0.2113
     },
     "友谊赛": {
-      "n": 6,
-      "hit_rate": 0.6667,
-      "brier": 0.6057,
-      "rps": 0.224
+      "n": 7,
+      "hit_rate": 0.5714,
+      "brier": 0.6519,
+      "rps": 0.2497
     },
     "亚运女足": {
       "n": 5,
