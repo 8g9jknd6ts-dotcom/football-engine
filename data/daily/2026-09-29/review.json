@@ -1,0 +1,159 @@
+{
+  "date": "2026-09-29",
+  "n_matches": 14,
+  "hit_rate": 0.8571,
+  "hits": 12,
+  "source_brier": {
+    "model": 0.4743,
+    "market": null,
+    "djyy": null,
+    "final": 0.5282
+  },
+  "by_league": {
+    "亚运女足": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.6141
+    },
+    "友谊赛": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3552
+    },
+    "日联杯": {
+      "n": 4,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.15,
+      "avg_brier": 0.7326
+    },
+    "欧国联": {
+      "n": 7,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.6457,
+      "avg_brier": 0.4116
+    }
+  },
+  "by_confidence_tier": {
+    "low": {
+      "n": 5,
+      "hit_rate": 0.8,
+      "wilson_lower": 0.3755,
+      "avg_brier": 0.638
+    },
+    "mid": {
+      "n": 5,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.5655,
+      "avg_brier": 0.4258
+    },
+    "high": {
+      "n": 4,
+      "hit_rate": 0.75,
+      "wilson_lower": 0.3006,
+      "avg_brier": 0.519
+    }
+  },
+  "by_odds_band": {
+    "2.0-3.0": {
+      "n": 8,
+      "hit_rate": 0.875,
+      "wilson_lower": 0.5291,
+      "avg_brier": 0.5773
+    },
+    "1.5-2.0": {
+      "n": 5,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.5655,
+      "avg_brier": 0.3047
+    },
+    "1.0-1.5": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 1.2527
+    }
+  },
+  "score_stats": {
+    "top1": 1,
+    "top3": 4,
+    "top5": 7,
+    "top8": 11,
+    "any": 11
+  },
+  "score_rank_hist": {
+    "5": 3,
+    "8": 2,
+    "3": 2,
+    "2": 1,
+    "6": 1,
+    "7": 1,
+    "1": 1
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 11,
+      "hits": 7
+    }
+  },
+  "market_signal_stats": {
+    "n": 13,
+    "hits": 0
+  },
+  "layered": {
+    "log_loss_final": 0.92,
+    "goal_framework": {
+      "n": 14,
+      "hits": 6
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 3,
+        "hit_rate": 1.0
+      },
+      "50-60%": {
+        "n": 5,
+        "hit_rate": 1.0
+      },
+      "60%+": {
+        "n": 1,
+        "hit_rate": 0.0
+      },
+      "<40%": {
+        "n": 5,
+        "hit_rate": 0.8
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 8,
+        "hit_rate": 0.875
+      },
+      "watch": {
+        "n": 6,
+        "hit_rate": 0.8333
+      }
+    }
+  },
+  "biases": [
+    {
+      "dimension": "outcome",
+      "key": "all",
+      "outcome": "draw",
+      "predicted_avg": 0.2812,
+      "actual_rate": 0.0714,
+      "gap": 0.2098,
+      "n": 14,
+      "severity": "warn",
+      "suggested_action": "increase market_weight (trust market on draws)"
+    }
+  ],
+  "total_pnl": -157.75,
+  "generated_at": "2026-09-29T20:46:00.102634",
+  "sha256": "c9523536a733ebeca97afcaa737efed7"
+}

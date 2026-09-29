@@ -1,8 +1,8 @@
 {
   "n_leagues": 44,
-  "n_matches": 923,
+  "n_matches": 937,
   "external_added": 29,
-  "generated_at": "2026-09-29T15:52:22.657342",
+  "generated_at": "2026-09-29T20:47:12.889749",
   "leagues": [
     {
       "league": "西甲",
@@ -135,6 +135,19 @@
       "recent_roi": -0.256
     },
     {
+      "league": "欧国联",
+      "n": 37,
+      "hit_rate": 0.5405,
+      "avg_odds": 2.005,
+      "roi": 0.0551,
+      "avg_confidence": 0.1865,
+      "verdict": "价值区",
+      "recent_n": 5,
+      "recent_hits": 5,
+      "recent_hit_rate": 1.0,
+      "recent_roi": 1.16
+    },
+    {
       "league": "德甲",
       "n": 36,
       "hit_rate": 0.4444,
@@ -211,19 +224,6 @@
       "recent_hits": 1,
       "recent_hit_rate": 0.2,
       "recent_roi": -0.546
-    },
-    {
-      "league": "欧国联",
-      "n": 30,
-      "hit_rate": 0.4333,
-      "avg_odds": 2.0,
-      "roi": -0.1707,
-      "avg_confidence": 0.1869,
-      "verdict": "回暖解禁",
-      "recent_n": 5,
-      "recent_hits": 3,
-      "recent_hit_rate": 0.6,
-      "recent_roi": 0.256
     },
     {
       "league": "法甲",
@@ -357,16 +357,16 @@
     },
     {
       "league": "友谊赛",
-      "n": 9,
-      "hit_rate": 0.5556,
-      "avg_odds": 1.967,
-      "roi": 0.1144,
-      "avg_confidence": 0.1931,
+      "n": 10,
+      "hit_rate": 0.6,
+      "avg_odds": 1.956,
+      "roi": 0.189,
+      "avg_confidence": 0.1921,
       "verdict": "价值区",
       "recent_n": 5,
       "recent_hits": 3,
       "recent_hit_rate": 0.6,
-      "recent_roi": 0.174
+      "recent_roi": 0.216
     },
     {
       "league": "亚冠杯",
@@ -382,6 +382,19 @@
       "recent_roi": 0.006
     },
     {
+      "league": "亚运女足",
+      "n": 7,
+      "hit_rate": 0.5714,
+      "avg_odds": 2.581,
+      "roi": 0.4857,
+      "avg_confidence": 0.0871,
+      "verdict": "价值区",
+      "recent_n": 5,
+      "recent_hits": 4,
+      "recent_hit_rate": 0.8,
+      "recent_roi": 1.08
+    },
+    {
       "league": "瑞超",
       "n": 7,
       "hit_rate": 0.7143,
@@ -395,17 +408,17 @@
       "recent_roi": 0.052
     },
     {
-      "league": "亚运女足",
+      "league": "日联杯",
       "n": 5,
       "hit_rate": 0.4,
-      "avg_odds": 2.558,
-      "roi": 0.024,
-      "avg_confidence": 0.0872,
-      "verdict": "观望",
+      "avg_odds": 2.176,
+      "roi": -0.13,
+      "avg_confidence": 0.1641,
+      "verdict": "送钱区",
       "recent_n": 5,
       "recent_hits": 2,
       "recent_hit_rate": 0.4,
-      "recent_roi": 0.024
+      "recent_roi": -0.13
     },
     {
       "league": "英联赛杯",
@@ -544,19 +557,6 @@
       "avg_odds": 2.03,
       "roi": -1.0,
       "avg_confidence": 0.2366,
-      "verdict": "样本不足",
-      "recent_n": 1,
-      "recent_hits": 0,
-      "recent_hit_rate": 0.0,
-      "recent_roi": -1.0
-    },
-    {
-      "league": "日联杯",
-      "n": 1,
-      "hit_rate": 0.0,
-      "avg_odds": 2.65,
-      "roi": -1.0,
-      "avg_confidence": 0.0872,
       "verdict": "样本不足",
       "recent_n": 1,
       "recent_hits": 0,

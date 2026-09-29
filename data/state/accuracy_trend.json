@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-09-29",
-  "total_matches": 894,
+  "total_matches": 908,
   "date_range": [
     "2026-07-20",
-    "2026-09-28"
+    "2026-09-29"
   ],
   "overall": {
-    "hit_rate": 0.4642,
-    "brier_final": 0.6366,
-    "brier_model": 0.647,
-    "brier_market": 0.0873,
-    "brier_djyy": 0.088
+    "hit_rate": 0.4703,
+    "brier_final": 0.6349,
+    "brier_model": 0.6443,
+    "brier_market": 0.086,
+    "brier_djyy": 0.0866
   },
   "daily": [
     {
@@ -864,19 +864,31 @@
       "brier_market": null,
       "brier_djyy": null,
       "pnl": -50.0
+    },
+    {
+      "date": "2026-09-29",
+      "n": 14,
+      "hits": 12,
+      "hit_rate": 0.8571,
+      "cum_hit_rate": 0.4703,
+      "brier_final": 0.5282,
+      "brier_model": 0.4743,
+      "brier_market": null,
+      "brier_djyy": null,
+      "pnl": -157.8
     }
   ],
   "rolling7": {
-    "n": 69,
-    "hit_rate": 0.4493,
-    "brier_final": 0.6543,
-    "pnl": -50.0
+    "n": 79,
+    "hit_rate": 0.4937,
+    "brier_final": 0.6457,
+    "pnl": -207.8
   },
   "prev7": {
-    "n": 116,
-    "hit_rate": 0.4483,
-    "brier_final": 0.6236,
-    "pnl": -150.6
+    "n": 106,
+    "hit_rate": 0.4717,
+    "brier_final": 0.6174,
+    "pnl": -238.6
   },
   "verdict": "持平（±3pt 内）",
   "by_league": [
@@ -941,6 +953,12 @@
       "brier_final": 0.5541
     },
     {
+      "layer": "欧国联",
+      "n": 37,
+      "hit_rate": 0.5405,
+      "brier_final": 0.5777
+    },
+    {
       "layer": "德甲",
       "n": 36,
       "hit_rate": 0.4444,
@@ -969,12 +987,6 @@
       "n": 30,
       "hit_rate": 0.4,
       "brier_final": 0.6835
-    },
-    {
-      "layer": "欧国联",
-      "n": 30,
-      "hit_rate": 0.4333,
-      "brier_final": 0.6165
     },
     {
       "layer": "巴甲",
@@ -1044,9 +1056,9 @@
     },
     {
       "layer": "友谊赛",
-      "n": 9,
-      "hit_rate": 0.5556,
-      "brier_final": 0.6531
+      "n": 10,
+      "hit_rate": 0.6,
+      "brier_final": 0.6233
     },
     {
       "layer": "亚冠杯",
@@ -1062,9 +1074,15 @@
     },
     {
       "layer": "亚运女足",
+      "n": 7,
+      "hit_rate": 0.5714,
+      "brier_final": 0.6533
+    },
+    {
+      "layer": "日联杯",
       "n": 5,
       "hit_rate": 0.4,
-      "brier_final": 0.669
+      "brier_final": 0.7154
     },
     {
       "layer": "英联赛杯",
@@ -1133,12 +1151,6 @@
       "brier_final": 0.813
     },
     {
-      "layer": "日联杯",
-      "n": 1,
-      "hit_rate": 0.0,
-      "brier_final": 0.6465
-    },
-    {
       "layer": "亚冠联2",
       "n": 1,
       "hit_rate": 0.0,
@@ -1148,21 +1160,21 @@
   "by_odds_band": [
     {
       "layer": "2.0-3.0",
-      "n": 448,
-      "hit_rate": 0.3906,
-      "brier_final": 0.669
+      "n": 456,
+      "hit_rate": 0.3991,
+      "brier_final": 0.6674
     },
     {
       "layer": "1.5-2.0",
-      "n": 341,
-      "hit_rate": 0.5513,
-      "brier_final": 0.5962
+      "n": 346,
+      "hit_rate": 0.5578,
+      "brier_final": 0.592
     },
     {
       "layer": "1.0-1.5",
-      "n": 74,
-      "hit_rate": 0.5811,
-      "brier_final": 0.6104
+      "n": 75,
+      "hit_rate": 0.5733,
+      "brier_final": 0.6189
     },
     {
       "layer": "3.0+",
@@ -1174,21 +1186,21 @@
   "by_conf_tier": [
     {
       "layer": "mid",
-      "n": 488,
-      "hit_rate": 0.457,
-      "brier_final": 0.6467
+      "n": 493,
+      "hit_rate": 0.4625,
+      "brier_final": 0.6444
     },
     {
       "layer": "low",
-      "n": 240,
-      "hit_rate": 0.3833,
-      "brier_final": 0.6651
+      "n": 245,
+      "hit_rate": 0.3918,
+      "brier_final": 0.6645
     },
     {
       "layer": "high",
-      "n": 166,
-      "hit_rate": 0.6024,
-      "brier_final": 0.5656
+      "n": 170,
+      "hit_rate": 0.6059,
+      "brier_final": 0.5645
     }
   ]
 }
