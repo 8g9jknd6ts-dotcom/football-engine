@@ -1,23 +1,23 @@
 {
-  "total_matches": 909,
+  "total_matches": 911,
   "date_range": [
     "2026-07-20",
-    "2026-09-29"
+    "2026-09-30"
   ],
   "metrics": {
-    "brier": 0.6345,
-    "weighted_brier": 0.6337,
+    "brier": 0.6346,
+    "weighted_brier": 0.6339,
     "rps": 0.2245,
-    "weighted_rps": 0.2247,
-    "log_loss": 1.0575,
-    "hit_rate": 0.4708,
-    "ece": 0.1609
+    "weighted_rps": 0.2246,
+    "log_loss": 1.0576,
+    "hit_rate": 0.4709,
+    "ece": 0.1611
   },
   "draw_analysis": {
-    "actual_draws": 220,
-    "actual_draw_rate": 0.242,
+    "actual_draws": 221,
+    "actual_draw_rate": 0.2426,
     "predicted_draws": 69,
-    "predicted_draw_rate": 0.0759,
+    "predicted_draw_rate": 0.0757,
     "max_draw_prob": 0.4912,
     "avg_draw_prob": 0.2876,
     "avg_market_draw": 0.2437,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4708,
-      "n": 909
+      "hit_rate": 0.4709,
+      "n": 911
     },
     "market": {
       "hit_rate": 0.512,
@@ -164,6 +164,12 @@
       "brier": 0.6792,
       "rps": 0.1969
     },
+    "亚运男足": {
+      "n": 15,
+      "hit_rate": 0.6667,
+      "brier": 0.6387,
+      "rps": 0.2345
+    },
     "荷乙": {
       "n": 13,
       "hit_rate": 0.3846,
@@ -187,12 +193,6 @@
       "hit_rate": 0.2308,
       "brier": 0.7266,
       "rps": 0.2102
-    },
-    "亚运男足": {
-      "n": 13,
-      "hit_rate": 0.6923,
-      "brier": 0.6325,
-      "rps": 0.2406
     },
     "巴西杯": {
       "n": 12,
