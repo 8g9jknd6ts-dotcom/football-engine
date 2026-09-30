@@ -1,0 +1,58 @@
+{
+  "stable": [],
+  "value": [],
+  "lottery": [],
+  "total_stake": 0,
+  "expected_roi": 0.0,
+  "bankroll": 4345.4021,
+  "breaker_multiplier": 1.0,
+  "parlay": [],
+  "score_parlay": [
+    {
+      "type": "比分2串1",
+      "legs": [
+        {
+          "match": "2026-09-30_周三001",
+          "home": "韩国亚运男足",
+          "away": "中国亚运男足",
+          "league": "亚运男足",
+          "score": "1-0",
+          "prob": 0.185,
+          "odds": 7.0
+        },
+        {
+          "match": "2026-09-30_周三002",
+          "home": "乌兹别克亚运男足",
+          "away": "日本亚",
+          "league": "亚运男足",
+          "score": "1-0",
+          "prob": 0.181,
+          "odds": 7.0
+        }
+      ],
+      "total_odds": 49.0,
+      "hit_prob": 0.0335,
+      "stake": 2.0,
+      "potential": 98.0,
+      "worst_win": 0.0,
+      "n_bets": 1,
+      "odds_source": "simulated",
+      "note": "两场比分都中才赢（单场命中率约 18% × 18%）"
+    }
+  ],
+  "parlay_calibration": {
+    "overall": 0.4703,
+    "n": 908,
+    "table": {
+      "0.35": 0.3915,
+      "0.4": 0.4208,
+      "0.45": 0.4915,
+      "0.5": 0.4851,
+      "0.55": 0.6,
+      "0.6": 0.6275,
+      "0.65": 0.6429,
+      "0.7": 0.5
+    },
+    "note": "串关 EV 用账本校准命中率（模型概率高估，0.55-0.60 段仅 31.6% 命中）；推荐=校准EV>0"
+  }
+}

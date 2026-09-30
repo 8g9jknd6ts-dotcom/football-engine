@@ -1,13 +1,13 @@
 {
   "date": "2026-09-29",
-  "n_matches": 14,
-  "hit_rate": 0.8571,
-  "hits": 12,
+  "n_matches": 15,
+  "hit_rate": 0.8667,
+  "hits": 13,
   "source_brier": {
-    "model": 0.4743,
+    "model": 0.4555,
     "market": null,
     "djyy": null,
-    "final": 0.5282
+    "final": 0.5094
   },
   "by_league": {
     "亚运女足": {
@@ -17,10 +17,10 @@
       "avg_brier": 0.6141
     },
     "友谊赛": {
-      "n": 1,
+      "n": 2,
       "hit_rate": 1.0,
-      "wilson_lower": 0.2065,
-      "avg_brier": 0.3552
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.3007
     },
     "日联杯": {
       "n": 4,
@@ -49,10 +49,10 @@
       "avg_brier": 0.4258
     },
     "high": {
-      "n": 4,
-      "hit_rate": 0.75,
-      "wilson_lower": 0.3006,
-      "avg_brier": 0.519
+      "n": 5,
+      "hit_rate": 0.8,
+      "wilson_lower": 0.3755,
+      "avg_brier": 0.4644
     }
   },
   "by_odds_band": {
@@ -63,10 +63,10 @@
       "avg_brier": 0.5773
     },
     "1.5-2.0": {
-      "n": 5,
+      "n": 6,
       "hit_rate": 1.0,
-      "wilson_lower": 0.5655,
-      "avg_brier": 0.3047
+      "wilson_lower": 0.6097,
+      "avg_brier": 0.295
     },
     "1.0-1.5": {
       "n": 1,
@@ -102,13 +102,13 @@
     }
   },
   "market_signal_stats": {
-    "n": 13,
-    "hits": 0
+    "n": 14,
+    "hits": 1
   },
   "layered": {
-    "log_loss_final": 0.92,
+    "log_loss_final": 0.8932,
     "goal_framework": {
-      "n": 14,
+      "n": 15,
       "hits": 6
     },
     "prob_bands": {
@@ -117,7 +117,7 @@
         "hit_rate": 1.0
       },
       "50-60%": {
-        "n": 5,
+        "n": 6,
         "hit_rate": 1.0
       },
       "60%+": {
@@ -131,8 +131,8 @@
     },
     "freshness_groups": {
       "ok": {
-        "n": 8,
-        "hit_rate": 0.875
+        "n": 9,
+        "hit_rate": 0.8889
       },
       "watch": {
         "n": 6,
@@ -145,15 +145,15 @@
       "dimension": "outcome",
       "key": "all",
       "outcome": "draw",
-      "predicted_avg": 0.2812,
-      "actual_rate": 0.0714,
-      "gap": 0.2098,
-      "n": 14,
+      "predicted_avg": 0.2778,
+      "actual_rate": 0.0667,
+      "gap": 0.2112,
+      "n": 15,
       "severity": "warn",
       "suggested_action": "increase market_weight (trust market on draws)"
     }
   ],
   "total_pnl": -157.75,
-  "generated_at": "2026-09-29T23:59:13.000814",
-  "sha256": "67290ddbb59c846a9c74183ce0d8b3ba"
+  "generated_at": "2026-09-30T05:30:41.375098",
+  "sha256": "1b6587e063677cb91986d3e5494bc2bd"
 }

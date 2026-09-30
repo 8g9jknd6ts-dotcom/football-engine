@@ -1,16 +1,16 @@
 {
   "generated_at": "2026-09-30",
-  "total_matches": 908,
+  "total_matches": 909,
   "date_range": [
     "2026-07-20",
     "2026-09-29"
   ],
   "overall": {
-    "hit_rate": 0.4703,
-    "brier_final": 0.6349,
-    "brier_model": 0.6443,
-    "brier_market": 0.086,
-    "brier_djyy": 0.0866
+    "hit_rate": 0.4708,
+    "brier_final": 0.6345,
+    "brier_model": 0.6438,
+    "brier_market": 0.0859,
+    "brier_djyy": 0.0865
   },
   "daily": [
     {
@@ -867,21 +867,21 @@
     },
     {
       "date": "2026-09-29",
-      "n": 14,
-      "hits": 12,
-      "hit_rate": 0.8571,
-      "cum_hit_rate": 0.4703,
-      "brier_final": 0.5282,
-      "brier_model": 0.4743,
+      "n": 15,
+      "hits": 13,
+      "hit_rate": 0.8667,
+      "cum_hit_rate": 0.4708,
+      "brier_final": 0.5094,
+      "brier_model": 0.4555,
       "brier_market": null,
       "brier_djyy": null,
       "pnl": -157.8
     }
   ],
   "rolling7": {
-    "n": 79,
-    "hit_rate": 0.4937,
-    "brier_final": 0.6457,
+    "n": 80,
+    "hit_rate": 0.5,
+    "brier_final": 0.643,
     "pnl": -207.8
   },
   "prev7": {
@@ -1056,9 +1056,9 @@
     },
     {
       "layer": "友谊赛",
-      "n": 10,
-      "hit_rate": 0.6,
-      "brier_final": 0.6233
+      "n": 11,
+      "hit_rate": 0.6364,
+      "brier_final": 0.589
     },
     {
       "layer": "亚冠杯",
@@ -1166,9 +1166,9 @@
     },
     {
       "layer": "1.5-2.0",
-      "n": 346,
-      "hit_rate": 0.5578,
-      "brier_final": 0.592
+      "n": 347,
+      "hit_rate": 0.5591,
+      "brier_final": 0.591
     },
     {
       "layer": "1.0-1.5",
@@ -1198,9 +1198,9 @@
     },
     {
       "layer": "high",
-      "n": 170,
-      "hit_rate": 0.6059,
-      "brier_final": 0.5645
+      "n": 171,
+      "hit_rate": 0.6082,
+      "brier_final": 0.5626
     }
   ]
 }
