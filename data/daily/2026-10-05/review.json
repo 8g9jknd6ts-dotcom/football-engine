@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-05",
+  "n_matches": 1,
+  "hit_rate": 0.0,
+  "hits": 0,
+  "source_brier": {
+    "model": 0.6079,
+    "market": null,
+    "djyy": null,
+    "final": 0.6275
+  },
+  "by_league": {
+    "欧国联": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6275
+    }
+  },
+  "by_confidence_tier": {
+    "mid": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6275
+    }
+  },
+  "by_odds_band": {
+    "2.0-3.0": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.6275
+    }
+  },
+  "score_stats": {
+    "top1": 0,
+    "top3": 0,
+    "top5": 0,
+    "top8": 1,
+    "any": 1
+  },
+  "score_rank_hist": {
+    "7": 1
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 1,
+      "hits": 0
+    }
+  },
+  "market_signal_stats": {
+    "n": 1,
+    "hits": 0
+  },
+  "layered": {
+    "log_loss_final": 0.9891,
+    "goal_framework": {
+      "n": 1,
+      "hits": 0
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 1,
+        "hit_rate": 0.0
+      }
+    },
+    "freshness_groups": {
+      "ok": {
+        "n": 1,
+        "hit_rate": 0.0
+      }
+    }
+  },
+  "biases": [],
+  "total_pnl": 0.0,
+  "generated_at": "2026-10-05T18:50:53.682304",
+  "sha256": "bd630c07a61e21068bd7552d04f88362"
+}

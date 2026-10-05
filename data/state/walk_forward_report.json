@@ -1,25 +1,25 @@
 {
-  "total_matches": 911,
+  "total_matches": 912,
   "date_range": [
     "2026-07-20",
-    "2026-09-30"
+    "2026-10-05"
   ],
   "metrics": {
     "brier": 0.6346,
-    "weighted_brier": 0.6339,
+    "weighted_brier": 0.6338,
     "rps": 0.2245,
     "weighted_rps": 0.2246,
     "log_loss": 1.0576,
-    "hit_rate": 0.4709,
-    "ece": 0.1611
+    "hit_rate": 0.4704,
+    "ece": 0.1619
   },
   "draw_analysis": {
     "actual_draws": 221,
-    "actual_draw_rate": 0.2426,
-    "predicted_draws": 69,
-    "predicted_draw_rate": 0.0757,
+    "actual_draw_rate": 0.2423,
+    "predicted_draws": 70,
+    "predicted_draw_rate": 0.0768,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2876,
+    "avg_draw_prob": 0.2878,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4709,
-      "n": 911
+      "hit_rate": 0.4704,
+      "n": 912
     },
     "market": {
       "hit_rate": 0.512,
@@ -105,10 +105,10 @@
       "rps": 0.1797
     },
     "欧国联": {
-      "n": 37,
-      "hit_rate": 0.5405,
-      "brier": 0.5777,
-      "rps": 0.2115
+      "n": 38,
+      "hit_rate": 0.5263,
+      "brier": 0.5791,
+      "rps": 0.2116
     },
     "德甲": {
       "n": 36,
