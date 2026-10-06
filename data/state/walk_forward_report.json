@@ -1,25 +1,25 @@
 {
-  "total_matches": 921,
+  "total_matches": 928,
   "date_range": [
     "2026-07-20",
     "2026-10-06"
   ],
   "metrics": {
-    "brier": 0.6333,
-    "weighted_brier": 0.6325,
-    "rps": 0.2237,
-    "weighted_rps": 0.2238,
-    "log_loss": 1.0556,
-    "hit_rate": 0.4723,
-    "ece": 0.1613
+    "brier": 0.6321,
+    "weighted_brier": 0.631,
+    "rps": 0.2233,
+    "weighted_rps": 0.2233,
+    "log_loss": 1.0537,
+    "hit_rate": 0.4731,
+    "ece": 0.156
   },
   "draw_analysis": {
-    "actual_draws": 224,
-    "actual_draw_rate": 0.2432,
-    "predicted_draws": 70,
-    "predicted_draw_rate": 0.076,
+    "actual_draws": 225,
+    "actual_draw_rate": 0.2425,
+    "predicted_draws": 71,
+    "predicted_draw_rate": 0.0765,
     "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2876,
+    "avg_draw_prob": 0.2874,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4723,
-      "n": 921
+      "hit_rate": 0.4731,
+      "n": 928
     },
     "market": {
       "hit_rate": 0.512,
@@ -50,6 +50,12 @@
       "brier": 0.6533,
       "rps": 0.2357
     },
+    "欧国联": {
+      "n": 52,
+      "hit_rate": 0.5385,
+      "brier": 0.5574,
+      "rps": 0.1962
+    },
     "欧冠": {
       "n": 51,
       "hit_rate": 0.451,
@@ -67,12 +73,6 @@
       "hit_rate": 0.3556,
       "brier": 0.6715,
       "rps": 0.2239
-    },
-    "欧国联": {
-      "n": 45,
-      "hit_rate": 0.5333,
-      "brier": 0.5711,
-      "rps": 0.2008
     },
     "欧罗巴": {
       "n": 44,
