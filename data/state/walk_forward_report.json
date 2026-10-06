@@ -1,23 +1,23 @@
 {
-  "total_matches": 918,
+  "total_matches": 921,
   "date_range": [
     "2026-07-20",
-    "2026-10-05"
+    "2026-10-06"
   ],
   "metrics": {
-    "brier": 0.6334,
+    "brier": 0.6333,
     "weighted_brier": 0.6325,
-    "rps": 0.2239,
-    "weighted_rps": 0.2239,
-    "log_loss": 1.0558,
-    "hit_rate": 0.4717,
+    "rps": 0.2237,
+    "weighted_rps": 0.2238,
+    "log_loss": 1.0556,
+    "hit_rate": 0.4723,
     "ece": 0.1613
   },
   "draw_analysis": {
-    "actual_draws": 223,
-    "actual_draw_rate": 0.2429,
+    "actual_draws": 224,
+    "actual_draw_rate": 0.2432,
     "predicted_draws": 70,
-    "predicted_draw_rate": 0.0763,
+    "predicted_draw_rate": 0.076,
     "max_draw_prob": 0.4912,
     "avg_draw_prob": 0.2876,
     "avg_market_draw": 0.2437,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4717,
-      "n": 918
+      "hit_rate": 0.4723,
+      "n": 921
     },
     "market": {
       "hit_rate": 0.512,
@@ -68,17 +68,17 @@
       "brier": 0.6715,
       "rps": 0.2239
     },
+    "欧国联": {
+      "n": 45,
+      "hit_rate": 0.5333,
+      "brier": 0.5711,
+      "rps": 0.2008
+    },
     "欧罗巴": {
       "n": 44,
       "hit_rate": 0.5227,
       "brier": 0.6249,
       "rps": 0.2376
-    },
-    "欧国联": {
-      "n": 44,
-      "hit_rate": 0.5455,
-      "brier": 0.5622,
-      "rps": 0.2008
     },
     "K1联赛": {
       "n": 42,
@@ -194,6 +194,12 @@
       "brier": 0.7266,
       "rps": 0.2102
     },
+    "友谊赛": {
+      "n": 13,
+      "hit_rate": 0.6923,
+      "brier": 0.5673,
+      "rps": 0.2276
+    },
     "巴西杯": {
       "n": 12,
       "hit_rate": 0.4167,
@@ -205,12 +211,6 @@
       "hit_rate": 0.7273,
       "brier": 0.5143,
       "rps": 0.1974
-    },
-    "友谊赛": {
-      "n": 11,
-      "hit_rate": 0.6364,
-      "brier": 0.589,
-      "rps": 0.2359
     },
     "亚冠杯": {
       "n": 8,

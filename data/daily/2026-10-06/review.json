@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-06",
+  "n_matches": 3,
+  "hit_rate": 0.6667,
+  "hits": 2,
+  "source_brier": {
+    "model": 0.6182,
+    "market": null,
+    "djyy": null,
+    "final": 0.619
+  },
+  "by_league": {
+    "友谊赛": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.448
+    },
+    "欧国联": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9609
+    }
+  },
+  "by_confidence_tier": {
+    "mid": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.448
+    },
+    "high": {
+      "n": 1,
+      "hit_rate": 0.0,
+      "wilson_lower": 0.0,
+      "avg_brier": 0.9609
+    }
+  },
+  "by_odds_band": {
+    "2.0-3.0": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.503
+    },
+    "1.5-2.0": {
+      "n": 2,
+      "hit_rate": 0.5,
+      "wilson_lower": 0.0945,
+      "avg_brier": 0.6769
+    }
+  },
+  "score_stats": {
+    "top1": 1,
+    "top3": 2,
+    "top5": 2,
+    "top8": 2,
+    "any": 2
+  },
+  "score_rank_hist": {
+    "3": 1,
+    "1": 1
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 2,
+      "hits": 2
+    }
+  },
+  "market_signal_stats": {
+    "n": 3,
+    "hits": 0
+  },
+  "layered": {
+    "log_loss_final": 0.9823,
+    "goal_framework": {
+      "n": 3,
+      "hits": 2
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 2,
+        "hit_rate": 1.0
+      },
+      "60%+": {
+        "n": 1,
+        "hit_rate": 0.0
+      }
+    },
+    "freshness_groups": {
+      "watch": {
+        "n": 3,
+        "hit_rate": 0.6667
+      }
+    }
+  },
+  "biases": [],
+  "total_pnl": -75.0,
+  "generated_at": "2026-10-06T19:50:22.840151",
+  "sha256": "227b27e0173a2ea6dc5f7ed1d67a7f8a"
+}
