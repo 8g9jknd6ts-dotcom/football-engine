@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T13:21:16.287302+00:00",
+  "generated_at": "2026-10-07T19:33:21.753767+00:00",
   "parlay": {
     "n_tickets": 85,
     "n_settled": 85,
@@ -48,8 +48,8 @@
         "roi": -0.6111
       }
     },
-    "leg_hit_rate": 0.1138,
-    "n_legs_settled": 773
+    "leg_hit_rate": 0.1134,
+    "n_legs_settled": 776
   },
   "tickets": {
     "parlay": [
@@ -16117,7 +16117,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -16137,7 +16137,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -16225,7 +16225,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -16246,7 +16246,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-10-07_周三005",
@@ -16271,7 +16271,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null,
+          false,
           null
         ],
         "return": 0.0,
@@ -16292,7 +16292,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-10-07_周三005",
@@ -35633,8 +35633,8 @@
           "roi": null,
           "avg_odds": null,
           "by_type": {},
-          "leg_hit_rate": null,
-          "n_legs_settled": 0
+          "leg_hit_rate": 0.0,
+          "n_legs_settled": 3
         },
         "tickets": [
           {
@@ -35649,7 +35649,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -35669,7 +35669,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -35757,7 +35757,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -35778,7 +35778,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-10-07_周三005",
@@ -35803,7 +35803,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null,
+              false,
               null
             ],
             "return": 0.0,
@@ -35824,7 +35824,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-10-07_周三005",
