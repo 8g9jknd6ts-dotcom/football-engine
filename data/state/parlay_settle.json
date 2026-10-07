@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T23:48:59.562630+00:00",
+  "generated_at": "2026-10-07T05:58:42.346596+00:00",
   "parlay": {
     "n_tickets": 85,
     "n_settled": 85,
@@ -23,33 +23,33 @@
     }
   },
   "score_parlay": {
-    "n_tickets": 325,
-    "n_settled": 317,
+    "n_tickets": 330,
+    "n_settled": 320,
     "n_won": 4,
-    "hit_rate": 0.0126,
-    "stake": 1006.0,
+    "hit_rate": 0.0125,
+    "stake": 1018.0,
     "return": 392.0,
-    "roi": -0.6103,
-    "avg_odds": 174.22,
+    "roi": -0.6149,
+    "avg_odds": 174.88,
     "by_type": {
       "比分2串1": {
-        "n": 193,
+        "n": 194,
         "won": 2,
-        "roi": -0.4922
+        "roi": -0.4948
       },
       "比分3串1": {
-        "n": 62,
+        "n": 63,
         "won": 0,
         "roi": -1.0
       },
       "比分3串4(容错)": {
-        "n": 62,
+        "n": 63,
         "won": 2,
-        "roi": -0.6048
+        "roi": -0.6111
       }
     },
-    "leg_hit_rate": 0.1143,
-    "n_legs_settled": 770
+    "leg_hit_rate": 0.1138,
+    "n_legs_settled": 773
   },
   "tickets": {
     "parlay": [
@@ -15912,12 +15912,12 @@
         "potential": 98.0,
         "total_odds": 49.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "两场比分都中才赢（单场命中率约 27% × 26%）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
           true,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -15937,7 +15937,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -16020,12 +16020,12 @@
         "potential": 686.0,
         "total_odds": 343.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "三场比分全中才赢（赔率 343 倍）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
           true,
-          null,
+          false,
           false
         ],
         "return": 0.0,
@@ -16046,7 +16046,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-10-06_周二004",
@@ -16066,12 +16066,12 @@
         "potential": 980.0,
         "total_odds": 343.0,
         "odds_source": "simulated",
-        "note": "待赛",
+        "note": "0/4注中（命中1场）",
         "won": false,
-        "pending": true,
+        "pending": false,
         "leg_results": [
           true,
-          null,
+          false,
           false
         ],
         "return": 0.0,
@@ -16092,7 +16092,7 @@
             "sel": null,
             "score": "0-1",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           },
           {
             "match": "2026-10-06_周二004",
@@ -16102,6 +16102,206 @@
             "score": "0-1",
             "odds": 7.0,
             "hit": false
+          }
+        ]
+      },
+      {
+        "date": "2026-10-07",
+        "type": "比分2串1",
+        "stake": 2.0,
+        "potential": 126.0,
+        "total_odds": 63.0,
+        "odds_source": "simulated",
+        "note": "待赛",
+        "won": false,
+        "pending": true,
+        "leg_results": [
+          null,
+          null
+        ],
+        "return": 0.0,
+        "legs": [
+          {
+            "match": "2026-10-07_周三002",
+            "home": "巴西国际",
+            "away": "科林蒂安",
+            "sel": null,
+            "score": "0-0",
+            "odds": 9.0,
+            "hit": null
+          },
+          {
+            "match": "2026-10-07_周三001",
+            "home": "赫尔辛基火花",
+            "away": "国际图尔库",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          }
+        ]
+      },
+      {
+        "date": "2026-10-07",
+        "type": "比分2串1",
+        "stake": 2.0,
+        "potential": 126.0,
+        "total_odds": 63.0,
+        "odds_source": "simulated",
+        "note": "待赛",
+        "won": false,
+        "pending": true,
+        "leg_results": [
+          null,
+          null
+        ],
+        "return": 0.0,
+        "legs": [
+          {
+            "match": "2026-10-07_周三002",
+            "home": "巴西国际",
+            "away": "科林蒂安",
+            "sel": null,
+            "score": "0-0",
+            "odds": 9.0,
+            "hit": null
+          },
+          {
+            "match": "2026-10-07_周三005",
+            "home": "维多利亚",
+            "away": "沙佩科恩斯",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          }
+        ]
+      },
+      {
+        "date": "2026-10-07",
+        "type": "比分2串1",
+        "stake": 2.0,
+        "potential": 126.0,
+        "total_odds": 63.0,
+        "odds_source": "simulated",
+        "note": "待赛",
+        "won": false,
+        "pending": true,
+        "leg_results": [
+          null,
+          null
+        ],
+        "return": 0.0,
+        "legs": [
+          {
+            "match": "2026-10-07_周三002",
+            "home": "巴西国际",
+            "away": "科林蒂安",
+            "sel": null,
+            "score": "0-0",
+            "odds": 9.0,
+            "hit": null
+          },
+          {
+            "match": "2026-10-07_周三003",
+            "home": "雷莫",
+            "away": "格雷米奥",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          }
+        ]
+      },
+      {
+        "date": "2026-10-07",
+        "type": "比分3串1",
+        "stake": 2.0,
+        "potential": 882.0,
+        "total_odds": 441.0,
+        "odds_source": "simulated",
+        "note": "待赛",
+        "won": false,
+        "pending": true,
+        "leg_results": [
+          null,
+          null,
+          null
+        ],
+        "return": 0.0,
+        "legs": [
+          {
+            "match": "2026-10-07_周三002",
+            "home": "巴西国际",
+            "away": "科林蒂安",
+            "sel": null,
+            "score": "0-0",
+            "odds": 9.0,
+            "hit": null
+          },
+          {
+            "match": "2026-10-07_周三001",
+            "home": "赫尔辛基火花",
+            "away": "国际图尔库",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          },
+          {
+            "match": "2026-10-07_周三005",
+            "home": "维多利亚",
+            "away": "沙佩科恩斯",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          }
+        ]
+      },
+      {
+        "date": "2026-10-07",
+        "type": "比分3串4(容错)",
+        "stake": 8.0,
+        "potential": 1232.0,
+        "total_odds": 441.0,
+        "odds_source": "simulated",
+        "note": "待赛",
+        "won": false,
+        "pending": true,
+        "leg_results": [
+          null,
+          null,
+          null
+        ],
+        "return": 0.0,
+        "legs": [
+          {
+            "match": "2026-10-07_周三002",
+            "home": "巴西国际",
+            "away": "科林蒂安",
+            "sel": null,
+            "score": "0-0",
+            "odds": 9.0,
+            "hit": null
+          },
+          {
+            "match": "2026-10-07_周三001",
+            "home": "赫尔辛基火花",
+            "away": "国际图尔库",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
+          },
+          {
+            "match": "2026-10-07_周三005",
+            "home": "维多利亚",
+            "away": "沙佩科恩斯",
+            "sel": null,
+            "score": "0-1",
+            "odds": 7.0,
+            "hit": null
           }
         ]
       }
@@ -35186,22 +35386,32 @@
       "score_parlay": {
         "stats": {
           "n_tickets": 5,
-          "n_settled": 2,
+          "n_settled": 5,
           "n_won": 0,
           "hit_rate": 0.0,
-          "stake": 4.0,
+          "stake": 16.0,
           "return": 0.0,
           "roi": -1.0,
-          "avg_odds": 49.0,
+          "avg_odds": 166.6,
           "by_type": {
             "比分2串1": {
-              "n": 2,
+              "n": 3,
+              "won": 0,
+              "roi": -1.0
+            },
+            "比分3串1": {
+              "n": 1,
+              "won": 0,
+              "roi": -1.0
+            },
+            "比分3串4(容错)": {
+              "n": 1,
               "won": 0,
               "roi": -1.0
             }
           },
-          "leg_hit_rate": 0.5556,
-          "n_legs_settled": 9
+          "leg_hit_rate": 0.4167,
+          "n_legs_settled": 12
         },
         "tickets": [
           {
@@ -35211,12 +35421,12 @@
             "potential": 98.0,
             "total_odds": 49.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "两场比分都中才赢（单场命中率约 27% × 26%）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
               true,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -35236,7 +35446,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
@@ -35319,12 +35529,12 @@
             "potential": 686.0,
             "total_odds": 343.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "三场比分全中才赢（赔率 343 倍）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
               true,
-              null,
+              false,
               false
             ],
             "return": 0.0,
@@ -35345,7 +35555,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-10-06_周二004",
@@ -35365,12 +35575,12 @@
             "potential": 980.0,
             "total_odds": 343.0,
             "odds_source": "simulated",
-            "note": "待赛",
+            "note": "0/4注中（命中1场）",
             "won": false,
-            "pending": true,
+            "pending": false,
             "leg_results": [
               true,
-              null,
+              false,
               false
             ],
             "return": 0.0,
@@ -35391,7 +35601,7 @@
                 "sel": null,
                 "score": "0-1",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               },
               {
                 "match": "2026-10-06_周二004",
@@ -35401,6 +35611,229 @@
                 "score": "0-1",
                 "odds": 7.0,
                 "hit": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "2026-10-07": {
+      "parlay": {
+        "stats": null,
+        "tickets": []
+      },
+      "score_parlay": {
+        "stats": {
+          "n_tickets": 5,
+          "n_settled": 0,
+          "n_won": 0,
+          "hit_rate": null,
+          "stake": 0,
+          "return": 0,
+          "roi": null,
+          "avg_odds": null,
+          "by_type": {},
+          "leg_hit_rate": null,
+          "n_legs_settled": 0
+        },
+        "tickets": [
+          {
+            "date": "2026-10-07",
+            "type": "比分2串1",
+            "stake": 2.0,
+            "potential": 126.0,
+            "total_odds": 63.0,
+            "odds_source": "simulated",
+            "note": "待赛",
+            "won": false,
+            "pending": true,
+            "leg_results": [
+              null,
+              null
+            ],
+            "return": 0.0,
+            "legs": [
+              {
+                "match": "2026-10-07_周三002",
+                "home": "巴西国际",
+                "away": "科林蒂安",
+                "sel": null,
+                "score": "0-0",
+                "odds": 9.0,
+                "hit": null
+              },
+              {
+                "match": "2026-10-07_周三001",
+                "home": "赫尔辛基火花",
+                "away": "国际图尔库",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              }
+            ]
+          },
+          {
+            "date": "2026-10-07",
+            "type": "比分2串1",
+            "stake": 2.0,
+            "potential": 126.0,
+            "total_odds": 63.0,
+            "odds_source": "simulated",
+            "note": "待赛",
+            "won": false,
+            "pending": true,
+            "leg_results": [
+              null,
+              null
+            ],
+            "return": 0.0,
+            "legs": [
+              {
+                "match": "2026-10-07_周三002",
+                "home": "巴西国际",
+                "away": "科林蒂安",
+                "sel": null,
+                "score": "0-0",
+                "odds": 9.0,
+                "hit": null
+              },
+              {
+                "match": "2026-10-07_周三005",
+                "home": "维多利亚",
+                "away": "沙佩科恩斯",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              }
+            ]
+          },
+          {
+            "date": "2026-10-07",
+            "type": "比分2串1",
+            "stake": 2.0,
+            "potential": 126.0,
+            "total_odds": 63.0,
+            "odds_source": "simulated",
+            "note": "待赛",
+            "won": false,
+            "pending": true,
+            "leg_results": [
+              null,
+              null
+            ],
+            "return": 0.0,
+            "legs": [
+              {
+                "match": "2026-10-07_周三002",
+                "home": "巴西国际",
+                "away": "科林蒂安",
+                "sel": null,
+                "score": "0-0",
+                "odds": 9.0,
+                "hit": null
+              },
+              {
+                "match": "2026-10-07_周三003",
+                "home": "雷莫",
+                "away": "格雷米奥",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              }
+            ]
+          },
+          {
+            "date": "2026-10-07",
+            "type": "比分3串1",
+            "stake": 2.0,
+            "potential": 882.0,
+            "total_odds": 441.0,
+            "odds_source": "simulated",
+            "note": "待赛",
+            "won": false,
+            "pending": true,
+            "leg_results": [
+              null,
+              null,
+              null
+            ],
+            "return": 0.0,
+            "legs": [
+              {
+                "match": "2026-10-07_周三002",
+                "home": "巴西国际",
+                "away": "科林蒂安",
+                "sel": null,
+                "score": "0-0",
+                "odds": 9.0,
+                "hit": null
+              },
+              {
+                "match": "2026-10-07_周三001",
+                "home": "赫尔辛基火花",
+                "away": "国际图尔库",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              },
+              {
+                "match": "2026-10-07_周三005",
+                "home": "维多利亚",
+                "away": "沙佩科恩斯",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              }
+            ]
+          },
+          {
+            "date": "2026-10-07",
+            "type": "比分3串4(容错)",
+            "stake": 8.0,
+            "potential": 1232.0,
+            "total_odds": 441.0,
+            "odds_source": "simulated",
+            "note": "待赛",
+            "won": false,
+            "pending": true,
+            "leg_results": [
+              null,
+              null,
+              null
+            ],
+            "return": 0.0,
+            "legs": [
+              {
+                "match": "2026-10-07_周三002",
+                "home": "巴西国际",
+                "away": "科林蒂安",
+                "sel": null,
+                "score": "0-0",
+                "odds": 9.0,
+                "hit": null
+              },
+              {
+                "match": "2026-10-07_周三001",
+                "home": "赫尔辛基火花",
+                "away": "国际图尔库",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
+              },
+              {
+                "match": "2026-10-07_周三005",
+                "home": "维多利亚",
+                "away": "沙佩科恩斯",
+                "sel": null,
+                "score": "0-1",
+                "odds": 7.0,
+                "hit": null
               }
             ]
           }
