@@ -1,21 +1,34 @@
 {
   "n_leagues": 44,
-  "n_matches": 974,
+  "n_matches": 983,
   "external_added": 29,
-  "generated_at": "2026-10-09T18:51:38.238922",
+  "generated_at": "2026-10-09T23:17:06.547360",
   "leagues": [
     {
       "league": "西甲",
-      "n": 69,
-      "hit_rate": 0.3913,
-      "avg_odds": 2.03,
-      "roi": -0.2587,
-      "avg_confidence": 0.1881,
+      "n": 70,
+      "hit_rate": 0.3857,
+      "avg_odds": 2.029,
+      "roi": -0.2693,
+      "avg_confidence": 0.1877,
       "verdict": "送钱区",
       "recent_n": 5,
       "recent_hits": 2,
       "recent_hit_rate": 0.4,
       "recent_roi": -0.33
+    },
+    {
+      "league": "挪超",
+      "n": 52,
+      "hit_rate": 0.6154,
+      "avg_odds": 1.96,
+      "roi": 0.144,
+      "avg_confidence": 0.2498,
+      "verdict": "价值区",
+      "recent_n": 5,
+      "recent_hits": 5,
+      "recent_hit_rate": 1.0,
+      "recent_roi": 1.026
     },
     {
       "league": "欧国联",
@@ -29,19 +42,6 @@
       "recent_hits": 4,
       "recent_hit_rate": 0.8,
       "recent_roi": 0.156
-    },
-    {
-      "league": "挪超",
-      "n": 51,
-      "hit_rate": 0.6078,
-      "avg_odds": 1.955,
-      "roi": 0.1229,
-      "avg_confidence": 0.2521,
-      "verdict": "价值区",
-      "recent_n": 5,
-      "recent_hits": 5,
-      "recent_hit_rate": 1.0,
-      "recent_roi": 0.914
     },
     {
       "league": "欧冠",
@@ -71,11 +71,11 @@
     },
     {
       "league": "瑞典超",
-      "n": 47,
-      "hit_rate": 0.2766,
-      "avg_odds": 2.126,
-      "roi": -0.4453,
-      "avg_confidence": 0.2205,
+      "n": 48,
+      "hit_rate": 0.2708,
+      "avg_odds": 2.124,
+      "roi": -0.4569,
+      "avg_confidence": 0.2198,
       "verdict": "回暖解禁",
       "recent_n": 5,
       "recent_hits": 3,
@@ -122,6 +122,19 @@
       "recent_roi": 0.14
     },
     {
+      "league": "荷甲",
+      "n": 42,
+      "hit_rate": 0.5952,
+      "avg_odds": 1.811,
+      "roi": 0.08,
+      "avg_confidence": 0.2149,
+      "verdict": "价值区",
+      "recent_n": 5,
+      "recent_hits": 3,
+      "recent_hit_rate": 0.6,
+      "recent_roi": -0.032
+    },
+    {
       "league": "巴甲",
       "n": 42,
       "hit_rate": 0.3571,
@@ -135,30 +148,17 @@
       "recent_roi": -0.106
     },
     {
-      "league": "荷甲",
-      "n": 41,
-      "hit_rate": 0.5854,
-      "avg_odds": 1.818,
-      "roi": 0.069,
-      "avg_confidence": 0.214,
-      "verdict": "价值区",
-      "recent_n": 5,
-      "recent_hits": 3,
-      "recent_hit_rate": 0.6,
-      "recent_roi": -0.016
-    },
-    {
       "league": "葡超",
-      "n": 39,
-      "hit_rate": 0.6154,
-      "avg_odds": 1.972,
-      "roi": 0.1879,
-      "avg_confidence": 0.2118,
+      "n": 40,
+      "hit_rate": 0.6,
+      "avg_odds": 1.992,
+      "roi": 0.1582,
+      "avg_confidence": 0.2086,
       "verdict": "价值区",
       "recent_n": 5,
-      "recent_hits": 2,
-      "recent_hit_rate": 0.4,
-      "recent_roi": -0.256
+      "recent_hits": 1,
+      "recent_hit_rate": 0.2,
+      "recent_roi": -0.562
     },
     {
       "league": "芬超",
@@ -175,11 +175,11 @@
     },
     {
       "league": "德甲",
-      "n": 36,
-      "hit_rate": 0.4444,
-      "avg_odds": 1.966,
-      "roi": -0.1308,
-      "avg_confidence": 0.1821,
+      "n": 37,
+      "hit_rate": 0.4324,
+      "avg_odds": 1.969,
+      "roi": -0.1543,
+      "avg_confidence": 0.1817,
       "verdict": "送钱区",
       "recent_n": 5,
       "recent_hits": 1,
@@ -200,6 +200,19 @@
       "recent_roi": -1.0
     },
     {
+      "league": "英冠",
+      "n": 33,
+      "hit_rate": 0.3939,
+      "avg_odds": 2.202,
+      "roi": -0.1642,
+      "avg_confidence": 0.1525,
+      "verdict": "回暖解禁",
+      "recent_n": 5,
+      "recent_hits": 3,
+      "recent_hit_rate": 0.6,
+      "recent_roi": 0.202
+    },
+    {
       "league": "日职",
       "n": 32,
       "hit_rate": 0.5,
@@ -213,30 +226,17 @@
       "recent_roi": -0.132
     },
     {
-      "league": "英冠",
-      "n": 32,
-      "hit_rate": 0.4062,
-      "avg_odds": 2.223,
-      "roi": -0.1381,
-      "avg_confidence": 0.147,
-      "verdict": "回暖解禁",
-      "recent_n": 5,
-      "recent_hits": 4,
-      "recent_hit_rate": 0.8,
-      "recent_roi": 0.546
-    },
-    {
       "league": "法甲",
-      "n": 29,
-      "hit_rate": 0.5172,
-      "avg_odds": 2.101,
-      "roi": 0.0693,
-      "avg_confidence": 0.1653,
-      "verdict": "价值区",
+      "n": 30,
+      "hit_rate": 0.5,
+      "avg_odds": 2.097,
+      "roi": 0.0337,
+      "avg_confidence": 0.1642,
+      "verdict": "观望",
       "recent_n": 5,
-      "recent_hits": 2,
-      "recent_hit_rate": 0.4,
-      "recent_roi": -0.314
+      "recent_hits": 1,
+      "recent_hit_rate": 0.2,
+      "recent_roi": -0.652
     },
     {
       "league": "沙特联",
@@ -291,6 +291,19 @@
       "recent_roi": 0.924
     },
     {
+      "league": "荷乙",
+      "n": 14,
+      "hit_rate": 0.4286,
+      "avg_odds": 2.189,
+      "roi": -0.0871,
+      "avg_confidence": 0.1565,
+      "verdict": "送钱区",
+      "recent_n": 5,
+      "recent_hits": 2,
+      "recent_hit_rate": 0.4,
+      "recent_roi": -0.198
+    },
+    {
       "league": "德乙",
       "n": 14,
       "hit_rate": 0.4286,
@@ -302,19 +315,6 @@
       "recent_hits": 3,
       "recent_hit_rate": 0.6,
       "recent_roi": 0.154
-    },
-    {
-      "league": "荷乙",
-      "n": 13,
-      "hit_rate": 0.3846,
-      "avg_odds": 2.199,
-      "roi": -0.1746,
-      "avg_confidence": 0.1556,
-      "verdict": "送钱区",
-      "recent_n": 5,
-      "recent_hits": 2,
-      "recent_hit_rate": 0.4,
-      "recent_roi": -0.164
     },
     {
       "league": "法乙",
