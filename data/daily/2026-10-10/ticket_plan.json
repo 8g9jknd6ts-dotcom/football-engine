@@ -3,19 +3,27 @@
     {
       "match": "2026-10-10_周六019",
       "sel": "home",
-      "odds": 1.54,
+      "odds": 1.51,
       "stake": 200,
-      "prob": 0.618
+      "prob": 0.63
     }
   ],
   "value": [],
   "lottery": [
     {
+      "match": "2026-10-10_周六027",
+      "sel": "home",
+      "odds": 1.87,
+      "stake": 25.0,
+      "prob": 0.511,
+      "downgrade_reason": "prob_5060"
+    },
+    {
       "match": "2026-10-10_周六007",
       "sel": "away",
       "odds": 1.84,
-      "stake": 50.0,
-      "prob": 0.517,
+      "stake": 25.0,
+      "prob": 0.518,
       "downgrade_reason": "prob_5060"
     }
   ],
@@ -28,60 +36,15 @@
       "type": "2串1",
       "legs": [
         {
-          "match": "2026-10-10_周六022",
-          "home": "巴萨",
-          "away": "赫塔费",
-          "league": "西甲",
-          "sel": "home",
-          "odds": 1.55,
-          "prob": 0.616,
-          "cal_prob": 0.614,
-          "market_prob": 0.615,
-          "source": "fusion",
-          "hit_prob": 0.614
-        },
-        {
           "match": "2026-10-10_周六005",
           "home": "阿森纳",
           "away": "利兹联",
           "league": "英超",
           "sel": "home",
-          "odds": 1.55,
-          "prob": 0.615,
+          "odds": 1.53,
+          "prob": 0.621,
           "cal_prob": 0.614,
-          "market_prob": 0.615,
-          "source": "fusion",
-          "hit_prob": 0.614
-        }
-      ],
-      "total_odds": 2.4,
-      "model_ev": -0.18,
-      "cal_ev": -0.19,
-      "cal_roi": -0.0943,
-      "market_ev": -0.18,
-      "market_roi": -0.0913,
-      "hit_prob_cal": 0.377,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.81,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "calibrated"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-10-10_周六019",
-          "home": "国际米兰",
-          "away": "帕尔马",
-          "league": "意甲",
-          "sel": "home",
-          "odds": 1.54,
-          "prob": 0.618,
-          "cal_prob": 0.614,
-          "market_prob": 0.618,
+          "market_prob": 0.622,
           "source": "fusion",
           "hit_prob": 0.614
         },
@@ -92,51 +55,6 @@
           "league": "西甲",
           "sel": "home",
           "odds": 1.55,
-          "prob": 0.616,
-          "cal_prob": 0.614,
-          "market_prob": 0.615,
-          "source": "fusion",
-          "hit_prob": 0.614
-        }
-      ],
-      "total_odds": 2.39,
-      "model_ev": -0.18,
-      "cal_ev": -0.2,
-      "cal_roi": -0.1001,
-      "market_ev": -0.18,
-      "market_roi": -0.0919,
-      "hit_prob_cal": 0.377,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.77,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "calibrated"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-10-10_周六019",
-          "home": "国际米兰",
-          "away": "帕尔马",
-          "league": "意甲",
-          "sel": "home",
-          "odds": 1.54,
-          "prob": 0.618,
-          "cal_prob": 0.614,
-          "market_prob": 0.618,
-          "source": "fusion",
-          "hit_prob": 0.614
-        },
-        {
-          "match": "2026-10-10_周六005",
-          "home": "阿森纳",
-          "away": "利兹联",
-          "league": "英超",
-          "sel": "home",
-          "odds": 1.55,
           "prob": 0.615,
           "cal_prob": 0.614,
           "market_prob": 0.615,
@@ -144,17 +62,107 @@
           "hit_prob": 0.614
         }
       ],
-      "total_odds": 2.39,
+      "total_odds": 2.37,
       "model_ev": -0.19,
-      "cal_ev": -0.2,
-      "cal_roi": -0.1001,
+      "cal_ev": -0.21,
+      "cal_roi": -0.106,
       "market_ev": -0.19,
-      "market_roi": -0.0928,
+      "market_roi": -0.0933,
       "hit_prob_cal": 0.377,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.77,
+      "potential": 4.74,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-10-10_周六019",
+          "home": "国际米兰",
+          "away": "帕尔马",
+          "league": "意甲",
+          "sel": "home",
+          "odds": 1.51,
+          "prob": 0.63,
+          "cal_prob": 0.614,
+          "market_prob": 0.63,
+          "source": "fusion",
+          "hit_prob": 0.614
+        },
+        {
+          "match": "2026-10-10_周六022",
+          "home": "巴萨",
+          "away": "赫塔费",
+          "league": "西甲",
+          "sel": "home",
+          "odds": 1.55,
+          "prob": 0.615,
+          "cal_prob": 0.614,
+          "market_prob": 0.615,
+          "source": "fusion",
+          "hit_prob": 0.614
+        }
+      ],
+      "total_odds": 2.34,
+      "model_ev": -0.19,
+      "cal_ev": -0.24,
+      "cal_roi": -0.1176,
+      "market_ev": -0.19,
+      "market_roi": -0.0931,
+      "hit_prob_cal": 0.377,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.68,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-10-10_周六019",
+          "home": "国际米兰",
+          "away": "帕尔马",
+          "league": "意甲",
+          "sel": "home",
+          "odds": 1.51,
+          "prob": 0.63,
+          "cal_prob": 0.614,
+          "market_prob": 0.63,
+          "source": "fusion",
+          "hit_prob": 0.614
+        },
+        {
+          "match": "2026-10-10_周六005",
+          "home": "阿森纳",
+          "away": "利兹联",
+          "league": "英超",
+          "sel": "home",
+          "odds": 1.53,
+          "prob": 0.621,
+          "cal_prob": 0.614,
+          "market_prob": 0.622,
+          "source": "fusion",
+          "hit_prob": 0.614
+        }
+      ],
+      "total_odds": 2.31,
+      "model_ev": -0.19,
+      "cal_ev": -0.26,
+      "cal_roi": -0.129,
+      "market_ev": -0.19,
+      "market_roi": -0.0949,
+      "hit_prob_cal": 0.377,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.62,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -170,7 +178,7 @@
           "away": "济州SK",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.353,
+          "prob": 0.348,
           "odds": 7.0
         },
         {
@@ -179,12 +187,12 @@
           "away": "安养FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.343,
+          "prob": 0.341,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.121,
+      "hit_prob": 0.1186,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -201,21 +209,21 @@
           "away": "济州SK",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.353,
+          "prob": 0.348,
           "odds": 7.0
         },
         {
-          "match": "2026-10-10_周六017",
-          "home": "里尔",
-          "away": "勒阿弗尔",
-          "league": "法甲",
+          "match": "2026-10-10_周六030",
+          "home": "圣保罗",
+          "away": "维多利亚",
+          "league": "巴甲",
           "score": "1-0",
-          "prob": 0.333,
+          "prob": 0.332,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1173,
+      "hit_prob": 0.1156,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -232,21 +240,21 @@
           "away": "济州SK",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.353,
+          "prob": 0.348,
           "odds": 7.0
         },
         {
-          "match": "2026-10-10_周六030",
-          "home": "圣保罗",
-          "away": "维多利亚",
-          "league": "巴甲",
+          "match": "2026-10-10_周六017",
+          "home": "里尔",
+          "away": "勒阿弗尔",
+          "league": "法甲",
           "score": "1-0",
           "prob": 0.331,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1168,
+      "hit_prob": 0.1152,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -263,7 +271,7 @@
           "away": "济州SK",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.353,
+          "prob": 0.348,
           "odds": 7.0
         },
         {
@@ -272,21 +280,21 @@
           "away": "安养FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.343,
+          "prob": 0.341,
           "odds": 7.0
         },
         {
-          "match": "2026-10-10_周六017",
-          "home": "里尔",
-          "away": "勒阿弗尔",
-          "league": "法甲",
+          "match": "2026-10-10_周六030",
+          "home": "圣保罗",
+          "away": "维多利亚",
+          "league": "巴甲",
           "score": "1-0",
-          "prob": 0.333,
+          "prob": 0.332,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0403,
+      "hit_prob": 0.0394,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -303,7 +311,7 @@
           "away": "济州SK",
           "league": "K1联赛",
           "score": "0-1",
-          "prob": 0.353,
+          "prob": 0.348,
           "odds": 7.0
         },
         {
@@ -312,21 +320,21 @@
           "away": "安养FC",
           "league": "K1联赛",
           "score": "1-0",
-          "prob": 0.343,
+          "prob": 0.341,
           "odds": 7.0
         },
         {
-          "match": "2026-10-10_周六017",
-          "home": "里尔",
-          "away": "勒阿弗尔",
-          "league": "法甲",
+          "match": "2026-10-10_周六030",
+          "home": "圣保罗",
+          "away": "维多利亚",
+          "league": "巴甲",
           "score": "1-0",
-          "prob": 0.333,
+          "prob": 0.332,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0403,
+      "hit_prob": 0.0394,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
