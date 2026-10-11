@@ -3,45 +3,58 @@
     {
       "match": "2026-10-11_周日013",
       "sel": "home",
-      "odds": 1.47,
+      "odds": 1.45,
       "stake": 150.0,
-      "prob": 0.649
+      "prob": 0.656
     },
     {
       "match": "2026-10-11_周日023",
       "sel": "away",
       "odds": 1.48,
       "stake": 150.0,
-      "prob": 0.643
+      "prob": 0.642
     }
   ],
   "value": [],
   "lottery": [
     {
-      "match": "2026-10-11_周日008",
+      "match": "2026-10-11_周日004",
       "sel": "home",
-      "odds": 1.86,
+      "odds": 1.84,
       "stake": 25.0,
-      "prob": 0.513,
+      "prob": 0.517,
       "downgrade_reason": "prob_5060"
     },
     {
-      "match": "2026-10-11_周日004",
+      "match": "2026-10-11_周日008",
       "sel": "home",
-      "odds": 1.81,
+      "odds": 1.85,
       "stake": 25.0,
-      "prob": 0.526,
+      "prob": 0.514,
       "downgrade_reason": "prob_5060"
     }
   ],
   "total_stake": 350.0,
-  "expected_roi": -0.0471,
+  "expected_roi": -0.0489,
   "bankroll": 4242.6521,
   "breaker_multiplier": 1.0,
   "parlay": [
     {
       "type": "2串1",
       "legs": [
+        {
+          "match": "2026-10-11_周日013",
+          "home": "拉齐奥",
+          "away": "蒙扎",
+          "league": "意甲",
+          "sel": "home",
+          "odds": 1.45,
+          "prob": 0.656,
+          "cal_prob": 0.688,
+          "market_prob": 0.656,
+          "source": "fusion",
+          "hit_prob": 0.688
+        },
         {
           "match": "2026-10-11_周日019",
           "home": "弗赖堡",
@@ -54,6 +67,38 @@
           "market_prob": 0.656,
           "source": "fusion",
           "hit_prob": 0.688
+        }
+      ],
+      "total_odds": 2.1,
+      "model_ev": -0.19,
+      "cal_ev": -0.01,
+      "cal_roi": -0.0062,
+      "market_ev": -0.19,
+      "market_roi": -0.0948,
+      "hit_prob_cal": 0.473,
+      "recommended": false,
+      "stake": 2.0,
+      "n_bets": 1,
+      "potential": 4.21,
+      "worst_win": 0.0,
+      "note": "两场全中才赢",
+      "source": "calibrated"
+    },
+    {
+      "type": "2串1",
+      "legs": [
+        {
+          "match": "2026-10-11_周日013",
+          "home": "拉齐奥",
+          "away": "蒙扎",
+          "league": "意甲",
+          "sel": "home",
+          "odds": 1.45,
+          "prob": 0.656,
+          "cal_prob": 0.688,
+          "market_prob": 0.656,
+          "source": "fusion",
+          "hit_prob": 0.688
         },
         {
           "match": "2026-10-11_周日023",
@@ -62,7 +107,7 @@
           "league": "挪超",
           "sel": "away",
           "odds": 1.48,
-          "prob": 0.643,
+          "prob": 0.642,
           "cal_prob": 0.633,
           "market_prob": 0.643,
           "source": "fusion",
@@ -74,7 +119,7 @@
       "cal_ev": -0.13,
       "cal_roi": -0.0656,
       "market_ev": -0.19,
-      "market_roi": -0.0949,
+      "market_roi": -0.0946,
       "hit_prob_cal": 0.435,
       "recommended": false,
       "stake": 2.0,
@@ -101,75 +146,30 @@
           "hit_prob": 0.688
         },
         {
-          "match": "2026-10-11_周日013",
-          "home": "拉齐奥",
-          "away": "蒙扎",
-          "league": "意甲",
-          "sel": "home",
-          "odds": 1.47,
-          "prob": 0.649,
-          "cal_prob": 0.633,
-          "market_prob": 0.649,
-          "source": "fusion",
-          "hit_prob": 0.633
-        }
-      ],
-      "total_odds": 2.13,
-      "model_ev": -0.19,
-      "cal_ev": -0.14,
-      "cal_roi": -0.072,
-      "market_ev": -0.19,
-      "market_roi": -0.0935,
-      "hit_prob_cal": 0.435,
-      "recommended": false,
-      "stake": 2.0,
-      "n_bets": 1,
-      "potential": 4.26,
-      "worst_win": 0.0,
-      "note": "两场全中才赢",
-      "source": "calibrated"
-    },
-    {
-      "type": "2串1",
-      "legs": [
-        {
-          "match": "2026-10-11_周日013",
-          "home": "拉齐奥",
-          "away": "蒙扎",
-          "league": "意甲",
-          "sel": "home",
-          "odds": 1.47,
-          "prob": 0.649,
-          "cal_prob": 0.633,
-          "market_prob": 0.649,
-          "source": "fusion",
-          "hit_prob": 0.633
-        },
-        {
           "match": "2026-10-11_周日023",
           "home": "利勒斯特伦",
           "away": "莫尔德",
           "league": "挪超",
           "sel": "away",
           "odds": 1.48,
-          "prob": 0.643,
+          "prob": 0.642,
           "cal_prob": 0.633,
           "market_prob": 0.643,
           "source": "fusion",
           "hit_prob": 0.633
         }
       ],
-      "total_odds": 2.18,
-      "model_ev": -0.18,
-      "cal_ev": -0.25,
-      "cal_roi": -0.1274,
-      "market_ev": -0.18,
-      "market_roi": -0.0922,
-      "hit_prob_cal": 0.401,
+      "total_odds": 2.15,
+      "model_ev": -0.19,
+      "cal_ev": -0.13,
+      "cal_roi": -0.0656,
+      "market_ev": -0.19,
+      "market_roi": -0.0955,
+      "hit_prob_cal": 0.435,
       "recommended": false,
       "stake": 2.0,
       "n_bets": 1,
-      "potential": 4.35,
+      "potential": 4.29,
       "worst_win": 0.0,
       "note": "两场全中才赢",
       "source": "calibrated"
@@ -185,7 +185,7 @@
           "away": "库奥皮奥",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.388,
+          "prob": 0.389,
           "odds": 7.0
         },
         {
@@ -194,12 +194,12 @@
           "away": "洛城银河",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.351,
+          "prob": 0.353,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1361,
+      "hit_prob": 0.1374,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -216,21 +216,21 @@
           "away": "库奥皮奥",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.388,
+          "prob": 0.389,
           "odds": 7.0
         },
         {
-          "match": "2026-10-11_周日027",
-          "home": "米内罗竞技",
-          "away": "桑托斯",
-          "league": "巴甲",
-          "score": "1-0",
-          "prob": 0.338,
+          "match": "2026-10-11_周日001",
+          "home": "光州FC",
+          "away": "蔚山现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.339,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1313,
+      "hit_prob": 0.1321,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
@@ -247,27 +247,27 @@
           "away": "库奥皮奥",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.388,
+          "prob": 0.389,
           "odds": 7.0
         },
         {
-          "match": "2026-10-11_周日001",
-          "home": "光州FC",
-          "away": "蔚山现代",
-          "league": "K1联赛",
-          "score": "0-1",
-          "prob": 0.337,
+          "match": "2026-10-11_周日027",
+          "home": "米内罗竞技",
+          "away": "桑托斯",
+          "league": "巴甲",
+          "score": "1-0",
+          "prob": 0.334,
           "odds": 7.0
         }
       ],
       "total_odds": 49.0,
-      "hit_prob": 0.1309,
+      "hit_prob": 0.13,
       "stake": 2.0,
       "potential": 98.0,
       "worst_win": 0.0,
       "n_bets": 1,
       "odds_source": "simulated",
-      "note": "两场比分都中才赢（单场命中率约 39% × 34%）"
+      "note": "两场比分都中才赢（单场命中率约 39% × 33%）"
     },
     {
       "type": "比分3串1",
@@ -278,7 +278,7 @@
           "away": "库奥皮奥",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.388,
+          "prob": 0.389,
           "odds": 7.0
         },
         {
@@ -287,21 +287,21 @@
           "away": "洛城银河",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.351,
+          "prob": 0.353,
           "odds": 7.0
         },
         {
-          "match": "2026-10-11_周日027",
-          "home": "米内罗竞技",
-          "away": "桑托斯",
-          "league": "巴甲",
-          "score": "1-0",
-          "prob": 0.338,
+          "match": "2026-10-11_周日001",
+          "home": "光州FC",
+          "away": "蔚山现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.339,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0461,
+      "hit_prob": 0.0466,
       "stake": 2.0,
       "potential": 686.0,
       "worst_win": 0.0,
@@ -318,7 +318,7 @@
           "away": "库奥皮奥",
           "league": "芬超",
           "score": "1-0",
-          "prob": 0.388,
+          "prob": 0.389,
           "odds": 7.0
         },
         {
@@ -327,21 +327,21 @@
           "away": "洛城银河",
           "league": "美职联",
           "score": "1-0",
-          "prob": 0.351,
+          "prob": 0.353,
           "odds": 7.0
         },
         {
-          "match": "2026-10-11_周日027",
-          "home": "米内罗竞技",
-          "away": "桑托斯",
-          "league": "巴甲",
-          "score": "1-0",
-          "prob": 0.338,
+          "match": "2026-10-11_周日001",
+          "home": "光州FC",
+          "away": "蔚山现代",
+          "league": "K1联赛",
+          "score": "0-1",
+          "prob": 0.339,
           "odds": 7.0
         }
       ],
       "total_odds": 343.0,
-      "hit_prob": 0.0461,
+      "hit_prob": 0.0466,
       "stake": 8.0,
       "potential": 980.0,
       "worst_win": 98.0,
@@ -351,11 +351,11 @@
     }
   ],
   "parlay_calibration": {
-    "overall": 0.4705,
-    "n": 982,
+    "overall": 0.47,
+    "n": 983,
     "table": {
       "0.35": 0.38,
-      "0.4": 0.4271,
+      "0.4": 0.425,
       "0.45": 0.4897,
       "0.5": 0.4892,
       "0.55": 0.5962,
