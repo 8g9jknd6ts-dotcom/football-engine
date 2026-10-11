@@ -710,7 +710,7 @@ body {
     <div class="stat"><div class="label">平均置信</div><div class="value blue">16%</div></div>
     <div class="stat"><div class="label">总投入</div><div class="value amber">&yen;350</div></div>
     <div class="stat"><div class="label">预期回报</div><div class="value red">-0.05x</div></div>
-    <div class="stat"><div class="label">熔断器</div><div class="value red">T1 &middot; x1.0</div></div>
+    <div class="stat"><div class="label">熔断器</div><div class="value green">T0 &middot; x1.0</div></div>
   </div>
 
   <!-- LEAGUE MATRIX -->
@@ -755,7 +755,7 @@ body {
         <div class="prob-seg a" style="width:54.2%">A 54%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 54%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-1 / 0-0 / 0-2 / 0-3 / 0-4</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">4-3</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit miss">✗</span> <span class="ar-hit miss" title="比分未进候选列表">比分✗</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-1 / 0-0 / 0-2 / 0-3 / 0-4 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>26%</b></span>
@@ -930,7 +930,7 @@ body {
         <div class="prob-seg a" style="width:44.3%">A 44%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 44%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 1-0 / 1-1 / 0-2</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">1-0</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit miss">✗</span> <span class="ar-hit hit" title="比分命中候选第3位">🎯3</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 1-0 / 1-1 / 0-2 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>13%</b></span>
@@ -1105,7 +1105,7 @@ body {
         <div class="prob-seg a" style="width:43.7%">A 44%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 44%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 1-0 / 1-1 / 0-2</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">1-2</span> <span class="ar-outcome away">客胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit " title="比分命中候选第7位">🎯7</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 1-0 / 1-1 / 0-2 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>13%</b></span>
@@ -1280,7 +1280,7 @@ body {
         <div class="prob-seg a" style="width:21.8%">A 22%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 52%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">1-0 / 2-0 / 0-0 / 1-1 / 3-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">3-1</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit " title="比分命中候选第8位">🎯8</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 1-0 / 2-0 / 0-0 / 1-1 / 3-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>19%</b></span>
@@ -1455,7 +1455,7 @@ body {
         <div class="prob-seg a" style="width:45.8%">A 46%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 46%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 1-0 / 1-1 / 0-2</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">0-0</span> <span class="ar-outcome draw">平局</span> <span class="ar-hit miss">✗</span> <span class="ar-hit hit" title="比分命中候选第1位">🎯1</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 1-0 / 1-1 / 0-2 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>12%</b></span>
@@ -1630,7 +1630,7 @@ body {
         <div class="prob-seg a" style="width:39.0%">A 39%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 39%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-1 / 0-0 / 0-2 / 1-1 / 1-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">1-0</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit miss">✗</span> <span class="ar-hit hit" title="比分命中候选第5位">🎯5</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-1 / 0-0 / 0-2 / 1-1 / 1-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>9%</b></span>
@@ -1805,7 +1805,7 @@ body {
         <div class="prob-seg a" style="width:27.4%">A 27%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 39%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 1-0 / 1-1 / 0-2</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">0-0</span> <span class="ar-outcome draw">平局</span> <span class="ar-hit miss">✗</span> <span class="ar-hit hit" title="比分命中候选第1位">🎯1</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 1-0 / 1-1 / 0-2 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>8%</b></span>
@@ -1980,7 +1980,7 @@ body {
         <div class="prob-seg a" style="width:13.8%">A 14%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 51%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 1-0 / 0-1 / 2-0 / 1-1</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">1-0</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit hit" title="比分命中候选第2位">🎯2</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 1-0 / 0-1 / 2-0 / 1-1 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>17%</b></span>
@@ -2155,7 +2155,7 @@ body {
         <div class="prob-seg a" style="width:27.8%">A 28%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 41%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">1-0 / 0-0 / 1-1 / 0-1 / 2-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">0-1</span> <span class="ar-outcome away">客胜</span> <span class="ar-hit miss">✗</span> <span class="ar-hit hit" title="比分命中候选第4位">🎯4</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 1-0 / 0-0 / 1-1 / 0-1 / 2-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>9%</b></span>
@@ -2330,7 +2330,7 @@ body {
         <div class="prob-seg a" style="width:37.9%">A 38%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 38%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 1-0 / 1-1 / 0-2</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">1-1</span> <span class="ar-outcome draw">平局</span> <span class="ar-hit miss">✗</span> <span class="ar-hit hit" title="比分命中候选第4位">🎯4</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 1-0 / 1-1 / 0-2 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>9%</b></span>
@@ -2505,7 +2505,7 @@ body {
         <div class="prob-seg a" style="width:60.5%">A 61%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 61%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 0-2 / 0-3 / 1-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">2-2</span> <span class="ar-outcome draw">平局</span> <span class="ar-hit miss">✗</span> <span class="ar-hit miss" title="比分未进候选列表">比分✗</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 0-2 / 0-3 / 1-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>25%</b></span>
@@ -2680,7 +2680,7 @@ body {
         <div class="prob-seg a" style="width:29.4%">A 29%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 40%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 1-0 / 0-1 / 1-1 / 2-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">3-1</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit miss" title="比分未进候选列表">比分✗</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 1-0 / 0-1 / 1-1 / 2-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>9%</b></span>
@@ -2855,7 +2855,7 @@ body {
         <div class="prob-seg a" style="width:8.1%">A 8%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 66%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">1-0 / 0-0 / 2-0 / 3-0 / 1-1</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">3-1</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit miss" title="比分未进候选列表">比分✗</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 1-0 / 0-0 / 2-0 / 3-0 / 1-1 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>26%</b></span>
@@ -3030,7 +3030,7 @@ body {
         <div class="prob-seg a" style="width:33.5%">A 33%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val draw">平局 39%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 1-0 / 0-2 / 1-1</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">1-2</span> <span class="ar-outcome away">客胜</span> <span class="ar-hit miss">✗</span> <span class="ar-hit " title="比分命中候选第7位">🎯7</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 1-0 / 0-2 / 1-1 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>9%</b></span>
@@ -3205,7 +3205,7 @@ body {
         <div class="prob-seg a" style="width:33.0%">A 33%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 36%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 1-0 / 0-1 / 1-1 / 2-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">2-1</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit " title="比分命中候选第7位">🎯7</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 1-0 / 0-1 / 1-1 / 2-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>8%</b></span>
@@ -3380,7 +3380,7 @@ body {
         <div class="prob-seg a" style="width:30.8%">A 31%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 38%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 1-0 / 0-1 / 1-1 / 0-2</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">2-1</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit " title="比分命中候选第8位">🎯8</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 1-0 / 0-1 / 1-1 / 0-2 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>11%</b></span>
@@ -3555,7 +3555,7 @@ body {
         <div class="prob-seg a" style="width:16.2%">A 16%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 55%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">1-0 / 0-0 / 2-0 / 1-1 / 3-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">3-2</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit miss" title="比分未进候选列表">比分✗</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 1-0 / 0-0 / 2-0 / 1-1 / 3-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>19%</b></span>
@@ -3730,7 +3730,7 @@ body {
         <div class="prob-seg a" style="width:48.6%">A 49%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 49%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 1-0 / 1-1 / 0-2</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">0-3</span> <span class="ar-outcome away">客胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit miss" title="比分未进候选列表">比分✗</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 1-0 / 1-1 / 0-2 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>17%</b></span>
@@ -3905,7 +3905,7 @@ body {
         <div class="prob-seg a" style="width:13.6%">A 14%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 66%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">2-0 / 1-0 / 3-0 / 4-0 / 0-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">2-1</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit " title="比分命中候选第6位">🎯6</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 2-0 / 1-0 / 3-0 / 4-0 / 0-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>33%</b></span>
@@ -4080,7 +4080,7 @@ body {
         <div class="prob-seg a" style="width:45.8%">A 46%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 46%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 0-1 / 1-0 / 0-2 / 1-1</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">1-1</span> <span class="ar-outcome draw">平局</span> <span class="ar-hit miss">✗</span> <span class="ar-hit hit" title="比分命中候选第5位">🎯5</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 0-1 / 1-0 / 0-2 / 1-1 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>12%</b></span>
@@ -4255,7 +4255,7 @@ body {
         <div class="prob-seg a" style="width:15.8%">A 16%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 56%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-0 / 1-0 / 2-0 / 0-1 / 1-1</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">5-2</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit miss" title="比分未进候选列表">比分✗</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-0 / 1-0 / 2-0 / 0-1 / 1-1 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>24%</b></span>
@@ -4430,7 +4430,7 @@ body {
         <div class="prob-seg a" style="width:16.1%">A 16%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val home">主胜 58%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">1-0 / 2-0 / 0-0 / 3-0 / 4-0</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">2-0</span> <span class="ar-outcome home">主胜</span> <span class="ar-hit hit">✓</span> <span class="ar-hit hit" title="比分命中候选第2位">🎯2</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 1-0 / 2-0 / 0-0 / 3-0 / 4-0 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>27%</b></span>
@@ -4605,7 +4605,7 @@ body {
         <div class="prob-seg a" style="width:64.2%">A 64%</div>
       </div>
       <div class="pred-pick"><span class="pick-label">预测</span> <span class="pick-val away">客胜 64%</span> <span class="pick-label" title="模型预测的最可能比分（非赛果）">预测比分</span> <span class="pred-score">0-1 / 0-0 / 0-2 / 0-3 / 1-1</span></div>
-      
+      <div class="actual-result"><span class="ar-label">实际</span> <span class="ar-score">2-2</span> <span class="ar-outcome draw">平局</span> <span class="ar-hit miss">✗</span> <span class="ar-hit miss" title="比分未进候选列表">比分✗</span> <span class="pred-score" style="font-size:0.66rem;color:var(--dim)">预测 0-1 / 0-0 / 0-2 / 0-3 / 1-1 <span style="font-size:0.6rem;color:var(--purple)">[mc]</span></span></div>
       
       <div class="match-info-row">
         <span class="conf-meter"><span class="conf-dot low"></span><b>25%</b></span>
@@ -5732,8 +5732,8 @@ body {
       <details class="sp-detail" style="margin-top:6px"><summary>📋 逐票明细（8 张）</summary>
       <table class="edge-table" style="margin-top:6px">
         <tr><th>玩法</th><th>组合（腿 ✓/✗/·）</th><th style="text-align:right">投入 → 回报</th></tr>
-        <tr><td>2串1 ⏳</td><td>弗赖堡(home) + 利勒斯特伦(away) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>2串1 ⏳</td><td>弗赖堡(home) + 拉齐奥(home) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>2串1 ⏳</td><td>拉齐奥(home) + 利勒斯特伦(away) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr>
-        <tr><td>比分2串1 ⏳</td><td>国际图尔库(1-0) + 圣路易斯城(1-0) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>比分2串1 ⏳</td><td>国际图尔库(1-0) + 米内罗竞技(1-0) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>比分2串1 ⏳</td><td>国际图尔库(1-0) + 光州FC(0-1) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>比分3串1 ⏳</td><td>国际图尔库(1-0) + 圣路易斯城(1-0) + 米内罗竞技(1-0) <span style="color:var(--dim);font-size:.7rem">· · ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>比分3串4(容错) ⏳</td><td>国际图尔库(1-0) + 圣路易斯城(1-0) + 米内罗竞技(1-0) <span style="color:var(--dim);font-size:.7rem">· · ·</span></td><td style="text-align:right">¥8 → —</td></tr>
+        <tr><td>2串1 ⏳</td><td>拉齐奥(home) + 弗赖堡(home) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>2串1 ⏳</td><td>拉齐奥(home) + 利勒斯特伦(away) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>2串1 ⏳</td><td>弗赖堡(home) + 利勒斯特伦(away) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr>
+        <tr><td>比分2串1 ⏳</td><td>国际图尔库(1-0) + 圣路易斯城(1-0) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>比分2串1 ⏳</td><td>国际图尔库(1-0) + 光州FC(0-1) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>比分2串1 ⏳</td><td>国际图尔库(1-0) + 米内罗竞技(1-0) <span style="color:var(--dim);font-size:.7rem">· ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>比分3串1 ⏳</td><td>国际图尔库(1-0) + 圣路易斯城(1-0) + 光州FC(0-1) <span style="color:var(--dim);font-size:.7rem">· · ·</span></td><td style="text-align:right">¥2 → —</td></tr><tr><td>比分3串4(容错) ⏳</td><td>国际图尔库(1-0) + 圣路易斯城(1-0) + 光州FC(0-1) <span style="color:var(--dim);font-size:.7rem">· · ·</span></td><td style="text-align:right">¥8 → —</td></tr>
       </table>
       </details>
       
@@ -5741,6 +5741,226 @@ body {
 
     <!-- RESULTS REVIEW -->
     
+  <div class="section-title">赛果复盘</div>
+  <div class="results-summary">
+    <div class="ts-chip"><div class="ts-label">命中率</div><div class="ts-val" style="color:var(--green)">52% (12/23)</div></div>
+    <div class="ts-chip"><div class="ts-label">平均Brier</div><div class="ts-val" style="color:var(--amber)">0.588</div></div>
+    <div class="ts-chip"><div class="ts-label">总盈亏</div><div class="ts-val" style="color:var(--green)">&yen;+0</div></div>
+  </div>
+  <div class="results-summary" style="margin-top:6px;"><div class="ts-chip"><div class="ts-label">LogLoss(final)</div><div class="ts-val" style="color:var(--amber)">0.978</div></div><div class="ts-chip"><div class="ts-label">进球框架</div><div class="ts-val" style="color:var(--amber)">39% (9/23)</div></div><div class="ts-chip"><div class="ts-label">概率分段</div><div class="ts-val" style="font-size:0.68rem;">40-50%:43% · 50-60%:83% · 60%+:50% · <40%:33%</div></div><div class="ts-chip"><div class="ts-label">新鲜度分层</div><div class="ts-val" style="font-size:0.68rem;">alert:0% · ok:45% · watch:64%</div></div></div>
+  <div class="results-table-wrap">
+    <table class="results-table">
+      <tr><th>比赛</th><th>比分</th><th>实际</th><th>预测</th><th>命中</th><th>Brier</th><th>盈亏</th></tr>
+      
+        <tr class="miss">
+          <td>光州FC vs 蔚山现代</td>
+          <td style="font-weight:800;text-align:center;">4-3</td>
+          <td>主胜</td>
+          <td>客胜 (54%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">1.025</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>磐城FC vs 秋田闪电</td>
+          <td style="font-weight:800;text-align:center;">1-0</td>
+          <td>主胜</td>
+          <td>客胜 (44%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.830</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>川崎前锋 vs 名古屋鲸</td>
+          <td style="font-weight:800;text-align:center;">1-2</td>
+          <td>客胜</td>
+          <td>客胜 (44%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.476</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>乌德勒支 vs 威廉二世</td>
+          <td style="font-weight:800;text-align:center;">3-1</td>
+          <td>主胜</td>
+          <td>主胜 (52%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.351</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>科莫 vs 罗马</td>
+          <td style="font-weight:800;text-align:center;">0-0</td>
+          <td>平局</td>
+          <td>客胜 (46%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.816</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>南安普敦 vs 朴次茅斯</td>
+          <td style="font-weight:800;text-align:center;">1-0</td>
+          <td>主胜</td>
+          <td>客胜 (39%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.734</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>埃尔切 vs 塞尔塔</td>
+          <td style="font-weight:800;text-align:center;">0-0</td>
+          <td>平局</td>
+          <td>主胜 (39%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.658</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>国际图尔库 vs 库奥皮奥</td>
+          <td style="font-weight:800;text-align:center;">1-0</td>
+          <td>主胜</td>
+          <td>主胜 (51%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.377</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>兹沃勒 vs 坎布尔</td>
+          <td style="font-weight:800;text-align:center;">0-1</td>
+          <td>客胜</td>
+          <td>主胜 (41%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.786</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>腓特烈斯塔 vs 特罗姆瑟</td>
+          <td style="font-weight:800;text-align:center;">1-1</td>
+          <td>平局</td>
+          <td>客胜 (38%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.749</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>赫尔城 vs 埃弗顿</td>
+          <td style="font-weight:800;text-align:center;">2-2</td>
+          <td>平局</td>
+          <td>客胜 (61%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.900</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>水晶宫 vs 诺丁汉</td>
+          <td style="font-weight:800;text-align:center;">3-1</td>
+          <td>主胜</td>
+          <td>主胜 (40%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.538</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>拉齐奥 vs 蒙扎</td>
+          <td style="font-weight:800;text-align:center;">3-1</td>
+          <td>主胜</td>
+          <td>主胜 (66%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.193</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>莱切 vs 博洛尼亚</td>
+          <td style="font-weight:800;text-align:center;">1-2</td>
+          <td>客胜</td>
+          <td>平局 (39%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.671</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>尼斯 vs 斯特拉斯</td>
+          <td style="font-weight:800;text-align:center;">2-1</td>
+          <td>主胜</td>
+          <td>主胜 (36%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.613</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>科隆 vs 门兴</td>
+          <td style="font-weight:800;text-align:center;">2-1</td>
+          <td>主胜</td>
+          <td>主胜 (38%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.571</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>皇家社会 vs 拉科</td>
+          <td style="font-weight:800;text-align:center;">3-2</td>
+          <td>主胜</td>
+          <td>主胜 (55%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.311</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>利物浦 vs 曼城</td>
+          <td style="font-weight:800;text-align:center;">0-3</td>
+          <td>客胜</td>
+          <td>客胜 (49%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.399</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>弗赖堡 vs 沙尔克04</td>
+          <td style="font-weight:800;text-align:center;">2-1</td>
+          <td>主胜</td>
+          <td>主胜 (66%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.181</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>萨索洛 vs AC米兰</td>
+          <td style="font-weight:800;text-align:center;">1-1</td>
+          <td>平局</td>
+          <td>客胜 (46%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.719</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>贝蒂斯 vs 奥萨苏纳</td>
+          <td style="font-weight:800;text-align:center;">5-2</td>
+          <td>主胜</td>
+          <td>主胜 (56%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.303</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="hit">
+          <td>本菲卡 vs 吉马良斯</td>
+          <td style="font-weight:800;text-align:center;">2-0</td>
+          <td>主胜</td>
+          <td>主胜 (58%)</td>
+          <td style="text-align:center;"><span class="result-icon hit">✓</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">0.271</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+        <tr class="miss">
+          <td>利勒斯特伦 vs 莫尔德</td>
+          <td style="font-weight:800;text-align:center;">2-2</td>
+          <td>平局</td>
+          <td>客胜 (64%)</td>
+          <td style="text-align:center;"><span class="result-icon miss">✗</span></td>
+          <td style="font-family:monospace;font-size:0.68rem;">1.054</td>
+          <td style="color:var(--dim);font-weight:600;">0</td>
+        </tr>
+    </table>
+  </div>
 
     <!-- EV VALUE REPORT -->
     
@@ -5777,7 +5997,7 @@ body {
   <div style="overflow-x:auto">
   <table class="edge-table">
     <tr><th>联赛</th><th>场数</th><th>命中率</th><th>均赔</th><th>ROI</th><th>判断</th><th>近期窗口</th><th>判平(命中/次数·强度)</th></tr>
-    <tr><td>西甲</td><td>73</td><td>40%</td><td>2.02</td><td style="color:var(--red);font-weight:700">-25.4%</td><td><td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">✅ 回暖解禁·观察</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +0%</span></td></td><td style="color:var(--red)">0/1 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>意甲</td><td>53</td><td>58%</td><td>1.99</td><td style="color:var(--green);font-weight:700">+7.7%</td><td><td style="color:var(--green);font-weight:700">✅ 价值区</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +19%</span></td></td><td style="color:var(--amber)">1/3 (33%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>欧国联</td><td>52</td><td>54%</td><td>1.94</td><td style="color:var(--red);font-weight:700">-0.2%</td><td><td style="color:var(--amber)">⚠️ 谨慎</td></td><td><td style="color:var(--green)">近5场 4中 (80%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +16%</span></td></td><td style="color:var(--amber)">1/7 (14%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>欧冠</td><td>51</td><td>45%</td><td>2.21</td><td style="color:var(--red);font-weight:700">-12.7%</td><td><td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">✅ 回暖解禁·观察</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +7%</span></td></td><td style="color:var(--red)">0/1 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>英超</td><td>50</td><td>36%</td><td>2.02</td><td style="color:var(--red);font-weight:700">-31.4%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -17%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>K1联赛</td><td>45</td><td>42%</td><td>2.18</td><td style="color:var(--red);font-weight:700">-8.8%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -55%</span></td></td><td style="color:var(--green)">3/6 (50%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.85</span></td></tr><tr><td>荷甲</td><td>44</td><td>57%</td><td>1.82</td><td style="color:var(--green);font-weight:700">+3.1%</td><td><td style="color:var(--dim)">👀 观望</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -69%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>欧罗巴</td><td>44</td><td>52%</td><td>1.99</td><td style="color:var(--red);font-weight:700">-3.1%</td><td><td style="color:var(--amber)">⚠️ 谨慎</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +14%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>德甲</td><td>43</td><td>42%</td><td>2.01</td><td style="color:var(--red);font-weight:700">-17.7%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -18%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>瑞典超</td><td>43</td><td>30%</td><td>2.15</td><td style="color:var(--red);font-weight:700">-38.5%</td><td><td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">✅ 回暖解禁·观察</td></td><td><td style="color:var(--green)">近5场 4中 (80%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +60%</span></td></td><td style="color:var(--amber)">2/7 (29%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr>
+    <tr><td>西甲</td><td>73</td><td>40%</td><td>2.02</td><td style="color:var(--red);font-weight:700">-25.4%</td><td><td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">✅ 回暖解禁·观察</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +0%</span></td></td><td style="color:var(--red)">0/1 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>意甲</td><td>53</td><td>58%</td><td>1.99</td><td style="color:var(--green);font-weight:700">+7.7%</td><td><td style="color:var(--green);font-weight:700">✅ 价值区</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +19%</span></td></td><td style="color:var(--amber)">1/4 (25%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>挪超</td><td>52</td><td>62%</td><td>1.96</td><td style="color:var(--green);font-weight:700">+14.4%</td><td><td style="color:var(--green);font-weight:700">✅ 价值区</td></td><td><td style="color:var(--green)">近5场 5中 (100%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +103%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>欧国联</td><td>52</td><td>54%</td><td>1.94</td><td style="color:var(--red);font-weight:700">-0.2%</td><td><td style="color:var(--amber)">⚠️ 谨慎</td></td><td><td style="color:var(--green)">近5场 4中 (80%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +16%</span></td></td><td style="color:var(--amber)">1/7 (14%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>欧冠</td><td>51</td><td>45%</td><td>2.21</td><td style="color:var(--red);font-weight:700">-12.7%</td><td><td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">✅ 回暖解禁·观察</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +7%</span></td></td><td style="color:var(--red)">0/1 (0%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.40</span></td></tr><tr><td>英超</td><td>50</td><td>36%</td><td>2.02</td><td style="color:var(--red);font-weight:700">-31.4%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--amber)">近5场 2中 (40%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -17%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>瑞典超</td><td>49</td><td>29%</td><td>2.13</td><td style="color:var(--red);font-weight:700">-42.0%</td><td><td style="color:#ffaa3c;font-weight:700" title="累计口径送钱区，但最近5场命中≥60%，已自动解除禁投">✅ 回暖解禁·观察</td></td><td><td style="color:var(--green)">近5场 4中 (80%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +60%</span></td></td><td style="color:var(--amber)">2/7 (29%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.35</span></td></tr><tr><td>K1联赛</td><td>47</td><td>40%</td><td>2.18</td><td style="color:var(--red);font-weight:700">-12.7%</td><td><td style="color:var(--red);font-weight:700">🚫 送钱区·禁投</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -55%</span></td></td><td style="color:var(--green)">3/6 (50%)<br><span style="font-size:0.62rem;color:var(--dim)">强度 0.85</span></td></tr><tr><td>荷甲</td><td>44</td><td>57%</td><td>1.82</td><td style="color:var(--green);font-weight:700">+3.1%</td><td><td style="color:var(--dim)">👀 观望</td></td><td><td style="color:var(--red)">近5场 1中 (20%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI -69%</span></td></td><td style="color:var(--dim)">—</td></tr><tr><td>欧罗巴</td><td>44</td><td>52%</td><td>1.99</td><td style="color:var(--red);font-weight:700">-3.1%</td><td><td style="color:var(--amber)">⚠️ 谨慎</td></td><td><td style="color:var(--green)">近5场 3中 (60%)<br><span style="font-size:0.62rem;color:var(--dim)">近ROI +14%</span></td></td><td style="color:var(--dim)">—</td></tr>
   </table>
   <div style="padding:6px 2px;font-size:0.62rem;color:var(--dim)">回暖解禁 = 累计口径送钱区，但最近5场命中≥60% → 自动解除禁投观察；再拉胯自动打回送钱区。</div>
   </div>
@@ -5804,14 +6024,14 @@ body {
 
     <!-- SCORE HIT RATE (2026-08-05) -->
     
-  <div class="section-title">比分命中率（全量 983 场 · 近7天 918 场）</div>
+  <div class="section-title">比分命中率（全量 1006 场 · 近7天 941 场）</div>
   <div style="overflow-x:auto">
   <table class="edge-table">
     <tr><th>推荐档</th><th>全量命中</th><th>全量命中率</th><th>近7天命中</th><th>近7天命中率</th><th>说明</th></tr>
-    <tr><td>主推 top1</td><td>89</td><td style="font-weight:700">9%</td><td>84</td><td>9%</td><td style="color:var(--dim)">只押最可能比分（太难）</td></tr>
-    <tr><td>主推 top3</td><td>250</td><td style="font-weight:700">25%</td><td>225</td><td>25%</td><td style="color:var(--dim)">原主推 3 个（8/5 起改 5 个）</td></tr>
-    <tr><td>主推 top5</td><td>401</td><td style="font-weight:700;color:var(--green)">41%</td><td>366</td><td style="color:var(--green)">40%</td><td style="color:var(--dim)">当前主推 5 个</td></tr>
-    <tr><td>候选 top8</td><td>572</td><td style="font-weight:700">58%</td><td>527</td><td>57%</td><td style="color:var(--dim)">DJYY 完整候选列表</td></tr>
+    <tr><td>主推 top1</td><td>91</td><td style="font-weight:700">9%</td><td>86</td><td>9%</td><td style="color:var(--dim)">只押最可能比分（太难）</td></tr>
+    <tr><td>主推 top3</td><td>255</td><td style="font-weight:700">25%</td><td>230</td><td>24%</td><td style="color:var(--dim)">原主推 3 个（8/5 起改 5 个）</td></tr>
+    <tr><td>主推 top5</td><td>410</td><td style="font-weight:700;color:var(--green)">41%</td><td>375</td><td style="color:var(--green)">40%</td><td style="color:var(--dim)">当前主推 5 个</td></tr>
+    <tr><td>候选 top8</td><td>587</td><td style="font-weight:700">58%</td><td>542</td><td>58%</td><td style="color:var(--dim)">DJYY 完整候选列表</td></tr>
   </table>
   </div>
 
@@ -5829,14 +6049,14 @@ body {
   <div style="overflow-x:auto">
   <table class="edge-table">
     <tr><th>来源</th><th>命中/场次</th><th>命中率</th><th>说明</th></tr>
-    <tr><td>DJYY 分析源</td><td>36/42</td><td style="font-weight:700">86%</td><td style="color:var(--dim)">分析文本提取的比分候选（8/5 起记录）</td></tr><tr><td>MC 模拟源</td><td>338/500</td><td style="font-weight:700">68%</td><td style="color:var(--dim)">泊松蒙特卡洛模拟（8/5 起记录）</td></tr>
+    <tr><td>DJYY 分析源</td><td>36/42</td><td style="font-weight:700">86%</td><td style="color:var(--dim)">分析文本提取的比分候选（8/5 起记录）</td></tr><tr><td>MC 模拟源</td><td>347/515</td><td style="font-weight:700">67%</td><td style="color:var(--dim)">泊松蒙特卡洛模拟（8/5 起记录）</td></tr>
   </table>
   </div>
   <div class="section-title">盘口信号命中率（压缩比资金流向，样本累积验证中）</div>
   <div style="overflow-x:auto">
   <table class="edge-table">
     <tr><th>信号</th><th>命中/场次</th><th>命中率</th><th>模型方向基线</th><th>判断</th></tr>
-    <tr><td>欧赔压缩方向</td><td>298/885</td><td style="font-weight:700;color:var(--red)">34%</td><td>462/983 (47%)</td><td style="color:var(--red)">显著低于基线，信号待观察</td></tr>
+    <tr><td>欧赔压缩方向</td><td>304/908</td><td style="font-weight:700;color:var(--red)">33%</td><td>474/1006 (47%)</td><td style="color:var(--red)">显著低于基线，信号待观察</td></tr>
   </table>
   </div>
     
@@ -5847,11 +6067,11 @@ body {
   <div class="sys-grid">
     <div class="sys-card">
       <h4>熔断器</h4>
-      <div class="sys-row"><span class="k">状态</span><span class="tier-indicator safe">T1 &middot; x1.00</span></div>
-      <div class="sys-row"><span class="k">连续</span><span class="v" style="color:var(--red)">-3</span></div>
-      <div class="sys-row"><span class="k">胜率</span><span class="v">45.5% (622胜 / 744负)</span></div>
-      <div class="sys-row"><span class="k">日盈亏</span><span class="v" style="color:var(--green)">&yen;+0</span></div>
-      <div class="sys-row"><span class="k">周盈亏</span><span class="v" style="color:var(--red)">&yen;-103</span></div>
+      <div class="sys-row"><span class="k">状态</span><span class="tier-indicator safe">T0 &middot; x1.00</span></div>
+      <div class="sys-row"><span class="k">连续</span><span class="v" style="color:var(--red)">-1</span></div>
+      <div class="sys-row"><span class="k">胜率</span><span class="v">45.6% (634胜 / 755负)</span></div>
+      <div class="sys-row"><span class="k">日盈亏</span><span class="v" style="color:var(--red)">&yen;-40</span></div>
+      <div class="sys-row"><span class="k">周盈亏</span><span class="v" style="color:var(--red)">&yen;-143</span></div>
     </div>
     <div class="sys-card">
       <h4>决策完整性</h4>
