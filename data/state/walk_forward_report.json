@@ -1,25 +1,25 @@
 {
-  "total_matches": 1006,
+  "total_matches": 1010,
   "date_range": [
     "2026-07-20",
     "2026-10-11"
   ],
   "metrics": {
-    "brier": 0.631,
-    "weighted_brier": 0.6298,
-    "rps": 0.222,
-    "weighted_rps": 0.2217,
-    "log_loss": 1.0513,
-    "hit_rate": 0.4712,
-    "ece": 0.1633
+    "brier": 0.6312,
+    "weighted_brier": 0.63,
+    "rps": 0.2217,
+    "weighted_rps": 0.2215,
+    "log_loss": 1.0514,
+    "hit_rate": 0.4703,
+    "ece": 0.1613
   },
   "draw_analysis": {
-    "actual_draws": 247,
-    "actual_draw_rate": 0.2455,
-    "predicted_draws": 85,
-    "predicted_draw_rate": 0.0845,
-    "max_draw_prob": 0.4912,
-    "avg_draw_prob": 0.2893,
+    "actual_draws": 249,
+    "actual_draw_rate": 0.2465,
+    "predicted_draws": 86,
+    "predicted_draw_rate": 0.0851,
+    "max_draw_prob": 0.4929,
+    "avg_draw_prob": 0.2895,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4712,
-      "n": 1006
+      "hit_rate": 0.4703,
+      "n": 1010
     },
     "market": {
       "hit_rate": 0.512,
@@ -45,16 +45,16 @@
   },
   "by_league": {
     "西甲": {
-      "n": 76,
-      "hit_rate": 0.4079,
-      "brier": 0.6338,
-      "rps": 0.2266
+      "n": 77,
+      "hit_rate": 0.4026,
+      "brier": 0.6368,
+      "rps": 0.2258
     },
     "意甲": {
-      "n": 57,
-      "hit_rate": 0.5614,
-      "brier": 0.5485,
-      "rps": 0.1944
+      "n": 58,
+      "hit_rate": 0.5517,
+      "brier": 0.5519,
+      "rps": 0.1932
     },
     "英超": {
       "n": 53,
@@ -117,10 +117,10 @@
       "rps": 0.1785
     },
     "巴甲": {
-      "n": 39,
-      "hit_rate": 0.3333,
-      "brier": 0.7043,
-      "rps": 0.2132
+      "n": 40,
+      "hit_rate": 0.325,
+      "brier": 0.7017,
+      "rps": 0.2124
     },
     "日职": {
       "n": 35,
@@ -141,10 +141,10 @@
       "rps": 0.199
     },
     "法甲": {
-      "n": 33,
-      "hit_rate": 0.5152,
-      "brier": 0.6383,
-      "rps": 0.2371
+      "n": 34,
+      "hit_rate": 0.5294,
+      "brier": 0.6342,
+      "rps": 0.2359
     },
     "美职联": {
       "n": 32,
