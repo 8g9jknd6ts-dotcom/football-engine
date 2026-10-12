@@ -1,25 +1,25 @@
 {
-  "total_matches": 1010,
+  "total_matches": 1011,
   "date_range": [
     "2026-07-20",
     "2026-10-11"
   ],
   "metrics": {
-    "brier": 0.6312,
-    "weighted_brier": 0.63,
+    "brier": 0.631,
+    "weighted_brier": 0.6299,
     "rps": 0.2217,
-    "weighted_rps": 0.2215,
-    "log_loss": 1.0514,
-    "hit_rate": 0.4703,
-    "ece": 0.1613
+    "weighted_rps": 0.2214,
+    "log_loss": 1.0511,
+    "hit_rate": 0.4708,
+    "ece": 0.1618
   },
   "draw_analysis": {
     "actual_draws": 249,
-    "actual_draw_rate": 0.2465,
+    "actual_draw_rate": 0.2463,
     "predicted_draws": 86,
     "predicted_draw_rate": 0.0851,
     "max_draw_prob": 0.4929,
-    "avg_draw_prob": 0.2895,
+    "avg_draw_prob": 0.2896,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4703,
-      "n": 1010
+      "hit_rate": 0.4708,
+      "n": 1011
     },
     "market": {
       "hit_rate": 0.512,
@@ -147,10 +147,10 @@
       "rps": 0.2359
     },
     "美职联": {
-      "n": 32,
-      "hit_rate": 0.3125,
-      "brier": 0.7367,
-      "rps": 0.2373
+      "n": 33,
+      "hit_rate": 0.3333,
+      "brier": 0.7289,
+      "rps": 0.2354
     },
     "沙特联": {
       "n": 26,
