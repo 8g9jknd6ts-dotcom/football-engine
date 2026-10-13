@@ -1,25 +1,25 @@
 {
-  "total_matches": 1024,
+  "total_matches": 1033,
   "date_range": [
     "2026-07-20",
     "2026-10-13"
   ],
   "metrics": {
-    "brier": 0.6317,
-    "weighted_brier": 0.6307,
-    "rps": 0.2222,
-    "weighted_rps": 0.222,
-    "log_loss": 1.0522,
-    "hit_rate": 0.4688,
-    "ece": 0.1632
+    "brier": 0.6319,
+    "weighted_brier": 0.631,
+    "rps": 0.2226,
+    "weighted_rps": 0.2225,
+    "log_loss": 1.0526,
+    "hit_rate": 0.4685,
+    "ece": 0.1631
   },
   "draw_analysis": {
-    "actual_draws": 252,
-    "actual_draw_rate": 0.2461,
+    "actual_draws": 253,
+    "actual_draw_rate": 0.2449,
     "predicted_draws": 90,
-    "predicted_draw_rate": 0.0879,
+    "predicted_draw_rate": 0.0871,
     "max_draw_prob": 0.4929,
-    "avg_draw_prob": 0.2901,
+    "avg_draw_prob": 0.2898,
     "avg_market_draw": 0.2437,
     "market_high_draw_n": 28,
     "market_high_draw_actual": 9,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4688,
-      "n": 1024
+      "hit_rate": 0.4685,
+      "n": 1033
     },
     "market": {
       "hit_rate": 0.512,
@@ -56,6 +56,12 @@
       "brier": 0.5468,
       "rps": 0.1919
     },
+    "欧冠": {
+      "n": 59,
+      "hit_rate": 0.4576,
+      "brier": 0.6131,
+      "rps": 0.2308
+    },
     "英超": {
       "n": 54,
       "hit_rate": 0.3704,
@@ -67,12 +73,6 @@
       "hit_rate": 0.5385,
       "brier": 0.5574,
       "rps": 0.1962
-    },
-    "欧冠": {
-      "n": 51,
-      "hit_rate": 0.451,
-      "brier": 0.614,
-      "rps": 0.2281
     },
     "K1联赛": {
       "n": 46,
@@ -128,17 +128,17 @@
       "brier": 0.639,
       "rps": 0.2366
     },
+    "英冠": {
+      "n": 35,
+      "hit_rate": 0.3714,
+      "brier": 0.6634,
+      "rps": 0.2063
+    },
     "芬超": {
       "n": 34,
       "hit_rate": 0.4412,
       "brier": 0.6623,
       "rps": 0.2353
-    },
-    "英冠": {
-      "n": 34,
-      "hit_rate": 0.3824,
-      "brier": 0.6534,
-      "rps": 0.199
     },
     "法甲": {
       "n": 34,
