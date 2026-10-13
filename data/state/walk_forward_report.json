@@ -1,23 +1,23 @@
 {
-  "total_matches": 1021,
+  "total_matches": 1024,
   "date_range": [
     "2026-07-20",
-    "2026-10-12"
+    "2026-10-13"
   ],
   "metrics": {
-    "brier": 0.6313,
-    "weighted_brier": 0.6302,
-    "rps": 0.222,
-    "weighted_rps": 0.2218,
-    "log_loss": 1.0516,
-    "hit_rate": 0.4691,
-    "ece": 0.165
+    "brier": 0.6317,
+    "weighted_brier": 0.6307,
+    "rps": 0.2222,
+    "weighted_rps": 0.222,
+    "log_loss": 1.0522,
+    "hit_rate": 0.4688,
+    "ece": 0.1632
   },
   "draw_analysis": {
-    "actual_draws": 251,
-    "actual_draw_rate": 0.2458,
+    "actual_draws": 252,
+    "actual_draw_rate": 0.2461,
     "predicted_draws": 90,
-    "predicted_draw_rate": 0.0881,
+    "predicted_draw_rate": 0.0879,
     "max_draw_prob": 0.4929,
     "avg_draw_prob": 0.2901,
     "avg_market_draw": 0.2437,
@@ -27,8 +27,8 @@
   },
   "strategy_comparison": {
     "model": {
-      "hit_rate": 0.4691,
-      "n": 1021
+      "hit_rate": 0.4688,
+      "n": 1024
     },
     "market": {
       "hit_rate": 0.512,
@@ -206,17 +206,17 @@
       "brier": 0.6229,
       "rps": 0.1928
     },
+    "亚冠杯": {
+      "n": 12,
+      "hit_rate": 0.25,
+      "brier": 0.7694,
+      "rps": 0.2693
+    },
     "英联杯": {
       "n": 11,
       "hit_rate": 0.7273,
       "brier": 0.5143,
       "rps": 0.1974
-    },
-    "亚冠杯": {
-      "n": 9,
-      "hit_rate": 0.2222,
-      "brier": 0.7657,
-      "rps": 0.2675
     },
     "瑞超": {
       "n": 7,

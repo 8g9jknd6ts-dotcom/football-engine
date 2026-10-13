@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T08:28:38.650381+00:00",
+  "generated_at": "2026-10-13T16:29:03.077337+00:00",
   "parlay": {
     "n_tickets": 95,
     "n_settled": 92,
@@ -48,8 +48,8 @@
         "roi": -0.6449
       }
     },
-    "leg_hit_rate": 0.1148,
-    "n_legs_settled": 845
+    "leg_hit_rate": 0.1147,
+    "n_legs_settled": 846
   },
   "tickets": {
     "parlay": [
@@ -17749,7 +17749,7 @@
         "pending": true,
         "leg_results": [
           null,
-          null
+          false
         ],
         "return": 0.0,
         "legs": [
@@ -17769,7 +17769,7 @@
             "sel": null,
             "score": "1-0",
             "odds": 7.0,
-            "hit": null
+            "hit": false
           }
         ]
       },
@@ -39049,8 +39049,8 @@
           "roi": null,
           "avg_odds": null,
           "by_type": {},
-          "leg_hit_rate": null,
-          "n_legs_settled": 0
+          "leg_hit_rate": 0.0,
+          "n_legs_settled": 1
         },
         "tickets": [
           {
@@ -39137,7 +39137,7 @@
             "pending": true,
             "leg_results": [
               null,
-              null
+              false
             ],
             "return": 0.0,
             "legs": [
@@ -39157,7 +39157,7 @@
                 "sel": null,
                 "score": "1-0",
                 "odds": 7.0,
-                "hit": null
+                "hit": false
               }
             ]
           },
