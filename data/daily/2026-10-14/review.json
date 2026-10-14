@@ -1,0 +1,137 @@
+{
+  "date": "2026-10-14",
+  "n_matches": 6,
+  "hit_rate": 1.0,
+  "hits": 6,
+  "source_brier": {
+    "model": 0.4191,
+    "market": null,
+    "djyy": null,
+    "final": 0.4929
+  },
+  "by_league": {
+    "亚冠联2": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.437
+    },
+    "亚冠杯": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.4341
+    },
+    "日联杯": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.5454
+    },
+    "欧冠": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.5535
+    }
+  },
+  "by_confidence_tier": {
+    "mid": {
+      "n": 4,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.5101,
+      "avg_brier": 0.4602
+    },
+    "low": {
+      "n": 2,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.3424,
+      "avg_brier": 0.5584
+    }
+  },
+  "by_odds_band": {
+    "2.0-3.0": {
+      "n": 5,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.5655,
+      "avg_brier": 0.5162
+    },
+    "1.5-2.0": {
+      "n": 1,
+      "hit_rate": 1.0,
+      "wilson_lower": 0.2065,
+      "avg_brier": 0.3766
+    }
+  },
+  "score_stats": {
+    "top1": 0,
+    "top3": 0,
+    "top5": 0,
+    "top8": 3,
+    "any": 3
+  },
+  "score_rank_hist": {
+    "6": 3
+  },
+  "score_source_stats": {
+    "djyy": {
+      "n": 0,
+      "hits": 0
+    },
+    "mc": {
+      "n": 3,
+      "hits": 0
+    }
+  },
+  "market_signal_stats": {
+    "n": 6,
+    "hits": 3
+  },
+  "layered": {
+    "log_loss_final": 0.8502,
+    "goal_framework": {
+      "n": 6,
+      "hits": 1
+    },
+    "prob_bands": {
+      "40-50%": {
+        "n": 4,
+        "hit_rate": 1.0
+      },
+      "<40%": {
+        "n": 2,
+        "hit_rate": 1.0
+      }
+    },
+    "freshness_groups": {
+      "alert": {
+        "n": 1,
+        "hit_rate": 1.0
+      },
+      "ok": {
+        "n": 1,
+        "hit_rate": 1.0
+      },
+      "watch": {
+        "n": 4,
+        "hit_rate": 1.0
+      }
+    }
+  },
+  "biases": [
+    {
+      "dimension": "outcome",
+      "key": "all",
+      "outcome": "draw",
+      "predicted_avg": 0.3039,
+      "actual_rate": 0.0,
+      "gap": 0.3039,
+      "n": 6,
+      "severity": "warn",
+      "suggested_action": "increase market_weight (trust market on draws)"
+    }
+  ],
+  "total_pnl": 0.0,
+  "generated_at": "2026-10-14T19:42:19.661252",
+  "sha256": "54590882fe30ed926396ad1e982d09dc"
+}
